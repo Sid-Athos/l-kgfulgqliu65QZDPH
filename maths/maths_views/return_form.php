@@ -1,5 +1,5 @@
 <div>
     <form action="" method="POST">
-        <input type="submit" value="Retour">
+        <input type="submit" class="button" value="Retour">
     </form>
 </div>

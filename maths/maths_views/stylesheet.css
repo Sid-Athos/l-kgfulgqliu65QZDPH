@@ -6,7 +6,6 @@ body {
     background: #333333;
     font-size: 14px;
     max-width:100%;
-    font-family:'Titillium Web', sans-serif;
     overflow-x: hidden;
     overflow-y:scroll;
     text-align: center;
@@ -21,9 +20,28 @@ input {
     width : 170px;
     height: 35px;
     margin-top: 20px;
+    border-radius: -4px;
+    border-color: #decba4;
+    cursor: pointer;
+    transition: background 250ms ease-in-out, 
+                transform 150ms ease;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+input:hover,
+input:focus {
+    background:#decba3;
+    color: #3d5504;
+}
+
+
+input:active {
+    transform: scale(0.99);
 }
 textarea{
     font-family:'Titillium Web', sans-serif;
+    border-radius: 4px;
 }
 button {
     position:relative;
@@ -31,6 +49,11 @@ button {
     font-family:'Titillium Web', sans-serif;
     width :100px;
     height:25px;
+    border-radius: 4px;
+    transition: background 250ms ease-in-out, 
+                transform 150ms ease;
+    -webkit-appearance: none;
+    -moz-appearance: none;
 }
 .topnav {
     overflow: hidden;
