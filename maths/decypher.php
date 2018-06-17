@@ -6,7 +6,7 @@
     <style>
         body{
             background: #333333;
-            font-size: 22px;
+            font-size: 16px;
             font-family:'Titillium Web', sans-serif;
             overflow-x: scroll;
             max-width: 1800px;
@@ -28,15 +28,15 @@
             $key = -$key;
                 for($j=0;$j<count($phrase);$j++){
                     $ascii = ord($phrase[$j]);
-                    if($ascii >= 97 && $ascii <=122){
-                    $cal = ($ascii+97+$key+26)%26+97;
-                    $lol[] = chr($cal);
-                    }
+                        if($ascii >= 97 && $ascii <=122){
+                            $cal = ($ascii+97+$key+26)%26+97;
+                            $lol[] = chr($cal);
+                        }
                     $cal = chr($cal);
                     $phrase[$j] = $cal;
                 }
             $decypher_push = implode("",$phrase);
-            $tab []= $decypher_push;
+            $tab[] = $decypher_push;
             $key = -$key;
             $key++;
         }
@@ -90,30 +90,6 @@
         }
         $phrase = implode("",$phrase);
         echo "{$phrase}";
-
-
-
-
-        
-
-        $table_rows = array(array('Jeudi',"Samedi","Mercredi"));
-        $i=0;
-        while($i<count($tab[$i])){
-            $working_days[] = implode("",$table_rows[$i]);
-            $i++;
-        }
-        $working_days = implode("",$working_days);
-
-        $days = array("Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi","Dimanche");
-        for($i=0;$i<count($days);$i++){
-            if(!strchr($working_days,$days[$i])){
-                $days_available[] = $days[$i];
-            }
-        }
-
-        echo "<br>";
-        
-        var_dump($days_available);
     ?>
 </body>
 </html>
