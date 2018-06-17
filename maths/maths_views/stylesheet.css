@@ -80,13 +80,13 @@ button {
   }
   
   .topnav a:hover {
-    background-color: #ddd;
-    color: black;
+    background-color: #3d5504;
+    color: #decba4;
   }
   
   .active {
     background-color: #decba5;
-    color: white;
+    color: #decba4;
   }
   
   .topnav .icon {
