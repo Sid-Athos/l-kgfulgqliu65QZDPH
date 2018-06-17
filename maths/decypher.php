@@ -1,21 +1,5 @@
-<!DOCTYPE>
-<html>
-<head>
-    <meta content='http-equiv' content-type='text/html; charset = UTF-8'/>
-    <link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
-    <style>
-        body{
-            background: #333333;
-            font-size: 16px;
-            font-family:'Titillium Web', sans-serif;
-            overflow-x: scroll;
-            max-width: 1800px;
-            color: #decba4;
-        }
-    </style>
-</head>
-<body>
-    <?php
+<?php
+    include('./maths_views/html_top.html');
         /** Méthode 1, ASCII avec formule + choix de clef */
 
 
@@ -90,6 +74,6 @@
         }
         $phrase = implode("",$phrase);
         echo "{$phrase}";
+
+        include('./maths_views/html_bottom.html');
     ?>
-</body>
-</html>

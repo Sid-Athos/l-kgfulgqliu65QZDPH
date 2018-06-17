@@ -1,4 +1,6 @@
 <?php
+    include('../maths/maths_views/html_top.html');
+    include('./session_check.php');
     $table_rows = array(array('Jeudi',"Samedi","Mercredi"));
     $i=0;
 
@@ -18,11 +20,12 @@
         if(!strchr($working_days,$days[$i])){
 
             $days_available[] = $days[$i];
-            
+
         }
     }
 
     echo "<br>";
     
     var_dump($days_available);
+    include('../maths/maths_views/html_bottom.html');
 ?>
