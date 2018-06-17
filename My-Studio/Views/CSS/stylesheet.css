@@ -1,0 +1,85 @@
+body {
+    font-family: 'Titillium Web', sans-serif;
+    font-size: 16px;
+}
+
+@media print {
+    
+    #player {page-break-after: always;}
+}
+
+#navbar {
+    position: relative;
+    margin-top: -25px;
+    margin-left: -10px;
+    width: 15%;
+    min-width: 250px;
+    min-height: 300px;
+    background-color: #990033;
+    height: 75%;
+    font-family: 'Titillium Web', sans-serif;
+    overflow-y:hidden;
+    overflow-x:hidden;
+}
+#search_form {
+    margin-top:12px;
+    width: 70%;
+    margin-right: -50px;
+    margin-bottom: -15px;
+}
+
+#a {
+    border-left: 15px;
+}
+#liste_menu .acc {
+    text-decoration: none;
+    color: white;
+    font-family: 'Titillium Web', sans-serif;
+}
+#liste_menu .acc:hover {
+    text-decoration: none;
+    background-size: 100%;
+    display: block;
+    align-content: center;
+    transition: color .6s;
+    color: black;
+    font-family: 'Titillium Web', sans-serif;
+}
+hr{
+    margin-right:40%;
+    margin-left:-25px;
+    width: 80%;
+}
+
+
+#icon{
+    position: relative;
+    padding-right:25px;
+    margin-left: 80%;
+    margin-top:-6%;
+    margin-bottom:-30px;
+    height:35px;
+    width:35px;
+}
+
+#menu {
+    font-size: 24px;
+    color: white;
+    list-style-type: none;
+    position:relative;
+    margin-left: 10px;
+}
+#liste_menu{
+    margin-left: -18%;
+}
+
+#liste #liste{
+    position: relative;
+    text-align: left;
+
+}
+
+h1 {
+    font-size:70px;
+    font-family: 'Lato', sans-serif;
+}
