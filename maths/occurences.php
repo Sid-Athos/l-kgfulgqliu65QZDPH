@@ -75,20 +75,22 @@
             }
             
             /* Calcul Occurence(s) + insert tableau */
-            echo "<caption> Tableau récapitulatif des lettres trouvées :</caption>";    
             $c = strlen($phrase);
-        foreach(count_chars($phrase=strtr(strtoupper($phrase),array(" "=>"",","=>"","'"=>"",";"=>"","."=>"","-"=>"",":"=>"")),1) as $j=>$val){ 
+            $eff = 0;
+            foreach(count_chars($phrase=strtr(strtoupper($phrase),array(" "=>"",","=>"","'"=>"",";"=>"","."=>"","-"=>"",":"=>"")),1) as $j=>$val){ 
                 $cal = ($val/$c)*100;
                 $push[] = array(chr($j),array("%"=>$cal,"Occurence(s)"=>$val));
                 $tab[chr($j)]['%']=$cal;
                 $tab[chr($j)]['Occurence(s)']=$val;
                 $eff++;
-               
-
             }
+            
             $tab['Total']['Effectif : '] = $eff;
             $tab['Total']['Nombre de lettres : '] = $c;
             
+
+            /* Affichage tableau */
+            echo "<caption> Tableau récapitulatif des lettres trouvées :</caption>";    
             echo '<center><table><thead><tr><td>Lettre</td><td>Pourcentage (%) : </td><td>Occurence(s) : </td></tr></thead>';
             echo '<tbody>';
             foreach($tab as $i=>$val){
@@ -118,18 +120,38 @@
                 }
             }
             
-
+            /* Vérification si textes écrit en Anglais, puis portugais, et enfin en français */
             if(isset($tab['H'])){
                 if(number_format($tab['H']['%'],0) > 1){
                     echo '<br><h1><bold>Ce texte est très probablement en anglais.</bold></h1><br>';
                     echo '<form action="" method="POST">
                         <input type="submit" value="Retour">
                         </form>';
-                }else if(number_format($tab['W']['%'],0) > 2){
-                    echo '<br><h1><bold>Ce texte est très probablement en anglais.</bold></h1><br>';
-                    echo '<form action="" method="POST">
-                            <input type="submit" value="Retour">
-                            </form>';
+                }else if (isset($tab['W'])){
+                    if(number_format($tab['W']['%'],0) > 2){
+                        echo '<br><h1><bold>Ce texte est très probablement en anglais.</bold></h1><br>';
+                        echo '<form action="" method="POST">
+                                <input type="submit" value="Retour">
+                                </form>';
+                    } else if(!isset($tab['L'])){
+                        echo '<br><h1><bold>Ce texte est très probablement en portugais.</bold></h1><br>';
+                        echo '<form action="" method="POST">
+                                <input type="submit" value="Retour">
+                                </form>';
+                    
+                    } else {
+                        echo '<br><h1><bold>Ce texte est très probablement en Français.</bold></h1><br>';
+                        echo '<form action="" method="POST">
+                                <input type="submit" value="Retour">
+                                </form>';
+                    }
+           
+                } else if(!isset($tab['L'])){
+                        echo '<br><h1><bold>Ce texte est très probablement en portugais.</bold></h1><br>';
+                        echo '<form action="" method="POST">
+                                <input type="submit" value="Retour">
+                                </form>';
+                    
                 } else {
                     echo '<br><h1><bold>Ce texte est très probablement en Français.</bold></h1><br>';
                     echo '<form action="" method="POST">
@@ -144,12 +166,18 @@
                     echo '<form action="" method="POST">
                             <input type="submit" value="Retour">
                             </form>';
-                } else {
-                    echo '<br><h1><bold>Ce texte est très probablement en Français.</bold></h1><br>';
+                } else if(!isset($tab['L'])){
+                    echo '<br><h1><bold>Ce texte est très probablement en portugais.</bold></h1><br>';
                     echo '<form action="" method="POST">
                             <input type="submit" value="Retour">
                             </form>';
+                } else {
+                echo '<br><h1><bold>Ce texte est très probablement en Français.</bold></h1><br>';
+                echo '<form action="" method="POST">
+                        <input type="submit" value="Retour">
+                        </form>';
                 }
+       
            
             
             } else if(!isset($tab['L'])){

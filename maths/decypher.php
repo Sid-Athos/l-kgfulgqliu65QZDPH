@@ -89,7 +89,7 @@
             $phrase[$i]=chr($ascii);
         }
         $phrase = implode("",$phrase);
-        echo $phrase;
+        echo "{$phrase}";
 
 
 
