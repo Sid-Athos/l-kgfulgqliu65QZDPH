@@ -1,45 +1,6 @@
-<!DOCTYPE HTML>
-
-<head>
-
-    <title>Analyse fréquentielle</title>
-    <meta content='http-equiv' content-type='text/html; charset = UTF-8'/>
-    <link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
-        <style>
-            body{
-                padding-left: 3%;
-                background: #333333;
-                font-size: 16px;
-                font-family:'Titillium Web', sans-serif;
-                overflow-x: scroll;
-                max-width: 1800px;
-                color: #decba4;
-                text-align:center;
-            }
-            button-sid{
-                background: #decba4;
-            }
-            textarea{
-                font-size: 16px;
-                font-family:'Titillium Web', sans-serif;
-            }
-            td {
-                min-width:250px;;
-            }
-            table, th, td{
-                position: relative;
-                text-align: center;
-                border: 2px solid #decba4;
-                border-collapse: collapse;
-                font-size: 14px;
-                color:"white";
-                width: 45%;
-            }
-		</style>
-</head>
-<body>
 <?php
-    
+    include('./maths_views/html_top.html');
+    include('./maths_views/navbar.php');
     /* Affichage formulaire */
     if(!isset($_POST['texte'])){
             
@@ -210,8 +171,6 @@
                     include('./maths_views/text_area_form.php');
 
         }
-        
-?>
-</body>
 
-</html>
+        include('./maths_views/html_bottom.html');
+?>

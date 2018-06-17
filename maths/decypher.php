@@ -1,4 +1,5 @@
 <?php
+    include('./maths_views/navbar.php');
     include('./maths_views/html_top.html');
         /** Méthode 1, ASCII avec formule + choix de clef */
 
