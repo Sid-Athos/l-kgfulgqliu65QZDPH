@@ -20,7 +20,8 @@ input {
     width : 170px;
     height: 35px;
     margin-top: 20px;
-    border-radius: -4px;
+    border:0;
+    border-radius: 6px;
     border-color: #decba4;
     cursor: pointer;
     transition: background 250ms ease-in-out, 
@@ -31,8 +32,8 @@ input {
 
 input:hover,
 input:focus {
-    background:#decba3;
-    color: #3d5504;
+    background:#3d5504;
+    color: #decba4;
 }
 
 
@@ -42,6 +43,8 @@ input:active {
 textarea{
     font-family:'Titillium Web', sans-serif;
     border-radius: 4px;
+    min-width: 250px;
+    min-height: 150px;
 }
 button {
     position:relative;
@@ -73,6 +76,7 @@ button {
     padding: 14px 16px;
     text-decoration: none;
     font-size: 17px;
+    width: 120px;
   }
   
   .topnav a:hover {
