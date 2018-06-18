@@ -1,7 +1,9 @@
 <?php
     include('./maths_views/html_top.html');
     include('./maths_views/navbar.php');
+
     /* Affichage formulaire */
+    
     if(!isset($_POST['texte'])){
             
         include('./maths_views/text_area_form.php');
@@ -12,165 +14,194 @@
 
     if(!empty($_POST['texte'])){
     
-            echo "{$_POST['texte']}<br>";
-            $phrase1 = str_split(strtolower($_POST['texte']));
-            $len = count($phrase1);
-            $phrase = $_POST['texte'];           
+        echo "<br>{$_POST['texte']}<br>";
+        $phrase1 = str_split(strtolower($_POST['texte']));
+        $len = count($phrase1);
+        $phrase = $_POST['texte'];           
 
 
-            /* Vérification spécifités linguistiques */
+        /* Vérification spécifités linguistiques */
 
-            for($i=0; $i<count($phrase1);$i++){
+        $pattern_fr = "#[çèàéùçôêâ]#";
+        $pattern_esp = "#[óñí]#";
+
+        if(preg_match($pattern_fr,$phrase)){
+            echo "Un caractère spécial appartenant au français a été détecté.";
+            die();
+        } else if(preg_match($pattern_esp,$phrase)){
+            echo "Un caractère spécial correspondant à l'espagnol, au portugais ou à l'italien a été détecté";
+            die();
+        }
+
+        /* Calcul Occurence(s) + insert tableau */
+
+        $c = strlen($phrase);
+        $eff = 0;
+        foreach(count_chars($phrase=strtr(strtoupper($phrase),array(" "=>"",","=>"","'"=>"",";"=>"","."=>"","-"=>"",":"=>"")),1) as $j=>$val){ 
+            
+            $cal = ($val/$c)*100;
+            $tab[chr($j)]['%']=$cal;
+            $tab[chr($j)]['Occurence(s)']=$val;
+            $eff++;
+
+        }
+        
+        $tab['Total']['Effectif : '] = $eff;
+        $tab['Total']['Nombre de lettres : '] = $c;
+            
+
+        include('./maths_views/occurences_table.php');
+        
+        /* Vérification si textes écrit en Anglais, puis portugais, et enfin en français */
+
+
+
+        if(isset($tab['H'])){
+            
+            if(number_format($tab['H']['%'],0) > 1){
                 
-                if(ord($phrase1[$i]) === ord("é")||ord($phrase1[$i]) === ord("è")||ord($phrase1[$i]) === ord("à")||ord($phrase1[$i]) === ord("ç")){
-                    
-                    echo "<br><br>C'est du français mamène, check les caractères spéciaux, j'en ai détecté un en position ".($i+1)." !";
+                echo '<br><h1><bold>Ce texte est très probablement en anglais.</bold></h1>';
                     include('./maths_views/return_form.php');
-                    die();
 
-                } else if(ord($phrase1[$i]) == "è" || ord($phrase1[$i]) == ord("í") || ord($phrase1[$i]) == ord("ó") || ord($phrase1[$i]) == ord("ú")){
-                    
-                    echo "Une des langues parmis l'espagnol, l'italien et le portugais  a été détecté.Un caractère spécial a été trouvé en position ".($i+1)." est présent dans le texte.";
-                    include('./maths_views/return_form.php');
-                    die();
-
-                }
-            }
-            
-            /* Calcul Occurence(s) + insert tableau */
-            $c = strlen($phrase);
-            $eff = 0;
-            foreach(count_chars($phrase=strtr(strtoupper($phrase),array(" "=>"",","=>"","'"=>"",";"=>"","."=>"","-"=>"",":"=>"")),1) as $j=>$val){ 
-                
-                $cal = ($val/$c)*100;
-                $push[] = array(chr($j),array("%"=>$cal,"Occurence(s)"=>$val));
-                $tab[chr($j)]['%']=$cal;
-                $tab[chr($j)]['Occurence(s)']=$val;
-                $eff++;
-
-            }
-            
-            $tab['Total']['Effectif : '] = $eff;
-            $tab['Total']['Nombre de lettres : '] = $c;
-            
-
-            /* Affichage tableau */
-            echo "<caption> Tableau récapitulatif des lettres trouvées :</caption>";    
-            echo '<center><table><thead><tr><td>Lettre</td><td>Pourcentage (%) : </td><td>Occurence(s) : </td></tr></thead>';
-            echo '<tbody>';
-            
-            foreach($tab as $i=>$val){
-                
-                if($i=='Total'){
-                    
-                    echo '<tr><td>'.$i.'</td>';
-
-                } else {
-                
-                    echo '<tr><td>'.$i.'</td>';
-
-                }
-                
-                foreach($val as $key=>$value){
-                    
-                    if($key=='%'){
-                   
-                    echo '<td>';
-                    echo number_format($value,2,",","'");
-                    echo '</td>';
-                    
-                    }else if($key == 'Occurence(s)'){
-                        
-                        echo '<td>';
-                        echo number_format($value,0,"","'");
-                        echo '</td></tr>';
-
-                    }else if($key=='Effectif : '){
-                        
-                        echo '<td>'.$key;
-                        echo number_format($value,0,"","'");
-                        echo '</td>';
-
-                    }else if($key == 'Nombre de lettres : '){
-                        
-                        echo '<td>'.$key;
-                        echo number_format($value,0,"","'");
-                        echo '</td></tr></tbody></table></center>';
-
-                    }
-                }
-            }
-            
-            /* Vérification si textes écrit en Anglais, puis portugais, et enfin en français */
-            if(isset($tab['H'])){
-                
-                if(number_format($tab['H']['%'],0) > 1){
-                    
-                    echo '<br><h1><bold>Ce texte est très probablement en anglais.</bold></h1>';
-                        include('./maths_views/return_form.php');
-
-                }else if (isset($tab['W'])){
-                    
-                    if(number_format($tab['W']['%'],0) > 2){
-                        
-                        echo '<br><h1><bold>Ce texte est très probablement en anglais.</bold></h1>';
-                                include('./maths_views/return_form.php');
-
-                    } else if(!isset($tab['L']) && number_format($tab['A']['%'],0) > number_format($tab['E']['%'],0)){
-                        
-                        echo '<br><h1><bold>Ce texte est très probablement en portugais.</bold></h1>';
-                                include('./maths_views/return_form.php');
-                    
-                    } else {
-                        
-                        echo '<br><h1><bold>Ce texte est très probablement en Français.</bold></h1>';
-                                include('./maths_views/return_form.php');
-                    }
-           
-                } else if(!isset($tab['L']) && number_format($tab['A']['%'],0) > number_format($tab['E']['%'],0)){
-                        
-                    echo '<br><h1><bold>Ce texte est très probablement en portugais.</bold></h1>';
-                        include('./maths_views/return_form.php');
-                    
-                } else {
-                    
-                    echo '<br><h1><bold>Ce texte est très probablement en Français.</bold></h1>';
-                        include('./maths_views/return_form.php');
-                }
-           
-            } else if (isset($tab['W'])){
+            }else if (isset($tab['W'])){
                 
                 if(number_format($tab['W']['%'],0) > 2){
                     
                     echo '<br><h1><bold>Ce texte est très probablement en anglais.</bold></h1>';
-                        include('./maths_views/return_form.php');
-                } else if(!isset($tab['L']) && number_format($tab['A']['%'],0) > number_format($tab['E']['%'],0)){
+                            include('./maths_views/return_form.php');
+
+                } else if(!isset($tab['L'])){
+
+                        if (isset($tab['E'])){
+        
+                            if(number_format($tab['A']['%'],0) > number_format($tab['E']['%'],0)){
+                        
+                                echo '<br><h1><bold>Ce texte est très probablement en portugais.</bold></h1>';
+                                        include('./maths_views/return_form.php');
+                            } else {
+            
+                                echo '<br><h1><bold>Ce texte est très probablement en Français.</bold></h1>';
+                                include('./maths_views/return_form.php');
+                            }
+                        } else {
+                        
+                        echo '<br><h1><bold>Ce texte est très probablement en Portugais.</bold></h1>';
+                                include('./maths_views/return_form.php');
+                        }
+                    } else {
                     
-                    echo '<br><h1><bold>Ce texte est très probablement en portugais.</bold></h1>';
-                        include('./maths_views/return_form.php');
+                        echo '<br><h1><bold>Ce texte est très probablement en Français.</bold></h1>';
+                            include('./maths_views/return_form.php');
+        
+                    }
+        
+            } else if(!isset($tab['L'])) {
+
+                    if (isset($tab['E'])){
+    
+                        if(number_format($tab['A']['%'],0) > number_format($tab['E']['%'],0)){
+                    
+                            echo '<br><h1><bold>Ce texte est très probablement en portugais.</bold></h1>';
+                                    include('./maths_views/return_form.php');
+                        } else {
+        
+                            echo '<br><h1><bold>Ce texte est très probablement en Français.</bold></h1>';
+                            include('./maths_views/return_form.php');
+                        }
+                    } else {
+                    
+                    echo '<br><h1><bold>Ce texte est très probablement en Portugais.</bold></h1>';
+                            include('./maths_views/return_form.php');
+                    }
                 } else {
                 
                     echo '<br><h1><bold>Ce texte est très probablement en Français.</bold></h1>';
                         include('./maths_views/return_form.php');
-
+    
                 }
-       
-           } else if(!isset($tab['L']) && number_format($tab['A']['%'],0) > number_format($tab['E']['%'],0)){
-                
-                echo '<br><h1><bold>Ce texte est très probablement en portugais.</bold></h1>';
-                        include('./maths_views/return_form.php');
-            } else{
-                
-                echo '<br><h1><bold>Ce texte est très probablement en Français.</bold></h1>';
-                        include('./maths_views/return_form.php');
-            }
+        
+        } else if (isset($tab['W'])){
             
-        } else if(isset($_POST['texte']) && empty($_POST['texte'])){
+            if(number_format($tab['W']['%'],0) > 2){
+                
+                echo '<br><h1><bold>Ce texte est très probablement en anglais.</bold></h1>';
+                    include('./maths_views/return_form.php');
+            
+            } else if(!isset($tab['L'])){
+
+                if (isset($tab['E'])){
+
+                    if(number_format($tab['A']['%'],0) > number_format($tab['E']['%'],0)){
+                
+                        echo '<br><h1><bold>Ce texte est très probablement en portugais.</bold></h1>';
+                                include('./maths_views/return_form.php');
+                    } else {
+    
+                        echo '<br><h1><bold>Ce texte est très probablement en Français.</bold></h1>';
+                        include('./maths_views/return_form.php');
+                    }
+                } else {
+                
+                echo '<br><h1><bold>Ce texte est très probablement en Portugais.</bold></h1>';
+                        include('./maths_views/return_form.php');
+                }
+            } else {
+            
+                echo '<br><h1><bold>Ce texte est très probablement en Français.</bold></h1>';
+                    include('./maths_views/return_form.php');
+
+            }
+    
+        } else if(!isset($tab['L'])){
+
+            if (isset($tab['E'])){
+
+                if(number_format($tab['A']['%'],0) > number_format($tab['E']['%'],0)){
+            
+                    echo '<br><h1><bold>Ce texte est très probablement en portugais.</bold></h1>';
+                            include('./maths_views/return_form.php');
+                } else {
+
+                    echo '<br><h1><bold>Ce texte est très probablement en Français.</bold></h1>';
+                    include('./maths_views/return_form.php');
+                }
+            } else {
+            
+            echo '<br><h1><bold>Ce texte est très probablement en Portugais.</bold></h1>';
+                    include('./maths_views/return_form.php');
+            }
+        } else {
+
+            echo '<br><h1><bold>Ce texte est très probablement en Français.</bold></h1>';
+                    include('./maths_views/return_form.php');
+
+        }   
+        
+    } else if(isset($_POST['texte']) && empty($_POST['texte'])){
             
             echo "C'est vide mamène, saisis un texte stp";
                     include('./maths_views/text_area_form.php');
 
-        }
+    }
 
-        include('./maths_views/html_bottom.html');
+
+    switch($tab):
+        case(isset($tab['H'])):
+            switch($tab['H']['%']):
+                case(number_format($tab['H']['%'],0) > 2):
+                    echo 'lol';
+                    break;
+        case(isset($tab['W'])):
+            switch($tab['W']['%']):
+                case(number_format($tab['W']['%'],0) > 2):
+                    break;
+        case(!isset($tab['L'])):
+            switch($tab['L']):
+                case(isset($tab['E'])):
+                    switch($tab['E']):
+                        case(number_format($tab['E']['%'],0) < number_format($tab['A']['%'],0)):
+                            break;
+
+    include('./maths_views/html_bottom.html');
+
 ?>

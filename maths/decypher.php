@@ -2,6 +2,7 @@
     include('./maths_views/html_top.html');
     include('./maths_views/navbar.php');
         /** Méthode 1, ASCII avec formule + choix de clef */
+        
 
 
         $key = 97;
