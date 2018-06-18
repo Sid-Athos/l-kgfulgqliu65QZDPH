@@ -22,14 +22,11 @@
 
         /* Vérification spécifités linguistiques */
 
-        $pattern_fr = "#[çèàéùçôêâ]#";
-        $pattern_esp = "#[óñí]#";
+        $pattern_fr = "#[çèàéùçôêâïû]#";
 
         if(preg_match($pattern_fr,$phrase)){
-            echo "Un caractère spécial appartenant au français a été détecté.";
-            die();
-        } else if(preg_match($pattern_esp,$phrase)){
-            echo "Un caractère spécial correspondant à l'espagnol, au portugais ou à l'italien a été détecté";
+            echo "<br>Un caractère spécial appartenant au français a été détecté.<br>";
+            include('./maths_views/return_form.php');
             die();
         }
 
@@ -52,7 +49,7 @@
 
         include('./maths_views/occurences_table.php');
         
-        /* Vérification si textes écrit en Anglais, puis portugais, et enfin en français */
+        /* Vérification si textes écrit en Anglais, puis portugais, ou en français */
 
 
 
@@ -74,7 +71,7 @@
 
                         if (isset($tab['E'])){
         
-                            if(number_format($tab['A']['%'],0) > number_format($tab['E']['%'],0)){
+                            if(number_format($tab['A']['%'],0) >= number_format($tab['E']['%'],0)){
                         
                                 echo '<br><h1><bold>Ce texte est très probablement en portugais.</bold></h1>';
                                         include('./maths_views/return_form.php');
@@ -99,7 +96,7 @@
 
                     if (isset($tab['E'])){
     
-                        if(number_format($tab['A']['%'],0) > number_format($tab['E']['%'],0)){
+                        if(number_format($tab['A']['%'],0) >= number_format($tab['E']['%'],0)){
                     
                             echo '<br><h1><bold>Ce texte est très probablement en portugais.</bold></h1>';
                                     include('./maths_views/return_form.php');
@@ -131,7 +128,7 @@
 
                 if (isset($tab['E'])){
 
-                    if(number_format($tab['A']['%'],0) > number_format($tab['E']['%'],0)){
+                    if(number_format($tab['A']['%'],0) >= number_format($tab['E']['%'],0)){
                 
                         echo '<br><h1><bold>Ce texte est très probablement en portugais.</bold></h1>';
                                 include('./maths_views/return_form.php');
@@ -156,7 +153,7 @@
 
             if (isset($tab['E'])){
 
-                if(number_format($tab['A']['%'],0) > number_format($tab['E']['%'],0)){
+                if(number_format($tab['A']['%'],0) >= number_format($tab['E']['%'],0)){
             
                     echo '<br><h1><bold>Ce texte est très probablement en portugais.</bold></h1>';
                             include('./maths_views/return_form.php');
@@ -185,23 +182,7 @@
     }
 
 
-    switch($tab):
-        case(isset($tab['H'])):
-            switch($tab['H']['%']):
-                case(number_format($tab['H']['%'],0) > 2):
-                    echo 'lol';
-                    break;
-        case(isset($tab['W'])):
-            switch($tab['W']['%']):
-                case(number_format($tab['W']['%'],0) > 2):
-                    break;
-        case(!isset($tab['L'])):
-            switch($tab['L']):
-                case(isset($tab['E'])):
-                    switch($tab['E']):
-                        case(number_format($tab['E']['%'],0) < number_format($tab['A']['%'],0)):
-                            break;
-
+    
     include('./maths_views/html_bottom.html');
 
 ?>
