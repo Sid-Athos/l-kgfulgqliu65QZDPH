@@ -15,14 +15,12 @@
     if(!empty($_POST['texte'])){
     
         echo "<br>{$_POST['texte']}<br>";
-        $phrase1 = str_split(strtolower($_POST['texte']));
-        $len = count($phrase1);
         $phrase = $_POST['texte'];           
 
 
         /* Vérification spécifités linguistiques */
 
-        $pattern_fr = "#[çèàéùçôêâïû]#";
+        $pattern_fr = "#[çèàéùôêâïû]#";
 
         if(preg_match($pattern_fr,$phrase)){
             echo "<br>Un caractère spécial appartenant au français a été détecté.<br>";
@@ -46,10 +44,11 @@
         $tab['Total']['Effectif : '] = $eff;
         $tab['Total']['Nombre de lettres : '] = $c;
             
+        /* Affichage tableau */
 
         include('./maths_views/occurences_table.php');
         
-        /* Vérification si textes écrit en Anglais, puis portugais, ou en français */
+        /* Vérification si textes écrit en Anglais, Portugais, ou Français */
 
 
 
@@ -85,12 +84,12 @@
                         echo '<br><h1><bold>Ce texte est très probablement en Portugais.</bold></h1>';
                                 include('./maths_views/return_form.php');
                         }
-                    } else {
-                    
-                        echo '<br><h1><bold>Ce texte est très probablement en Français.</bold></h1>';
-                            include('./maths_views/return_form.php');
-        
-                    }
+                } else {
+                
+                    echo '<br><h1><bold>Ce texte est très probablement en Français.</bold></h1>';
+                        include('./maths_views/return_form.php');
+    
+                }
         
             } else if(!isset($tab['L'])) {
 
@@ -103,19 +102,19 @@
                         } else {
         
                             echo '<br><h1><bold>Ce texte est très probablement en Français.</bold></h1>';
-                            include('./maths_views/return_form.php');
+                                    include('./maths_views/return_form.php');
                         }
                     } else {
                     
                     echo '<br><h1><bold>Ce texte est très probablement en Portugais.</bold></h1>';
                             include('./maths_views/return_form.php');
                     }
-                } else {
-                
-                    echo '<br><h1><bold>Ce texte est très probablement en Français.</bold></h1>';
-                        include('./maths_views/return_form.php');
-    
-                }
+            } else {
+            
+                echo '<br><h1><bold>Ce texte est très probablement en Français.</bold></h1>';
+                    include('./maths_views/return_form.php');
+
+            }
         
         } else if (isset($tab['W'])){
             
@@ -139,7 +138,7 @@
                     }
                 } else {
                 
-                echo '<br><h1><bold>Ce texte est très probablement en Portugais.</bold></h1>';
+                     echo '<br><h1><bold>Ce texte est très probablement en Portugais.</bold></h1>';
                         include('./maths_views/return_form.php');
                 }
             } else {
@@ -160,7 +159,7 @@
                 } else {
 
                     echo '<br><h1><bold>Ce texte est très probablement en Français.</bold></h1>';
-                    include('./maths_views/return_form.php');
+                            include('./maths_views/return_form.php');
                 }
             } else {
             

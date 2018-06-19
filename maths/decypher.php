@@ -1,6 +1,8 @@
 <?php
     include('./maths_views/html_top.html');
     include('./maths_views/navbar.php');
+
+    
         /** Méthode 1, ASCII avec formule + choix de clef */
         
 
@@ -8,18 +10,17 @@
         $key = 97;
         while($key<=122){
             $phrase = "Erqmrxu ohv lwlv Frulqqh yrxv sursrvh gh ghfkliiuhu fh shwlw whawh, hq idlvdqw xq surjudpph hq SKS, shuphwwdqw gh wurxyhu fh txh mh yrxv udfrqwh ;-) Mh wurxyh fhod wuhv ixq gh yrxv idluh frpsuhqguh frpphqw irqfwlrqqh fh frgh Fhvdu. O'xq ghv soxv ylhxa frgh halvwdqw hw o'xq ghv 1huv d frpsuhqguh. Oh suhplhu g'hqwuh yrxv txl frpsuhqg fh txh mh glw d jdjqhu xq fdih !!!!";
-            $phrase = strtr($phrase = strtolower($phrase),array(";"=>"","."=>"","'"=>"","-"=>"",")"=>"",":"=>""," !"=>"",","=>""));
+            $phrase = strtr($phrase = strtolower($phrase),array(";"=>"","."=>"","'"=>"","-"=>"",")"=>"",":"=>"","!"=>"",","=>""));
             $count = strlen($phrase);
             $phrase = str_split($phrase);
             $key = -$key;
                 for($j=0;$j<count($phrase);$j++){
                     $ascii = ord($phrase[$j]);
                         if($ascii >= 97 && $ascii <=122){
-                            $cal = ($ascii+97+$key+26)%26+97;
-                            $lol[] = chr($cal);
+                            $ascii = ($ascii+97+$key+26)%26+97;
                         }
-                    $cal = chr($cal);
-                    $phrase[$j] = $cal;
+                    $ascii = chr($ascii);
+                    $phrase[$j] = $ascii;
                 }
             $decypher_push = implode("",$phrase);
             $tab[] = $decypher_push;
@@ -69,7 +70,7 @@
                     $ascii = $ascii - $step;
                 }else {
                     $new_step=$step-$cal;
-                    $ascii = 122-($new_step-1);/** La véritable formule est 122 -($new_step-1). PHP est nul, je dois rajouter un -1 pour avoir x et ça change rien pour le reste xD  */
+                    $ascii = 122-($new_step-1);/** La véritable formule est 122 -($new_step). PHP est nul, je dois rajouter un -1 pour avoir x et ça change rien pour le reste xD  */
                 }
             }
             $phrase[$i]=chr($ascii);
