@@ -10,6 +10,20 @@ body {
     overflow-y:scroll;
     text-align: center;
 }
+tbody {
+  max-height: 350px;
+  width: 100%;
+  display: inline-block;
+  overflow: auto;
+  text-align: center;
+}
+tbody. td{
+
+}
+table{
+  width: 350px;
+  display: inline-block;
+}
 form{
     position:relative;
     align-content: center;
