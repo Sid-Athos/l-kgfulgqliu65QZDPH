@@ -6,7 +6,7 @@
 <div class="container"  style="margin-top: 20px;">
     <div class="row">
         <div class="col-md-4 col-md-offset-4" style="max-height= 600px overflow-x= scroll">
-            <form role="form" class="form container-fluid border border-dark rounded" action="index.php?page=register" method="POST" name="register_form">
+            <form role="form" class="form container-fluid border border-dark rounded" action="index.php?page=Inscription" method="POST" name="register_form">
                     <?php if ($flag_email_taken) { alert($email_taken); } ?>
                     <?php if ($flag_name_taken) { alert($name_taken); } ?>
                     <?php if (isset($successmsg)) { success($successmsg); } ?>

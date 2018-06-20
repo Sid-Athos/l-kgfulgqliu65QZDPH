@@ -54,6 +54,7 @@
             try {
                 $stmt = $db->prepare($query);
                 $result = $stmt->execute($query_params);
+                $query = null;
             }catch(PDOException $ex){
                 echo "Une erreur est survenue, essayez plus tard";
             }

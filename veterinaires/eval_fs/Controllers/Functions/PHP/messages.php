@@ -5,6 +5,6 @@
     }
     function success($string) {
         echo "<div class='alert alert-success alert-dismissible fade in'>
-        <a href='#' class='close' data-dismiss='alert'width ='650px' aria-label='close'>&times;</a>".$string."</div>";
+        <a href='#' class='close' data-dismiss='alert'width ='650px'     aria-label='close'>&times;</a>".$string."</div>";
     }
 ?>
