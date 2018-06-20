@@ -38,3 +38,4 @@ function allerChezTCM() {
    var tcm = new google.maps.Latlng(48.816382, 2.375956);
    map.setCenter(tcm);
 }
+
