@@ -1,5 +1,5 @@
 <?php
-
+include('./Views/templates/html_top.php');
 include_once("./Models/db_connect.php");
 include('./Controllers/Functions/PHP/messages.php');
 // set validation error as false
@@ -36,21 +36,24 @@ switch(isset($_POST['register'])):
         // check if the combination fname/lname/email is already used
         include('./Models/reg_check_clients.php');
         $row = $stmt->fetch();
+        include('./Models/status_update.php');
         if($row){
             $flag_name_taken = true;
             $flag_email_taken = true;
             $email_taken = "Cette addresse email est déjà utilisée";
             $name_taken = "Vous possédez déjà un compte <br>" . $first_name . " " . $last_name."!";
         } else {
-                    // Add row to database
-                    include('./Controllers/Functions/PHP/backup_clients.php');
-                    include('./Models/register_clients.php');
-                    $successmsg = "Vous êtes inscrit! <a href='index.php?page=login' class='alert-link'></br>Cliquez ici pour vous connecter</a>";
-                }
+            // Add row to database
+            include('./Controllers/Functions/PHP/backup_clients.php');
+            include('./Models/register_clients.php');
+            $successmsg = "Vous êtes connectés! <a href='index.php?page=login' class='alert-link'></br>Cliquez ici pour vous connecter</a>";
+            $connect = true;
         }
-        break;
-
-        default:
-    endswitch;
+    }
+    break;
+    
+    default:
+endswitch;
+    include('./Views/templates/log_reg_bar.php');
     include('./Views/templates/register_form.php');
 ?>

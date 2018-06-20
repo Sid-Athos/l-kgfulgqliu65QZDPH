@@ -1,16 +1,10 @@
 <?php
-
-    session_start();
     if(isset($_GET['page']))
     switch($_GET['page']):
         case 'Inscription';
-                include './Views/templates/html_top.php';
-                include './Views/templates/log_reg_bar.php';
                 include './Controllers/register.php';
                 break;
             case 'Login';
-                include './Views/templates/html_top.php';
-                include './Views/templates/log_reg_bar.php';
                 include './Controllers/login.php';
                 break;
             case 'Home';    

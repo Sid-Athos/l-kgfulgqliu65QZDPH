@@ -1,7 +1,7 @@
 <div class="topnav" id="myTopnav">
-  <a href="./index.php?page=Home" class="active">Accueil</a>
+  <a href="./index.php?page=Home" class="active">Home</a>
   <a href="./index.php?page=Login">Se connecter</a>
   <a href="./index.php?page=Inscription">S'inscrire</a>
-  <h2 class="not_logged">Bonjour, jeune inconnu. T'as 15 mins pour t'inscrire ou te connecter avant que ton pc ne fonde.</h2>
+  <?php  if(isset($connect)){ echo '<ahref="./index.php?page=Members_lobby">Accueil</a>';} ?>
 </div>
 <body>
