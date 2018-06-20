@@ -1,6 +1,6 @@
 <div class="row">
         <div class="col-md-4 col-md-offset-4 text-center">
-        <br>Déjà inscrit ? <a href="./index.php?page=login">Connectez vous ici</a>
+        <br>Déjà inscrit ? <a href="./index.php?page=Login">Connectez vous ici</a>
         </div>
     </div>
 <div class="container"  style="margin-top: 20px;">

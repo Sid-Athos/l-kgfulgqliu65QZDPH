@@ -13,14 +13,12 @@
                     <h4 style="padding: 8px;">Inscription</h4>
                     <div class="form-group">
                         <label for="name">Email</label>
-                        <input type="email" class="form-control space-bottom" name="email" placeholder="Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required value="
-                        <?php if($error || $flag_email_taken || $flag_name_taken) echo $email; ?>" />
-                        <?php if (isset($email_error)) alert($email_error); ?>
+                        <input type="email" class="form-control space-bottom" name="email" placeholder="Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required value="">
                     </div>
                     <div class="form-group">
                         <label for="name">Mot de passe</label>
                         <input type="password" class="form-control space-bottom" name="password" placeholder="Mot de passe" pattern=".{6,}" title="Au moins 6 charactères" required/>
-                        <?php if (isset($password_error)) alert($password_error); ?>
+                        
                     </div>
                     <div class="form-group">
                         <input type="submit" class="btn btn-block btn-primary space-bottom" name="register" value="Register" />
