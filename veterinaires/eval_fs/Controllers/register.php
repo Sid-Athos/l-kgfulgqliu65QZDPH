@@ -42,10 +42,12 @@ switch(isset($_POST)):
                     $email_taken = "Cette addresse email est déjà utilisée";
                     $name_taken = "Vous possédez déjà un compte <br>" . $first_name . " " . $last_name;
                 }
-                include('./Views/templates/register_form.php');
                 if(!$flag_email_taken && !$flag_name_taken) {
                     // Add row to database
+                    include('./Controllers/Functions/PHP/backup_clients.php');
                     include('./Models/register_clients.php');
+                    $successmsg = "Vous êtes inscrit! <a href='index.php?page=login' class='alert-link'></br>Cliquez ici pour vous connecter</a>";
+                    include('./Views/templates/register_form.php');
                 }
             }
         break;

@@ -54,8 +54,6 @@
             try {
                 $stmt = $db->prepare($query);
                 $result = $stmt->execute($query_params);
-                $successmsg = "Vous êtes inscrit! <a href='index.php?page=login' class='alert-link'></br>Cliquez ici pour vous connecter</a>";
-                echo "<br><br>Vous êtes inscrit! <a href='index.php?page=login' class='alert-link'></br>Cliquez ici pour vous connecter</a>";
             }catch(PDOException $ex){
                 echo "Une erreur est survenue, essayez plus tard";
             }
