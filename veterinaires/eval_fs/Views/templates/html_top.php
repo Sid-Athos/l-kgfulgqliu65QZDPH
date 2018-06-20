@@ -1,7 +1,7 @@
 <!DOCTYPE>
 <html>
     <head>
-        <title>Heal my bichon</title>
+        <title><?php echo $_GET['page']; ?></title>
         <meta content='http-equiv' content-type='text/html'/>
         <meta charset="UTF-8">
         <script src="./Ressources/jquery-3.3.1.min.js"></script>
