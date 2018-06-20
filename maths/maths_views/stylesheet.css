@@ -10,6 +10,10 @@ body {
     overflow-y:scroll;
     text-align: center;
 }
+not_logged{
+  font-size:14px;
+  color: #333333;
+}
 tbody {
   max-height: 350px;
   width: 100%;
