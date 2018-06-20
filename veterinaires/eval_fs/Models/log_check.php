@@ -1,7 +1,7 @@
 <?php
     $query = "
         SELECT
-        ID
+        ID, role
         FROM users
         WHERE
         email = :email

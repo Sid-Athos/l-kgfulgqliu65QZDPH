@@ -15,6 +15,7 @@ switch(isset($_POST)):
             include('./Models/status_update.php');
             $successmsg = "Connexion réussie! Redirection en cours";
             $_SESSION['ID'] = $row['ID'];
+            $_SESSION['role'] = $row['role'];
             header('refresh:5;url=index.php?page=Members_lobby');
         } else {
             $errormsg = "Vous êtes déjà connecté! <a href='index.php?page=Members_lobby' class='alert-link'></br>Cliquez ici pour accèder à l'espace membre</a>";

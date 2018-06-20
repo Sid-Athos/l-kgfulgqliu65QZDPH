@@ -79,11 +79,8 @@
                 include './Views/templates/navbar.php';
                 include './Controllers/Home.php';
             }
-            case 'messages':
-                include './Controllers/session_check.php';
-                include './Views/templates/html_top.php';
-                include './Views/templates/navbar.php';
-                include './Controllers/clients_patients.php';
+            case 'Messages':
+                include './Controllers/messages.php';
                 break;
             default:
                 include './error/404/404.php';
