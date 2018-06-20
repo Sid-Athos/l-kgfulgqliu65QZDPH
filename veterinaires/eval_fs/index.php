@@ -8,9 +8,10 @@
                 include './Controllers/login.php';
                 break;
             case 'Home';    
-                include './Views/templates/html_top.php';
-                include './Views/templates/log_reg_bar.php';
                 include './Controllers/home.php';
+                break;
+            case 'Members_lobby':
+                include './Controllers/members_lobby.php';
                 break;
             case 'appointments';
                 if(isset($_SESSION['type']))
@@ -76,7 +77,7 @@
             else {
                 include './Views/templates/html_top.php';
                 include './Views/templates/navbar.php';
-                include './Controllers/home.php';
+                include './Controllers/Home.php';
             }
             case 'messages':
                 include './Controllers/session_check.php';
@@ -91,7 +92,7 @@
     else {
         include './Views/templates/html_top.php';
         include './Views/templates/navbar.php';
-        include './Controllers/home.php';
+        include './Controllers/Home.php';
     }
     include "./Views/templates/html_bottom.html";
 ?>
