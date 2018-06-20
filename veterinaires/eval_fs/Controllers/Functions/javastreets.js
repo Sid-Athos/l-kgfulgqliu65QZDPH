@@ -1,14 +1,13 @@
-"use strict";
-waitFor {js.('document.readyState') == 'complete'}
+
 var carte;
 function initialize(){
     // On rentre les coordonnées(latitude, longitude) de notre choix dans une variable
-    var maLatlng = new google.maps.LatLng(48.814877, 2.378439);
+    var maLatlng = new google.maps.LatLng(48.816382, 2.375956);
 
     // On établit les options de notre choix :
     // la profondeur du zoom, les coordonnées sur lesquelles la carte sera centrée, le type de vue (satellite, plan...)
     var mesOptions = {
-       zoom: 16,
+       zoom: 15,
        center: maLatlng,
        mapTypeId: google.maps.MapTypeId.ROADMAP
     }
@@ -32,10 +31,10 @@ function initialize(){
     // On place un listener sur le marqueur qui contrôle une action qui sera déclenchée lors de l'évènement 'click'
     // Quand on clique sur le marqueur, le zoom de la carte passera à 8
     google.maps.event.addListener(marker, 'click', function(){
-       carte.setZoom(8);
+       carte.setZoom(12);
     });
 }
 function allerChezTCM() {
-   var tcm = new google.maps.Latlng(48.814877, 2.378439);
+   var tcm = new google.maps.Latlng(48.816382, 2.375956);
    map.setCenter(tcm);
 }
