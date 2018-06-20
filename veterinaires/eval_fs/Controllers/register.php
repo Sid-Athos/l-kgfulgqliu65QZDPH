@@ -40,7 +40,7 @@ switch(isset($_POST['register'])):
             $flag_name_taken = true;
             $flag_email_taken = true;
             $email_taken = "Cette addresse email est déjà utilisée";
-            $name_taken = "Vous possédez déjà un compte <br>" . $first_name . " " . $last_name;
+            $name_taken = "Vous possédez déjà un compte <br>" . $first_name . " " . $last_name."!";
         } else {
                     // Add row to database
                     include('./Controllers/Functions/PHP/backup_clients.php');
