@@ -1,4 +1,5 @@
-
+"use strict";
+waitFor {js.('document.readyState') == 'complete'}
 var carte;
 function initialize(){
     // On rentre les coordonnées(latitude, longitude) de notre choix dans une variable

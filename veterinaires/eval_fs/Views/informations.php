@@ -4,7 +4,7 @@
 <p>Nous sommes situés au 74, avenue Maurice Thorez à Ivry-sur-Seine</p<
 <p> Vous pouvez facilement accèder à notre clinique via le métro 7 (arrêt Pierre et Marie Curie).<br> <br>Des correspondances vers le tramway sont disponibles
     aux stations :<br> <br>Porte d'Italie et Porte de Choisy, des métros et RER (ligne 1/7/14 RER A/B/C/D) sont accessibles sur l'ensemble de la ligne 7.</p> 
-
+<br>
 <div id="map_canvas" class="map_canvas" name="map_canvas"></div>
 
 <p>

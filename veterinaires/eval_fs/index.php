@@ -76,6 +76,7 @@
                         break;
                     default:
                         include './error/404/404.php';
+                        include './Views/templates/html_top.html';
                  endswitch;
             else {
                 include './Views/templates/html_top.html';
@@ -91,6 +92,7 @@
                 break;
             default:
                 include './error/404/404.php';
+                include './Views/templates/html_top.html';
             endswitch;
     else {
         include './Views/templates/html_top.html';
