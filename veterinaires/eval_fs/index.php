@@ -7,6 +7,7 @@
                 include './Views/templates/html_top.html';
                 include './Views/templates/log_reg_bar.php';
                 include './Controllers/register.php';
+                break;
             case 'login';
                 include './Views/templates/html_top.html';
                 include './Views/templates/log_reg_bar.php';
