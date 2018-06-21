@@ -3,11 +3,10 @@ session_start();
 include('./Views/templates/html_top.php');
 include_once("./Models/db_connect.php");
 include('./Controllers/Functions/PHP/messages.php');
-// set validation error as false
+
 $error = false;
 $flag_email_taken = false;
 $flag_name_taken = false;
-// check if form is submitted
 
 switch(isset($_POST['register'])):  
     case 'Register':
@@ -52,7 +51,6 @@ switch(isset($_POST['register'])):
         }
     }
     break;
-    
     default:
 endswitch;
     include('./Views/templates/log_reg_bar.php');
