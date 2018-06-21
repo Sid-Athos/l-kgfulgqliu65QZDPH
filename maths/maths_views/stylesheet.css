@@ -20,12 +20,24 @@ tbody {
   display: inline-block;
   overflow: auto;
   text-align: center;
+  border: 2px solid #decba4;
+  border-collapse: collapse;
 }
-tbody. td{
-
+th {
+  min-width: 450px;
+  padding: 15px;
+}
+td {
+  width : 30%;
+}
+td{
+  border: 2px solid #decba4;
+  border-collapse: collapse;
 }
 table{
-  width: 350px;
+  width: 450px;
+  border-collapse: collapse;
+  border: 2px solid #decba4;
   display: inline-block;
 }
 form{

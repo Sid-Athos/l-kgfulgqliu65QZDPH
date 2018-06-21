@@ -2,7 +2,7 @@
      /* Affichage tableau */
 
      echo "<caption> Tableau récapitulatif des lettres trouvées :</caption>";    
-     echo '<center><table><thead><tr><td>Lettre</td><td>Pourcentage (%) : </td><td>Occurence(s) : </td></tr></thead>';
+     echo '<center><table><thead><tr><td style="width:30%;">Lettre</td><td style="width:30%;">Pourcentage (%) : </td><td style="width:30%;">Occurence(s) : </td></tr></thead>';
      echo '<tbody>';
      
      foreach($tab as $i=>$val){
