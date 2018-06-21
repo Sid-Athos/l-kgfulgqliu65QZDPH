@@ -4,7 +4,9 @@
   <a href="./index.php?page=Appointments">Gestion des rendez-vous</a>
   <a href="./index.php?page=Tracking">Suivi</a>
   <a href="./index.php?page=Messages">Messagerie</a>
+  <a href="./index.php?page=Settings">Mon Compte</a>
+  <a href="./index.php?page=Logout">Déconnexion</a>
 </div>
-<body>
+
 <?php if (isset($successmsg)) { success($successmsg); } ?>
 <?php if (isset($errormsg)) { alert($errormsg); } ?>
