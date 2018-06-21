@@ -139,3 +139,15 @@ button {
     -webkit-appearance: none;
     -moz-appearance: none;
 }
+tbody {
+    max-height: 350px;
+    width: 100%;
+    display: inline-block;
+    overflow: auto;
+    text-align: center;
+  }
+  
+  table{
+    width: 350px;
+    display: inline-block;
+  }
