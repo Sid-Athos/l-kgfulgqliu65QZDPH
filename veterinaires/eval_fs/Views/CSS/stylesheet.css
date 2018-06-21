@@ -1,22 +1,27 @@
 body{
-    text-align:center;
-    color: #decba4;
-    position:relative;
     background: #333333;
 }
 h2{
     font-size: 12px;
     font-family: 'Open Sans', sans-serif;
-    color: #333333;
+    text-align:center;
+    color: #decba4;
     margin-top:20px;
     margin-right: -20%;
   }
 h1{
     font-size:14px;
+    text-align:center;
+    color: #decba4;
     font-family: 'Lato', sans-serif;
 }
 p{
+    margin-top:10px;
     font-size: 11px;
+    max-width:850px;
+    position:static;
+    text-align:center;
+    color: #decba4;
     font-family: 'Open Sans', sans-serif;
 }
 
@@ -35,7 +40,7 @@ p{
     margin-top:-10px;
     margin-left:-8px;
     margin-right:-20px;
-    width:120%;  
+    width:105%;  
 }
 
 .topnav a {
@@ -80,4 +85,57 @@ p{
     position: absolute;
     right: 0;
     top: 0;
+}
+
+input {
+    background: #decba4;
+    width : 170px;
+    height: 35px;
+    margin-top: 40px;
+    margin-right: 10%;
+    position:relative;
+    border:0;
+    border-radius: 6px;
+    border-color: #decba4;
+    cursor: pointer;
+    transition: background 250ms ease-in-out, 
+                transform 150ms ease;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+.msg{
+    background:#333333;
+    margin : 4px;
+    position:sticky;
+    margin-right: 6%;
+    margin-top:15px;
+}
+input:hover,
+input:focus {
+    background:#3d5504;
+    color: #decba4;
+}
+
+
+input:active {
+    transform: scale(0.99);
+}
+textarea{
+    font-family:'Titillium Web', sans-serif;
+    border-radius: 4px;
+    min-width: 250px;
+    min-height: 150px;
+}
+button {
+    position:relative;
+    top: 45px;
+    font-family:'Titillium Web', sans-serif;
+    width :100px;
+    height:25px;
+    margin-top:100px;
+    border-radius: 4px;
+    transition: background 250ms ease-in-out, 
+                transform 150ms ease;
+    -webkit-appearance: none;
+    -moz-appearance: none;
 }
