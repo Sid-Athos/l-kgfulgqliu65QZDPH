@@ -25,13 +25,22 @@ switch($_POST['msg']):
         unset($outbox_rows);
     break;
     case($_POST['msg'] == 'Write'):
-
-        if($_SESSION['role'] == 'vet'){
-        } else if ($_SESSION['role'] == 'client'){
-            include('Models/contacts.php');
-        }
-        $contacts_rows = $stmt->fetchAll();
-        include('./Views/templates/msg_form.php');
+    if($_SESSION)
+    switch($_SESSION['role']):
+        case 'vet':
+            include('./Models/contact_all.php');
+            $contacts_rows = $stmt->fetchAll();
+            include('./Views/templates/msg_form.php');
+            unset($contacts_rows);
+        break;
+        case 'client':
+            include('./Models/contacts.php');
+            $contacts_rows = $stmt->fetchAll();
+            include('./Views/templates/msg_form.php');
+            unset($contacts_rows);
+        break;
+        default:
+    endswitch;
     break; 
     default:
 endswitch;
@@ -40,7 +49,7 @@ if(isset($_POST['target']))
     switch(isset($_POST['target'])):
         case(isset($_POST['target'])):
             include('./Models/insert_message.php');
-            $successmsg = 'message envoyé!';
+            $successmsg = 'Message envoyé!';
             include('./Controllers/Functions/PHP/messages.php');
         break; 
         default:

@@ -6,7 +6,7 @@
     include('./Models/logout.php');
     header('refresh:10;url=./index.php?page=Login');
     include('./Views/templates/html_top_msg.php');
-    $successmsg = "Déconnexion réussie, à bientôt! :D";
+    $successmsg = "Déconnexion réussie, vous allez être redirigé vers l'accueil, à bientôt! :D";
     include('./Views/templates/logout.php');
     unset($_SESSION);
     unset($_POST);

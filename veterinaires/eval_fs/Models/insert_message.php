@@ -15,7 +15,6 @@
                            ':sent_to' => $_POST['target'],
                           ':ID' => intval($_SESSION['ID']),
                           ':content' => $_POST['content']);
-        var_dump($query_params);
         try {
             $stmt = $db->prepare($query);
             $result = $stmt->execute($query_params);

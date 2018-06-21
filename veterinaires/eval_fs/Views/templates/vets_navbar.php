@@ -8,4 +8,3 @@
   <a href="./index.php?page=Settings"><img src='./Views/images/settings.svg' style="width: 35px; height:25px"></a>
   <a href="./index.php?page=Logout"><img src='./Views/images/logout.png' style="width: 35px; height:25px"></a>
 </div>
-<body>
