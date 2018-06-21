@@ -16,7 +16,7 @@
             case 'Members_lobby':
                 include './Controllers/members_lobby.php';
                 break;
-            case 'appointments';
+            case 'Tracking';
                 if(isset($_SESSION['type']))
                     switch($_SESSION['type']):
                         case 'vet';
@@ -38,7 +38,7 @@
                     include './Views/templates/navbar.php';
                     include './Controllers/home.php';
                 }
-            case 'patients':
+            case 'Patients':
             if(isset($_SESSION['type']))
                 switch($_SESSION['type']):
                         case 'vet';
@@ -60,18 +60,13 @@
                     include './Views/templates/navbar.php';
                     include './Controllers/home.php';
                 }
-            case 'vets':
+            case 'Collaborateurs':
             if(isset($_SESSION['type']))
                 switch($_SESSION['type']):
                     case 'vet';
                         include './Views/templates/html_top.php';
                         include './Views/templates/navbar.php';
                         include './Controllers/vets_management.php';
-                        break;
-                    case 'client';
-                        include './Views/templates/html_top.php';
-                        include './Views/templates/navbar.php';
-                        include './Controllers/vets_show.php';
                         break;
                     default:
                         include './error/404/404.php';

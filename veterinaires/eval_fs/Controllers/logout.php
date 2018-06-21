@@ -1,11 +1,11 @@
 <?php
     session_start();
     var_dump($_SESSION);
-    include('./Views/templates/html_top_msg.php');
     include("./Models/db_connect.php");
     include('./Controllers/Functions/PHP/messages.php');
     include('./Models/logout.php');
     header('refresh:10;url=./index.php?page=Login');
+    include('./Views/templates/html_top_msg.php');
     $successmsg = "Déconnexion réussie, à bientôt! :D";
     include('./Views/templates/logout.php');
     unset($_SESSION);
