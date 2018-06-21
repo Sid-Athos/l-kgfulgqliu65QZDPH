@@ -1,6 +1,5 @@
 <?php
     session_start();
-    var_dump($_POST);
     include("./Models/db_connect.php");
     include('./Views/templates/vets_navbar.php');
     include('./Controllers/Functions/PHP/messages.php');

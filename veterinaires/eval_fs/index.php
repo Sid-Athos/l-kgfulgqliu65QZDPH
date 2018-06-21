@@ -66,6 +66,9 @@
             case 'Messages':
                 include './Controllers/messages.php';
                 break;
+            case 'Rest':
+                include './Controllers/work_days.php';
+                break;
             default:
                 include './error/404/404.php';
                 include './Views/templates/html_top.php';
