@@ -1,23 +1,28 @@
-
 <?php
 session_start();
-include_once("./Models/db_connect.php");
-include('./Controllers/Functions/PHP/messages.php');
+include('./Views/templates/html_top_msg.php');
+include("./Models/db_connect.php");
+if($_SESSION['role'] == 'vet'){
+    include('./Views/templates/vets_navbar.php');
+} else {
+    include('./Views/templates/clients_navbar.php');
+}
+include('./Views/templates/messages_menu.php');
+$id = $_SESSION['ID'];
 
-switch(isset($_POST['messages'])):
-    case 'Conversations':
-    case 'Messages reçus':
-    case 'Messages envoyés':
+if(!empty($_POST['msg']))
+switch($_POST['msg']):
+    case($_POST['msg'] == 'Convos'):
+    require_once('./Models/sent_to.php');
+    break;
+    case($_POST['msg'] == 'Outbox'):
+        include('./Models/sent_by.php');
+        $msg_rows = $stmt->fetchAll();
+        var_dump($msg_rows);
+        include('./Views/templates/show_outbox.php');
     break;
     default:
-        include('./Views/templates/html_top.php');
-            if(isset($_SESSION['ID'])){
-                include('./Views/templates/vets_navbar.php');
-            } else {
-                include('./Views/templates/clients_navbar.php');
-            }
-        include('./Views/templates/messages_menu.php');
 endswitch;
-var_dump($_SESSION);
 include('./Views/templates/html_bottom.html');
+
 ?>

@@ -19,6 +19,8 @@ switch(isset($_POST)):
             header('refresh:5;url=index.php?page=Members_lobby');
         } else {
             $errormsg = "Vous êtes déjà connecté! <a href='index.php?page=Members_lobby' class='alert-link'></br>Cliquez ici pour accèder à l'espace membre</a>";
+            $_SESSION['ID'] = $row['ID'];
+            $_SESSION['role'] = $row['role'];
         }
         break;
     default:
