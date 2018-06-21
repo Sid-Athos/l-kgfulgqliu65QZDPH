@@ -8,7 +8,7 @@
         OR
         sent_to = (SELECT email FROM users WHERE ID = :ID)
         ORDER BY date";
-        $query_params = array(':ID' => $id);
+        $query_params = array(':ID' => $_SESSION['ID']);
         try {
             $stmt = $db->prepare($query);
             $result = $stmt->execute($query_params);

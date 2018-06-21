@@ -6,3 +6,5 @@
   <a href="./index.php?page=Messages">Messagerie</a>
 </div>
 <body>
+<?php if (isset($successmsg)) { success($successmsg); } ?>
+<?php if (isset($errormsg)) { alert($errormsg); } ?>

@@ -1,6 +1,5 @@
 <?php
-    $query = "
-    INSERT INTO users (
+    $query = "INSERT INTO users (
         ID,
         password,
         email

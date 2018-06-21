@@ -7,7 +7,7 @@
         WHERE
         ID = :ID
         AND
-        connected != 'y'";
+        connected = 'n'";
         echo $email;
         $query_params = array(':ID' => $row['ID']);
         try {

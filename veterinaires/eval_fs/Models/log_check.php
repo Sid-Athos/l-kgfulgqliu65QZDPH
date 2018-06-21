@@ -6,9 +6,12 @@
         WHERE
         email = :email
         AND 
-        password = :password";
+        password = :password
+        AND
+        connected = 'n'
+        ";
         $query_params = array(':email' => $email,
-                                ':password' => $password);
+                              ':password' => $password);
         try {
             $stmt = $db->prepare($query);
             $result = $stmt->execute($query_params);
