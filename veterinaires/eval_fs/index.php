@@ -4,6 +4,9 @@
         case 'Inscription';
                 include './Controllers/register.php';
                 break;
+            case 'Logout';
+                include './Controllers/logout.php';
+                break;
             case 'Login';
                 include './Controllers/login.php';
                 break;

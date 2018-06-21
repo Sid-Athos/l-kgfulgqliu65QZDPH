@@ -4,8 +4,8 @@
   <a href="./index.php?page=Appointments">Gestion des rendez-vous</a>
   <a href="./index.php?page=Tracking">Suivi</a>
   <a href="./index.php?page=Messages">Messagerie</a>
-  <a href="./index.php?page=Settings">Mon Compte</a>
-  <a href="./index.php?page=Logout">Déconnexion</a>
+  <a href="./index.php?page=Settings"><img src='./Views/images/settings.svg' style="width: 35px; height:25px"></a>
+  <a href="./index.php?page=Logout"><img src='./Views/images/logout.png' style="width: 35px; height:25px"></a>
 </div>
 
 <?php if (isset($successmsg)) { success($successmsg); } ?>
