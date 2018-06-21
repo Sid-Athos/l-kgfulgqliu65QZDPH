@@ -29,7 +29,7 @@
     endswitch;
 
     if(!isset($_POST['add_workday'])){   
-        include('./Views/templates/html_top_msg.php');
+        include('./Views/templates/html_top.php');
         include('./Models/show_workdays.php');
         $work_rows = $stmt -> fetchAll();
         include('./Views/templates/add_workday_form.php');

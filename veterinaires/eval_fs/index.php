@@ -16,7 +16,7 @@
             case 'Members_lobby':
                 include './Controllers/members_lobby.php';
                 break;
-            case 'Tracking';
+            /* case 'Tracking';
                 if(isset($_SESSION['type']))
                     switch($_SESSION['type']):
                         case 'vet';
@@ -37,7 +37,7 @@
                     include './Views/templates/html_top.php';
                     include './Views/templates/navbar.php';
                     include './Controllers/home.php';
-                }
+                }*/
             case 'Patients':
             if(isset($_SESSION['type']))
                 switch($_SESSION['type']):

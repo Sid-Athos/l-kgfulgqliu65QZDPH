@@ -5,7 +5,7 @@
             <form role="form" class="form container-fluid border border-dark rounded" action="" method="POST" name="add_day">
                 <fieldset class="well">
                     <div class="form-group">
-                    <label for="name">Selectionnez au moins un jour</label>
+                    <label for="name">Selectionnez un jour</label>
                         <select class="form-control" name="days_add" required>
                     <?php   for($i = 0; $i< count($days_available);$i++){
                                 echo '<option value ="'.$days_available[$i].'">'.$days_available[$i].'</option>';
@@ -22,7 +22,7 @@
                     <div class="input-group space-bottom">
                         <span class="input-group-addon"> Á :</span>
                         <input type="number" class="form-control" min="08" max="19" step="1" name="to_hour" required/>
-                        <span class="input-group-addon" style="border-left: 0; border-right: 0;">h</span>
+                        <span class="input-group-addon" style="border-left: 0; border-right: 0; height:10px">h</span>
                         <input type="number" class="form-control" value="0" min="0" max="30" step="30" name="to_min" required/>
                         <span class="input-group-addon" style="border-left: 0; border-right: 0;">min</span>
                     </div>
