@@ -8,5 +8,6 @@
   <a href="./index.php?page=Logout"><img src='./Views/images/logout.png' style="width: 15px; height:25px"></a>
 </div>
 
-<?php if (isset($successmsg)) { success($successmsg); } ?>
+<div class="container" style="width: 150px; height:50px"><?php if (isset($successmsg)) { success($successmsg); } ?>
 <?php if (isset($errormsg)) { alert($errormsg); } ?>
+</div>

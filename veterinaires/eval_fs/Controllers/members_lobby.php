@@ -8,4 +8,5 @@ if($_SESSION['role'] == 'vet'){
 }else if($_SESSION['role'] == 'client') {
     include('./Views/templates/clients_navbar.php');
 }
+include('./Views/templates/lounge.php');
 ?>

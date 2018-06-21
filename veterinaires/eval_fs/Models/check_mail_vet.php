@@ -1,7 +1,7 @@
 <?php
     $query = "
         SELECT
-            1
+        email
         FROM users
         WHERE
             email = :email";
@@ -9,6 +9,7 @@
     try {
         $stmt = $db->prepare($query);
         $result = $stmt->execute($query_params);
+        var_dump($result);
     }catch(PDOException $ex){
         die("Failed to run query: " . $ex->getMessage());
     }

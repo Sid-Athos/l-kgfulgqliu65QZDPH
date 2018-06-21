@@ -22,6 +22,10 @@
                         <?php if (isset($email_error)) alert($email_error); ?>
                     </div>
                     <div class="form-group">
+                        <label for="name">Téléphone</label>
+                        <input type="tel" class="form-control space-bottom" name="phone_number" placeholder="Numéro de téléphone" minlength="10" maxlength="12" pattern="^(?:(?:\+|00)33[\s.-]{0,3}(?:\(0\)[\s.-]{0,3})?|0)[1-9](?:(?:[\s.-]?\d{2}){4}|\d{2}(?:[\s.-]?\d{3}){2})$" title="ENtrez un numéro de téléphone valide" required value="<?php if($error || $flag_email_taken || $flag_name_taken) echo $phone_number; ?>" />
+                    </div>
+                    <div class="form-group">
                         <label for="name">Mot de passe</label>
                         <input type="password" class="form-control space-bottom" name="password" placeholder="Mot de passe" pattern=".{6,}" title="Au moins 6 charactères" required/>
                         <?php if (isset($password_error)) alert($password_error); ?>
@@ -45,10 +49,6 @@
                     </div>
                     <div class="form-group">
                         <input type="submit" class="btn btn-block btn-primary space-bottom" name="add_vet" value="Inscrire" />
-                        <?php if ($flag_email_taken) { alert($email_taken); } ?>
-                        <?php if ($flag_name_taken) { alert($name_taken); } ?>
-                        <?php if (isset($successmsg)) { success($successmsg); } ?>
-                        <?php if (isset($errormsg)) { alert($errormsg); } ?>
                     </div>
                 </fieldset>
 </form>
