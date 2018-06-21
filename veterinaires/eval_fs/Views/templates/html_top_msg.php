@@ -26,7 +26,7 @@ input {
     background: #decba4;
     width : 170px;
     height: 35px;
-    margin-top: -8px;
+    margin-top: 10px;
     margin-right: 10%;
     position:relative;
     border:0;
