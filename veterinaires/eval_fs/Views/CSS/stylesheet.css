@@ -1,5 +1,6 @@
 body{
     background: #333333;
+    font-family: 'Open Sans', sans-serif;
 }
 h2{
     font-size: 12px;
@@ -24,7 +25,6 @@ p{
     color: #decba4;
     font-family: 'Open Sans', sans-serif;
 }
-
 #map_canvas { 
     height: 40%;
     width: 40%;
@@ -32,7 +32,6 @@ p{
     border: 0;
     border-radius: 30px;
 }
-
 .topnav {
     overflow: hidden;
     background-color: #decba4;
@@ -40,9 +39,8 @@ p{
     margin-top:-10px;
     margin-left:-8px;
     margin-right:-20px;
-    width:105%;  
+    width:100.6s%;  
 }
-
 .topnav a {
     float: left;
     display: center;
@@ -139,15 +137,3 @@ button {
     -webkit-appearance: none;
     -moz-appearance: none;
 }
-tbody {
-    max-height: 350px;
-    width: 100%;
-    display: inline-block;
-    overflow: auto;
-    text-align: center;
-  }
-  
-  table{
-    width: 350px;
-    display: inline-block;
-  }

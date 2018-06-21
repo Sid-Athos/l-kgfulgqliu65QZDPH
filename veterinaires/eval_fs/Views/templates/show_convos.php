@@ -4,17 +4,20 @@ table {
 	border-collapse: separate;
 	box-shadow: inset 0 1px 0 #fff;
 	font-size: 12px;
-	line-height: 24px;
+    line-height: 24px;
+    width: auto;
     margin-top:10%;
-    margin-left:5%; 
+    margin-left:2%;
+    margin-right:3%;
 	text-align: left;
-    width: 450px;
-    max-width:450px;
     float:bottom;
     position:relative;
     border:none;
     border-radius:10px;
 }	
+tbody{
+    width:650px;
+}
 
 th {
 	background: url(https://jackrugile.com/images/misc/noise-diagonal.png), linear-gradient(#777, #444);
@@ -71,11 +74,14 @@ td:last-child {
 }	
 
 tr {
-	background: url(https://jackrugile.com/images/misc/noise-diagonal.png);	
+    background: url(https://jackrugile.com/images/misc/noise-diagonal.png);	
+    width:850px;
+    
 }
 
 tr:nth-child(odd) td {
 	background: #f1f1f1 url(https://jackrugile.com/images/misc/noise-diagonal.png);	
+    width: 150px;
 }
 
 tr:last-of-type td {
@@ -103,9 +109,9 @@ tbody:hover tr:hover td {
 <?php
 echo'
 <caption> Messages envoyés:</caption>
-<table><thead><tr><th>Envoyé à : </th><th>Date : </th><th> Contenu :</th></tr></thead>
+<table><thead><tr><th>Envoyé à : </th><th>Envoyé par :</th><th>Date : </th><th> Contenu :</th></tr></thead>
 <tbody>';
-        foreach($outbox_rows as $key0 => $value0){
+        foreach($msg_rows as $key0 => $value0){
             foreach($value0 as $key => $value){
                 if($key == "sent_to"){
                     echo "<tr><td>{$value}</td>";
