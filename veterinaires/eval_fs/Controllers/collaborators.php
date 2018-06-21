@@ -1,5 +1,4 @@
 <?php
-var_dump($_POST);
     session_start();
     include('./Views/templates/html_top_msg.php');
     include("./Models/db_connect.php");
@@ -16,7 +15,7 @@ var_dump($_POST);
         $vet_init = htmlspecialchars(trim($_POST['vet_init']), ENT_QUOTES, 'UTF-8');
         $password = $_POST['password'];
         $cpassword = $_POST['cpassword'];
-        $days_free = implode(',', $_POST['days_free']);
+        $days_free = $_POST['days_free'];
         if(!filter_var($email,FILTER_VALIDATE_EMAIL)) {
             $error = true;
             $email_error = "Entrez une addresse email valide";
@@ -31,7 +30,7 @@ var_dump($_POST);
         }
         if (!$error) {
             // check if the email is already taken
-            include('./Models/check_mail.vet.php');
+            include('./Models/check_mail_vet.php');
             $row = $stmt->fetch();
             if($row){
                 $flag_email_taken = true;
@@ -43,7 +42,7 @@ var_dump($_POST);
                 include('./Controllers/Functions/PHP/backup_vets.php');
                 
                 if($check){
-                    include('./Models/add_vets.php');
+                    include('./Models/add_vet.php');
                     include('./Models/add_schedule.php');
                 }
             }

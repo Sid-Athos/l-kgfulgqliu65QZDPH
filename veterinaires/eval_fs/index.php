@@ -60,23 +60,9 @@
                     include './Views/templates/navbar.php';
                     include './Controllers/home.php';
                 }
-            case 'Collaborateurs':
-            if(isset($_SESSION['type']))
-                switch($_SESSION['type']):
-                    case 'vet';
-                        include './Views/templates/html_top.php';
-                        include './Views/templates/navbar.php';
-                        include './Controllers/vets_management.php';
-                        break;
-                    default:
-                        include './error/404/404.php';
-                        include './Views/templates/html_top.php';
-                 endswitch;
-            else {
-                include './Views/templates/html_top.php';
-                include './Views/templates/navbar.php';
-                include './Controllers/Home.php';
-            }
+            case 'Add_collab':
+                        include './Controllers/collaborators.php';
+                break;
             case 'Messages':
                 include './Controllers/messages.php';
                 break;
