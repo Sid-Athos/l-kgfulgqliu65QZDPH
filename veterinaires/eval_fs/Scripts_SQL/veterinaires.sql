@@ -1,19 +1,17 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
+-- version 4.7.9
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  lun. 11 juin 2018 à 02:05
--- Version du serveur :  5.7.19
--- Version de PHP :  5.6.31
+-- Généré le :  jeu. 21 juin 2018 à 03:33
+-- Version du serveur :  5.7.21
+-- Version de PHP :  5.6.35
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
-CREATE SCHEMA veterinaires;
-USE veterinaires;
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -21,7 +19,7 @@ USE veterinaires;
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données :  `eval`
+-- Base de données :  `veterinaires`
 --
 
 -- --------------------------------------------------------
@@ -68,16 +66,15 @@ CREATE TABLE IF NOT EXISTS `clients` (
   UNIQUE KEY `email_2` (`email`),
   KEY `fk_clients_users1_idx` (`users_ID`),
   KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=1010 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1030 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `clients`
 --
 
 INSERT INTO `clients` (`ID`, `email`, `last_name`, `first_name`, `address`, `postal_code`, `city`, `phone_number`, `users_ID`) VALUES
-(1007, 'p.mercier.h@gmail.com', 'Mercier-Handisyde', 'Paul', '10 rue Coquillière', '75001', 'Paris', '0626046045', 38);
-
-
+(1007, 'p.mercier.h@gmail.com', 'Mercier-Handisyde', 'Paul', '10 rue Coquillière', '75001', 'Paris', '0626046045', 38),
+(1029, 'sa.bennaceur@gmail.com', 'Bennaceur', 'Sid', '101, rue des Acquevilles', '92150', 'Suresnes', '0675120800', 72);
 
 -- --------------------------------------------------------
 
@@ -126,6 +123,32 @@ CREATE TABLE IF NOT EXISTS `consultations` (
   PRIMARY KEY (`ID`),
   KEY `fk_consultations_patients1_idx` (`patients_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `messages`
+--
+
+DROP TABLE IF EXISTS `messages`;
+CREATE TABLE IF NOT EXISTS `messages` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `sent_to` varchar(255) NOT NULL,
+  `sent_by` char(64) NOT NULL,
+  `content` longtext NOT NULL,
+  `dates` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `messages`
+--
+
+INSERT INTO `messages` (`ID`, `sent_to`, `sent_by`, `content`, `dates`) VALUES
+(55, 'sa.bennaceur@gmail.com', 'sa.bennaceur@gmail.com', 'sa.bennaceur@gmail.comsa.bennaceur@gmail.comsa.bennaceur@gmail.comsa.bennaceur@gmail.comsa.bennaceur@gmail.comsa.bennaceur@gmail.comsa.bennaceur@gmail.com', '2018-06-19 22:00:00'),
+(56, 'sa.bennaceur@gmail.com', 'sa.bennaceur@gmail.com', 'sa.bennaceur@gmail.comsa.bennaceur@gmail.comsa.bennaceur@gmail.comsa.bennaceur@gmail.comsa.bennaceur@gmail.comsa.bennaceur@gmail.com', '2018-06-20 21:06:35'),
+(57, 'vet1@gmail.com', 'sa.bennaceur@gmail.com', 'blablabla connard', '2018-06-21 03:24:01'),
+(58, 'vet1@gmail.com', 'vet1@gmail.com', 'blabla?', '2018-06-21 03:26:07');
 
 -- --------------------------------------------------------
 
@@ -188,16 +211,15 @@ CREATE TABLE IF NOT EXISTS `schedule` (
   `vets_ID` int(11) NOT NULL,
   PRIMARY KEY (`ID`),
   KEY `fk_schedule_vets1_idx` (`vets_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `schedule`
 --
 
 INSERT INTO `schedule` (`ID`, `from_time`, `to_time`, `day_free`, `vets_ID`) VALUES
-(15, '09:00:00', '10:00:00', 'Jeudi', 6),
-(16, '13:30:00', '19:30:00', 'Mardi', 6),
-(17, '08:30:00', '12:30:00', 'Mercredi', 6);
+(17, '08:30:00', '12:30:00', 'Mercredi', 6),
+(33, '08:30:00', '18:30:00', 'Vendredi', 6);
 
 -- --------------------------------------------------------
 
@@ -211,27 +233,18 @@ CREATE TABLE IF NOT EXISTS `users` (
   `email` varchar(255) NOT NULL,
   `password` char(64) NOT NULL,
   `role` enum('vet','client') NOT NULL DEFAULT 'client',
+  `connected` enum('y','n') NOT NULL DEFAULT 'n',
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8;
-
-DROP TABLE IF EXISTS `messages`;
-CREATE TABLE IF NOT EXISTS `messages` (
-  `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `sent_to` varchar(255) NOT NULL,
-  `sent_by` char(64) NOT NULL,
-  `content` longtext NOT NULL,
-  `date` time NOT NULL,
-  PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=73 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `users`
 --
 
-INSERT INTO `users` (`ID`, `email`, `password`,`role`) VALUES
-(38, 'p.mercier.h@gmail.com', 'secret', 'client'),
-(39, 'vet1@gmail.com', 'secret','vet');
-
+INSERT INTO `users` (`ID`, `email`, `password`, `role`, `connected`) VALUES
+(38, 'p.mercier.h@gmail.com', 'secret', 'client', 'n'),
+(39, 'vet1@gmail.com', 'secret', 'vet', 'n'),
+(72, 'sa.bennaceur@gmail.com', 'secrets', 'client', 'y');
 
 -- --------------------------------------------------------
 
@@ -259,7 +272,7 @@ CREATE TABLE IF NOT EXISTS `vets` (
 --
 
 INSERT INTO `vets` (`ID`, `last_name`, `first_name`, `vet_init`, `email`, `phone_number`, `users_ID`) VALUES
-(6, 'Hochet', 'Eric', 'EH', 'vet1@gmail.com','0600000000', 39);
+(6, 'Hochet', 'Eric', 'EH', 'vet1@gmail.com', '0600000000', 39);
 
 --
 -- Contraintes pour les tables déchargées
