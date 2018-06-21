@@ -1,4 +1,5 @@
 <?php
+var_dump($_POST);
 session_start();
 include('./Views/templates/html_top_msg.php');
 include("./Models/db_connect.php");
@@ -24,7 +25,10 @@ switch($_POST['msg']):
         include('./Views/templates/show_outbox.php');
         unset($msg_rows);
         break;
-    case($_POST['msg'] == 'Write message'):
+    case($_POST['msg'] == 'Write'):
+        include('Models/contacts.php');
+        $contacts_rows = $stmt->fetchAll();
+        include('./Views/templates/msg_form.php');
     break;  
         default:
     endswitch;
