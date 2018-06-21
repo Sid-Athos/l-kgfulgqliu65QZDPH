@@ -3,9 +3,10 @@
 <tbody>
 <?php
     var_dump($msg_rows);
+    if($msg_rows){
      $i=0;
      while($i < count($msg_rows)){
-         while (list($key, $value) = each($msg_rows[$i])){
+         foreach($msg_rows[$i] as $key => $value){
              if($key == "sent_to"){
                  echo '<tr><td>'.$value.'</td>';
              } else if($key =="content"){
@@ -16,5 +17,6 @@
          }
          $i++;
      }
+    }
 ?>
 </tbody></table>

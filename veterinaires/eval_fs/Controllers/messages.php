@@ -18,11 +18,11 @@ switch($_POST['msg']):
     case($_POST['msg'] == 'Outbox'):
         include('./Models/sent_by.php');
         $msg_rows = $stmt->fetchAll();
-        
         include('./Views/templates/show_outbox.php');
-    break;
-    default:
-endswitch;
+        unset($msg_rows);
+        break;
+        default:
+    endswitch;
 include('./Views/templates/html_bottom.html');
 
 ?>
