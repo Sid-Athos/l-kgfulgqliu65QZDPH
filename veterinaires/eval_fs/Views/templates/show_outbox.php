@@ -3,7 +3,7 @@
 <tbody>
 <?php
     var_dump($msg_rows);
-    if($msg_rows){
+    if(isset($msg_rows)){
      $i=0;
      while($i < count($msg_rows)){
          foreach($msg_rows[$i] as $key => $value){

@@ -13,16 +13,20 @@ $id = $_SESSION['ID'];
 if(!empty($_POST['msg']))
 switch($_POST['msg']):
     case($_POST['msg'] == 'Convos'):
-    require_once('./Models/sent_to.php');
-    break;
+        require_once('./Models/convos.php');
+        $msg_rows = $stmt->fetchAll();
+        include('./Views/templates/show_outbox.php');
+        unset($msg_rows);
+        break;
     case($_POST['msg'] == 'Outbox'):
         include('./Models/sent_by.php');
         $msg_rows = $stmt->fetchAll();
         include('./Views/templates/show_outbox.php');
         unset($msg_rows);
         break;
+    case($_POST['msg'] == 'Write message'):
+    break;  
         default:
     endswitch;
 include('./Views/templates/html_bottom.html');
-
 ?>

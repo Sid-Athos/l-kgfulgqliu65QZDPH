@@ -1,9 +1,11 @@
 <?php>
     $query = "
-        SELECT
-        sent_by, dates, content
+        SELECT DISTINCT
+        sent_by, sent_to, dates, content
         FROM messages
         WHERE
+        sent_by = (SELECT email FROM users WHERE ID = :ID)
+        OR
         sent_to = (SELECT email FROM users WHERE ID = :ID)
         ORDER BY date";
         $query_params = array(':ID' => $id);
