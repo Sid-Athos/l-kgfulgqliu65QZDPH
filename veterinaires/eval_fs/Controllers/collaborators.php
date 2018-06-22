@@ -60,4 +60,4 @@
         $colls_rows = $stmt -> fetchAll();
         include('./Views/templates/display_collaborators.php');
     }
-    ?>
+?>

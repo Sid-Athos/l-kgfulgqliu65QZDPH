@@ -6,8 +6,8 @@
         $stmt = $db->prepare($query);
         $result = $stmt->execute($query_params);
         $sucessmsg = "Requête executée";
-        header('Location: index.php?page=Rest');
+        header(' Location: index.php?page=Rest');
     } catch (PDOException $ex) {
         die("Failed to run query: " . $ex->getMessage());
     }
-?>
+?>  

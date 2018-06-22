@@ -54,6 +54,13 @@
             include('./Models/delete_day.php');
             $successmsg ="Suppression confirmée";
             break;
+        case(isset($_POST['days_edit'])):
+            $days_free = $_POST['days_edit'];
+            $from_time = $_POST['from_hour'].':'.$_POST['from_min'].':00';
+            $to_time = $_POST['to_hour'].':'.$_POST['to_min'].':00';
+            if((int)$_POST['from_hour'] >= (int)$_POST['to_hour'])
+                $error_add = "L'heure de début doit être supérieure à celle de fin";
+            include('./Models/update_working_days.php');
         default:
     endswitch;
 
@@ -63,5 +70,4 @@
         $work_rows = $stmt -> fetchAll();
         include('./Views/templates/add_workday_form.php');
     }
-
 ?>
