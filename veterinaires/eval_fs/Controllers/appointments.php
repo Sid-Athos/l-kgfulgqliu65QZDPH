@@ -12,9 +12,17 @@
     if($_SESSION['role'] == 'client'){
         include('./Models/get_appointments.php');
         $app_rows = $stmt->fetchAll();
+        for($i=0;$i<count($app_rows);$i++){
+            $app_list[] = implode(" ",$app_rows[$i]);
+        }
+        var_dump($app_list);
     } else if($_SESSION['role'] == 'vet'){
-        include('./Models/get_vets_appointments.php');
-        $add_rows = $stmt->fetchAll();
+        include('./Models/get_vets_apps.php');
+        $app_rows = $stmt->fetchAll();
+        for($i=0;$i<count($app_rows);$i++){
+            $app_list[] = implode(" ",$app_rows[$i]);
+        }
+        var_dump($app_list);
     }
 
     if(isset($_POST['cancel'])){
