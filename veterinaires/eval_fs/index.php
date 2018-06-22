@@ -72,6 +72,9 @@
             case 'Appointments':
                 include './Controllers/appointments.php';
             break;
+            case 'New_appointment':
+                include './Controllers/new_appointment.php';
+            break;
             default:
                 include './error/404/404.php';
                 include './Views/templates/html_top.php';
