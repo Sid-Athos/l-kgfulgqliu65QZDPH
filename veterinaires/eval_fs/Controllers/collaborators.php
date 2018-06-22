@@ -7,6 +7,7 @@
     $error = false;
     $flag_email_taken = false;
     $flag_name_taken = false;
+    
     switch(isset($_POST['add_vet'])):  
         case 'add_vet':
         include('./Views/templates/html_top.php');
@@ -52,8 +53,6 @@
         include('./Views/templates/html_top.php');
         include('./Views/templates/add_vet_form.php');
     }
-    
-    
     if(!isset($_POST['add'])){   
         include('./Views/templates/html_top_msg.php');
         include('./Models/show_collaborators.php');

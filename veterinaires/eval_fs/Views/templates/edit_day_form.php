@@ -29,9 +29,7 @@
                         <span class="input-group-addon" style="border-left: 0; border-right: 0;">min</span>
                     </div>
                     <div class="form-group">
-                        <input type="submit" class="btn btn-block btn-primary space-bottom" name="edit_day" value="Modifier" />';
-                        if (isset($error_edit)) alert($error_edit);
-                    echo '</div>
+                        <input type="submit" class="btn btn-block btn-primary space-bottom" name="edit_day" value="Modifier" /></div>
                 </fieldset>
             </form>
         </div>

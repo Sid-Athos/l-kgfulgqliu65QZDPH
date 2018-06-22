@@ -69,6 +69,9 @@
             case 'Rest':
                 include './Controllers/work_days.php';
                 break;
+            case 'Appointments':
+                include './Controllers/appointments.php';
+            break;
             default:
                 include './error/404/404.php';
                 include './Views/templates/html_top.php';

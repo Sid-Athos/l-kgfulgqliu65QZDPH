@@ -1,9 +1,8 @@
 <?php
     $query = "UPDATE
-    schedule
+    appointment
     SET
-    from_time = :new_from,
-    to_time = :new_to
+    canceled = y
     WHERE vets_ID = 
     (SELECT
     ID

@@ -13,14 +13,14 @@
                         </select>
                     </div>
                     <div class="input-group space-bottom">
-                        <span class="input-group-addon">De :</span>
+                        <span class="input-group-addon" style"padding:-5px">De:</span>
                         <input type="number" class="form-control" min="08" max="19" step="1" name="from_hour" required/>
                         <span class="input-group-addon" style="border-left: 0; border-right: 0;">h</span>
                         <input type="number" class="form-control" value="0" min="0" max="30" step="30" name="from_min" required/>
                         <span class="input-group-addon" style="border-left: 0; border-right: 0;">min</span>
                     </div>
                     <div class="input-group space-bottom">
-                        <span class="input-group-addon"> Á :</span>
+                        <span class="input-group-addon"> Á  :</span>
                         <input type="number" class="form-control" min="08" max="19" step="1" name="to_hour" required/>
                         <span class="input-group-addon" style="border-left: 0; border-right: 0; height:10px">h</span>
                         <input type="number" class="form-control" value="0" min="0" max="30" step="30" name="to_min" required/>
