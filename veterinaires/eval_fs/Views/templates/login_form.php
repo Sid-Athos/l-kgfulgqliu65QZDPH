@@ -1,6 +1,6 @@
 <div class="row">
         <div class="col-md-4 col-md-offset-4 text-center">
-        <br>Pas encore inscrit ? <a href="./index.php?page=Inscription">Vous pouvez le faire ici</a>
+        <br><p>Pas encore inscrit ?</p> <a href="./index.php?page=Inscription">Vous pouvez le faire ici</a>
         </div>
     </div>
 <div class="container"  style="margin-top: 20px;">
@@ -10,7 +10,7 @@
                     <?php if (isset($successmsg)) { success($successmsg); } ?>
                     <?php if (isset($errormsg)) { alert($errormsg); } ?>
                 <fieldset class="well">
-                    <h4 style="padding: 8px;">Inscription</h4>
+                    <h4 style="padding: 8px;"><p style="font-size:18px; color:#333333">Connexion</p></h4>
                     <div class="form-group">
                         <label for="name">Email</label>
                         <input type="email" class="form-control space-bottom" name="email" placeholder="Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required value="">
@@ -21,7 +21,7 @@
                         
                     </div>
                     <div class="form-group">
-                        <input type="submit" class="btn btn-block btn-primary space-bottom" name="register" value="Register" />
+                        <input type="submit" class="btn btn-block btn-primary space-bottom" name="register" value="Connexion" />
                     </div>
                 </fieldset>
             </form>

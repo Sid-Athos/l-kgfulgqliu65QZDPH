@@ -1,18 +1,85 @@
 <?php
+session_start();
+var_dump($_POST);
+var_dump($_SESSION);
     include("./Models/db_connect.php");
     include('./Controllers/Functions/PHP/messages.php');
+    include('./Controllers/Functions/PHP/date_to_mysql.php');
     include('./Views/templates/clients_navbar.php');
-    include('./Views/templates/html_top_msg.php');
+    include('./Views/templates/html_top.php');
 
-    if(!isset($_POST)){
+    $error_reg_animal = false;
+    $flag_name_taken = false;
+
+    if(empty($_POST)){
         include('./Views/templates/animal_choice.php');
     }
     
-    switch($_POST):
-        case($_POST['new_animal'] == "no"):
-        break;
-        case($_POST['new_animal'] == "oui"):
+    if(isset($_POST['register_animal'])){
+        $pet_name = htmlspecialchars(trim($_POST['pet_name']), ENT_QUOTES, 'UTF-8');
+        $breed = htmlspecialchars(trim($_POST['breed']), ENT_QUOTES, 'UTF-8');
+        $colour = htmlspecialchars(trim($_POST['colour']), ENT_QUOTES, 'UTF-8');
+        $sex = htmlspecialchars(trim($_POST['optradio2']), ENT_QUOTES, 'UTF-8');
+        if(strlen($pet_name) > 20){
+            $error_reg_animal = true;
+            $pet_name_error = "Le nom est trop long";
+        }
+        if(strlen($breed) > 25){
+            $error_reg_animal = true;
+            $breed_error = "Le nom est trop long";
+        }
+        if(strlen($colour) > 20){
+            $error_reg_animal = true;
+            $colour_error = "Le nom est trop long";
+        }
+        if(!empty($_POST['date_of_birth']))
+            $date_of_birth = date_to_mysql($_POST['date_of_birth']);
+        else
+            $date_of_birth = NULL;
+        if(isset($_POST['microship_tatoo'])){
+            $microship_tatoo = htmlspecialchars(trim($_POST['microship_tatoo']), ENT_QUOTES, 'UTF-8');
+            if(!preg_match('/^[a-zA-Z0-9]+$/',$microship_tatoo)){
+                $error_reg_animal = true;
+                $microship_tatoo_error = "Le code n'est pas au bon format";
+            }
+        }else{
+            $microship_tatoo ="";
+        }
+        if(isset($_POST['comment'])){
+            $comment = htmlspecialchars(trim($_POST['comment']), ENT_QUOTES, 'UTF-8');
+        }else{
+            $comment = "";
+        }
+            if(!$error_reg_animal){
+                include('./Models/animal_reg_check.php');
+                $check_name_row = $stmt->fetch();
+                var_dump($check_name_row);
+                if($check_name_row){
+                    $flag_name_taken = true;
+                    $name_taken = "Vous avez déjà inscrit " . $pet_name;
+                }
+            }
+        }         
+        
+    
+    if(!empty($_POST) && !isset($_POST['register_animal'])){
+    switch(isset($_POST['new_animal'])):
+        case($_POST['optradio']):
+        switch($_POST['optradio']):
+            case 'yes':
+                switch(!empty($_POST['new_animal'])):
+                    case(!empty($_POST['new_animal'])):
+                        include('./Views/templates/new_animal.php');
+                    break;
+                    default:
+                endswitch;
+            break;
+            case 'no':
+            break;
+            default:
+        endswitch;
         break;
         default:
     endswitch;
+    }
 ?>

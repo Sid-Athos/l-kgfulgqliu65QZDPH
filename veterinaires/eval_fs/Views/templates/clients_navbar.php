@@ -1,7 +1,7 @@
 <div class="topnav" id="myTopnav">
   <a href="./index.php?page=Members_lobby" class="active">Home</a>
-  <a href="./index.php?page=New_appointment">Prendre rendez-vous</a>
-  <a href="./index.php?page=Appointments">Gestion des rendez-vous</a>
+  <a href="./index.php?page=New_appointment">Prendre RDV</a>
+  <a href="./index.php?page=Appointments">Gestion RDV </a>
   <a href="./index.php?page=Tracking">Suivi</a>
   <a href="./index.php?page=Messages">Messagerie</a>
   <a href="./index.php?page=Settings"><img src='./Views/images/settings.svg' style="width: 15px; height:25px"></a>
