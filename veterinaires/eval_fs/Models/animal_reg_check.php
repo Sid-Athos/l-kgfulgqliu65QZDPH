@@ -1,7 +1,7 @@
 <?php
 $query = "
         SELECT
-            2
+            *
         FROM patients
         WHERE
             pet_name = :pet_name

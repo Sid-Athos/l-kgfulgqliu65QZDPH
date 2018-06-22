@@ -53,16 +53,42 @@ var_dump($_SESSION);
             if(!$error_reg_animal){
                 include('./Models/animal_reg_check.php');
                 $check_name_row = $stmt->fetch();
-                var_dump($check_name_row);
-                if($check_name_row){
+                if(!empty($check_name_row)){
                     $flag_name_taken = true;
                     $name_taken = "Vous avez déjà inscrit " . $pet_name;
+                    include('./Views/templates/new_animal.php');
+                    die();
                 }
             }
+            include('./Models/animal_reg.php');
+            include('./Controllers/Functions/PHP/backup_patients.php');
+            unset($_POST['register']);
         }         
         
+        if(!isset($_POST['new_appointment']) && !isset($_POST['vet_choice']) && isset($_SESSION['animal'])){
+            include('./Views/templates/app_datepick.php');
+            $check_date = true;
+        }
+        if(!isset($_POST['new_appointment']) && !isset($_POST['vet_choice']) && isset($_POST['my_animal'])){
+            include('./Views/templates/app_datepick.php');
+        }
+
+
+        if(isset($_POST['new_appointment']) && !isset($_POST['vet_choice'])){
+            $_SESSION['type'] = $_POST['type'];
+            $date = date('Y-m-d', strtotime(date_to_mysql($_POST['appointment_date'])));
+            $_SESSION['date'] = $date;
+            include('./Models/vets_availibility.php');
+            $availability_rows = $stmt->fetchAll();
+            var_dump($availability_rows);
+            include('./Views/templates/vet_choice.php');
+        }
     
-    if(!empty($_POST) && !isset($_POST['register_animal'])){
+    if(isset($_POST['vet_choice'])){
+        $_SESSION['vet'] = $_POST['vet'];
+    }
+
+    if(!empty($_POST) && !isset($_POST['register_animal']) && !isset($_POST['my_animal']) && !isset($_POST['new_appointment'])){
     switch(isset($_POST['new_animal'])):
         case($_POST['optradio']):
         switch($_POST['optradio']):
@@ -75,6 +101,10 @@ var_dump($_SESSION);
                 endswitch;
             break;
             case 'no':
+                include('./Models/seek_animal.php');
+                $animal_rows = $stmt->fetchAll();
+                include('./Views/templates/existing_animal.php');
+                unset($_POST['optradio']);
             break;
             default:
         endswitch;
