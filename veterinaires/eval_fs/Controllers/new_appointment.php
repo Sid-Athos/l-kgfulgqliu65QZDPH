@@ -24,14 +24,6 @@ var_dump($_SESSION);
             $error_reg_animal = true;
             $pet_name_error = "Le nom est trop long";
         }
-        if(strlen($breed) > 25){
-            $error_reg_animal = true;
-            $breed_error = "Le nom est trop long";
-        }
-        if(strlen($colour) > 20){
-            $error_reg_animal = true;
-            $colour_error = "Le nom est trop long";
-        }
         if(!empty($_POST['date_of_birth']))
             $date_of_birth = date_to_mysql($_POST['date_of_birth']);
         else
@@ -74,14 +66,15 @@ var_dump($_SESSION);
         }
 
 
-        if(isset($_POST['new_appointment']) && !isset($_POST['vet_choice'])){
+        if(isset($_POST['appointment_date'])){
             $_SESSION['type'] = $_POST['type'];
-            $date = date('Y-m-d', strtotime(date_to_mysql($_POST['appointment_date'])));
+            $date = date_to_mysql($_POST['appointment_date']);
             $_SESSION['date'] = $date;
             include('./Models/vets_availibility.php');
             $availability_rows = $stmt->fetchAll();
             var_dump($availability_rows);
             include('./Views/templates/vet_choice.php');
+            }
         }
     
     if(isset($_POST['vet_choice'])){

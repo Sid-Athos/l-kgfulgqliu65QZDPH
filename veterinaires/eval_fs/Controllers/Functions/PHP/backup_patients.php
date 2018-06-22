@@ -1,6 +1,6 @@
 <?php
 $tableau []= $_POST;
-$nom= "clients.csv";
+$nom= "patients.csv";
 $tmp = fopen($nom,"a+");
 
     foreach($tableau as $line){
