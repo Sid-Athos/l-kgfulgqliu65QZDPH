@@ -1,4 +1,3 @@
-<script>
 var carte;
 function initialize(){
     // On rentre les coordonnées(latitude, longitude) de notre choix dans une variable
@@ -39,48 +38,4 @@ function allerChezTCM() {
    map.setCenter(tcm);
 }
 
-$(function () {
-    var current_date = var today = new Date();
-    var dd = today.getDate();
-    var mm = today.getMonth()+1; //January is 0!
-    var yyyy = today.getFullYear();
 
-if(dd<10) {
-    dd = '0'+dd
-} 
-
-if(mm<10) {
-    mm = '0'+mm
-} 
-
-today = dd + '/' + mm + '/' + yyyy;
-document.write(today);;
-    $('#datetimepicker1').datetimepicker({
-        endDate: current_date,
-        weekStart: 1,
-        todayBtn:  1,
-		autoclose: 1,
-		todayHighlight: 1,
-		startView: 2,
-		minView: 2,
-		forceParse: 0,
-        viewMode: 'years',
-        language: 'fr',
-        format: "dd/mm/yyyy",
-        autoclose: true
-    });
-    $('#datetimepicker2').datetimepicker({
-        startDate: current_date,
-        weekStart: 1,
-        todayBtn:  1,
-		autoclose: 1,
-		todayHighlight: 1,
-		startView: 2,
-		minView: 2,
-		forceParse: 0,
-        viewMode: 'years',
-        language: 'fr',
-        format: "dd/mm/yyyy",
-        autoclose: true
-    });
-});
