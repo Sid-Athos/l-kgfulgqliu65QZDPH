@@ -1,6 +1,7 @@
 <?php
 session_start();
 include('./Views/templates/html_top_msg.php');
+include('./Controllers/session_check.php');
 include("./Models/db_connect.php");
 
 if($_SESSION['role'] == 'vet'){

@@ -7,9 +7,10 @@
         WHERE
         ID = :ID
         AND
-        connected = 'n'";
-        echo $email;
-        $query_params = array(':ID' => $row['ID']);
+        connected = 'n'
+        OR
+        connected ='y'";
+        $query_params = array(':ID' => $row[0]['ID']);
         try {
             $stmt = $db->prepare($query);
             $result = $stmt->execute($query_params);

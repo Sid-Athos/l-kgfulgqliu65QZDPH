@@ -3,36 +3,19 @@
     include("./Models/db_connect.php");
     include('./Views/templates/vets_navbar.php');
     include('./Controllers/Functions/PHP/messages.php');
+    include('./Controllers/Functions/PHP/days_availables.php');
 
     switch(isset($_POST)):
         case(isset($_POST['add'])):
             include('./Models/show_workdays.php');
             $work_days = $stmt -> fetchAll();
-            for($i=0;$i<count($work_days);$i++){
-                $working_days[] = implode("",$work_days[$i]);
-            }
-            $working_days = implode("",$working_days);
-            $days = array("Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi","Dimanche");
-            for($i=0;$i<count($days);$i++){
-                if(!strchr($working_days,$days[$i])){
-                    $days_available[] = $days[$i];
-                }
-            }
+            $days_available = days_availables($work_days);
             include('./Views/templates/add_new_workday.php');
         break;
         case(isset($_POST['edit'])):
             include('./Models/show_workdays.php');
             $work_days = $stmt -> fetchAll();
-            for($i=0;$i<count($work_days);$i++){
-                $working_days[] = implode("",$work_days[$i]);
-            }
-            $working_days = implode("",$working_days);
-            $days = array("Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi","Dimanche");
-            for($i=0;$i<count($days);$i++){
-                if(!strchr($working_days,$days[$i])){
-                    $days_available[] = $days[$i];
-                }
-            }
+            $days_available = days_availables($work_days);
             include('./Views/templates/edit_workday.php');
         break;
         case(isset($_POST['delete'])):

@@ -1,6 +1,5 @@
 <?php
     session_start();
-    var_dump($_SESSION);
     include("./Models/db_connect.php");
     include('./Controllers/Functions/PHP/messages.php');
     include('./Models/logout.php');
@@ -8,6 +7,5 @@
     include('./Views/templates/html_top_msg.php');
     $successmsg = "Déconnexion réussie, vous allez être redirigé vers l'accueil, à bientôt! :D";
     include('./Views/templates/logout.php');
-    unset($_SESSION);
-    unset($_POST);
+    session_unset();
 ?>

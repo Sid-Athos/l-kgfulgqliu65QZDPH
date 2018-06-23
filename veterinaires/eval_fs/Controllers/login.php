@@ -10,9 +10,9 @@ switch(isset($_POST['register'])):
 
         // check if the combination fname/lname/email is already used
         include('./Models/log_check.php');
-        $row = $stmt->fetch();
-        $_SESSION['ID'] = $row['ID'];
-        $_SESSION['role'] = $row['role'];
+        $row = $stmt->fetchAll();
+        $_SESSION['ID'] = $row[0]['ID'];
+        $_SESSION['role'] = $row[0]['role'];
         
         if(!empty($row)){
             include('./Models/status_update.php');
@@ -20,6 +20,7 @@ switch(isset($_POST['register'])):
             header('refresh:5;url=index.php?page=Messages');
         } else {
             $errormsg = "Vous êtes déjà connecté! <a href='index.php?page=Messages' class='alert-link'></br>Cliquez ici pour accèder à l'espace membre</a>";
+            header('refresh:5;url=index.php?page=Messages');
         }
         break;
         default:

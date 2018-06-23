@@ -9,6 +9,7 @@
         password = :password
         AND
         connected = 'n'
+        OR connected ='y'
         ";
         $query_params = array(':email' => $email,
                               ':password' => $password);

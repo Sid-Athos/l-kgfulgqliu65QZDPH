@@ -1,6 +1,6 @@
 <?php
-    $query = "
-    INSERT INTO schedule (
+    $query = 
+    "INSERT INTO schedule (
                     ID,
                     from_time,
                     to_time,

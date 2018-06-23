@@ -22,7 +22,6 @@
             ':first_name' => $first_name,
             ':vet_init' => $vet_init,
             ':phone_number' => $phone);
-            var_dump($query_params);
             try {
                 $stmt = $db->prepare($query);
                 $result = $stmt->execute($query_params);

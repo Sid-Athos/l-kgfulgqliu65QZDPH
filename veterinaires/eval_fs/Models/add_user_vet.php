@@ -18,7 +18,6 @@
     try {
         $stmt = $db->prepare($query);
         $result = $stmt->execute($query_params);
-        var_dump($result);
         $check = true;
     }catch(PDOException $ex){   
         $check = false;

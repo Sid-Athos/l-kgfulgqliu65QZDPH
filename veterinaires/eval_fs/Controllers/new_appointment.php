@@ -72,7 +72,6 @@ var_dump($_SESSION);
             $_SESSION['date'] = $date;
             include('./Models/vets_availibility.php');
             $availability_rows = $stmt->fetchAll();
-            var_dump($availability_rows);
             include('./Views/templates/vet_choice.php');
             }
         }
