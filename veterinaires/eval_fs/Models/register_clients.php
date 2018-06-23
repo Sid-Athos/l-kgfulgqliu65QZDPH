@@ -1,14 +1,14 @@
 <?php
-    $query = "INSERT INTO users (
+    $query = 
+    "INSERT INTO users (
         ID,
-        password,
-        email
-        ) VALUES (
+        email,
+        password, 
+        role) VALUES (
             :ID,
+            :email,
             :password,
-            :email)";
-            // Security measures
-            
+            client)";
             $query_params = array(
                 ':ID' => NULL,
                 ':password' => $password,

@@ -19,7 +19,6 @@
         $successmsg = "Repos Modifié !";
         header('Location: index.php?page=Rest');
     }catch(PDOException $ex){
-        var_dump($_POST);
         die("Failed to run query: " . $ex->getMessage());
     }
 ?>

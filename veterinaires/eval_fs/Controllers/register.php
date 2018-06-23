@@ -1,7 +1,7 @@
 <?php
 session_start();
 include('./Views/templates/html_top.php');
-include_once("./Models/db_connect.php");
+include("./Models/db_connect.php");
 include('./Controllers/Functions/PHP/messages.php');
 
 $error = false;
