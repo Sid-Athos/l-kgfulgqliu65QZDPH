@@ -1,0 +1,58 @@
+.row.navbar{
+    font-size: 12px;
+    background: #283048;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to left, #859398, #283048);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to left, #859398, #283048); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    border: 2px solid #333333;
+    color: #1f4037;
+    font-family: 'Raleway', sans-serif;
+    top:-5px;
+    height:auto;
+    margin-left:-2px;
+    width:auto;
+}
+body {
+    background: #085078;  /* fallback for old browsers */
+    font-family: 'Raleway', sans-serif;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    font-size:12px;
+}
+
+[class*="col-"]{
+    vertical-align:middle;
+    line-height: 0.8;
+    margin-top:5px;
+    margin-left:10px;
+}
+  .search{
+    background:#FFFFFF;
+    border:none;
+    color:#333333;
+    margin-top:-15px;
+    border-radius:5px;
+    width:170px;
+    height:25px;
+}
+.search:focus{
+    background:#FFFFFF;
+    border:none;
+    color:#333333;
+    box-shadow: 0 0 5px #FFEDBC;
+    padding: 3px 0px 3px 3px;
+    margin: 5px 1px 3px 0px;
+    border: 2px solid #FFEDBC;
+    border-radius:5px;
+    margin-top:-15px;
+}
+@media only screen and (max-width: 800px) {
+    #hide {
+        display: none;
+    }
+}
+
+.label {
+    margin-left:40%;
+}
