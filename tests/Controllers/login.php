@@ -13,8 +13,6 @@ switch(isset($_POST['login'])):
 
         // check if the combination fname/lname/email is already used
         include('../tests/Models/log_check.php');
-        $row = $stmt->fetch();
-        var_dump($row);
         unset($_SESSION['ID'],$_SESSION['role']);
         $_SESSION['ID'] = $row['ID'];
         $_SESSION['role'] = $row['role'];
@@ -26,12 +24,13 @@ switch(isset($_POST['login'])):
         } else {
             $errormsg = "
             Vous n'avez pas de compte!<p> Vous allez être redirigé vers la page d'inscription</p>";
-            header('refresh:5;url=index.php?page=Register');
+            header('refresh:8;url=index.php?page=Register');
         }
+        include('../tests/Views/html_top_vets.php');
         break;
         default:
+        include('../tests/Views/html_top_login.php');
+        include('../tests/Views/login.php');
     endswitch;
-    include('../tests/Views/html_top_login.php');
-    include('../tests/Views/login.php');
     
 ?>

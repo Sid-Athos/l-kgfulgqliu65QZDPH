@@ -1,6 +1,6 @@
 <?php
 session_start();
-var_dump($_POST);
+var_dump($_SESSION);
 include("../tests/Models/db_connect.php");
 include('../tests/Controllers/Functions/PHP/messages.php');
 include('../tests/Models/actual_date.php');

@@ -39,6 +39,11 @@
         </div>
         
         <div class="col-xs-6" style="color:#FFFFFF" id="hide">
+                    <?php 
+                    if(isset($greeting_msg)){
+                        echo $greeting_msg;
+                    } 
+                    ?>
             <a href="../tests/index.php?page=Rest" title="Planning général" style="margin-left:10px">
                 <img src="../tests/Views/icons/icons8-schedule-64.png" alt="Kitten" width="25px" height ="25px">
             </a>

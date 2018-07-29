@@ -11,4 +11,25 @@
         }catch(PDOException $ex){
             die("Failed to run query: " . $ex->getMessage());
         }
+        $row = $stmt->fetch();
+        $query =
+        "SELECT last_name, first_name
+        FROM  vets
+        WHERE users_ID = :ID
+        UNION
+        SELECT last_name, first_name
+        FROM clients
+        WHERE users_ID = :ID";
+
+        $query_params = array(":ID" => $row['ID']);
+        try {
+            $stmt = $db->prepare($query);
+            $result = $stmt->execute($query_params);
+        }catch(PDOException $ex){
+            die("Failed to run query: " . $ex->getMessage());
+        }
+        $row1 = $stmt ->fetchAll();
+        if(isset($row1)){
+        $greeting_msg = "Bonjour ".$row1[0]['first_name']." ".$row1[0]['last_name']." =)";
+        }
 ?>

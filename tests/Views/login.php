@@ -37,7 +37,7 @@
                     </div>
                     </div>
                     <div class="col-auto">
-                    <button type="submit" class="btn btn-primary mb-2" required style="background:#333333;margin-left:-10px" name="login">Submit</button>
+                    <button type="submit" class="btn btn-primary mb-2" required style="background:#333333;margin-left:-10px" name="login">Connexion</button>
                     </div>
                 </div>
                 </form>
