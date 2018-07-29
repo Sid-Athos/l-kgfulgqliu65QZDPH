@@ -43,6 +43,7 @@
                 <button class="btn btn-primary" name="delete">Supprimer</button>
             </form>
         </div>
+        <div id="txtHint"><b>Person info will be listed here...</b></div>
     </div>
 </div>
 </body>
