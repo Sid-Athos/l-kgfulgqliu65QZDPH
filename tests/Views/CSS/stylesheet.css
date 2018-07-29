@@ -195,6 +195,9 @@ ul {
 }
 .btn-primary {
     background:#333333;
+    width:150px;
+    text-align:center;
+    vertical-align:top;
 }
 .btn-primary:hover {
     background:#6f0000;
@@ -202,7 +205,7 @@ ul {
 
 .col-xs-6 .msg{
     position:absolute;
-    max-height:500px;
-    margin-left:88%;
+    right:0;
     margin-top:-25px;
+    float:right;
 }

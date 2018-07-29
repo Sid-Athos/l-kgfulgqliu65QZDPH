@@ -35,7 +35,7 @@
             </tbody>
         </table>
     </div>
-    <div class="col-xs-6 msg">
+    <div class="col-xs-6 msg" style="position:absolute;max-height:500px;right:0;width:150px;margin-top:-27px">
         <div class="btn-group-vertical">
             <form role="form" action="" method="POST" name="edit">
                 <button class="btn btn-primary" name="add" value="Ajouter">Ajouter</button>

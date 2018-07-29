@@ -28,18 +28,18 @@
                         <span class="input-group-addon" style="border-left: 0; border-right: 0;">min</span>
                     </div>
                     <div class="form-group">
-                        <input type="submit" class="btn btn-block btn-primary space-bottom" name="add_day" value="Ajouter" />
+                        <input type="submit" class="btn btn-primary" name="add_day" value="Ajouter" />
                         </div>
                 </fieldset>
             </form>
         </div>
     </div>
-    <div class="col-xs-6" style="position:absolute;max-height:500px;margin-left:85%;margin-top:-231px;width:145px;">
+    <div class="col-xs-6" style="position:absolute;max-height:500px;margin-left:85%;margin-top:-231px;width:150px;">
     <div class="btn-group-vertical">
             <form role="form" action="" method="POST" name="edit">
-                <button class="btn btn-primary" style="background:#333333" name="add" value="Ajouter">Ajouter</button>
-                <button class="btn btn-primary" style="background:#333333" name="edit">Modifier</button>
-                <button class="btn btn-primary" style="background:#333333" name="delete">Supprimer</button>
+                <button class="btn btn-primary"  name="add" value="Ajouter">Ajouter</button>
+                <button class="btn btn-primary"  name="edit">Modifier</button>
+                <button class="btn btn-primary"  name="delete">Supprimer</button>
             </form>
         </div>
 </div>
