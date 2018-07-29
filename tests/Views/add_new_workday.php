@@ -1,8 +1,7 @@
 
-<div class="container-fluid" style="color:#decba4">
-    <h3 class="text-center">Ajouter un jour de travail</h3>
     <div class="row">
-        <div class="col-xs-6" style="color:#decba4; text-align:center; vertical-align:bottom">
+        <div class="col-xs-6" style="color:#decba4;margin-left:30px" >
+    <h3 class="text-center">Ajouter un jour de travail</h3>
             <form role="form" class="form container-fluid" action="" method="POST" name="add_day">
                 <fieldset class="well">
                     <div class="form-group">
@@ -14,27 +13,27 @@
                         </select>
                     </div>
                     <div class="input-group space-bottom">
-                        <span class="input-group-addon" style"padding:-5px">De:</span>
-                        <input type="number" class="form-control" min="08" max="19" step="1" name="from_hour" required/>
-                        <span class="input-group-addon" style="border-left: 0; border-right: 0;">H</span>
-                        <input type="number" class="form-control" value="0" min="0" max="30" step="30" name="from_min" required/>
-                        <span class="input-group-addon" style="border-left: 0; border-right: 0;">min</span>
+                    <span class="input-group-addon">De :</span>
+                        <input type="number" class="form-control" style="margin-bottom:5px;width:50px" min="08" max="19" step="1" name="from_hour" required/>
+                        <span class="input-group-addon" style="border-left: 0; border-right: 0;margin:5px;margin-top:10px">h</span>
+                        <input type="number" class="form-control"style="margin-bottom:5px;width:50px" value="0" min="0" max="30" step="30" name="from_min" required/>
+                        <span class="input-group-addon" style="border-left: 0; border-right: 0;margin:5px;margin-top:10px">min</span>
                     </div>
                     <div class="input-group space-bottom">
-                        <span class="input-group-addon"> Á  :</span>
-                        <input type="number" class="form-control" min="08" max="19" step="1" name="to_hour" required/>
-                        <span class="input-group-addon" style="border-left: 0; border-right: 0; height:10px">H</span>
-                        <input type="number" class="form-control" value="0" min="0" max="30" step="30" name="to_min" required/>
-                        <span class="input-group-addon" style="border-left: 0; border-right: 0;">min</span>
+                        <span class="input-group-addon" style="margin-right:8px"> Á :</span>
+                        <input type="number" class="form-control" style="margin-bottom:5px;width:50px" min="08" max="19" step="1" name="to_hour" required/>
+                        <span class="input-group-addon" style="border-left: 0; border-right: 0;margin:5px;margin-top:10px">h</span>
+                        <input type="number" class="form-control" style="margin-bottom:5px;width:50px" value="0" min="0" max="30" step="30" name="to_min" required/>
+                        <span class="input-group-addon" style="border-left: 0; border-right: 0;margin:5px;margin-top:10px">min</span>
                     </div>
-                    <div class="form-group">
-                        <input type="submit" class="btn btn-primary" name="add_day" value="Ajouter" />
-                        </div>
+                    <div class="form-group" style="">
+                        <input type="submit" class="btn btn-primary" style="margin-left:25px" name="edit_day" value="Modifier" />
+                    </div>
                 </fieldset>
             </form>
         </div>
     </div>
-    <div class="col-xs-6" style="position:absolute;max-height:500px;margin-left:85%;margin-top:-231px;width:150px;">
+    <div class="col-xs-6" style="color:#decba4;position:absolute;max-height:500px;right:0;width:150px;margin-top:-239px">
     <div class="btn-group-vertical">
             <form role="form" action="" method="POST" name="edit">
                 <button class="btn btn-primary"  name="add" value="Ajouter">Ajouter</button>
