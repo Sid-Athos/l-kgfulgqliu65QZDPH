@@ -1,5 +1,6 @@
 <?php
 session_start();
+var_dump($_POST);
 include("../tests/Models/db_connect.php");
 include('../tests/Controllers/Functions/PHP/messages.php');
 include('../tests/Models/actual_date.php');
@@ -29,7 +30,7 @@ switch(isset($_POST)):
     case(isset($_POST['delete'])):
 
             include('../tests/Views/suppress_workday_form.php');
-            
+
         break;
 
     case(isset($_POST['add_day'])):

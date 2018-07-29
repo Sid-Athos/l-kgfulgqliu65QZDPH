@@ -27,7 +27,7 @@
                         <span class="input-group-addon" style="border-left: 0; border-right: 0;margin:5px;margin-top:10px">min</span>
                     </div>
                     <div class="form-group" style="">
-                        <input type="submit" class="btn btn-primary" style="margin-left:25px" name="add_day" value="Modifier" />
+                        <input type="submit" class="btn btn-primary" style="margin-left:25px" name="add_day" value="Ajouter" />
                     </div>
                 </fieldset>
             </form>

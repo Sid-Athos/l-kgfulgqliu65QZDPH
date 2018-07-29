@@ -1,23 +1,19 @@
-
     <div class="row">
-        <div class="col-xs-6" style="color:#decba4">
-        <h3 class="text-center" style="margin-left:100px">Ajouter un jour de travail</h3>
-            <form role="form" style=""class="form container-fluid" action="" method="POST" name="delete_day" >
+        <div class="col-xs-6" id="txtHint" style="color:#decba4;margin-left:190px">
+        <h3 class="text-center" style="text-align:center">Supprimer un jour de travail</h3>
+            <form role="form" style="text-align:center;display:inline-block"  class="form container-fluid" method="POST" name="delete_day" >
                 <fieldset class="well">
                     <div class="form-group">
-                    <label for="name">Choisisez un repos à supprimer</label>
+                    <label for="name">Choisissez un jour à libérer</label>
                     </div>
                     <div class="form-group">
                     <?php
     if($work_days){
         for($i=0; $i<count($work_days); $i++){
-            echo '<div class="radio"><label><input type="radio" name="optradio" value="'.$work_days[$i]['working_day'].'" required>'.$work_days[$i]['working_day'].'</label></div>';
+            echo '<div class="radio"><label><input type="radio" name="optradio" onclick="showUser(this.value)" value="'.$work_days[$i]['working_day'].'" required>'.$work_days[$i]['working_day'].'</label></div>';
         }
     }
     ?>  </div>
-                    <div class="form-group">
-                        <br>   <input type="submit" class="btn btn-block btn-primary space-bottom" style="width:250px; margin-left: 50px;float:center"name="delete_day" value="Supprimer" />
-                    </div>
                 </fieldset>
             </form>
         </div>
@@ -30,3 +26,25 @@
             </form>
         </div>
         </div>
+    
+<script>
+function showUser(str) {
+    if (str == "") {
+        document.getElementById("txtHint").innerHTML = "";
+        return;
+    } else {
+
+            // code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp = new XMLHttpRequest();
+        
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("txtHint").innerHTML = this.responseText;
+            }
+        };
+
+        xmlhttp.open("GET","../tests/Models/delete_day.php?q="+str,true);
+        xmlhttp.send();
+    }
+}
+</script>
