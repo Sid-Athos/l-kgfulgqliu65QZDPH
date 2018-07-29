@@ -48,7 +48,7 @@
             <a href="../tests/index.php?page=Patients" title="Mes patients">
                 <img src="../tests/Views/icons/animals.png" alt="Kitten" width="25px" height ="25px">
             </a>
-            <a href="../tests/index.php?page=Add_collab" title="Ajouter un collaborateur" style="margin-left:10px">
+            <a href="../tests/index.php?page=Add_collab" title="Ajouter un collaborateur" style="">
                 <img src="../tests/Views/icons/add.png" alt="Kitten" width="25px" height ="25px">
             </a>
         </div>
