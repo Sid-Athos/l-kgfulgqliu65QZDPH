@@ -53,8 +53,8 @@
             </a></div>
 
         <div class="col-xs-6">
-            <form action="../test_bootstrap.php" class="search_form" id="target" name="search_form" method="POST" style="top:20;margin-left:0px;margin-right:5px;float:left">
-                        <input type="search" autofocus id="search_in" style="top:15" class ="search" optional result="5" size="40"name="search"title="Appuyez sur Entrée pour lancer la requête" placeholder="Rechercher un animal..."/>
+            <form action="../test_bootstrap.php" class="search_form" id="target" name="search_form" method="POST" style="margin-top:8px;margin-left:0px;margin-right:5px;float:left">
+                        <input type="search" autofocus id="search_in" style="top:15px" class ="search" optional result="5" size="40"name="search"title="Appuyez sur Entrée pour lancer la requête" placeholder="Rechercher un animal..."/>
             </form>            
             <a href="../tests/index.php?page=Messages" title="Messagerie">
                 <img src="../tests/Views/icons/address-book-solid.svg" alt="Kitten" width="25px" height ="25px">

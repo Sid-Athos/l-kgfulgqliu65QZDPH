@@ -19,8 +19,8 @@ echo'
 echo '</tbody></table>';
 ?>
 </div>
-<div class ="col-xs-6" style="position:absolute;right:0">
-<div class="btn-group-vertical">
+<div class ="col-xs-6" style="position:absolute;right:0;margin-top:-5px;">
+<div class="btn-group-vertical" style="top:90">
             <form role="form" action="" method="POST" name="edit" style="width:150px">
                 <button class="btn btn-primary" style="background:#333333" name="msg" value="convos">Conversations</button>
                 <button class="btn btn-primary" style="background:#333333" name="msg" value="outbox">Envoyés</button>

@@ -2,9 +2,7 @@
     $query = 
     "SELECT ID, role FROM users 
     WHERE email = :email 
-    AND password = :password
-    AND
-    connected = 'n'";
+    AND password = :password";
         $query_params = array(':email' => $email,
                               ':password' => $password);
         try {

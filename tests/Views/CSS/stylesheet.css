@@ -189,23 +189,20 @@ tbody:hover tr:hover td {
     -webkit-appearance: none;
     -moz-appearance: none;
 }
-input{
-    background: #FFFFFF;
-    width : 170px;
-    height: 35px;
-    margin-right: 10%;
-    position:relative;
-    border:0;
-    border-color: #decba4;
-    cursor: pointer;
-    transition: background 250ms ease-in-out, 
-                transform 150ms ease;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-}
-input:hover{
-    background:#44A08D;
-}
+
 ul {
     list-style:none;
+}
+.btn-primary {
+    background:#333333;
+}
+.btn-primary:hover {
+    background:#6f0000;
+}
+
+.col-xs-6 .msg{
+    position:absolute;
+    max-height:500px;
+    margin-left:88%;
+    margin-top:-25px;
 }

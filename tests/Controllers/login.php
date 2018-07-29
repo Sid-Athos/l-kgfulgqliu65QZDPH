@@ -14,6 +14,8 @@ switch(isset($_POST['login'])):
         // check if the combination fname/lname/email is already used
         include('../tests/Models/log_check.php');
         $row = $stmt->fetch();
+        var_dump($row);
+        unset($_SESSION['ID'],$_SESSION['role']);
         $_SESSION['ID'] = $row['ID'];
         $_SESSION['role'] = $row['role'];
         

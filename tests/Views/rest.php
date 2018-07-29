@@ -35,12 +35,12 @@
             </tbody>
         </table>
     </div>
-    <div class="col-xs-6" style="position:absolute;max-height:500px;margin-left:88%;margin-top:-25px">
+    <div class="col-xs-6 msg">
         <div class="btn-group-vertical">
             <form role="form" action="" method="POST" name="edit">
-                <button class="btn btn-primary" style="background:#333333" name="add" value="Ajouter">Ajouter</button>
-                <button class="btn btn-primary" style="background:#333333" name="edit">Modifier</button>
-                <button class="btn btn-primary" style="background:#333333" name="delete">Supprimer</button>
+                <button class="btn btn-primary" name="add" value="Ajouter">Ajouter</button>
+                <button class="btn btn-primary" name="edit">Modifier</button>
+                <button class="btn btn-primary" name="delete">Supprimer</button>
             </form>
         </div>
     </div>
