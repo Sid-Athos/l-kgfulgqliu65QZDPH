@@ -2,7 +2,7 @@
     $db_username = "root";
     $db_password = "";
     $db_host = "localhost";
-    $db_name = "mystudio";
+    $db_name = "veterinaires";
     $db_options = array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8", 
                         PDO::MYSQL_ATTR_INIT_COMMAND => "SET lc_time_names = 'fr_FR'");
 

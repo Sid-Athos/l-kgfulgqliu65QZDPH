@@ -54,5 +54,18 @@ body {
 }
 
 .label {
-    margin-left:40%;
+    text-align:center;
+}
+.map {
+    width:350px;
+    height:200px;
+    border:2px solid #decba4;
+    border-radius:6px;
+    margin-top:5px;
+    margin-bottom:5px;
+}
+.first_sentence {
+    margin-top:5px;
+    text-align:center;
+    font-size:10px;
 }

@@ -2,11 +2,13 @@
     $query = "INSERT INTO users (
         ID,
         password,
-        email
+        email,
+        connected
         ) VALUES (
             :ID,
             :password,
-            :email)";
+            :email,
+            'y')";
             // Security measures
             
             $query_params = array(
@@ -20,6 +22,7 @@
                 }catch(PDOException $ex){
                     $check =false;
                 }
+                $id = $db ->lastinsertId();
                 if($check){
                     $query = "INSERT INTO clients (
                 ID,
@@ -40,7 +43,7 @@
                 :postal_code,
                 :city,
                 :phone_number,
-                (SELECT ID FROM users WHERE email = :email))";
+                :users_ID)";
             $query_params = array(
                 ':ID' => NULL,
                 ':email' => $email,
@@ -49,7 +52,8 @@
                 ':address' => $address,
                 ':postal_code' => $postal_code,
                 ':city' => $city,
-                ':phone_number' => $phone_number);
+                ':phone_number' => $phone_number,
+                ':users_ID' => intval($id));
             try {
                 $stmt = $db->prepare($query);
                 $result = $stmt->execute($query_params);

@@ -1,15 +1,10 @@
 <?php
-    $query = "
-        SELECT
-        ID, role
-        FROM users
-        WHERE
-        email = :email
-        AND 
-        password = :password
-        AND
-        connected = 'n'
-        ";
+    $query = 
+    "SELECT ID, role FROM users 
+    WHERE email = :email 
+    AND password = :password
+    AND
+    connected = 'n'";
         $query_params = array(':email' => $email,
                               ':password' => $password);
         try {
@@ -18,4 +13,4 @@
         }catch(PDOException $ex){
             die("Failed to run query: " . $ex->getMessage());
         }
-    ?>
+?>

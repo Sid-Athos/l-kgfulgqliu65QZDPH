@@ -8,7 +8,6 @@
         ID = :ID
         AND
         connected = 'n'";
-        echo $email;
         $query_params = array(':ID' => $row['ID']);
         try {
             $stmt = $db->prepare($query);
@@ -17,6 +16,4 @@
         }catch(PDOException $ex){
             die("Failed to run query: " . $ex->getMessage());
         }
-        unset($db);
-        unset($stmt);
 ?>
