@@ -7,7 +7,7 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-xs-6" style="max-height:400px;margin-left:10px;margin-top:-25px">
+    <div class="col-xs-6" style="max-height:400px;margin-left:10px;margin-top:-25px;background:background: #085078;">
         <table class="table-scroll table-striped" style="margin-left:15px">
             <thead>
                 <tr class='tr-scroll'>
