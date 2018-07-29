@@ -1,13 +1,13 @@
 <div class="row">
 
-    <div class="col-xs-12">
+    <div class="col-xs-12" style="margin-bottom:5px">
         <p style="font-size:10px;width:100px"><?php if (isset($successmsg)) { success($successmsg); } ?>
         <?php if (isset($errormsg)) { alert($errormsg); } ?></p>
         
     </div>
 </div>
 <div class="row">
-    <div class="col-xs-6" style="max-height:400px;margin-left:10px;margin-top:-25px;background:background: #085078;">
+    <div class="col-xs-6" style="max-height:400px;margin-left:10px;margin-top:-25px;background:background:#333333">
         <table class="table-scroll table-striped" style="margin-left:15px">
             <thead>
                 <tr class='tr-scroll'>

@@ -5,8 +5,7 @@
     FROM messages
     WHERE
     sent_by = (SELECT email FROM users WHERE ID = :ID)
-    ORDER BY dates ASC
-    LIMIT 11";
+    ORDER BY dates DESC";
         $query_params = array(':ID' => $_SESSION['ID']);
         try {
             $stmt = $db->prepare($query);

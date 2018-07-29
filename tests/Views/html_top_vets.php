@@ -45,12 +45,13 @@
             <a href="../tests/index.php?page=Appointments" title="Rendez-vous à venir" style="margin-left:10px">
                 <img src="../tests/Views/icons/rdv.png" alt="Kitten" width="25px" height ="25px">
             </a>
+            <a href="../tests/index.php?page=Patients" title="Mes patients">
+                <img src="../tests/Views/icons/animals.png" alt="Kitten" width="25px" height ="25px">
+            </a>
             <a href="../tests/index.php?page=Add_collab" title="Ajouter un collaborateur" style="margin-left:10px">
                 <img src="../tests/Views/icons/add.png" alt="Kitten" width="25px" height ="25px">
             </a>
-            <a href="../tests/index.php?page=Patients" title="Mes patients">
-                <img src="../tests/Views/icons/animals.png" alt="Kitten" width="25px" height ="25px">
-            </a></div>
+        </div>
 
         <div class="col-xs-6">
             <form action="../test_bootstrap.php" class="search_form" id="target" name="search_form" method="POST" style="margin-top:8px;margin-left:0px;margin-right:5px;float:left">
