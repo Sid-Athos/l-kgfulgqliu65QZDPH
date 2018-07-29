@@ -1,11 +1,11 @@
 <div id="txtHint"></div>
-<select class="form-control space-bottom" style="width: 20%; position:center; margin-left: 37.5%;"name="target" required>
+<select class="form-control space-bottom" id="send_to" style="width: 20%; position:center; margin-left: 37.5%;"name="target" required>
 <?php 
     foreach($contacts_rows as $key0 => $value0){
         $name = implode(' ',$value0);
         foreach($value0 as $key =>$value){
             if($key == 'email'){
-                echo '<option id="send_to" value="'.$value.'">'.$name.'</option>';
+                echo '<option " value="'.$value.'">'.$name.'</option>';
             }
         }
     }
