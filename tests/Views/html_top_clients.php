@@ -17,6 +17,7 @@
     <script type="text/javascript" src="../tests/Controllers/Functions/JS/javastreets.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet"> 
     <link href="../tests/Views/CSS/stylesheet.css" type="text/css" rel="stylesheet">
+    <script type="text/javascript" src="../tests/Controllers/Functions/AJAX/cancel_apps_clients.js"></script>
 </head>
 
 
@@ -50,9 +51,6 @@
             </a>
             <a href="../tests/index.php?page=Patients" title="Mes animaux">
                 <img src="../tests/Views/icons/animals.png" alt="Kitten" width="25px" height ="25px">
-            </a>
-            <a href="../tests/index.php?page=Add_collab" title="Ajouter un collaborateur" style="">
-                <img src="../tests/Views/icons/add.png" alt="Kitten" width="25px" height ="25px">
             </a>
         </div>
 
