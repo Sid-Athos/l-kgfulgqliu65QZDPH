@@ -35,6 +35,7 @@
             $check = false;
             die("Failed to run query: " . $ex->getMessage());
         }
+        $id = $db ->lastInsertID();
         
         $query = "
     INSERT INTO clients_has_patients
@@ -46,7 +47,7 @@
         :clients_ID,
         :animal_ID)";
         $query_params = array(':clients_ID' => $_SESSION['ID'],
-                        ':animal_ID' => $db ->lastInsertid());
+                        ':animal_ID' => $id);
     try {
         $stmt = $db->prepare($query);
         $result = $stmt->execute($query_params);

@@ -9,7 +9,7 @@
         dd = checktime(dd);
         mm = checktime(mm);
         today = yyyy + '-' + mm + '-' + dd;
-        document.getElementById("datepicker").setAttribute("min", today);
+        document.getElementById("datepicker_app").setAttribute("min", today);
     }
 
     function checktime(i){

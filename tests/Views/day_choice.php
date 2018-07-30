@@ -21,6 +21,7 @@
             </div>
             <div class="row">
                 <div class="col-md-4 col-md-offset-4">
+                <input type="hidden" name="my_animal" value="<?php if(isset($_POST['my_animal'])){ echo($_POST['my_animal']);}?>"/>
                     <input type="submit" class="btn btn-block btn-primary" name="new_appointment" value="Choisir" />
                 </div>
             </div>
@@ -28,3 +29,6 @@
         </form>
     </div>
 </div> 
+<script>
+datepicker_app();
+</script>

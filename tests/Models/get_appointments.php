@@ -2,10 +2,12 @@
     $query =
     "SELECT
     appointment.start,
+    appointment.app_day,
     patients.pet_name,
     vets.last_name,
     vets.first_name,
-    appointment.type
+    appointment.type,
+    appointment.canceled
     FROM appointment
     JOIN patients
     JOIN vets

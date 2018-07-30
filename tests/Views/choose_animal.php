@@ -2,7 +2,7 @@
     <div class="col-xs-12">
         <form role="form" class="form container-fluid" action="" style="margin-left:80px;width:500px" method="POST" name="select_animal">
             <fieldset class="well">
-                <h4 class="text-center">* Selectionnez votre animal</h4>
+                <h4 class="text-center"> Selectionnez votre animal</h4>
                 <div class="row">
                         <select class="form-control space-bottom" name="my_animal" required>';
                     <?php    
