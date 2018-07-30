@@ -18,6 +18,8 @@
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet"> 
     <link href="../tests/Views/CSS/stylesheet.css" type="text/css" rel="stylesheet">
     <script type="text/javascript" src="../tests/Controllers/Functions/AJAX/cancel_apps_clients.js"></script>
+    <script type="text/javascript" src="../tests/Controllers/Functions/AJAX/insert_message.js"></script>
+
 </head>
 
 

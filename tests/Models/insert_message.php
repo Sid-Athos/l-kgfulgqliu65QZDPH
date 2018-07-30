@@ -3,7 +3,6 @@
     $d = $_GET['d'];
     $e = $_GET['e'];
     $msg = $_GET['msg'];
-
     $query = "
     INSERT INTO messages(
         ID,

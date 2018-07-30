@@ -38,7 +38,7 @@ if(isset($_POST['msg'])) {
                     case 'client':
                             include('../tests/Models/contacts.php');
                             $contacts_rows = $stmt->fetchAll();
-                            include('../tests/Views/msg_form.php');
+                            include('../tests/Views/msg_form_clients.php');
                             unset($contacts_rows);
                         break;
                     default:

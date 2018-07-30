@@ -6,7 +6,6 @@
     AND to_time 
     AND working_day 
     LIKE DAYNAME(:date)
-    ORDER BY RAND()
     LIMIT 1";
     $query_params = array(':h' => $start_time,
                         ':date' => $datas[2]);
@@ -15,8 +14,7 @@
             $stmt = $db->prepare($query);
             $result = $stmt->execute($query_params);
         }catch(PDOException $ex){
-            $errormsg = "Une erreur est survenue, essayez plus tard";
-            die("Failed to run query: " . $ex->getMessage());
+            $errormsg = "L'horaire n'est pas disponible";
         }
             $row = $stmt -> fetch();
             $id =  $row['vets_ID'];
@@ -58,6 +56,7 @@
                     $stmt = $db->prepare($query);
                     $result = $stmt->execute($query_params);
                     $check = true;
+                    $app_id = $db->lastInsertId();
                 }catch(PDOException $ex){
                     $errormsg = "Une erreur est survenue, essayez plus tard";
                     die("Failed to run query: " . $ex->getMessage());
@@ -80,9 +79,24 @@
             $errormsg = "Une erreur est survenue, essayez plus tard";
             die("Failed to run query: " . $ex->getMessage());
         }
-        $name = $stmt -> fetchAll();
+                    $name = $stmt -> fetchAll();
                     $successmsg = "Le rendez vous à bien été pris pour le ".$datas[2]." à ".$start_time." pour ".$datas[1]." 
                     avec le docteur ".$name[0]['last_name']." ".$name[0]['first_name'];
+
+                    $query = 
+                    "INSERT INTO patients_has_appointment (ID,patients_ID,appointment_ID) VALUES (:ID,:patients_id,:appointment_ID)";
+
+                    $query_params =array(':ID' => NULL,
+                                        ':patients_id' => $datas[0],
+                                          ':appointment_ID' => $app_id);
+
+                        try {
+                            $stmt = $db->prepare($query);
+                            $result = $stmt->execute($query_params);
+                        }catch(PDOException $ex){
+                            $errormsg = "Une erreur est survenue, essayez plus tard";
+                            die("Failed to run query: " . $ex->getMessage());
+                        }
                 }
             
 

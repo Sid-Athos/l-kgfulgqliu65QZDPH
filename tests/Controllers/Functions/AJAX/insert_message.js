@@ -1,6 +1,5 @@
 function insertMessage(){
     var ajaxRequest;  // The variable that makes Ajax possible!
- if(document.getElementById('msg').value.length > 3){
      try {
          ajaxRequest = new XMLHttpRequest();
      }catch (e) {
@@ -15,7 +14,6 @@ function insertMessage(){
              }
          }
      }
- }
     /** Crée la connexion et récupère la réponse */
          
     ajaxRequest.onreadystatechange = function(){
@@ -25,6 +23,7 @@ function insertMessage(){
        }
     }
     
+
  /** Valeurs à passer en arguments */
     var d = document.getElementById('send_to').value;
     var e = document.getElementById('exp').value;

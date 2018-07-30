@@ -2,7 +2,7 @@
             <div class="col-md-4 col-md-offset-4">
                 <form role="form" class="form container-fluid border border-dark rounded" action="" method="POST" name="new_animal">
                     <fieldset class="well">
-                        <h4 class="text-center">* Est-ce une première consultation pour cet animal ?</h4>
+                        <h4 class="text-center">Est-ce une première prise de rendez-vous avec inscription ?</h4>
                             <div class="row space-bottom">
                                 <div class="col-md-4 col-md-offset-4">
                                     <label class="radio-inline">
