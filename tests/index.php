@@ -73,10 +73,11 @@
                     include './Controllers/new_appointment.php';
                 break;
                 default:
-                endswitch;
-        else {
-            include './Views/templates/html_top.php';
-            include './Controllers/login.php';
+                include '../tests/Controllers/Lobby.php';
+                
+            endswitch;
+            else {
+                include '../tests/error/404/404.php';
         }
 ?>
                 

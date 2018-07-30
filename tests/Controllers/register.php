@@ -10,7 +10,7 @@ $flag_email_taken = false;
 $flag_name_taken = false;
 
 switch(isset($_POST['register'])):  
-    case "S'inscrireRegister":
+    case "S'inscrire":
     $email = htmlspecialchars(trim($_POST['email']), ENT_QUOTES, 'UTF-8');
     $first_name = htmlspecialchars(trim($_POST['first_name']), ENT_QUOTES, 'UTF-8');
     $last_name = htmlspecialchars(trim($_POST['last_name']), ENT_QUOTES, 'UTF-8');

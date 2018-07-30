@@ -1,13 +1,6 @@
-<div class="row">
 
-    <div class="col-xs-12" style="margin-bottom:5px">
-        <p style="font-size:10px;width:100px"><?php if (isset($successmsg)) { success($successmsg); } ?>
-        <?php if (isset($errormsg)) { alert($errormsg); } ?></p>
-        
-    </div>
-</div>
 <div class="row">
-    <div class="col-xs-6" style="max-height:400px;margin-left:10px;margin-top:-25px;background:background:#333333">
+    <div class="col-xs-6" style="max-height:400px;margin-left:10px;margin-top:10px;background:background:#333333">
         <table class="table-scroll table-striped" style="margin-left:15px">
             <thead>
                 <tr class="tr-scroll">
@@ -34,15 +27,6 @@
             ?>
             </tbody>
         </table>
-    </div>
-    <div class="col-xs-6 msg" style="position:absolute;max-height:500px;right:0;width:150px;top:margin-top:0px">
-        <div class="btn-group-vertical">
-            <form role="form" action="" method="POST" name="edit">
-                <button class="btn btn-primary" name="add" title="Ajouter un jour de travail" value="Ajouter">Ajouter</button>
-                <button class="btn btn-primary" name="edit" title="Modifier une amplitude horaire">Modifier</button>
-                <button class="btn btn-primary" name="delete" title="Supprimer un jour de travail">Supprimer</button>
-            </form>
-        </div>
     </div>
 </div>
 </body>

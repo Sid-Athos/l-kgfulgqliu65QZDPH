@@ -2,15 +2,16 @@
         <div class="col-xs-6" id="txtHint" style="color:#decba4;margin-left:190px">
         <h3 class="text-center" style="text-align:center">Supprimer un jour de travail</h3>
             <form role="form" style="text-align:center;display:inline-block"  class="form container-fluid" method="POST" name="delete_day" >
+            <input type="hidden" id="ID" name="vet" value="<?php echo $_SESSION['ID'];?>"/>
                 <fieldset class="well">
                     <div class="form-group">
-                    <label for="name">Choisissez un jour à libérer</label>
+                    <label for="name">Choisissez un jour à libérer, il sera automatiquement supprimer après le click</label>
                     </div>
                     <div class="form-group">
                     <?php
     if($work_days){
         for($i=0; $i<count($work_days); $i++){
-            echo '<div class="radio"><label><input type="radio" name="optradio" onclick="showUser(this.value)" value="'.$work_days[$i]['working_day'].'" required>'.$work_days[$i]['working_day'].'</label></div>';
+            echo '<div class="radio"><label><p title="Supprimer le '.$work_days[$i]['working_day'].'"><input type="radio" name="optradio" onclick="suppressDay(this.value)" title ="Supprimer le '.$work_days[$i]['working_day'].'"value="'.$work_days[$i]['working_day'].'" required>'.$work_days[$i]['working_day'].'</p></label></div>';
         }
     }
     ?>  </div>
@@ -20,31 +21,12 @@
         <div class="col-xs-6" style="position:absolute;max-height:500px;margin-left:88%;margin-top:-6px;width:145px;color:#decba4">
     <div class="btn-group-vertical">
             <form role="form" action="" method="POST" name="edit">
-                <button class="btn btn-primary" style="background:#333333" name="add" value="Ajouter">Ajouter</button>
-                <button class="btn btn-primary" style="background:#333333" name="edit">Modifier</button>
-                <button class="btn btn-primary" style="background:#333333" name="delete">Supprimer</button>
+                <button class="btn btn-primary" style="background:#333333" title="Ajouter un jour de travail" name="add" value="Ajouter">Ajouter</button>
+                <button class="btn btn-primary" style="background:#333333" title="Modifier une amplitude horaire" name="edit">Modifier</button>
+                <button class="btn btn-primary" style="background:#333333" title="Supprimer un jour de travail" name="delete">Supprimer</button>
             </form>
         </div>
         </div>
     
-<script>
-function showUser(str) {
-    if (str == "") {
-        document.getElementById("txtHint").innerHTML = "";
-        return;
-    } else {
-
-            // code for IE7+, Firefox, Chrome, Opera, Safari
-            xmlhttp = new XMLHttpRequest();
-        
-        xmlhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                document.getElementById("txtHint").innerHTML = this.responseText;
-            }
-        };
-
-        xmlhttp.open("GET","../tests/Models/delete_day.php?q="+str,true);
-        xmlhttp.send();
-    }
-}
-</script>
+</body>
+</html>

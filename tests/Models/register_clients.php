@@ -22,38 +22,41 @@
                 }catch(PDOException $ex){
                     $check =false;
                 }
+
+                /** Utilisation du lastInsertId() pour éviter une sous-requête dans l'insert suivant */
                 $id = $db ->lastinsertId();
+
                 if($check){
                     $query = "INSERT INTO clients (
-                ID,
-                email,
-                last_name,
-                first_name,
-                address,
-                postal_code,
-                city,
-                phone_number,
-                users_ID
-            ) VALUES (
-                :ID,
-                :email,
-                :last_name,
-                :first_name,
-                :address,
-                :postal_code,
-                :city,
-                :phone_number,
-                :users_ID)";
-            $query_params = array(
-                ':ID' => NULL,
-                ':email' => $email,
-                ':last_name' => $last_name,
-                ':first_name' => $first_name,
-                ':address' => $address,
-                ':postal_code' => $postal_code,
-                ':city' => $city,
-                ':phone_number' => $phone_number,
-                ':users_ID' => intval($id));
+                                ID,
+                                email,
+                                last_name,
+                                first_name,
+                                address,
+                                postal_code,
+                                city,
+                                phone_number,
+                                users_ID
+                            ) VALUES (
+                                :ID,
+                                :email,
+                                :last_name,
+                                :first_name,
+                                :address,
+                                :postal_code,
+                                :city,
+                                :phone_number,
+                                :users_ID)";
+                            $query_params = array(
+                                ':ID' => NULL,
+                                ':email' => $email,
+                                ':last_name' => $last_name,
+                                ':first_name' => $first_name,
+                                ':address' => $address,
+                                ':postal_code' => $postal_code,
+                                ':city' => $city,
+                                ':phone_number' => $phone_number,
+                                ':users_ID' => intval($id));
             try {
                 $stmt = $db->prepare($query);
                 $result = $stmt->execute($query_params);

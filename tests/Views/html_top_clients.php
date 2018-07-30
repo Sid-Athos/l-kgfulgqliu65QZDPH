@@ -16,8 +16,6 @@
     <script type="text/javascript" src="../tests/Controllers/Functions/JS/javastreets.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet"> 
     <link href="../tests/Views/CSS/stylesheet.css" type="text/css" rel="stylesheet">
-    <script type="text/javascript" src="../tests/Controllers/Functions/AJAX/suppress_day.js"></script>
-    <script type="text/javascript" src="../tests/Controllers/Functions/AJAX/insert_message.js"></script>
 </head>
 
 

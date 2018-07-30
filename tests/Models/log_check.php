@@ -12,6 +12,7 @@
             die("Failed to run query: " . $ex->getMessage());
         }
         $row = $stmt->fetch();
+        if(!empty($row)){
         $query =
         "SELECT last_name, first_name
         FROM  vets
@@ -28,8 +29,10 @@
         }catch(PDOException $ex){
             die("Failed to run query: " . $ex->getMessage());
         }
+
         $row1 = $stmt ->fetchAll();
-        if(isset($row1)){
-        $greeting_msg = "Bonjour ".$row1[0]['first_name']." ".$row1[0]['last_name']." =)";
+            if(isset($row1)){
+                $_SESSION['greeting_msg'] = "Bonjour ".$row1[0]['first_name']." ".$row1[0]['last_name']." =)";
+            }
         }
 ?>

@@ -36,9 +36,9 @@
     <div class="col-xs-6" style="color:#decba4;position:absolute;max-height:500px;right:0;width:150px;margin-top:-261px">
     <div class="btn-group-vertical">
             <form role="form" action="" method="POST" name="edit">
-                <button class="btn btn-primary"  name="add" value="Ajouter">Ajouter</button>
-                <button class="btn btn-primary"  name="edit">Modifier</button>
-                <button class="btn btn-primary"  name="delete">Supprimer</button>
+                <button class="btn btn-primary"  name="add" title="Ajouter un jour de travail" value="Ajouter">Ajouter</button>
+                <button class="btn btn-primary"  name="edit" title="Modifier une amplitude horaire">Modifier</button>
+                <button class="btn btn-primary"  name="delete" title="Supprimer un jour de travail">Supprimer</button>
             </form>
         </div>
     </div>

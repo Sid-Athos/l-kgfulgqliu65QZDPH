@@ -29,15 +29,7 @@
                     <input type="password" name="pw" class="form-control mb-2" value='<?php if(isset($_POST["pw"])){ echo $_POST["pw"];}?>' id="inlineFormInput" title="Veuillez saisir le mot de passe correspondant à votre adresse mail (minimum 5 caractères)"style="width:212px" pattern=".{5,45}" required placeholder="Mot de passe">
                     </div>
                     <div class="col-auto">
-                    <div class="form-check mb-2">
-                        <input class="form-check-input" type="checkbox" id="autoSizingCheck">
-                        <label class="form-check-label" for="autoSizingCheck">
-                        Se souvenir de moi
-                        </label>
-                    </div>
-                    </div>
-                    <div class="col-auto">
-                    <button type="submit" class="btn btn-primary mb-2" required style="background:#333333;margin-left:-10px" name="login">Connexion</button>
+                    <button type="submit" class="btn btn-primary mb-2" required style="background:#333333;margin-left:25px" name="login">Connexion</button>
                     </div>
                 </div>
                 </form>
