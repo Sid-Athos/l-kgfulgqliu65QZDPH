@@ -91,6 +91,7 @@
                 $successmsg = 'Animal enregistré';
                 include('../tests/Views/success_failure.php');
                 include('../tests/Views/day_choice.php');
+                include('../tests/Controllers/Functions/PHP/backup_patients.php');
             } else {
                 $errormsg = "Cet animal est déjà enregistré!";
                 include('../tests/Views/success_failure.php');

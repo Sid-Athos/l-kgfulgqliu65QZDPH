@@ -1,4 +1,5 @@
 <?php
+    unset($_POST['register_animal'],$_POST['my_animal']);
     $tableau []= $_POST;
     $nom= "patients.csv";
     $tmp = fopen($nom,"a+");
