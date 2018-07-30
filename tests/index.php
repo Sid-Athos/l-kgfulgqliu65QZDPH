@@ -67,7 +67,7 @@
                     include '../tests/Controllers/work_days.php';
                     break;
                 case 'Appointments':
-                    include '../Controllers/appointments.php';
+                    include '../tests/Controllers/appointments.php';
                 break;
                 case 'New_appointment':
                     include './Controllers/new_appointment.php';

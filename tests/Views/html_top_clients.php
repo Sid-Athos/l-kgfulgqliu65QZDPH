@@ -11,6 +11,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
     <script type="text/javascript" src="../tests/Controllers/Functions/JS/startTime.js"></script>
+    <script type="text/javascript" src="../tests/Controllers/Functions/JS/datepicker_app.js"></script>
     <script type="text/javascript" src="../tests/Controllers/Functions/JS/datepicker.js"></script>
     <script type="text/javascript" src="../tests/Controllers/Functions/JS/body_load.js"></script>
     <script type="text/javascript" src="../tests/Controllers/Functions/JS/javastreets.js"></script>
@@ -19,7 +20,7 @@
 </head>
 
 
-<body onload="startTime();datepicker()">
+<body onload="">
 
     
     <div class="row navbar">
@@ -44,10 +45,7 @@
                         echo $_SESSION['greeting_msg'];
                     } 
                     ?>
-            <a href="../tests/index.php?page=Rest" title="Planning général" style="margin-left:10px">
-                <img src="../tests/Views/icons/icons8-schedule-64.png" alt="Kitten" width="25px" height ="25px">
-            </a>
-            <a href="../tests/index.php?page=Appointments" title="Rendez-vous à venir" style="margin-left:10px">
+            <a href="../tests/index.php?page=Appointments" title="Rendez-vous" style="margin-left:10px">
                 <img src="../tests/Views/icons/rdv.png" alt="Kitten" width="25px" height ="25px">
             </a>
             <a href="../tests/index.php?page=Patients" title="Mes patients">
