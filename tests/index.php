@@ -36,27 +36,8 @@
                     include '../Controllers/home.php';
                 }*/
             case 'Patients':
-                if(isset($_SESSION['type']))
-                    switch($_SESSION['type']):
-                            case 'vet';
-                                include './Views/templates/html_top.php';
-                                include './Views/templates/navbar.php';
-                                include './Controllers/vets_patients.php';
-                                break;
-                            case 'client';
-                                include './Views/templates/html_top.php';
-                                include './Views/templates/navbar.php';
-                                include './Controllers/clients_patients.php';
-                                break;
-                            default:
-                                include './error/404/404.php';
-                        endswitch;
-
-                    else {
-                        include './Views/templates/html_top.php';
-                        include './Views/templates/navbar.php';
-                        include './Controllers/home.php';
-                    }
+                    include '../tests/Controllers/patients.php';
+                    break;
                 case 'Add_collab':
                             include './Controllers/collaborators.php';
                     break;

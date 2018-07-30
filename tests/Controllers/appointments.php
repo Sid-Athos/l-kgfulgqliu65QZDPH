@@ -1,6 +1,5 @@
 <?php
     session_start();
-    var_dump($_POST);
     include('../tests/Controllers/session_check.php');
     include("../tests/Models/db_connect.php");
     include('../tests/Controllers/Functions/PHP/date_to_mysql.php');
