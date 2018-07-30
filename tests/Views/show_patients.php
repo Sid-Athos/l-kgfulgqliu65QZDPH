@@ -1,12 +1,4 @@
 <div class="row">
-
-    <div class="col-xs-12">
-        <p style="font-size:10px;width:100px"><?php if (isset($successmsg)) { success($successmsg); } ?>
-        <?php if (isset($errormsg)) { alert($errormsg); } ?></p>
-        
-    </div>
-</div>
-<div class="row">
 <div class="col-xs-6" style="margin-left:15px;color:#decba4">
 <?php
 echo'
@@ -30,7 +22,7 @@ echo '</tbody></table>';
 <div class ="col-xs-6 msg" style="position:fixed;right:1px;margin-top:-5px;">
 <div class="btn-group-vertical" style="top:90">
             <form role="form" action="" method="POST" name="history" style="width:190px">
-                <button class="btn btn-primary" name="add" value="hist">Ajouter un historique</button>
+                <button class="btn btn-primary" name="add_history" value="hist">Ajouter un historique</button>
             </form>
         </div>
 </div>

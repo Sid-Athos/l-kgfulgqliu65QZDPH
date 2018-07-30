@@ -13,6 +13,11 @@
     } else if($_SESSION['role'] == 'client') {
         include('../tests/Views/html_top_clients.php');
     }
-
+switch(isset($_POST)):
+    case(isset($_POST['add_history'])):
+        include('../tests/Views/history_form.php');
+       break;
+    default:
     include('../tests/Views/show_patients.php');
+endswitch;
 ?>
