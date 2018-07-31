@@ -7,11 +7,11 @@
     </div>
 </div>
 <div class="row">
-<div class="col-xs-6" style="margin-left:15px;margin:top:-5px;color:#decba4">
+<div class="col-xs-6" style="margin-left:15px;margin-top:60px;color:#decba4">
 <?php
 echo'
 <caption style="margin-bottom:10px"><center> Messages envoyés: </center></caption>
-<table class"table-scroll table-striped"><thead><tr><th>Envoyé à : </th><th>Date : </th><th> Contenu :</th></tr></thead>
+<table class"table-scroll table-striped" style="margin-bottom:30px"><thead><tr><th>Envoyé à : </th><th>Date : </th><th> Contenu :</th></tr></thead>
 <tbody>';
         foreach($outbox_rows as $key0 => $value0){
             foreach($value0 as $key => $value){
@@ -27,7 +27,7 @@ echo'
 echo '</tbody></table>';
 ?>
 </div>
-<div class ="col-xs-6 msg" style="position:absolute;right:0;margin-top:-5px;">
+<div class ="col-xs-6 msg" style="position:absolute;right:0;margin-top:70px;">
 <div class="btn-group-vertical" style="top:90">
             <form role="form" action="" method="POST" name="edit" style="width:150px">
                 <button class="btn btn-primary" name="msg" value="convos">Conversations</button>

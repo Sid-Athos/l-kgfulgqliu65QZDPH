@@ -33,7 +33,6 @@ body {
     background:#FFFFFF;
     border:none;
     color:#333333;
-    margin-top:-15px;
     border-radius:5px;
     width:170px;
     height:25px;
@@ -47,7 +46,6 @@ body {
     margin: 5px 1px 3px 0px;
     border: 2px solid #FFEDBC;
     border-radius:5px;
-    margin-top:-15px;
 }
 @media only screen and (max-width: 800px) {
     #hide {
@@ -86,6 +84,9 @@ table {
     position:relative;
     border:none;
 }	
+.kitten{
+    top:20px;
+}
 
 th {
 	background: url(https://jackrugile.com/images/misc/noise-diagonal.png), linear-gradient(#777, #444);

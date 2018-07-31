@@ -53,7 +53,7 @@ function getHistory(){
 
     var queryString = "?d=" + a ;
     queryString += "&o=" + o;
-    ajaxRequest.open("GET","../tests/Models/get_history.php" + queryString, true);
+    ajaxRequest.open("GET","../tests/Models/get_history.php" + queryString, false);
     
     ajaxRequest.send(); 
  }

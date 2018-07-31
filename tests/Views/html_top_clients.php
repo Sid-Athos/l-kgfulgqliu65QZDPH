@@ -25,16 +25,16 @@
 </head>
 
 
-<body onload="">
+<body onload="startTime()">
 
     
     <div class="row navbar">
         <div class="col-xs-2">
             <a href="../tests/index.php?page=Lobby" title="Retour à l'accueil">
-                <img src="../tests/Views/icons/icons8-cat-profile-96.svg" alt="Kitten" style="margin-left:-25px; margin-top:-2px;margin-bottom:2px" width="30px" height ="30px" class ="kitten_icon" >
+                <img src="../tests/Views/icons/icons8-cat-profile-96.svg" alt="Kitten" style="margin-left:-25px; margin-top:-2px;margin-bottom:2px" width="40px" height ="40px" class ="kitten_icon" >
             </a>
         
-            <span style="float:right;margin-top:3px;color:#decba4" >
+            <span style="float:right;margin-top:15px;color:#decba4" >
                     <?php 
                         echo $actual_date; 
                     ?>
@@ -50,7 +50,7 @@
                         echo $_SESSION['greeting_msg'];
                     } 
                     ?>
-            <a href="../tests/index.php?page=Appointments" title="Rendez-vous" style="margin-left:10px">
+            <a href="../tests/index.php?page=Appointments" title="Rendez-vous" style="margin-left:6px">
                 <img src="../tests/Views/icons/rdv.png" alt="Kitten" width="25px" height ="25px">
             </a>
             <a href="../tests/index.php?page=Patients" title="Mes animaux">
@@ -59,17 +59,17 @@
         </div>
 
         <div class="col-xs-6">
-            <form action="../test_bootstrap.php" class="search_form" id="target" name="search_form" method="POST" style="margin-top:8px;margin-left:0px;margin-right:5px;float:left">
-                        <input type="search" autofocus id="search_in" style="top:15px" class ="search" optional result="5" size="40"name="search"title="Appuyez sur Entrée pour lancer la requête" placeholder="Rechercher un animal..."/>
+            <form action="../test_bootstrap.php" class="search_form" id="target" name="search_form" method="POST" style="margin-top:0px;margin-left:0px;margin-right:5px;float:left">
+                        <input type="search" autofocus id="search_in"  class ="search" optional result="5" size="40"name="search"title="Appuyez sur Entrée pour lancer la requête" placeholder="Rechercher un animal..."/>
             </form>            
             <a href="../tests/index.php?page=Messages" title="Messagerie">
-                <img src="../tests/Views/icons/address-book-solid.svg" alt="Kitten" width="25px" height ="25px">
+                <img src="../tests/Views/icons/address-book-solid.svg" alt="Kitten" style="margin-top:6px" width="25px" height ="25px">
             </a>
             <a href="../tests/index.php?page=Settings" title="Mon compte">
-                <img src="../tests/Views/icons/cogs-solid.svg" alt="Kitten" width="25px" height ="25px">
+                <img src="../tests/Views/icons/cogs-solid.svg" alt="Kitten" style="margin-top:6px"  width="25px" height ="25px">
             </a>
             <a href="../tests/index.php?page=Logout" title="Déconnexion">
-                <img src="../tests/Views/icons/sign-out-alt-solid.svg" alt="Kitten" width="25px" height ="25px">
+                <img src="../tests/Views/icons/sign-out-alt-solid.svg" alt="Kitten" style="margin-top:6px"  width="25px" height ="25px">
             </a>
         </div>
 
