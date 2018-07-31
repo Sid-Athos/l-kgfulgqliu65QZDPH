@@ -30,6 +30,7 @@ function updateHistory(){
 
     var queryString = "?d=" + a ;
     queryString += "&o=" + o + "&h=" + h;
-    ajaxRequest.open("GET","../tests/Models/update_history.php" + queryString, true);
+    ajaxRequest.open("POST","../tests/Models/update_history.php" + queryString, true);
     ajaxRequest.send(); 
+    
  }

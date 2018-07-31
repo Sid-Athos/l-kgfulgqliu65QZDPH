@@ -1,5 +1,5 @@
 <div class="row">
-<div class="col-xs-6" style="margin-left:15px;color:#decba4;margin-top:80px">
+<div class="col-xs-6" style="margin-left:15px;color:#decba4;margin-top:80px;height:110;margin-bottom:50px">
 <?php
 echo'
 <caption><center>Vos animaux :</center></caption>
@@ -22,7 +22,7 @@ echo '</tbody></table>';
 <div class ="col-xs-6 msg" style="position:fixed;right:1px;top:43px">
 <div class="btn-group-vertical" style="top:90">
             <form role="form" action="" method="POST" name="history" style="width:190px">
-                <button class="btn btn-primary" name="add_history" value="hist">Ajouter un historique</button>
+                <button class="btn btn-primary" name="add_history" title="Ajouter ou modifier un historique"value="hist">Editer historique</button>
             </form>
         </div>
 </div>
