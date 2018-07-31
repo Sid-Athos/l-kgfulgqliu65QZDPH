@@ -1,6 +1,6 @@
 <div class="row">
-    <div class="col-md-4 col-md-offset-4">
-        <form role="form" class="form container-fluid border border-dark rounded" action="" method="POST" name="new_appointment">
+    <div class="col-md-4 col-md-offset-4" style="display:block;margin:auto;top:80px;color:#decba4">
+        <form role="form" class="form container-fluid" action="" method="POST" name="new_appointment">
             <fieldset class="well">
                 <div class="form-group">
             <label for="name">Selectionnez un type de consultation</label>

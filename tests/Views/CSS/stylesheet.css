@@ -1,4 +1,6 @@
 .row.navbar{
+    position:fixed;
+    z-index:2;
     font-size: 12px;
     background: #283048;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to left, #859398, #283048);  /* Chrome 10-25, Safari 5.1-6 */
@@ -8,8 +10,8 @@
     font-family: 'Raleway', sans-serif;
     top:-5px;
     height:auto;
-    margin-left:-2px;
-    width:auto;
+    margin-left:0px;
+    width:101%;
 }
 body {
     background: #085078;  /* fallback for old browsers */
@@ -75,9 +77,9 @@ table {
     color:#333333;
 	font-size: 12px;
     line-height: 24px;
-    width: 500px;
+    width: 770px;
     margin-top:8px;
-    margin-left:3%;
+    margin-left:2%;
     margin-right:3%;
 	text-align: left;
     float:bottom;
@@ -109,7 +111,9 @@ th:after {
 th:first-child {
 	border-left: 1px solid #777;	
 }
-
+th:last-child {
+	width:300px;	
+}
 td {
 	padding: 10px 15px;
 	position: relative;

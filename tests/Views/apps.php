@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-xs-6" style="max-height:400px;margin-left:10px;margin-top:-25px;background:background:#333333" id="txtHint">
+    <div class="col-xs-6" style="max-height:400px;margin-left:10px;margin-top:70px;background:background:#333333" id="txtHint">
         <table class="table-scroll table-striped" style="margin-left:15px;margin-top:35px">
             <thead>
                 <tr class="tr-scroll">
@@ -31,7 +31,7 @@
             </tbody>
         </table>
     </div>
-    <div class="col-xs-6 msg" style="position:fixed;max-height:500px;right:55px;width:130px;top:margin-top:0px">
+    <div class="col-xs-6 msg" style="position:fixed;max-height:500px;right:50px;width:130px;top:70px">
         <div class="btn-group-vertical">
             <form role="form" action="" method="POST" name="edit">
                 <button class="btn btn-primary" name="add_app" title="Prendre Rendez-Vous" value="Ajouter">Prendre Rendez-vous</button>

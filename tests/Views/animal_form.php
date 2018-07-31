@@ -1,9 +1,9 @@
 <?php
 echo '<div class="row">
-                        <div class="col-md-4 col-md-offset-4">
-                            <form role="form" class="form container-fluid border border-dark rounded" action="" method="POST" name="register_animal">
+                        <div class="col-md-4 col-md-offset-4" style="display:block;margin:auto;margin-top:100px;color:#decba4">
+                            <form role="form" class="form container-fluid " action="" method="POST" name="register_animal">
                                 <fieldset class="well">
-                                    <h4 class="text-center">Inscrivez votre animal</h4>
+                                    <h4 class="text-center">Inscrivez votre animal, les formulaires marqués par un * sont obligatoires</h4>
                                     <div class="form-group">
                                         <label for="name">* Entrez son nom</label>
                                         <input type="text" class="form-control space-bottom" name="pet_name" placeholder="Nom" maxlength="20" required value="'; if($error_reg_animal) echo $pet_name; echo '" />';

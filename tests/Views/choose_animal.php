@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-xs-12">
+    <div class="col-xs-12" style="display:block;margin:auto;margin-top:100px;color:#decba4">
         <form role="form" class="form container-fluid" action="" style="margin-left:80px;width:500px" method="POST" name="select_animal">
             <fieldset class="well">
                 <h4 class="text-center"> Selectionnez votre animal</h4>

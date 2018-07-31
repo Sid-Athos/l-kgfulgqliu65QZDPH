@@ -1,9 +1,10 @@
 <?php
     $query = 
-    "SELECT pet_name, breed, colour, sex, date_of_birth,microchip_tatoo
+    "SELECT pet_name, breed, colour, sex, date_of_birth,microchip_tatoo, history
     FROM patients
     WHERE
-    owner_ID = :ID";
+    owner_ID = :ID
+    ORDER BY breed";
 
     $query_params = array(':ID' => $_SESSION['ID']);
 
