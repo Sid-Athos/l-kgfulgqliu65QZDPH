@@ -18,6 +18,11 @@
     <link href="../tests/Views/CSS/stylesheet.css" type="text/css" rel="stylesheet">
     <script type="text/javascript" src="../tests/Controllers/Functions/AJAX/suppress_day.js"></script>
     <script type="text/javascript" src="../tests/Controllers/Functions/AJAX/insert_message.js"></script>
+    <script type="text/javascript" src="../tests/Controllers/Functions/AJAX/cancel_apps_vets.js"></script>
+    <script type="text/javascript" src="../tests/Controllers/Functions/AJAX/get_history_vets.js"></script>
+    <script type="text/javascript" src="../tests/Controllers/Functions/AJAX/insert_consultation.js"></script>
+    <script type="text/javascript" src="../tests/Controllers/Functions/AJAX/update_history_vets.js"></script>
+
 </head>
 
 
@@ -61,7 +66,7 @@
         </div>
 
         <div class="col-xs-6">
-            <form action="../test_bootstrap.php" class="search_form" id="target" name="search_form" method="POST" style="margin-top:8px;margin-left:0px;margin-right:5px;float:left">
+            <form action="../tests/index.php?page=Search" class="search_form" id="target" name="search_form" method="POST" style="margin-top:8px;margin-left:0px;margin-right:5px;float:left">
                         <input type="search" autofocus id="search_in" style="top:15px" class ="search" optional result="5" size="40"name="search"title="Appuyez sur Entrée pour lancer la requête" placeholder="Rechercher un animal..."/>
             </form>            
             <a href="../tests/index.php?page=Messages" title="Messagerie">

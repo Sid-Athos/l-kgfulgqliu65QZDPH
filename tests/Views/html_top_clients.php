@@ -11,6 +11,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
     <script type="text/javascript" src="../tests/Controllers/Functions/JS/startTime.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="crossorigin="anonymous"></script>		
     <script type="text/javascript" src="../tests/Controllers/Functions/JS/datepicker_app.js"></script>
     <script type="text/javascript" src="../tests/Controllers/Functions/JS/datepicker.js"></script>
     <script type="text/javascript" src="../tests/Controllers/Functions/JS/body_load.js"></script>
@@ -20,7 +21,7 @@
     <script type="text/javascript" src="../tests/Controllers/Functions/AJAX/cancel_apps_clients.js"></script>
     <script type="text/javascript" src="../tests/Controllers/Functions/AJAX/insert_message.js"></script>
     <script type="text/javascript" src="../tests/Controllers/Functions/AJAX/update_history.js"></script>
-    <script type="text/javascript" src="../tests/Controllers/Functions/AJAX/get_history.js"></script>
+    <script type="text/javascript" src="../tests/Controllers/Functions/AJAX/get_history_clients.js"></script>
 
 </head>
 
@@ -28,18 +29,18 @@
 <body onload="startTime()">
 
     
-    <div class="row navbar">
+    <div class="row navbar" >
         <div class="col-xs-2">
             <a href="../tests/index.php?page=Lobby" title="Retour à l'accueil">
                 <img src="../tests/Views/icons/icons8-cat-profile-96.svg" alt="Kitten" style="margin-left:-25px; margin-top:-2px;margin-bottom:2px" width="40px" height ="40px" class ="kitten_icon" >
             </a>
         
-            <span style="float:right;margin-top:15px;color:#decba4" >
+            <span  style="float:right;margin-top:15px;color:#decba4" >
                     <?php 
                         echo $actual_date; 
                     ?>
                 <br>
-                    <span id="txt" onload="startTime()"style="color:#a2ab58">
+                    <span id="txt" style="color:#a2ab58">
                     </span>
             </span>
         </div>
@@ -59,7 +60,7 @@
         </div>
 
         <div class="col-xs-6">
-            <form action="../test_bootstrap.php" class="search_form" id="target" name="search_form" method="POST" style="margin-top:0px;margin-left:0px;margin-right:5px;float:left">
+            <form action="../tests/index.php?page=Search" class="search_form" id="target" name="search_form" method="POST" style="margin-top:0px;margin-left:0px;margin-right:5px;float:left">
                         <input type="search" autofocus id="search_in"  class ="search" optional result="5" size="40"name="search"title="Appuyez sur Entrée pour lancer la requête" placeholder="Rechercher un animal..."/>
             </form>            
             <a href="../tests/index.php?page=Messages" title="Messagerie">

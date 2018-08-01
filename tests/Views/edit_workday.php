@@ -1,7 +1,6 @@
-<div class="container-fluid" style="color:#decba4">
-    <h3 class="text-center">Modifier un jour de travail</h3>
     <div class="row">
-        <div class="col-xs-6" >
+        <div class="col-xs-6" style="color:#decba4;display:block;margin:auto;margin-top:60px">
+           <h3 class="text-center">Modifier un jour de travail</h3>
             <form role="form" class="form container-fluid" action="" method="POST" name="edit_day">
                 <fieldset class="well">
                     <div class="form-group">
@@ -29,13 +28,13 @@
                         <span class="input-group-addon" style="border-left: 0; border-right: 0;margin:5px;margin-top:10px">min</span>
                     </div>
                     <div class="form-group" style="">
-                        <input type="submit" class="btn btn-primary" style="margin-left:25px" name="edit_day" value="Modifier" />
+                        <input type="submit" class="btn btn-primary" style="padding:auto;margin-left:45px;" name="edit_day" value="Modifier" />
                     </div>
                 </fieldset>
             </form>
         </div>
     </div>
-    <div class="col-xs-6" style="position:absolute;max-height:500px;margin-left:83.8%;margin-top:-273px;width:150px">
+    <div class="col-xs-6" style="position:absolute;max-height:500px;right:0;margin-top:-260px;width:150px">
     <div class="btn-group-vertical">
         <form role="form" action="" method="POST" name="edit">
             <button class="btn btn-primary" style="background:#333333" name="add" value="Ajouter">Ajouter</button>

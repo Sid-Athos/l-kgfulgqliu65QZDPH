@@ -1,5 +1,5 @@
     <div class="row">
-        <div class="col-xs-6" id="txtHint" style="color:#decba4;margin-left:190px">
+        <div class="col-xs-6" id="txtHint" style="color:#decba4;display:block;margin:auto;margin-top:60px">
         <h3 class="text-center" style="text-align:center">Supprimer un jour de travail</h3>
             <form role="form" style="text-align:center;display:inline-block"  class="form container-fluid" method="POST" name="delete_day" >
             <input type="hidden" id="ID" name="vet" value="<?php echo $_SESSION['ID'];?>"/>
@@ -18,7 +18,7 @@
                 </fieldset>
             </form>
         </div>
-        <div class="col-xs-6" style="position:absolute;max-height:500px;margin-left:88%;margin-top:-6px;width:145px;color:#decba4">
+        <div class="col-xs-6" style="position:absolute;max-height:500px;right:0;margin-top:60px;width:145px;color:#decba4">
     <div class="btn-group-vertical">
             <form role="form" action="" method="POST" name="edit">
                 <button class="btn btn-primary" style="background:#333333" title="Ajouter un jour de travail" name="add" value="Ajouter">Ajouter</button>

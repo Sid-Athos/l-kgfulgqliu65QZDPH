@@ -11,31 +11,26 @@
     $flag_name_taken = false;
 
     if($_SESSION['role'] === 'vet'){
-        include('../tests/Views/templates/html_top_vets.php');
-    }else if($_SESSION['role'] == 'client') {
+        include('../tests/Views/html_top_vets.php');
+        include('../tests/Models/get_appointments_vets.php');
+        $app_rows = $stmt->fetchAll();
+        for($i=0;$i<count($app_rows);$i++){
+            $app_list[] = implode(" ",$app_rows[$i]);
+        }
+    } 
+    if($_SESSION['role'] == 'client') {
         include('../tests/Views/html_top_clients.php');
+        include('../tests/Models/get_appointments.php');
+        $app_rows = $stmt->fetchAll();
+        for($i=0;$i<count($app_rows);$i++){
+            $app_list[] = implode(" ",$app_rows[$i]);
+        }
     }
 
-    if($_SESSION['role'] === 'client'){
-        include('../tests/Models/get_appointments.php');
-        $app_rows = $stmt->fetchAll();
-        for($i=0;$i<count($app_rows);$i++){
-            $app_list[] = implode(" ",$app_rows[$i]);
-        }
-    } else if($_SESSION['role'] == 'vet'){
-        include('../tests/Models/get_appointments.php');
-        $app_rows = $stmt->fetchAll();
-        for($i=0;$i<count($app_rows);$i++){
-            $app_list[] = implode(" ",$app_rows[$i]);
-        }
-    }
     switch(isset($_POST)):
         case(isset($_POST['add_app'])):
             include('../tests/Views/animal_choice.php');
         break;
-        
-        case(isset($_POST['cancel'])):
-            break;
         case(isset($_POST['animal_choice'])):
                 include('../tests/Views/day_choice');
 
@@ -114,6 +109,11 @@
                         include('../tests/views/choose_hour.php');
                     }
                 break;
+                case(isset($_POST['manage_app'])):
+                    include('../tests/Models/select_patients_history.php');
+                    $patients_rows = $stmt ->fetchAll();
+                    include('../tests/Views/consultation_form.php');
+                    break;
             case(isset($_POST['choose_hour'])):
             $datas = explode("/",$_POST['my_animal']);
             
@@ -137,7 +137,11 @@
             break;
 
         default:
-            include('../tests/Views/apps.php');
+            if($_SESSION['role'] === 'client'){
+                include('../tests/Views/apps.php');
+            } else if($_SESSION['role'] === 'vet'){
+                include('../tests/Views/apps_vets.php');
+            }
         break;
     endswitch;
 ?>

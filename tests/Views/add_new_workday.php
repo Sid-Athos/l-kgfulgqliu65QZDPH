@@ -1,6 +1,6 @@
 
     <div class="row">
-        <div class="col-xs-6" style="color:#decba4;margin-left:30px" >
+        <div class="col-xs-6" style="color:#decba4;margin:auto;display:block;margin-top:60px" >
     <h3 class="text-center">Ajouter un jour de travail</h3>
             <form role="form" class="form container-fluid" action="" method="POST" name="add_day">
                 <fieldset class="well">
@@ -33,7 +33,7 @@
             </form>
         </div>
     </div>
-    <div class="col-xs-6" style="color:#decba4;position:absolute;max-height:500px;right:0;width:150px;margin-top:-261px">
+    <div class="col-xs-6" style="color:#decba4;position:absolute;max-height:500px;right:0;width:150px;margin-top:-250px">
     <div class="btn-group-vertical">
             <form role="form" action="" method="POST" name="edit">
                 <button class="btn btn-primary"  name="add" title="Ajouter un jour de travail" value="Ajouter">Ajouter</button>

@@ -1,4 +1,4 @@
-function updateHistory(str){
+function insertConsultation(){
     var ajaxRequest;  // The variable that makes Ajax possible!
      try {
          ajaxRequest = new XMLHttpRequest();
@@ -20,18 +20,23 @@ function updateHistory(str){
        if(ajaxRequest.readyState == 4){
           var ajaxDisplay = document.getElementById('txtHint');
           ajaxDisplay.innerHTML = ajaxRequest.responseText;
-          ajaxRequest.abort();
        }
     }
     
+
  /** Valeurs à passer en arguments */
     var a = document.getElementById('animal').value;
+    var r = document.getElementById('reason').value;
+    var e = document.getElementById('exams').value;
+    var d = document.getElementById('diagnosis').value;
+    var t = document.getElementById('treatment').value;
+    var n = document.getElementById('notes').value;
+    var w = document.getElementById('weight').value;
+    var ro = document.getElementById('room').value;
     var o = document.getElementById('owner').value;
-    var h = document.getElementById('history').value;
-
-    var queryString = "?d=" + a ;
-    queryString += "&o=" + o + "&h=" + h;
-    ajaxRequest.open("POST","../tests/Models/update_history.php" + queryString, true);
-    ajaxRequest.send(); 
-    
+    var queryString = "?a=" + a ;
+ 
+    queryString +=  "&r=" + r + "&e=" + e +"&d=" + d + "&t=" + t + "&n=" + n + "&w=" + w + "&ro=" + ro + "&o=" + o;
+    ajaxRequest.open("GET", "../tests/Models/insert_annihilate.php" + queryString, true);
+    ajaxRequest.send(null); 
  }

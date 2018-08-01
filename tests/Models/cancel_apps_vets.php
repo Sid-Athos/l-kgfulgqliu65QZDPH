@@ -7,11 +7,10 @@
     "UPDATE appointment SET canceled = 'y' 
     WHERE start LIKE :start 
     AND app_day LIKE :app_day 
-    AND patients_ID = (SELECT ID FROM patients WHERE pet_name = :name AND owner_id = :owner)";
+    AND vets_ID = (SELECT ID FROM vets WHERE users_ID = :owner)";
 
     $query_params = array('start' => $datas[0],
                           ':app_day' => $datas[1],
-                          ':name' => $datas[2],
                           'owner' => intval($i));
                           try {
                             $stmt = $db->prepare($query);

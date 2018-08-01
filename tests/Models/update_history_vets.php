@@ -1,18 +1,15 @@
 <?php
     include('./db_connect.php');
-    $a = $_GET['d'];
-    $o = $_GET['o'];
+    $a = explode(' ',$_GET['d']);
     $h = $_GET['h'];
     
     $query =
     "UPDATE patients
     SET history = :history
-    WHERE pet_name = :pet_id
-    AND owner_id = :owner_id";
+    WHERE ID = :pet_id";
 
     $query_params = array(":history" => $h,
-                         ":pet_id" => $a,
-                         ":owner_id" => $o);
+                         ":pet_id" => $a[2]);
                          try {
                             $stmt = $db->prepare($query);
                             $result = $stmt->execute($query_params);

@@ -26,12 +26,11 @@ function updateHistory(str){
     
  /** Valeurs à passer en arguments */
     var a = document.getElementById('animal').value;
-    var o = document.getElementById('owner').value;
     var h = document.getElementById('history').value;
 
     var queryString = "?d=" + a ;
-    queryString += "&o=" + o + "&h=" + h;
-    ajaxRequest.open("POST","../tests/Models/update_history.php" + queryString, true);
+    queryString += "&h=" + h;
+    ajaxRequest.open("POST","../tests/Models/update_history_vets.php" + queryString, true);
     ajaxRequest.send(); 
     
  }

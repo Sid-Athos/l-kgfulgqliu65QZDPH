@@ -1,4 +1,4 @@
-function updateHistory(str){
+function getHistory(){
     var ajaxRequest;  // The variable that makes Ajax possible!
      try {
          ajaxRequest = new XMLHttpRequest();
@@ -18,20 +18,17 @@ function updateHistory(str){
          
     ajaxRequest.onreadystatechange = function(){
        if(ajaxRequest.readyState == 4){
-          var ajaxDisplay = document.getElementById('txtHint');
+          var ajaxDisplay = document.getElementById('history');
           ajaxDisplay.innerHTML = ajaxRequest.responseText;
-          ajaxRequest.abort();
        }
     }
     
  /** Valeurs à passer en arguments */
     var a = document.getElementById('animal').value;
     var o = document.getElementById('owner').value;
-    var h = document.getElementById('history').value;
 
-    var queryString = "?d=" + a ;
-    queryString += "&o=" + o + "&h=" + h;
-    ajaxRequest.open("POST","../tests/Models/update_history.php" + queryString, true);
-    ajaxRequest.send(); 
-    
+    var queryString = "?a=" + a ;
+    queryString += "&o=" + o;
+    ajaxRequest.open("GET","../tests/Models/get_history_vets.php" + queryString, true);
+    ajaxRequest.send();
  }

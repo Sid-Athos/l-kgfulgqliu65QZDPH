@@ -1,4 +1,4 @@
-function updateHistory(str){
+function cancel_app(){
     var ajaxRequest;  // The variable that makes Ajax possible!
      try {
          ajaxRequest = new XMLHttpRequest();
@@ -20,18 +20,14 @@ function updateHistory(str){
        if(ajaxRequest.readyState == 4){
           var ajaxDisplay = document.getElementById('txtHint');
           ajaxDisplay.innerHTML = ajaxRequest.responseText;
-          ajaxRequest.abort();
        }
     }
     
  /** Valeurs à passer en arguments */
-    var a = document.getElementById('animal').value;
-    var o = document.getElementById('owner').value;
-    var h = document.getElementById('history').value;
-
-    var queryString = "?d=" + a ;
-    queryString += "&o=" + o + "&h=" + h;
-    ajaxRequest.open("POST","../tests/Models/update_history.php" + queryString, true);
+    var d = document.getElementById('cancel_app').value;
+    var i = document.getElementById('ID').value;
+    var queryString = "?d=" + d ;
+    queryString += "&i=" + i;
+    ajaxRequest.open("GET", "../tests/Models/cancel_apps_vets.php" + queryString, true);
     ajaxRequest.send(); 
-    
  }

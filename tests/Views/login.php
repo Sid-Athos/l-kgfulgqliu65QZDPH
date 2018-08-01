@@ -1,4 +1,4 @@
-    <div class="row">
+    <div class="row" >
 
         <div class="col-xs-12">
             <p style="font-size:10px;width:100px"><?php if (isset($successmsg)) { success($successmsg); } ?>
@@ -6,8 +6,8 @@
             
         </div>
     </div>
-    <div class="row">
-        <div class="col-xs-6" style="max-height:400px;width:55%">
+    <div class="row" style='<?php if($_GET['page'] ==='login'){ echo "margin-top:15px";}else{ echo "margin-top:30px";}?>'>
+        <div class="col-xs-6" style="max-height:400px;width:55%;margin-top:10px">
             <div class="container" style="width:350px;max-height:350px;overflow-y:hidden;overflow-x:hidden">
             <form action="../tests/index.php?page=Login" method="POST" name="login" value="log">
                 <div class="form-row align-items-center">

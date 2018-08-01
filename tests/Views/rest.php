@@ -1,6 +1,6 @@
 <div class="row">
 
-    <div class="col-xs-12" style="margin-bottom:5px">
+    <div class="col-xs-12" style="margin-bottom:5px;margin-top:70px">
         <p style="font-size:10px;width:100px"><?php if (isset($successmsg)) { success($successmsg); } ?>
         <?php if (isset($errormsg)) { alert($errormsg); } ?></p>
         
@@ -35,7 +35,7 @@
             </tbody>
         </table>
     </div>
-    <div class="col-xs-6 msg" style="position:absolute;max-height:500px;right:0;width:150px;top:margin-top:0px">
+    <div class="col-xs-6 msg" style="position:absolute;max-height:500px;right:0;width:150px;top:margin-top:-10px">
         <div class="btn-group-vertical">
             <form role="form" action="" method="POST" name="edit">
                 <button class="btn btn-primary" name="add" title="Ajouter un jour de travail" value="Ajouter">Ajouter</button>

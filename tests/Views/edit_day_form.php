@@ -1,7 +1,6 @@
-<div class="container-fluid" style="color:#decba4">
-    <h3 class="text-center">Modifier un jour de travail</h3>
     <div class="row">
-        <div class="col-xs-6">
+        <div class="col-xs-6" style="color:#decba4;display:block;margin:auto;margin-top:90px">
+    <h3 class="text-center">Modifier un jour de travail</h3>
             <form role="form" class="form container-fluid" action="" method="POST" name="edit_day">
                 <fieldset class="well">
                     <div class="form-group">
@@ -33,8 +32,7 @@
                 </fieldset>
             </form>
         </div>
-    </div>
-    <div class="col-xs-6" style="position:absolute;max-height:500px;margin-left:85%;margin-top:-251px;width:145px">
+    <div class="col-xs-6" style="position:absolute;max-height:500px;margin-left:85%;margin-top:-201px;width:145px">
     <div class="btn-group-vertical">
             <form role="form" action="" method="POST" name="edit">
                 <button class="btn btn-primary" style="background:#333333" name="add" title="Ajouter un jour de travail" value="Ajouter">Ajouter</button>
@@ -42,4 +40,5 @@
                 <button class="btn btn-primary" style="background:#333333" name="delete" title="Supprimer un jour de travail">Supprimer</button>
             </form>
         </div>
-</div>';
+</div>
+</div>

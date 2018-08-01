@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" style="margin-top:60px">
 <div class="col-xs-12">
 <?php if ($flag_email_taken) { alert($email_taken); } ?>
                     <?php if ($flag_name_taken) { alert($name_taken); } ?>
@@ -12,7 +12,7 @@
 <div class="row">
         <div class="col-xs-4" style="max-height:400px">
             <div class="container" style="width:350px;max-height:350px;overflow-y:hidden;overflow-x:hidden;margin-left:100px">
-                <form role="form" class="form container-fluid border border-dark rounded" action="index.php?page=Register" method="POST" style="overflow-y:scroll;overflow-x:hidden;height:350px" name="register_form" >
+                <form role="form" class="form container-fluid" action="index.php?page=Register" method="POST" style="overflow-y:scroll;overflow-x:hidden;height:350px;color:#decba4" name="register_form" >
                         
                     <fieldset class="well" >
                         <h4 style="position:relative;padding:8px;left:25%">Inscription</h4>

@@ -1,21 +1,22 @@
 <?php
     include('./db_connect.php');
-    $a = $_GET['d'];
+    $a = explode(" ",$_GET['d']);
     $o = $_GET['o'];
     
     $query =
     "SELECT history
     FROM patients
-    WHERE pet_name = :pet_id
+    WHERE ID = :pet_id
     AND owner_ID = :owner_id";
 
-    $query_params = array(":pet_id" => $a,
+    $query_params = array(":pet_id" => intval($a[1]),
                          ":owner_id" => $o);
                          try {
                             $stmt = $db->prepare($query);
                             $result = $stmt->execute($query_params);
                             $successmsg = $stmt ->fetchAll();
-                            echo $successmsg[0]['history'];
+                            $res = $successmsg[0]['history'];
+                            echo $res;
                         }catch(PDOException $ex){
                             die("Failed to run query: " . $ex->getMessage());
                         }

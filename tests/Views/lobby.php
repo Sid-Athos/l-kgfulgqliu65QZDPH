@@ -1,3 +1,12 @@
+<div class="row">
+
+    <div class="col-xs-12"  style="margin-left:50px">
+        <p style="font-size:10px;width:100px">
+        <?php if (isset($successmsg)) { success($successmsg); } ?>
+        <?php if (isset($errormsg)) { alert($errormsg); } ?></p>
+        
+    </div>
+</div>
 <div class ="row">
     <div class="col-xs-12" style="border:0.5px solid #333333;border-radius:4px;margin-left:300px">
         <div class="container" style="width:400px;max-height:350px;overflow-y:scroll;overflow-x:hidden;color:#decba4">
