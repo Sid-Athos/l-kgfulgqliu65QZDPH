@@ -1,6 +1,6 @@
 <?php  
-        $query = "
-        Update
+        $query = 
+        "Update
         users
         SET
         connected = 'n'

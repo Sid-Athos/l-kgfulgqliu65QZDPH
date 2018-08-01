@@ -1,4 +1,5 @@
 <?php
+    /* Je regarde si un vétérinaire est dispo, peu importe lequel */
     $query =
     "SELECT 1
     FROM schedule

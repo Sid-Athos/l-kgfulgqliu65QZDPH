@@ -1,13 +1,13 @@
 <div class="row">
 
-    <div class="col-xs-12" style="margin-bottom:5px;margin-top:70px">
-        <p style="font-size:10px;width:100px"><?php if (isset($successmsg)) { success($successmsg); } ?>
-        <?php if (isset($errormsg)) { alert($errormsg); } ?></p>
+    <div class="col-xs-12" style="margin:auto;margin-top:50px;display:inline-block">
+        <?php if (isset($successmsg)) { success($successmsg); } ?>
+        <?php if (isset($errormsg)) { alert($errormsg); } ?>
         
     </div>
 </div>
 <div class="row">
-    <div class="col-xs-6" style="max-height:400px;margin-left:10px;margin-top:-25px;background:background:#333333">
+    <div class="col-xs-6" style="margin:auto;margin-top:20px;display:inline-block">
         <table class="table-scroll table-striped" style="margin-left:15px">
             <thead>
                 <tr class="tr-scroll">
@@ -35,7 +35,7 @@
             </tbody>
         </table>
     </div>
-    <div class="col-xs-6 msg" style="position:absolute;max-height:500px;right:0;width:150px;top:margin-top:-10px">
+    <div class="col-xs-6 msg" style="position:sticky;max-height:500px;right:0;width:150px;top:margin-top:40px">
         <div class="btn-group-vertical">
             <form role="form" action="" method="POST" name="edit">
                 <button class="btn btn-primary" name="add" title="Ajouter un jour de travail" value="Ajouter">Ajouter</button>

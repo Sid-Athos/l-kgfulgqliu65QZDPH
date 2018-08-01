@@ -24,7 +24,7 @@ function insertConsultation(){
     }
     
 
- /** Valeurs à passer en arguments */
+     /** Valeurs à passer en arguments et déclaration du Model à utiliser */
     var a = document.getElementById('animal').value;
     var r = document.getElementById('reason').value;
     var e = document.getElementById('exams').value;
@@ -37,6 +37,6 @@ function insertConsultation(){
     var queryString = "?a=" + a ;
  
     queryString +=  "&r=" + r + "&e=" + e +"&d=" + d + "&t=" + t + "&n=" + n + "&w=" + w + "&ro=" + ro + "&o=" + o;
-    ajaxRequest.open("GET", "../tests/Models/insert_annihilate.php" + queryString, true);
+    ajaxRequest.open("GET", "./Models/insert_annihilate.php" + queryString, true);
     ajaxRequest.send(null); 
  }

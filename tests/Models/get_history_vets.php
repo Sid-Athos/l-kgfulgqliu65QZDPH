@@ -1,4 +1,5 @@
 <?php
+    /* Modification historique via AJAX côté vets */
     include('./db_connect.php');
     $a = explode(' ',$_GET['a']);
     $o = $_GET['o'];

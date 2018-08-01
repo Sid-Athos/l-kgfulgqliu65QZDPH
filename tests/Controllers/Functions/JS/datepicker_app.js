@@ -1,4 +1,4 @@
-    /* Quite obvious */
+    /* Quite obvious, la nuance c'est que là j'évite les rdv pris le jour même, on évite les malpolis et en cas de vrais urgences ILS SE BOUGENT LE CUL */
 
     function datepicker_app() {
         
@@ -7,11 +7,13 @@
         var mm = today.getMonth() + 1;
         var yyyy = today.getFullYear();
         
-        if(mm === 6 || mm === 7 || mm === 1 || mm === 3 || mm === 5){
+        if(mm === 6 || mm === 7 || mm === 8 || mm === 1 || mm === 3 || mm === 5){
             if(dd >= 31){
                 dd = 1;
                 mm = today.getMonth() + 2;
                 
+            } else {
+                dd = dd + 1;
             }
         }
         mm = checktime(mm);

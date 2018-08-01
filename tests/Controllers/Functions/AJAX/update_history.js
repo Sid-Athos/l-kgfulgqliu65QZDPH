@@ -24,14 +24,14 @@ function updateHistory(str){
        }
     }
     
- /** Valeurs à passer en arguments */
+     /** Valeurs à passer en arguments et déclaration du Model à utiliser */
     var a = document.getElementById('animal').value;
     var o = document.getElementById('owner').value;
     var h = document.getElementById('history').value;
 
     var queryString = "?d=" + a ;
     queryString += "&o=" + o + "&h=" + h;
-    ajaxRequest.open("POST","../tests/Models/update_history.php" + queryString, true);
+    ajaxRequest.open("POST","./Models/update_history.php" + queryString, true);
     ajaxRequest.send(); 
     
  }

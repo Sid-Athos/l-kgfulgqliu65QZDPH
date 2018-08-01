@@ -1,4 +1,4 @@
-
+/* Petite astuce magique qui vérifie la touche pressée et balance la requête. PORN */
 function search(){
     $( "#target" ).submit(function( event ) {
         if (e.keyCode == 13) {

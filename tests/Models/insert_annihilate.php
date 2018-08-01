@@ -1,4 +1,6 @@
 <?php
+    /* J'insère les données de la consultation, je supprimme le rdv (les stats sont toujours possibles et plus précises sur les
+    consultations $$) pour éviter de surcharger la bdd */
     include('./db_connect.php');
     $a = explode(' ',$_GET['a']);
     $r = $_GET['r'];
@@ -77,7 +79,7 @@
                                   try {
                                     $stmt = $db->prepare($query);
                                     $result = $stmt->execute($query_params);
-                                    echo "<div class='alert alert-danger alert-dismissible fade show'style='background:#decba4;margin-top:70px;text-align:center;margin-left:390px;max-height:80px;font-size:13px;width:180px;color:#FFFFFF;border:0.5px solid #decba4'>
+                                    echo "<div class='alert alert-danger alert-dismissible fade show' style='background:#decba4;text-align:center;margin:auto;margin-top:60px;display:inline-block;font-size:13px;width:auto;height:auto;color:#FFFFFF;margin-top:40px;border:0.5px solid #decba4'>
                 ".$successmsg."<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                 <span aria-hidden='true'>&times;</span>
             </button></div>";
@@ -87,7 +89,7 @@
         
     } else {
         $successmsg ="Certains champs n'ont pas été remplis!";
-            echo "<div class='alert alert-danger alert-dismissible fade show'style='background:#decba4;text-align:center;margin-left:390px;margin-top:70px;max-height:95px;font-size:13px;width:180px;color:#FFFFFF;border:0.5px solid #decba4'>
+            echo "<div class='alert alert-danger alert-dismissible fade show' style='background:#decba4;text-align:center;margin:auto;margin-top:60px;display:inline-block;font-size:13px;width:auto;height:auto;color:#FFFFFF;margin-top:40px;border:0.5px solid #decba4'>
                 ".$successmsg."<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                 <span aria-hidden='true'>&times;</span>
             </button></div>";

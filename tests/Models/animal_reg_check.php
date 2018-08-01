@@ -1,6 +1,7 @@
 <?php
-$query = "
-        SELECT
+    /* Je check si un patients exists */
+    $query = 
+    "SELECT
             *
         FROM patients
         WHERE

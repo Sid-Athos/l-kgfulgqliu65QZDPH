@@ -10,12 +10,12 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="../tests/Controllers/Functions/JS/startTime.js"></script>
-    <script type="text/javascript" src="../tests/Controllers/Functions/JS/datepicker.js"></script>
-    <script type="text/javascript" src="../tests/Controllers/Functions/JS/body_load.js"></script>
-    <script type="text/javascript" src="../tests/Controllers/Functions/JS/javastreets.js"></script>
+    <script type="text/javascript" src="./Controllers/Functions/JS/startTime.js"></script>
+    <script type="text/javascript" src="./Controllers/Functions/JS/datepicker.js"></script>
+    <script type="text/javascript" src="./Controllers/Functions/JS/body_load.js"></script>
+    <script type="text/javascript" src="./Controllers/Functions/JS/javastreets.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet"> 
-    <link href="../tests/Views/CSS/stylesheet.css" type="text/css" rel="stylesheet">
+    <link href="./Views/CSS/stylesheet.css" type="text/css" rel="stylesheet">
 </head>
 
 
@@ -24,8 +24,8 @@
     
     <div class="row navbar">
         <div class="col-xs-2">
-            <a href="../tests/index.php?page=Login" title="Retour à l'accueil">
-                <img src="../tests/Views/icons/icons8-cat-profile-96.svg" alt="Kitten" style="margin-left:-25px; margin-top:-2px;margin-bottom:2px" width="30px" height ="30px" class ="kitten_icon" >
+            <a href="./index.php?page=Login" title="Retour à l'accueil">
+                <img src="./Views/icons/icons8-cat-profile-96.svg" alt="Kitten" style="margin-left:-25px; margin-top:-2px;margin-bottom:2px" width="30px" height ="30px" class ="kitten_icon" >
             </a>
         
             <span style="float:right;margin-top:3px;color:#decba4" >
@@ -43,11 +43,11 @@
         </div>
 
         <div class="col-xs-6">            
-            <a href="../tests/index.php?page=Login" title="Connexion">
-                <img src="../tests/Views/icons/login-password1.png" alt="Kitten" width="25px" height ="25px">
+            <a href="./index.php?page=Login" title="Connexion">
+                <img src="./Views/icons/login-password1.png" alt="Kitten" width="25px" height ="25px">
             </a>
-            <a href="../tests/index.php?page=Register" title="Inscription">
-                <img src="../tests/Views/icons/registration.png" alt="Kitten" width="25px" height ="25px">
+            <a href="./index.php?page=Register" title="Inscription">
+                <img src="./Views/icons/registration.png" alt="Kitten" width="25px" height ="25px">
             </a>
         </div>
 

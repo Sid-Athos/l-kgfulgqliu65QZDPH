@@ -1,4 +1,4 @@
-    /* Quite obvious */
+    /* Quite obvious, ma date de naissance n'est pas dans le futur */
 
     function datepicker() {
         

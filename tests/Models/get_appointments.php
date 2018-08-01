@@ -1,4 +1,5 @@
 <?php
+    /* JOINTURE TECHNIQUUUU récupération des rdv pour un client */
     $query =
     "SELECT
     appointment.start,

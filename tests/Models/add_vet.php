@@ -1,4 +1,5 @@
 <?php
+        /*  Insert dans vets + ajout du jour de travail obligatoire. OUIOUI, 1 SEUL JOUR */
         $query = "INSERT INTO vets (
             ID,
             last_name,

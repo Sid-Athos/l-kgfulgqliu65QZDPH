@@ -1,6 +1,6 @@
 <?php
-    $query = "
-    SELECT
+    $query = 
+    "SELECT
     email, last_name, first_name, vet_init
     FROM vets
     ORDER BY vet_init ASC";

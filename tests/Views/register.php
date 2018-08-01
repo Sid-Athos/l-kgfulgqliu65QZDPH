@@ -1,6 +1,5 @@
-<div class="row" style="margin-top:60px">
-<div class="col-xs-12">
-<?php if ($flag_email_taken) { alert($email_taken); } ?>
+<div class="row" >
+<div class="col-xs-12"style="margin:auto;margin-top:60px;display:inline-block">
                     <?php if ($flag_name_taken) { alert($name_taken); } ?>
                     <?php if (isset($successmsg)) { success($successmsg); } ?>
                     <?php if (isset($errormsg)) { alert($errormsg); } ?>
@@ -9,10 +8,10 @@
                     <?php if (isset($cpassword_error)) alert($cpassword_error); ?>
                     </div>
                     </div>
-<div class="row">
-        <div class="col-xs-4" style="max-height:400px">
-            <div class="container" style="width:350px;max-height:350px;overflow-y:hidden;overflow-x:hidden;margin-left:100px">
-                <form role="form" class="form container-fluid" action="index.php?page=Register" method="POST" style="overflow-y:scroll;overflow-x:hidden;height:350px;color:#decba4" name="register_form" >
+<div class="row" >
+        <div class="col-xs-6" style="margin:auto;margin-top:60px;display:block;max-height:400px">
+            <div class="container" style="max-height:350px;overflow-y:hidden;overflow-x:hidden">
+                <form role="form" class="form container-fluid"  method="POST" style="width:400px;overflow-y:scroll;overflow-x:hidden;height:350px;color:#decba4" name="register_form" >
                         
                     <fieldset class="well" >
                         <h4 style="position:relative;padding:8px;left:25%">Inscription</h4>
@@ -63,7 +62,7 @@
             </div>
         </div>
             
-        <div class="col-xs-8" style="border:0.5px solid #333333;border-radius:4px">
+        <div class="col-xs-6" style="margin:auto;margin-top:60px;margin-left:0px;display:block;max-height:400pxborder:0.5px solid #333333;border-radius:4px">
             <div class="container" style="width:400px;max-height:350px;overflow-y:scroll;overflow-x:hidden;color:#decba4">
                 <p class="first_sentence">Bienvenue sur le site de Heal mon Bichon</p>
                 <p class="first_sentence">Votre clinique vétérinaire de référence à Ivry-sur-Seine</p>

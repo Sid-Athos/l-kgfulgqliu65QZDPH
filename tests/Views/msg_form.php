@@ -1,5 +1,5 @@
-<div id="txtHint"></div>
-<select class="form-control space-bottom" id="send_to" style="width: 20%; position:center; margin-left: 37.5%;"name="target" required>
+<div id="txtHint" style="margin:auto;display:block;margin-top:70px;"></div>
+<select class="form-control space-bottom" id="send_to" style="margin:auto;display:block;margin-top:70px;width:275px"name="target" required>
 <?php 
     foreach($contacts_rows as $key0 => $value0){
         $name = implode(' ',$value0);

@@ -1,70 +1,81 @@
 <?php
-session_start();
-include('../tests/Controllers/session_check.php');
-include("../tests/Models/db_connect.php");
-include('../tests/Controllers/Functions/PHP/messages.php');
-include('../tests/Models/actual_date.php');
-$actual_date = get_date($db);
-include('../tests/Models/sent_by.php');
-$outbox_rows = $stmt->fetchAll();
+     /* J'initialise la session, la connexion à la db, les fonctions 
+    dont j'aurai besoin dans TOUS les cas (récupération dare en français depuis Mysql notamment) */
+    session_start();
+    include('./Controllers/session_check.php');
+    include("./Models/db_connect.php");
+    include('./Controllers/Functions/PHP/messages.php');
+    include('./Models/actual_date.php');
+    $actual_date = get_date($db);
+    /* Je récupère les dernieres conversations */
+    include('./Models/sent_by.php');
+    $outbox_rows = $stmt->fetchAll();
+    /* Navabar */
+    if($_SESSION['role'] == 'vet'){
+        include('./Views/html_top_vets.php');
+    } else if($_SESSION['role'] == 'client') {
+        include('./Views/html_top_clients.php');
+    }
 
-if($_SESSION['role'] == 'vet'){
-    include('../tests/Views/html_top_vets.php');
-} else if($_SESSION['role'] == 'client') {
-    include('../tests/Views/html_top_clients.php');
-}
+    /* Switch sur les $_POST */
+    if(isset($_POST['msg'])) {
+        switch($_POST['msg']):
+            /* J'affiche les conversations */
+            case($_POST['msg'] == 'convos'):
+                    include('./Models/convos.php');
+                    $msg_rows = $stmt->fetchAll();
+                    include('./Views/show_convos.php');
+                    unset($msg_rows);
+                break;
+            /* J'affiche les messages envoyés */
+            case($_POST['msg'] == 'outbox'):
+                    include('./Views/show_outbox.php');
+                    unset($outbox_rows);
+                break;
+            /* Formulaire pour écrire un message, les contacts sont différents selon le role
+            les vets peuvent contacter tout le monde sauf eux mêmes (UNION des familles)
+            les clients peuvent ne contacter que les vets (bientôt que le vet réfèrent)
+            la suite c'est ajax qui le gère */
 
-if(isset($_POST['msg'])) {
-    switch($_POST['msg']):
-        case($_POST['msg'] == 'convos'):
-                include('../tests/Models/convos.php');
-                $msg_rows = $stmt->fetchAll();
-                include('../tests/Views/show_convos.php');
-                unset($msg_rows);
-            break;
-        case($_POST['msg'] == 'outbox'):
-                include('../tests/Views/show_outbox.php');
-                unset($outbox_rows);
-            break;
-        case($_POST['msg'] == 'write'):
-            if($_SESSION)
-                switch($_SESSION['role']):
-                    case 'vet':
-                            include('../tests/Models/contact_all.php');
-                            $contacts_rows = $stmt->fetchAll();
-                            include('../tests/Views/msg_form.php');
-                            unset($contacts_rows);
-                        break;
-                    case 'client':
-                            include('../tests/Models/contacts.php');
-                            $contacts_rows = $stmt->fetchAll();
-                            include('../tests/Views/msg_form_clients.php');
-                            unset($contacts_rows);
-                        break;
-                    default:
-            endswitch;
-        break; 
-        default:
-    endswitch;
-
-} else if(isset($_POST['target'])) {
-    switch(isset($_POST['target'])):
-        case(isset($_POST['target'])):
-
-            include('../tests/Models/insert_message.php');
-            $successmsg = 'Message envoyé!';
-            include('../tests/Models/sent_by.php');
-            $outbox_rows = $stmt->fetchAll();
-            include('../tests/Views/show_outbox.php');
-
+            case($_POST['msg'] == 'write'):
+                if($_SESSION)
+                    switch($_SESSION['role']):
+                        case 'vet':
+                                include('./Models/contact_all.php');
+                                $contacts_rows = $stmt->fetchAll();
+                                include('./Views/msg_form.php');
+                                unset($contacts_rows);
+                            break;
+                        case 'client':
+                                include('./Models/contacts.php');
+                                $contacts_rows = $stmt->fetchAll();
+                                include('./Views/msg_form_clients.php');
+                                unset($contacts_rows);
+                            break;
+                        default:
+                endswitch;
             break; 
+            default:
+        endswitch;
+        /* Ici au cas où AJAX fonctionne plus */
+    } else if(isset($_POST['target'])) {
+        switch(isset($_POST['target'])):
+            case(isset($_POST['target'])):
 
-        default:
-    endswitch;
+                include('./Models/insert_message.php');
+                $successmsg = 'Message envoyé!';
+                include('./Models/sent_by.php');
+                $outbox_rows = $stmt->fetchAll();
+                include('./Views/show_outbox.php');
 
-} else {
+                break; 
 
-    include('../tests/Views/show_outbox.php');
+            default:
+        endswitch;
 
-}
+    } else {
+
+        include('./Views/show_outbox.php');
+
+    }
 ?>

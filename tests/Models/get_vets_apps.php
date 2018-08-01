@@ -1,4 +1,5 @@
 <?php
+    /* Récupère les rdv d'un vet */
     $query =
     "SELECT
     appointment.start,

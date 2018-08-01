@@ -1,7 +1,6 @@
-    <div class="row" >
-
-        <div class="col-xs-12">
-            <p style="font-size:10px;width:100px"><?php if (isset($successmsg)) { success($successmsg); } ?>
+<div class="row" >
+<div class="col-xs-12"style="margin:auto;margin-top:60px;display:inline-block">
+          <p style="font-size:10px;width:100px"><?php if (isset($successmsg)) { success($successmsg); } ?>
             <?php if (isset($errormsg)) { alert($errormsg); } ?></p>
             
         </div>
@@ -9,7 +8,7 @@
     <div class="row" style='<?php if($_GET['page'] ==='login'){ echo "margin-top:15px";}else{ echo "margin-top:30px";}?>'>
         <div class="col-xs-6" style="max-height:400px;width:55%;margin-top:10px">
             <div class="container" style="width:350px;max-height:350px;overflow-y:hidden;overflow-x:hidden">
-            <form action="../tests/index.php?page=Login" method="POST" name="login" value="log">
+            <form action="./index.php?page=Login" method="POST" name="login" value="log">
                 <div class="form-row align-items-center">
                     <div class="col-auto">
                         <p style="color:#D38312"><strong>Connexion</strong></p>

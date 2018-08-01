@@ -23,12 +23,12 @@ function getHistory(){
        }
     }
     
- /** Valeurs à passer en arguments */
+     /** Valeurs à passer en arguments et déclaration du Model à utiliser */
     var a = document.getElementById('animal').value;
     var o = document.getElementById('owner').value;
 
     var queryString = "?a=" + a ;
     queryString += "&o=" + o;
-    ajaxRequest.open("GET","../tests/Models/get_history_vets.php" + queryString, true);
+    ajaxRequest.open("GET","./Models/get_history_vets.php" + queryString, true);
     ajaxRequest.send();
  }

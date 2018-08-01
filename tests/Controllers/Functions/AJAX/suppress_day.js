@@ -12,11 +12,12 @@ function suppressDay(str) {
                 document.getElementById("txtHint").innerHTML = this.responseText;
             }
         };
+         /** Valeurs à passer en arguments et déclaration du Model à utiliser */
                var vet = document.getElementById('ID').value;
                var queryString = "?q=" + str;
             
         queryString +=  "&vet=" + vet;
-        xmlhttp.open("GET","../tests/Models/delete_day.php"+ queryString,true);
+        xmlhttp.open("GET","./Models/delete_day.php"+ queryString,true);
         xmlhttp.send();
     }
 }

@@ -1,4 +1,5 @@
 <?php
+    /* Jointure sama RDV des vets */
     $query =
     "SELECT
     appointment.start,

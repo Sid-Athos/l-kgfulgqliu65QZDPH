@@ -1,4 +1,5 @@
 <?php
+    /* Vet can add a day of work using this function */
     $query = "INSERT INTO schedule (
                     ID,
                     from_time,

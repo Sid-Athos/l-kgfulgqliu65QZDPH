@@ -1,4 +1,5 @@
 <?php
+    /* Récupère les futurs rdv et les historiques/commentaires Elle est pas belle ma jointure? */
     $query =
     "SELECT
     appointment.start,

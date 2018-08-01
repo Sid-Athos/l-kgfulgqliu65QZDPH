@@ -1,4 +1,5 @@
 <?php
+    /* Montre les animaux d'un patient */
     $query = 
     "SELECT pet_name, ID, breed, colour, sex, date_of_birth,microchip_tatoo, history
     FROM patients

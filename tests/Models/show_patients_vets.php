@@ -1,4 +1,5 @@
 <?php
+    /* Affiche les patients d'un vétérinaire (ceux ayant déjà assistés à une consultation) */
     $query = 
     "SELECT DISTINCT patients.pet_name,  patients.breed, patients.ID, patients.sex, patients.date_of_birth, consultations.weight, consultations.diagnosis, patients.history 
     FROM 

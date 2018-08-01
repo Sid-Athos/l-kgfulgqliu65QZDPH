@@ -1,4 +1,5 @@
 <?php
+    /* Je gère mes horaires comme un grand */
     $query = "UPDATE
                 schedule
             SET

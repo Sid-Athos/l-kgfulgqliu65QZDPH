@@ -1,4 +1,5 @@
 <?php
+    /* Affiche mon planning */
     $query = 
     "SELECT working_day, from_time, to_time 
     FROM  schedule 

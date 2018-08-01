@@ -24,13 +24,13 @@ function insertMessage(){
     }
     
 
- /** Valeurs à passer en arguments */
+     /** Valeurs à passer en arguments et déclaration du Model à utiliser */
     var d = document.getElementById('send_to').value;
     var e = document.getElementById('exp').value;
     var msg = document.getElementById('msg').value;
     var queryString = "?d=" + d ;
  
     queryString +=  "&e=" + e + "&msg=" + msg;
-    ajaxRequest.open("GET", "../tests/Models/insert_message.php" + queryString, true);
+    ajaxRequest.open("GET", "./Models/insert_message.php" + queryString, true);
     ajaxRequest.send(null); 
  }

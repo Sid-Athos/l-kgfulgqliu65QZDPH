@@ -1,14 +1,14 @@
 <div class="row">
 
-    <div class="col-xs-12"  style="margin-left:50px">
+    <div class="col-xs-12"  style="margin:auto;margin-top:60px;display:block">
         <p style="font-size:10px;width:100px">
         <?php if (isset($successmsg)) { success($successmsg); } ?>
         <?php if (isset($errormsg)) { alert($errormsg); } ?></p>
         
     </div>
 </div>
-<div class ="row">
-    <div class="col-xs-12" style="border:0.5px solid #333333;border-radius:4px;margin-left:300px">
+<div class ="row" style="margin:auto;margin-top:60px;display:block">
+    <div class="col-xs-12">
         <div class="container" style="width:400px;max-height:350px;overflow-y:scroll;overflow-x:hidden;color:#decba4">
             <p class="first_sentence">Bienvenue sur le site de Heal mon Bichon</p>
             <p class="first_sentence">Votre clinique vétérinaire de référence à Ivry-sur-Seine</p>

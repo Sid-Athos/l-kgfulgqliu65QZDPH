@@ -1,4 +1,5 @@
 <?php
+/* Je ne veux QUE les jours de disponibles. C'est MA fonction. Copyright */
     function days_available($work_days){
         if(!empty($work_days)){
             for($i=0;$i<count($work_days);$i++){

@@ -1,6 +1,7 @@
 <?php
-    $query = "
-        SELECT
+    /* Client existes-tu? Mais j'ai une contrainte unique sur les utilisateurs donc nique */
+    $query = 
+        "SELECT
         1
         FROM clients
         WHERE

@@ -1,7 +1,7 @@
 <?php
-    $query = "
-    SELECT
-    email, last_name, first_name, vet_init
+    /* Affiche les collaborateurs */
+    $query = 
+    "SELECT email, last_name, first_name, vet_init
     FROM vets
     WHERE users_ID != :ID
     ORDER BY vet_init ASC";

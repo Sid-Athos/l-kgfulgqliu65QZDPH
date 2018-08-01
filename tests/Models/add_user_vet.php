@@ -1,4 +1,5 @@
 <?php
+    /* Basique */
     $query = "INSERT INTO users (
             ID,
             password,

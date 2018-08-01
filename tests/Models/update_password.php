@@ -1,4 +1,5 @@
 <?php
+    /* Settings compte (pw) */
     $query = 
     "SELECT password FROM users WHERE ID = :ID";
 

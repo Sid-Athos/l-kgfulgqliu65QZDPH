@@ -1,4 +1,5 @@
 <?php
+    /* Petit select + union des familles pour vérifier si tu existes en te connectant, et ton nom pour un message de bonjour */
     $query = 
     "SELECT ID, role FROM users 
     WHERE email = :email 

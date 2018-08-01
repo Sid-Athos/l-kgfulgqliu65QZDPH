@@ -1,4 +1,5 @@
 <?php
+/* Porn */
     function kill_all_files($dir){
         /* Set root dir of an artist */
         $check_dir = $dir.'/*';

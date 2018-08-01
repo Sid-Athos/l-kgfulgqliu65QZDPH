@@ -1,6 +1,7 @@
 <?php
-    $query = "
-    SELECT
+    /* Récupère les messages envoyés */
+    $query = 
+    "SELECT
     sent_to, dates, content
     FROM messages
     WHERE

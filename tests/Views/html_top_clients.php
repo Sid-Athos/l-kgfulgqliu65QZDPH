@@ -10,18 +10,18 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="../tests/Controllers/Functions/JS/startTime.js"></script>
+    <script type="text/javascript" src="./Controllers/Functions/JS/startTime.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="crossorigin="anonymous"></script>		
-    <script type="text/javascript" src="../tests/Controllers/Functions/JS/datepicker_app.js"></script>
-    <script type="text/javascript" src="../tests/Controllers/Functions/JS/datepicker.js"></script>
-    <script type="text/javascript" src="../tests/Controllers/Functions/JS/body_load.js"></script>
-    <script type="text/javascript" src="../tests/Controllers/Functions/JS/javastreets.js"></script>
+    <script type="text/javascript" src="./Controllers/Functions/JS/datepicker_app.js"></script>
+    <script type="text/javascript" src="./Controllers/Functions/JS/datepicker.js"></script>
+    <script type="text/javascript" src="./Controllers/Functions/JS/body_load.js"></script>
+    <script type="text/javascript" src="./Controllers/Functions/JS/javastreets.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet"> 
-    <link href="../tests/Views/CSS/stylesheet.css" type="text/css" rel="stylesheet">
-    <script type="text/javascript" src="../tests/Controllers/Functions/AJAX/cancel_apps_clients.js"></script>
-    <script type="text/javascript" src="../tests/Controllers/Functions/AJAX/insert_message.js"></script>
-    <script type="text/javascript" src="../tests/Controllers/Functions/AJAX/update_history.js"></script>
-    <script type="text/javascript" src="../tests/Controllers/Functions/AJAX/get_history_clients.js"></script>
+    <link href="./Views/CSS/stylesheet.css" type="text/css" rel="stylesheet">
+    <script type="text/javascript" src="./Controllers/Functions/AJAX/cancel_apps_clients.js"></script>
+    <script type="text/javascript" src="./Controllers/Functions/AJAX/insert_message.js"></script>
+    <script type="text/javascript" src="./Controllers/Functions/AJAX/update_history.js"></script>
+    <script type="text/javascript" src="./Controllers/Functions/AJAX/get_history_clients.js"></script>
 
 </head>
 
@@ -31,8 +31,8 @@
     
     <div class="row navbar" >
         <div class="col-xs-2">
-            <a href="../tests/index.php?page=Lobby" title="Retour à l'accueil">
-                <img src="../tests/Views/icons/icons8-cat-profile-96.svg" alt="Kitten" style="margin-left:-25px; margin-top:-2px;margin-bottom:2px" width="40px" height ="40px" class ="kitten_icon" >
+            <a href="./index.php?page=Lobby" title="Retour à l'accueil">
+                <img src="./Views/icons/icons8-cat-profile-96.svg" alt="Kitten" style="margin-left:-25px; margin-top:-2px;margin-bottom:2px" width="40px" height ="40px" class ="kitten_icon" >
             </a>
         
             <span  style="float:right;margin-top:15px;color:#decba4" >
@@ -51,26 +51,26 @@
                         echo $_SESSION['greeting_msg'];
                     } 
                     ?>
-            <a href="../tests/index.php?page=Appointments" title="Rendez-vous" style="margin-left:6px">
-                <img src="../tests/Views/icons/rdv.png" alt="Kitten" width="25px" height ="25px">
+            <a href="./index.php?page=Appointments" title="Rendez-vous" style="margin-left:6px">
+                <img src="./Views/icons/rdv.png" alt="Kitten" width="25px" height ="25px">
             </a>
-            <a href="../tests/index.php?page=Patients" title="Mes animaux">
-                <img src="../tests/Views/icons/animals.png" alt="Kitten" width="25px" height ="25px">
+            <a href="./index.php?page=Patients" title="Mes animaux">
+                <img src="./Views/icons/animals.png" alt="Kitten" width="25px" height ="25px">
             </a>
         </div>
 
         <div class="col-xs-6">
-            <form action="../tests/index.php?page=Search" class="search_form" id="target" name="search_form" method="POST" style="margin-top:0px;margin-left:0px;margin-right:5px;float:left">
+            <form action="./index.php?page=Search" class="search_form" id="target" name="search_form" method="POST" style="margin-top:0px;margin-left:0px;margin-right:5px;float:left">
                         <input type="search" autofocus id="search_in"  class ="search" optional result="5" size="40"name="search"title="Appuyez sur Entrée pour lancer la requête" placeholder="Rechercher un animal..."/>
             </form>            
-            <a href="../tests/index.php?page=Messages" title="Messagerie">
-                <img src="../tests/Views/icons/address-book-solid.svg" alt="Kitten" style="margin-top:6px" width="25px" height ="25px">
+            <a href="./index.php?page=Messages" title="Messagerie">
+                <img src="./Views/icons/address-book-solid.svg" alt="Kitten" style="margin-top:6px" width="25px" height ="25px">
             </a>
-            <a href="../tests/index.php?page=Settings" title="Mon compte">
-                <img src="../tests/Views/icons/cogs-solid.svg" alt="Kitten" style="margin-top:6px"  width="25px" height ="25px">
+            <a href="./index.php?page=Settings" title="Mon compte">
+                <img src="./Views/icons/cogs-solid.svg" alt="Kitten" style="margin-top:6px"  width="25px" height ="25px">
             </a>
-            <a href="../tests/index.php?page=Logout" title="Déconnexion">
-                <img src="../tests/Views/icons/sign-out-alt-solid.svg" alt="Kitten" style="margin-top:6px"  width="25px" height ="25px">
+            <a href="./index.php?page=Logout" title="Déconnexion">
+                <img src="./Views/icons/sign-out-alt-solid.svg" alt="Kitten" style="margin-top:6px"  width="25px" height ="25px">
             </a>
         </div>
 

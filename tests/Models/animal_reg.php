@@ -1,4 +1,5 @@
 <?php
+        /* INSERTU TECHNIQUUUUUUUUUUUUUU */
         $query = "INSERT INTO patients
                     (ID,
                     pet_name,
@@ -37,8 +38,8 @@
         }
         $id = $db ->lastInsertID();
         
-        $query = "
-    INSERT INTO clients_has_patients
+        $query = 
+        "INSERT INTO clients_has_patients
         (ID,
         clients_ID,
         patients_ID)

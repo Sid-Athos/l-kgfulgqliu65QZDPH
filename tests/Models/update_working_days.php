@@ -1,4 +1,5 @@
 <?php
+    /* Modifie les amplitudes horaires d'1 vétérinaire sur une journée */
     $query = "UPDATE
     schedule
     SET

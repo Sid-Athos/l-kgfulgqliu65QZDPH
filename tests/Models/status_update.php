@@ -1,6 +1,7 @@
 <?php  
-        $query = "
-        Update
+    /* Met le status à connecté pour éviter les doublons */
+        $query = 
+        "Update
         users
         SET
         connected = 'y'

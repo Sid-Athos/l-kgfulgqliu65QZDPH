@@ -1,14 +1,17 @@
 <?php
+     /* J'initialise la session, la connexion à la db, les fonctions 
+    dont j'aurai besoin dans TOUS les cas (récupération dare en français depuis Mysql notamment) */
     session_start();
-    include("../tests/Models/db_connect.php");
-    include('../tests/Models/actual_date.php');
-    include('../tests/Controllers/Functions/PHP/messages.php');
+    include("./Models/db_connect.php");
+    include('./Models/actual_date.php');
+    include('./Controllers/Functions/PHP/messages.php');
     $actual_date = get_date($db);
+
     if (isset($_SESSION['ID'])){
-        include('../tests/Models/logout.php');
-        include('../tests/Controllers/Functions/PHP/session_keyler.php');
+        include('./Models/logout.php');
+        include('./Controllers/Functions/PHP/session_keyler.php');
         $successmsg = "Déconnexion réussie, à bientôt! :D";
     }
-    include('../tests/Views/html_top_login.php');
-    include('../tests/Views/login.php');
+    include('./Views/html_top_login.php');
+    include('./Views/login.php');
 ?>

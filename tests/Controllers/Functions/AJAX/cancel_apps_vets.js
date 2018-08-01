@@ -23,11 +23,11 @@ function cancel_app(){
        }
     }
     
- /** Valeurs à passer en arguments */
+     /** Valeurs à passer en arguments et déclaration du Model à utiliser */
     var d = document.getElementById('cancel_app').value;
     var i = document.getElementById('ID').value;
     var queryString = "?d=" + d ;
     queryString += "&i=" + i;
-    ajaxRequest.open("GET", "../tests/Models/cancel_apps_vets.php" + queryString, true);
+    ajaxRequest.open("GET", "./Models/cancel_apps_vets.php" + queryString, true);
     ajaxRequest.send(); 
  }

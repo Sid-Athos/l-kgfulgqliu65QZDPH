@@ -24,13 +24,13 @@ function updateHistory(str){
        }
     }
     
- /** Valeurs à passer en arguments */
+     /** Valeurs à passer en arguments et déclaration du Model à utiliser */
     var a = document.getElementById('animal').value;
     var h = document.getElementById('history').value;
 
     var queryString = "?d=" + a ;
     queryString += "&h=" + h;
-    ajaxRequest.open("POST","../tests/Models/update_history_vets.php" + queryString, true);
+    ajaxRequest.open("POST","./Models/update_history_vets.php" + queryString, true);
     ajaxRequest.send(); 
     
  }

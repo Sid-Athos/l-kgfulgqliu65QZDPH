@@ -1,4 +1,5 @@
 <?php
+    /* Juste pour le fun */
     function get_date(&$db){
         $query = 
             "SELECT 
@@ -16,6 +17,7 @@
             }
 
             $row = $stmt -> fetchAll();
+            /* Pregu REPLACUUUUUUUUUUUUUUUUUUUU */
             $pattern = array(array("/^l/","/^j/","/^f/","/^m/","/^a/","/^s/","/^o/","/^n/","/^d/","/^v/"),array("L","J","F","M","A","S","O","N","D","V"));
             $row[0]['MONTHNAME(CURRENT_TIMESTAMP())'] = preg_replace($pattern[0],$pattern[1],$row[0]['MONTHNAME(CURRENT_TIMESTAMP())']);
             $row[0]['DAYNAME(CURRENT_TIMESTAMP())'] =  preg_replace($pattern[0], $pattern[1], $row[0]['DAYNAME(CURRENT_TIMESTAMP())']); 
