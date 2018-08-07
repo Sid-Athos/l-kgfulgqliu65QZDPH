@@ -1,6 +1,7 @@
 <?php
     /* J'insère les données de la consultation, je supprimme le rdv (les stats sont toujours possibles et plus précises sur les
-    consultations $$) pour éviter de surcharger la bdd */
+    consultations $$) pour éviter de surcharger la bdd .
+    Je ne garde que les rendez-vous annulés et les prochains pour afficher les mauvais clients*/
     include('./db_connect.php');
     $a = explode(' ',$_GET['a']);
     $r = $_GET['r'];

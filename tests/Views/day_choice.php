@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-md-4 col-md-offset-4" style="display:block;margin:auto;top:80px;color:#decba4">
+    <div class="col-xs-12" style="display:inline-block;margin:auto;margin-top:80px;color:#decba4">
         <form role="form" class="form container-fluid" action="" method="POST" name="new_appointment">
             <fieldset class="well">
                 <div class="form-group">
@@ -9,7 +9,7 @@
                 <option value="consult">Consultation généraliste</option>
                 <option value="surgery">Opération</option>
                 <option value="consult_spe">Consultation spécialisée</option>
-            </select>
+            </select><br>
             <div class="form-group">
                 <label>Choisissez une date</label>
                 <div class="form-group">
@@ -22,7 +22,7 @@
             <div class="row">
                 <div class="col-md-4 col-md-offset-4">
                 <input type="hidden" name="my_animal" value="<?php if(isset($_POST['my_animal'])){ echo($_POST['my_animal']);}?>"/>
-                    <input type="submit" class="btn btn-block btn-primary" name="new_appointment" value="Choisir" />
+                    <input type="submit" class="btn btn-block btn-primary" style="width:100px;margin-left:40px" name="new_appointment" value="Choisir" />
                 </div>
             </div>
             </fieldset>

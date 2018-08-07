@@ -28,6 +28,6 @@ function cancel_app(){
     var i = document.getElementById('ID').value;
     var queryString = "?d=" + d ;
     queryString += "&i=" + i;
-    ajaxRequest.open("GET", "./Models/cancel_apps_vets.php" + queryString, true);
+    ajaxRequest.open("GET", "./Controllers/cancel_apps_vets.php" + queryString, true);
     ajaxRequest.send(); 
  }

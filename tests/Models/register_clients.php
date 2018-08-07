@@ -1,4 +1,5 @@
 <?php
+
     $query = "INSERT INTO users (
         ID,
         password,
@@ -22,10 +23,13 @@
                     $check_error = false;
                     $flag_name_taken = true;
                     $flag_email_taken = true;
+                    /* Contrainte unique en action */
                     $name_taken = "Vous possédez déjà un compte <br>" . $first_name . " " . $last_name."!";
                 }
 
-                /** Utilisation du lastInsertId() pour éviter une sous-requête dans l'insert suivant */
+                /** Utilisation du lastInsertId() pour éviter une sous-requête dans l'insert suivant 
+                 * #smartass
+                */
 
                 if(!isset($check_error)){
                     $id = $db ->lastInsertId();

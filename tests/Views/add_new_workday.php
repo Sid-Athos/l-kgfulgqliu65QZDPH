@@ -1,4 +1,3 @@
-
     <div class="row">
         <div class="col-xs-6" style="color:#decba4;margin:auto;display:block;margin-top:60px" >
     <h3 class="text-center">Ajouter un jour de travail</h3>

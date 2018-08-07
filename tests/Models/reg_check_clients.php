@@ -1,5 +1,5 @@
 <?php
-    /* Client existes-tu? Mais j'ai une contrainte unique sur les utilisateurs donc nique */
+    /* Client existes-tu? Mais j'ai une contrainte unique sur les utilisateurs donc nique  MAIS O K OU*/
     $query = 
         "SELECT
         1

@@ -16,9 +16,10 @@
             $stmt = $db->prepare($query);
             $result = $stmt->execute($query_params);
         }catch(PDOException $ex){
-            $errormsg = "L'horaire n'est pas disponible";
+            $errormsg = "Aucun vétérinaire n'est disponible ce jour là";
         }
     $row = $stmt -> fetch();
+
     $id =  $row['vets_ID'];
     if(!empty($row)){
         /* Je vérifie si il a un rdv à ma date désirée */
@@ -37,12 +38,12 @@
             $stmt = $db->prepare($query);
             $result = $stmt->execute($query_params);
         }catch(PDOException $ex){
-            die("Failed to run query: " . $ex->getMessage());
+            $errormsg = "L'horaire n'est pas disponible";
         }
         $check = $stmt->fetch();
 
         if(empty($check)){
-            /* C'est libre! je peux insert */
+            /* C'est libre!  insert */
             $query = 
             "INSERT INTO appointment
             (ID,details,type,vet_init,start,app_day,canceled,vets_ID,patients_ID)
@@ -62,14 +63,12 @@
                 $check = true;
                 $app_id = $db->lastInsertId();
             }catch(PDOException $ex){
-                $errormsg = "Une erreur est survenue, essayez plus tard";
-                die("Failed to run query: " . $ex->getMessage());
+                $errormsg = "L'horaire a été réservé entre temps";
             }
         } 
-        if(!$check){
+        if(!$check || !isset($app_id)){
             /* Le mec a pas trouvé d'heure qui convient :'(  */
             $errormsg = "Il n'y a pas de rendez-vous disponible pour cette combinaison date/heure";
-            include('./Views/choose_hour_fail.php');
         } else {
             /* Il a son RDV! Je lui fais un rappel avec l'heure et le nom du médecin :) */
             $query = 
@@ -105,6 +104,9 @@
             }
         }
             
+
+    } else if(!$row){
+        $errormsg = "L'horaire n'est pas disponible";
 
     }
 ?>

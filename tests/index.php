@@ -31,6 +31,9 @@
                 case 'Settings';
                         include './Controllers/settings.php';
                     break;
+                case 'Search';
+                    include './Controllers/search.php';
+                    break;
                 default:
                 include './Controllers/Lobby.php';
                 

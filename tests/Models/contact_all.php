@@ -1,4 +1,5 @@
 <?php
+    /* Union du père du fil et du saint esprit, amène les contacts */
     $query = 
     "SELECT last_name, first_name, email 
     FROM vets 

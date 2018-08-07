@@ -1,4 +1,4 @@
-function updateHistory(str){
+function updateHistory(){
     var ajaxRequest;  // The variable that makes Ajax possible!
      try {
          ajaxRequest = new XMLHttpRequest();
@@ -29,9 +29,8 @@ function updateHistory(str){
     var o = document.getElementById('owner').value;
     var h = document.getElementById('history').value;
 
-    var queryString = "?d=" + a ;
+    var queryString = "?a=" + a ;
     queryString += "&o=" + o + "&h=" + h;
     ajaxRequest.open("POST","./Models/update_history.php" + queryString, true);
     ajaxRequest.send(); 
-    
  }

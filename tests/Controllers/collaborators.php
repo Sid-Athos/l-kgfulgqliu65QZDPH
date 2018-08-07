@@ -32,7 +32,6 @@
                     $error = true;
                     $cpassword_error = "Les mots de passe ne correspondent pas";
                 }
-                $row = $stmt->fetch();
                 /* Elle est pas mal celle là aussi de fonction :3 */
                 include('./Models/add_user_vet.php');
                 include('./Controllers/Functions/PHP/backup_vets.php');

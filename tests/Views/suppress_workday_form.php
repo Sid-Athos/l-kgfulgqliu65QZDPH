@@ -1,5 +1,5 @@
     <div class="row">
-        <div class="col-xs-6" id="txtHint" style="color:#decba4;display:block;margin:auto;margin-top:60px">
+        <div class="col-xs-6" id="txtHint" style="color:#decba4;display:block;margin:auto;margin-top:60px;font-size:15px;">
         <h3 class="text-center" style="text-align:center">Supprimer un jour de travail</h3>
             <form role="form" style="text-align:center;display:inline-block"  class="form container-fluid" method="POST" name="delete_day" >
             <input type="hidden" id="ID" name="vet" value="<?php echo $_SESSION['ID'];?>"/>

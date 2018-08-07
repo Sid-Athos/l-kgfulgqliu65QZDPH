@@ -8,7 +8,6 @@
     include('./Controllers/Functions/PHP/messages.php');
     include('./Models/actual_date.php');
     $actual_date = get_date($db);
-
     /* Tu ne t'inscriras pas dans MA db sans mon autorisation */
     $error_reg_animal = false;
     $flag_name_taken = false;
@@ -21,8 +20,7 @@
         for($i=0;$i<count($app_rows);$i++){
             $app_list[] = implode(" ",$app_rows[$i]);
         }
-    } 
-    if($_SESSION['role'] == 'client') {
+    } else if($_SESSION['role'] == 'client') {
         include('./Views/html_top_clients.php');
         /* Récupération des rdv du client */
         include('./Models/get_appointments.php');
@@ -79,7 +77,7 @@
                     $microchip_tatoo_error = "Le code n'est pas au bon format";
                 }
             }else{
-                $microchip_tatoo ="";
+                $microchip_tatoo =" ";
             }
             if(isset($_POST['comment'])){
                 $comment = htmlspecialchars(trim($_POST['comment']), ENT_QUOTES, 'UTF-8');
@@ -99,11 +97,12 @@
                 } else {
                     $errormsg = "Cet animal est déjà enregistré!";
                     include('./Views/success_failure.php');
+                    include('./Views/animal_form.php');
+
                 }
             } else {
                 include('./Views/success_failure.php');
-                $errormsg ="Une erreur a été détectée dans le formulaire d'inscription";
-                include('./Views/animal_form.php');
+                $errormsg ="Une erreur a été détectée dans le formulaire d'inscription ou des informations sont manquantes";
             }
                 break;
 
@@ -119,6 +118,7 @@
                     if(empty($working_vets)){
                         $errormsg = "Aucun rendez-vous n'est disponible ce jour là";
                         include('./Views/success_failure.php');
+                        include('./Views/day_choice.php');
                     } else {
                         $successmsg = "Veuillez choisir une heure de rendez-vous";
                         include('./Views/success_failure.php');
@@ -155,20 +155,123 @@
                     $details = htmlspecialchars(trim($_POST['details']), ENT_QUOTES, 'UTF-8');
                     include("./Models/appointment_check.php");
                     include('./Views/success_failure.php');
+                    if(isset($errormsg)){
+                        include('./Views/choose_hour_fail.php');
+                    }
                 break;
             /* Les véterinaires peuvent gérer le rendez-vous, la suite se passe avec un formulaire géré en JS/AJAX + 
             du PHP dans les models (insert_annihilate, parce qu'elle est <3) */
+            case(isset($_POST['search_app'])):
+                    include('./Views/seek_apps_form.php');
+                break;
+            case(isset($_POST['apps_select'])):
+                    switch($_POST['apps_select']):
+                        case 'all_day':
+                                $date = $_POST['appointment_dates'];
+                                include('./Models/all_day_apps.php');
+                                $app_rows = $stmt -> fetchAll();
+                                if(empty($app_rows)){
+                                    $errormsg = "Aucun rendez-vous à afficher";
+                                    include('./Views/success_failure.php');
+                                } else {
+                                    include('./Views/apps_vets.php');
+                                }
+                            break;
+                        case 'hour':
+                                if($_POST['hour'] === "" || $_POST['min'] === "" || !isset($_POST['shour'])){
+                                    $errormsg = "Des informations sont manquantes, notamment l'heure recherchée ou la spécification";
+                                    include('./views/success_failure.php');
+                                    include('./Views/seek_apps_form.php');
+
+                                }
+                                $date = $_POST['appointment_dates'];
+                                $time = $_POST['hour']." : ".$_POST['min']." : 00";
+                                if($_POST['shour'] === "<"){
+                                    $query = 
+                                    "SELECT
+                                    appointment.start,
+                                    appointment.app_day,
+                                    patients.pet_name,
+                                    patients.breed,
+                                    patients.ID,
+                                    clients.last_name,
+                                    clients.first_name,
+                                    appointment.type,
+                                    appointment.canceled
+                                    FROM appointment
+                                    JOIN patients
+                                    JOIN clients
+                                    WHERE clients.users_ID = patients.owner_ID
+                                    AND patients.ID = appointment.patients_ID
+                                    AND appointment.vets_ID = (SELECT ID FROM vets WHERE users_ID = :ID)
+                                    AND appointment.canceled = 'n'
+                                    AND appointment.app_day = :date
+                                    AND appointment.start < :time";
+                                } else if($_POST['shour'] === "="){
+                                    $query = 
+                                    "SELECT
+                                    appointment.start,
+                                    appointment.app_day,
+                                    patients.pet_name,
+                                    patients.breed,
+                                    patients.ID,
+                                    clients.last_name,
+                                    clients.first_name,
+                                    appointment.type,
+                                    appointment.canceled
+                                    FROM appointment
+                                    JOIN patients
+                                    JOIN clients
+                                    WHERE clients.users_ID = patients.owner_ID
+                                    AND patients.ID = appointment.patients_ID
+                                    AND appointment.vets_ID = (SELECT ID FROM vets WHERE users_ID = :ID)
+                                    AND appointment.canceled = 'n'
+                                    AND appointment.app_day = :date
+                                    AND appointment.start = :time";
+                                } else if($_POST['shour'] === ">"){
+                                    $query = 
+                                    "SELECT
+                                    appointment.start,
+                                    appointment.app_day,
+                                    patients.pet_name,
+                                    patients.breed,
+                                    patients.ID,
+                                    clients.last_name,
+                                    clients.first_name,
+                                    appointment.type,
+                                    appointment.canceled
+                                    FROM appointment
+                                    JOIN patients
+                                    JOIN clients
+                                    WHERE clients.users_ID = patients.owner_ID
+                                    AND patients.ID = appointment.patients_ID
+                                    AND appointment.vets_ID = (SELECT ID FROM vets WHERE users_ID = :ID)
+                                    AND appointment.canceled = 'n'
+                                    AND appointment.app_day = :date
+                                    AND appointment.start > :time";
+                                }
+                                include('./Models/spec_app.php');
+                                if(empty($app_rows)){
+                                    $errormsg = "Aucun rendez-vous à afficher";
+                                    include('./Views/success_failure.php');
+                                } else {
+                                    include('./Views/apps_vets.php');
+                                }
+                            break;
+                        default:
+                    endswitch;
+                break;
             case(isset($_POST['manage_app'])):
                     include('./Models/select_patients_history.php');
                     $patients_rows = $stmt ->fetchAll();
                     include('./Views/consultation_form.php');
                 break;
             default:
-                if($_SESSION['role'] === 'client'){
-                    include('./Views/apps.php');
-                } else if($_SESSION['role'] === 'vet'){
-                    include('./Views/apps_vets.php');
-                }
+                    if($_SESSION['role'] === 'client'){
+                        include('./Views/apps.php');
+                    } else if($_SESSION['role'] === 'vet'){
+                        include('./Views/apps_vets.php');
+                    }
                 break;
     endswitch;
 

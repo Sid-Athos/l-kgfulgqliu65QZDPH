@@ -1,4 +1,5 @@
 <?php
+    /* CI pas pareil */
     $query = 
     "SELECT
     email, last_name, first_name, vet_init

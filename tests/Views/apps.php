@@ -21,13 +21,17 @@
                                 echo "<tr class='tr-scroll'><td>{$value}</td>";
                             } else if($key == "canceled"){
                                 echo '<td><input type="radio" name="optradio" onclick="cancel_app(this.value)" id="cancel_app" title="Supprimer le rdv de '.$app_rows[$i]["start"].'/'.$app_rows[$i]["app_day"].'"value="'.$app_rows[$i]["start"].'/'.$app_rows[$i]["app_day"].'/'.$app_rows[$i]["pet_name"].'"required/>Annuler</td></tr>';
+                            } else if($key == "app_day"){
+                                $value = explode("-",$value);
+                                $value = "{$value[2]}-{$value[1]}-{$value[0]}";
+                                echo "<td>{$value}</td>";
                             } else{
                                 echo "<td>{$value}</td>";
                             }
                         }
                     }
                 }
-            ?>
+                ?>
             </tbody>
         </table>
     </div>

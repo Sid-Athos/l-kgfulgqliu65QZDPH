@@ -6,15 +6,9 @@
         FROM patients
         WHERE
             pet_name = :pet_name
-        AND ID = ANY
-            (SELECT patients_ID
-                FROM clients_has_patients
-                WHERE clients_ID = :ID)
-        AND microchip_tatoo = :microchip_tatoo
-        AND breed = :breed";
+        AND owner_ID = :ID";
         $query_params = array(':pet_name' => $pet_name,
-                ':ID' => $_SESSION['ID'],
-                        ':microchip_tatoo' => $microchip_tatoo, ':breed' => $breed);
+                ':ID' => $_SESSION['ID']);
         try {
             $stmt = $db->prepare($query);
             $result = $stmt->execute($query_params);

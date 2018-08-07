@@ -33,16 +33,16 @@
                         $cpassword_error = "Les mots de passe ne correspondent pas";
                     }
                     if (!$error) {
-                        // Vérifie combinaison
-                        
-                            // Add row to database
+                        //  Pas vraiment besoin de vérifier si le mail existe déjà, 
+                        // contrainte unique sur le mail user qui me facilite la vie. 
+                        // TU PEUX TOUJOURS ESSAYER UNE INJECTION PAR REFRESH CORINNE, I'm a smartass
                             include('./Models/register_clients.php');
                             if(isset($check) && $check == true){
                                 include('./Controllers/Functions/PHP/backup_clients.php');
-                                $_SESSION['ID'] = $db ->lastInsertId();
+                                $_SESSION['ID'] = $id;
                                 $_SESSION['role'] = "client";
                                 $successmsg = "Vous êtes bien inscrit et connecté, redirection en cours!";
-                                header('refresh:10;url=./index.php?page=Lobby');
+                                header('refresh:3;url=./index.php?page=Lobby');
                             }
                         
                         }

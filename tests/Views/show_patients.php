@@ -1,30 +1,10 @@
-<div class="row">
-<div class="col-xs-6" style="margin-left:15px;color:#decba4;margin-top:80px;height:110;margin-bottom:50px">
-<?php
-echo'
-<caption><center>Vos animaux :</center></caption>
-<table class="table-scroll table-striped"><thead><tr><th>Animal : </th><th>Espèce :</th><th>Couleur du pelage : </th><th> Sexe:</th><th> Date de naissance :</th><th> Puce :</th><th style="width:350px">Historique :</th></tr></thead>
-<tbody>';
-        for($i = 0; $i < count ($patients_rows); $i++){
-            unset($patients_rows[$i]['ID']);
-            foreach($patients_rows[$i] as $key => $value){
-                if($key == "pet_name"){
-                    echo "<tr><td>{$value}</td>";
-                } else if($key =="history"){
-                    echo "<td>{$value}</td></tr>";
-                } else{
-                    echo "<td>{$value}</td>";
-                }
-            }
-        }
-echo '</tbody></table>';
-?>
-</div>
 <div class ="col-xs-6 msg" style="position:fixed;right:1px;top:55px">
-<div class="btn-group-vertical" style="top:90">
-            <form role="form" action="" method="POST" name="history" style="width:190px">
+<div class="btn-group-vertical" style="top:6px">
+            <form role="form" action="" method="POST" name="history" style="z-index:3;width:190px">
                 <button class="btn btn-primary" name="add_history" title="Ajouter ou modifier un historique"value="hist">Editer historique</button>
             </form>
         </div>
 </div>
 </div>
+<input type="hidden" id="owner" name="owner" value="<?php echo $_SESSION['ID'];?>"/>
+</body>

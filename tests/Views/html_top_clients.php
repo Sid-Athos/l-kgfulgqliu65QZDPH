@@ -18,24 +18,25 @@
     <script type="text/javascript" src="./Controllers/Functions/JS/javastreets.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet"> 
     <link href="./Views/CSS/stylesheet.css" type="text/css" rel="stylesheet">
-    <script type="text/javascript" src="./Controllers/Functions/AJAX/cancel_apps_clients.js"></script>
     <script type="text/javascript" src="./Controllers/Functions/AJAX/insert_message.js"></script>
     <script type="text/javascript" src="./Controllers/Functions/AJAX/update_history.js"></script>
     <script type="text/javascript" src="./Controllers/Functions/AJAX/get_history_clients.js"></script>
-
+    <script type="text/javascript" src="./Controllers/Functions/AJAX/order_by.js"></script>
+    <script type="text/javascript" src="./Controllers/Functions/AJAX/search.js"></script>
+    <script type="text/javascript" src="./Controllers/Functions/AJAX/cancel_apps_clients.js"></script>
 </head>
 
 
-<body onload="startTime()">
+<body class="bar" onload="startTime()">
 
     
-    <div class="row navbar" >
-        <div class="col-xs-2">
+    <div class="row navbar">
+        <div class="col-xs-2" >
             <a href="./index.php?page=Lobby" title="Retour à l'accueil">
                 <img src="./Views/icons/icons8-cat-profile-96.svg" alt="Kitten" style="margin-left:-25px; margin-top:-2px;margin-bottom:2px" width="40px" height ="40px" class ="kitten_icon" >
             </a>
         
-            <span  style="float:right;margin-top:15px;color:#decba4" >
+            <span style="float:right;position:absolute;top:20px;left:40px;color:#decba4" >
                     <?php 
                         echo $actual_date; 
                     ?>
@@ -44,34 +45,53 @@
                     </span>
             </span>
         </div>
-        
-        <div class="col-xs-6" style="color:#FFFFFF" id="hide">
+        <div class="col-xs-2" style="color:#FFFde4;text-align:center;margin-right:2px">
                     <?php 
                     if(isset($_SESSION['greeting_msg'])){
                         echo $_SESSION['greeting_msg'];
                     } 
                     ?>
-            <a href="./index.php?page=Appointments" title="Rendez-vous" style="margin-left:6px">
+        </div>
+        <div class="col-xs-4" style="color:#FFFFFF;position:relative" >
+        <div class="container" style="position:absolute;right:160px;top:-29px;width:60px">
+            <label style="left:10px;font-size:12px;color:#decba4;font-weight:bold;">RdV</label>
+            <a href="./index.php?page=Appointments" title="Rendez-vous" style="margin-left:0px">
                 <img src="./Views/icons/rdv.png" alt="Kitten" width="25px" height ="25px">
             </a>
-            <a href="./index.php?page=Patients" title="Mes animaux">
+        </div>
+        <div class="container" style="position:absolute;right:120px;top:-29px;width:60px;height:80px">
+            <label style="left:10px;font-size:12px;font-weight:bold;color:#decba4">Animaux</label>
+            <a href="./index.php?page=Patients" title="Mes animaux" style="position:absolute;padding-bottom:30px;left:30px">
                 <img src="./Views/icons/animals.png" alt="Kitten" width="25px" height ="25px">
             </a>
         </div>
+        </div>
 
-        <div class="col-xs-6">
-            <form action="./index.php?page=Search" class="search_form" id="target" name="search_form" method="POST" style="margin-top:0px;margin-left:0px;margin-right:5px;float:left">
-                        <input type="search" autofocus id="search_in"  class ="search" optional result="5" size="40"name="search"title="Appuyez sur Entrée pour lancer la requête" placeholder="Rechercher un animal..."/>
-            </form>            
-            <a href="./index.php?page=Messages" title="Messagerie">
-                <img src="./Views/icons/address-book-solid.svg" alt="Kitten" style="margin-top:6px" width="25px" height ="25px">
+        <div class="col-xs-6" id="hide">
+        <div class="container" style="position:absolute;right:340px;top:0px;width:60px;text-align:center">
+            <label style="left:10px;font-size:12px;color:#decba4;font-weight:bold;position:absolute;;top:6px;left:50px;text-align:center">Recherche</label> 
+            <form action="./index.php?page=Search" id="search_form" method='post' onsubmit="seek_pet()">            
+                <input type="search" autofocus id="check"   style="float:left;top:19px;position:absolute;left:0" class ="search" optional result="5" size="40"name="Search"title="Appuyez sur Entrée pour lancer la requête" placeholder="Rechercher un animal..."/>
+                </form>
+            </div>
+            <div class="container" style="position:absolute;right:160px;top:0px;width:60px">
+            <label style="font-size:12px;color:#decba4;font-weight:bold;left:-10px;position:absolute;top:6px">Messagerie</label>        
+            <a href="./index.php?page=Messages" title="Messagerie" style="top:30px">
+                <img src="./Views/icons/address-book-solid.svg" alt="Kitten" style="top:20px;position:absolute" width="25px" height ="25px">
             </a>
-            <a href="./index.php?page=Settings" title="Mon compte">
-                <img src="./Views/icons/cogs-solid.svg" alt="Kitten" style="margin-top:6px"  width="25px" height ="25px">
+            </div>
+            <div class="container" style="position:absolute;right:100px;top:0px;width:60px">
+            <label style="font-size:12px;color:#decba4;position:absolute;font-weight:bold;top:6px">Paramètres</label> 
+            <a href="./index.php?page=Settings" title="Mon compte" style="top:20px">
+                <img src="./Views/icons/cogs-solid.svg" alt="Kitten" style="top:20px;left:35px;position:absolute"  width="25px" height ="25px">
             </a>
+            </div>
+            <div class="container" style="position:absolute;right:20px;top:0px;width:60px">
+            <label style="left:10px;font-size:12px;color:#decba4;position:absolute;font-weight:bold;top:6px">Logout</label> 
             <a href="./index.php?page=Logout" title="Déconnexion">
-                <img src="./Views/icons/sign-out-alt-solid.svg" alt="Kitten" style="margin-top:6px"  width="25px" height ="25px">
+                <img src="./Views/icons/sign-out-alt-solid.svg" alt="Kitten" style="top:20px;left:20px;position:absolute"  width="25px" height ="25px">
             </a>
+            </div>
         </div>
 
         

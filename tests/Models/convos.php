@@ -1,4 +1,5 @@
 <?php
+    /* Show me bae */
     $query = 
     "SELECT sent_to, sent_by, dates, content
     FROM messages

@@ -34,7 +34,7 @@
                 break;
             /* Formulaire pour écrire un message, les contacts sont différents selon le role
             les vets peuvent contacter tout le monde sauf eux mêmes (UNION des familles)
-            les clients peuvent ne contacter que les vets (bientôt que le vet réfèrent)
+            les clients ne peuvent contacter que les vets (bientôt que le vet réfèrent)
             la suite c'est ajax qui le gère */
 
             case($_POST['msg'] == 'write'):

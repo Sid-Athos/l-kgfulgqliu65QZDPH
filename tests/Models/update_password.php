@@ -1,12 +1,9 @@
 <?php
-    /* Settings compte (pw) */
     $query = 
     "SELECT password FROM users WHERE ID = :ID";
 
     $query_params = array(":ID" => $_SESSION['ID']);
 
-    $query_params = array(":pw" => $password,
-                         ":ID" => $_SESSION['ID']);
     try {
         $stmt = $db->prepare($query);
         $result = $stmt->execute($query_params);

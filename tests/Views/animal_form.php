@@ -40,7 +40,7 @@ echo '<div class="row">
                                         <label>Choisissez sa date de naisssance</label>
                                         <div class="form-group">
                                             <div class="input-group date"  >
-                                            <input type="date" class="form-control" placeholder="JJ/MM/AAAA" id="datepicker" onclick="datepicker()" name="date_of_birth"/>
+                                            <input type="date" class="form-control" placeholder="JJ/MM/AAAA" id="datepicker" onclick="datepicker()" required name="date_of_birth"/>
                                                 <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                                             </div>
                                         </div>
@@ -59,7 +59,6 @@ echo '<div class="row">
                                         <div class="col-md-4 col-md-offset-4">
                                             <input type="submit" class="btn btn-block btn-primary" name="register_animal" value="Inscrire" />';
                                             if ($flag_name_taken) { alert($name_taken); }
-                                            if (isset($errormsg)) { alert($errormsg); }
                                         echo '
                                         </div>
                                     </div>

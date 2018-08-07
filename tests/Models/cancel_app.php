@@ -2,7 +2,7 @@
     $query = "UPDATE
     appointment
     SET
-    canceled = y
+    canceled = 'y'
     WHERE vets_ID = 
     (SELECT
     ID
