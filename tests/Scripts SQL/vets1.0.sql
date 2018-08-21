@@ -222,11 +222,11 @@ INSERT INTO `messages` (`ID`, `sent_to`, `sent_by`, `content`, `dates`) VALUES
 (77, 'vet2@gmail.com', 'vet1@gmail.com', 'Salut confrère', '2018-06-21 19:13:33'),
 (78, 'vet2@gmail.com', 'vet1@gmail.com', 'Me revoila pour un nouveau test', '2018-06-21 19:15:05'),
 (79, 'vet2@gmail.com', 'vet1@gmail.com', 'sasasa', '2018-06-21 19:15:14'),
-(80, 'p.mercier.h@gmail.com', 'vet1@gmail.com', 'Serait-il possible d\'annuler le rdv?', '2018-07-29 06:31:01'),
+(80, 'p.mercier.h@gmail.com', 'vet1@gmail.com', 'Serait-il possible dannuler le rdv?', '2018-07-29 06:31:01'),
 (81, 'shakazoulou@gmail.com', 'vet1@gmail.com', 'dsqdqdsqdqs', '2018-07-29 06:32:46'),
 (82, 'vet2@gmail.com', 'vet1@gmail.com', 'oéoéoé', '2018-07-29 06:33:10'),
 (83, 'p.mercier.h@gmail.com', 'vet1@gmail.com', 'dsdsqdsqdsqdsq ds dsq', '2018-07-29 06:40:28'),
-(84, 'vet2@gmail.com', 'vet1@gmail.com', 'J\'entends le loup, le renard et la belette', '2018-07-29 06:48:41'),
+(84, 'vet2@gmail.com', 'vet1@gmail.com', 'Jentends le loup, le renard et la belette', '2018-07-29 06:48:41'),
 (85, 'shakazoulou@gmail.com', 'vet1@gmail.com', 'dsqdsdqsd dsds qdqsd sqfsfsd ', '2018-07-29 06:52:03'),
 (86, 'vet2@gmail.com', 'vet1@gmail.com', 'dsqdsd dsd f dsf s dsq d', '2018-07-29 06:53:13'),
 (87, 'vet2@gmail.com', 'vet1@gmail.com', 'dsqdsq dsqds dsqd ', '2018-07-29 06:54:06'),
@@ -269,7 +269,7 @@ INSERT INTO `messages` (`ID`, `sent_to`, `sent_by`, `content`, `dates`) VALUES
 (124, 'vet1@gmail.com', 'shakazoulou@gmail.com', 'JE TE FLOOD', '2018-08-01 01:36:58'),
 (125, 'vet2@gmail.com', 'vet1@gmail.com', 'dsdsq dsqds', '2018-08-01 05:12:40'),
 (126, 'vet2@gmail.com', 'vet1@gmail.com', 'lili', '2018-08-01 06:43:42'),
-(127, 'vet1@gmail.com', 'zouzoutte@gmail.com', 'Suce', '2018-08-01 08:46:16'),
+(127, 'vet1@gmail.com', 'zouzoutte@gmail.com', '', '2018-08-01 08:46:16'),
 (128, 'vet1@gmail.com', 'super_zoulette@gmail.com', 'dqsdsds dsqd dqsd', '2018-08-01 10:27:01'),
 (129, 'vet1@gmail.com', 'rick_and_morty@gmail.com', 'Coucou toi', '2018-08-02 20:09:42'),
 (130, 'vet1@gmail.com', 'rick_and_morty@gmail.com', 'Re mon bichon', '2018-08-02 20:11:16'),
@@ -436,43 +436,3 @@ INSERT INTO `vets` (`ID`, `last_name`, `first_name`, `vet_init`, `email`, `phone
 (7, 'Hochet', 'Rick', 'RH', 'vet2@gmail.com', '0600010203', 73),
 (8, 'Honime', 'Anne', 'HA', 'super_zoulette@gmail.com', '0670000000', 80),
 (9, 'XXX', 'Tentacion', 'XT', 'st@gmail.com', '0612131313', 101);
-
---
--- Contraintes pour les tables déchargées
---
-
---
--- Contraintes pour la table `clients`
---
-ALTER TABLE `clients`
-  ADD CONSTRAINT `fk_clients_users1` FOREIGN KEY (`users_ID`) REFERENCES `users` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Contraintes pour la table `consultations`
---
-ALTER TABLE `consultations`
-  ADD CONSTRAINT `fk_consultations_patients1` FOREIGN KEY (`patients_ID`) REFERENCES `patients` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Contraintes pour la table `patients_has_appointment`
---
-ALTER TABLE `patients_has_appointment`
-  ADD CONSTRAINT `fk_patients_has_appointment_appointment1` FOREIGN KEY (`appointment_ID`) REFERENCES `appointment` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_patients_has_appointment_patients1` FOREIGN KEY (`patients_ID`) REFERENCES `patients` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Contraintes pour la table `schedule`
---
-ALTER TABLE `schedule`
-  ADD CONSTRAINT `schedule_ibfk_1` FOREIGN KEY (`vets_ID`) REFERENCES `vets` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Contraintes pour la table `vets`
---
-ALTER TABLE `vets`
-  ADD CONSTRAINT `fk_vet_users1` FOREIGN KEY (`users_ID`) REFERENCES `users` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

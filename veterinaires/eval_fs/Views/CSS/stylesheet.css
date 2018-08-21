@@ -124,13 +124,13 @@ textarea{
     min-width: 250px;
     min-height: 150px;
 }
-button {
+.button {
     position:relative;
     top: 45px;
     font-family:'Titillium Web', sans-serif;
     width :100px;
     height:25px;
-    margin-top:100px;
+    margin-top:10px;
     border-radius: 4px;
     transition: background 250ms ease-in-out, 
                 transform 150ms ease;

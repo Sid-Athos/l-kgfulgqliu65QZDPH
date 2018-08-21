@@ -1,5 +1,5 @@
 <?php
-    $query = "SELECT pet_name
+    $query = "SELECT pet_name, breed, colour
             FROM patients
             WHERE owner_ID = :ID";
     $query_params = array(':ID' => $_SESSION['ID']);

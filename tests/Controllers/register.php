@@ -49,7 +49,7 @@
                     
                 break;
             default:
+                include('./Views/html_top_login.php');
+                include('./Views/register.php');
         endswitch;
-    include('./Views/html_top_login.php');
-    include('./Views/register.php');
 ?>

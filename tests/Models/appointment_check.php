@@ -7,6 +7,7 @@
     AND to_time 
     AND working_day 
     LIKE DAYNAME(:date)
+    ORDER BY RAND()
     LIMIT 1";
 
     $query_params = array(':h' => $start_time,

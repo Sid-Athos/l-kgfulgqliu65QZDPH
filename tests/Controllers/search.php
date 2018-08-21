@@ -1,4 +1,6 @@
 <?php
+    /* J'initialise la session, la connexion à la db, les fonctions 
+    dont j'aurai besoin dans TOUS les cas (récupération dare en français depuis Mysql notamment) */
     session_start();
     include('./Controllers/session_check.php');
     include("./Models/db_connect.php");
@@ -7,13 +9,8 @@
     include('./Models/actual_date.php');
     $actual_date = get_date($db);
 
-    if($_SESSION['role'] === 'vet'){
-        include('./Views/html_top_vets.php');
-    } else if ($_SESSION['role'] == 'client') {
-        include('./Views/html_top_clients.php');
-        
-    }
     switch(isset($_POST)):
+        /* Affichage des résultats de la recherche */
         case(isset($_POST['Search'])):
                 if($_SESSION['role'] === 'vet'){
                     $search = htmlspecialchars(trim($_POST['Search']));
@@ -25,6 +22,7 @@
                     include('./Views/order_by_clients.php');
                 }
             break;
+            /* Affichage des informations spécifiques d'un petient et de son propriétaire */
         case(isset($_POST['select_patient_infos'])):
                 if($_SESSION['role'] === 'vet'){
                     $pet = intval(htmlspecialchars(trim($_POST['select_patient_infos'])));
@@ -38,4 +36,10 @@
             break;
         default:
     endswitch;
-?>
+                    if($_SESSION['role'] === 'vet'){
+                        include('./Views/html_top_vets.php');
+                    } else if ($_SESSION['role'] == 'client') {
+                        include('./Views/html_top_clients.php');
+                        
+                    }
+    ?>

@@ -1,6 +1,6 @@
 <?php
     $query = "INSERT INTO albums (
-            id_album,
+            album_ID,
             album_name,
             album_cover,
             release_date,

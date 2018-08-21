@@ -4,8 +4,8 @@
     FROM musics 
     JOIN albums 
     JOIN artists 
-    ON artists.id_artist = albums.artist_id 
-    AND musics.artist = artists.id_artist
+    ON artists.artist_ID = albums.artist_id 
+    AND musics.artist = artists.artist_ID
     ORDER BY RAND()";
         $query_params = null;
         try {

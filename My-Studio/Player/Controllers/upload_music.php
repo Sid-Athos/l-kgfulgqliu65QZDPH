@@ -3,10 +3,11 @@
     session_start();
     include('../Models/db_connect.php');
     require_once('../Controllers/Functions/PHP/date_to_mysql.php');
+    var_dump($_POST);
 
     switch(isset($_POST)):
         case(!empty($_POST['album'])):
-
+        
         $album_name = htmlspecialchars(trim($_POST['album']), ENT_QUOTES, 'UTF-8');
         $artist = htmlspecialchars(trim($_POST['artist']), ENT_QUOTES, 'UTF-8');
         $album_date = $_POST['release_date'];
@@ -15,12 +16,12 @@
         $artist = "Joey Bad4$$"; 
         
         /** Création du répertoire de l'album */
-        if(!is_dir('../../../data/mystudio/musics/'.$artist)){
-            mkdir('../../../data/mystudio/musics/'.$artist.'');
+        if(!is_dir('../../../../../bin/mysql/mysql5.7.21/data/mystudio/musics/'.$artist)){
+            mkdir('../../../../../bin/mysql/mysql5.7.21/data/mystudio/musics/'.$artist.'');
         }
         
-        if(!is_dir('../../../data/mystudio/musics/'.$artist.'/'.$album_name.'')){
-            mkdir('../../../data/mystudio/musics/'.$artist.'/'.$album_name.'');
+        if(!is_dir('../../../../../bin/mysql/mysql5.7.21/data/mystudio/musics/'.$artist.'/'.$album_name.'')){
+            mkdir('../../../../../bin/mysql/mysql5.7.21/data/mystudio/musics/'.$artist.'/'.$album_name.'');
         } else {
             include('../Views/choose_amount.php');
             header("refresh:15;url=../Controllers/upload_music.php");
@@ -36,7 +37,7 @@
         $successmsg = 'Le dossier a bien été créé';
         
         /** Path pour l'upload */
-        $dir='../../../data/mystudio/musics/'.$artist.'/'.$album_name.'/';
+        $dir='../../../../../bin/mysql/mysql5.7.21/data/mystudio/musics/'.$artist.'/'.$album_name.'/';
         $cover_path=$dir.basename($_FILES['coverFile']['name']);
         
         move_uploaded_file($_FILES['coverFile']['tmp_name'],$cover_path);

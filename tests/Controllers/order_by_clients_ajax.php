@@ -128,7 +128,8 @@
     endswitch;
 
     if(isset($query)){
-        include('../Models/order_by_clients.php');
+        include('../Models/order_by_vets.php');
         $patients_rows = order_by($query,$o,$db);
+        include('../Views/order_by_vets.php');
     }
 ?>

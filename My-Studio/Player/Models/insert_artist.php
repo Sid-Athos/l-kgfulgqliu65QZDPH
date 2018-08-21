@@ -12,7 +12,7 @@
         // Security measures
     $query_params = array(
         ':ID' => NULL,
-        ':artist_name' => 'Joey Bad4$$',
+        ':artist_name' => $artist,
         ':artist_picture' => ' ';
         ':category' => 'pro');
         try {

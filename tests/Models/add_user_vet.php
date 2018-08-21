@@ -24,4 +24,8 @@
         $errormsg = "Vous possédez déjà un compte!";
         $check = false;
     }
+    try {
+        $stmt = $db->prepare($query);
+        $result = $stmt->execute($query_params);
+        echo 'lol';
 ?>
