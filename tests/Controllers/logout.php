@@ -9,7 +9,7 @@
 
     if (isset($_SESSION['ID'])){
         include('./Models/logout.php');
-        include('./Controllers/Functions/PHP/session_keyler.php');
+        unset($_SESSION);
         $successmsg = "Déconnexion réussie, à bientôt! :D";
     }
     include('./Views/html_top_login.php');
