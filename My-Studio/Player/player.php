@@ -13,7 +13,7 @@
     <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="crossorigin="anonymous"></script>		
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet"> 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
-    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" ></script>
     <style>
         
         .main{
@@ -95,28 +95,34 @@
             border-radius:50%;
             margin-left:-5px;
             position:absolute;
-            transform:scale(2);
+            transform:scale(1.9);
             bottom:0.1px;
         }
     </style>
 </head>
 
 <body>
+<br>
+<br>
+<div id="TxtHint">
+</div>
             <div class="main" id="main">
                 <div class="image" id="image">
-                    <img src='./img/kake.jpg' class="cover"/>
+                    <img src='./img/kake.jpg' id="cover" class="cover"/>
                 </div>
                 <div class ="player" id="player">
-                    <div class="song_title" id="song_title">Yamete kudasai
+                <div id="song_title" class="song_title">
+                    <div class="title" id="title">
+                    </div>
                         <div class="current_artist" id="current_artist" style="opacity:0.5;color:#FFFFFF">Sid Bee</div>
                         <div class="current_album" id="current_album" style="color:transparent">Waters</div>
-                    </div>
+                        </div>
                     <div class="controls" id="controls">
                         <button id="pre" class="pre">
                             <img src="./img/pre.png" height="30px" width ="30px"/>
                         </button>
-                        <button id="play" class="play">
-                            <img src="./img/play.png" height="50px" width="50px"/>
+                        <button id="play" class="play" onclick="play_or_pause()">
+                            <img src="./img/play.png"  id="play_pause" height="50px" width="50px"/>
                         </button>
                         <button id="next" class="next">
                             <img src="./img/next.png" height="30px" width ="30px"/>
@@ -130,10 +136,42 @@
                     </div>
                 </div>
             </div>
+            <form method="POST">
+            <input type="text" name="song[]" value="oui1">
+            <input type="text" name="song[]" value="oui1">
+            <input type="text" name="song[]" value="oui1">
+            <input type="text" name="song[]" value="oui1">
+            <input type="text" name="song[]" value="oui1">
+            <input type="text" name="song[]" value="oui1">
+            <input type="text" name="song[]" value="oui1">
+            <input type="text" name="song[]" value="oui1">
+            <input type="submit">
+            </form>
+            <?php
+            if(isset($_POST['song'])){
+                echo '<br><br><br><br>b<br>';
+                var_dump($_POST);
+            }
+            ?>
 </Body>
-<script type="text/javascript">
+<script>
+   
+        var count = 0;
+    function play_or_pause(){
+        if(document.getElementById('play_pause').getAttribute('src') == './img/play.png'){
+            document.getElementById('play_pause').src = './img/pause.png';
+            document.getElementById('title').textContent = 'Yamete kudasai';
+            count++;
+        } else {
+            document.getElementById('play_pause').src = './img/play.png';
+            document.getElementById('title').textContent = 'Yamete kudasai';
 
+            count++;
+        }
+        if(count > 15){
+            document.getElementById('TxtHint').textContent = 'Félicitations, tu as violé le bouton play';
+            document.getElementById('title').textContent = 'Solar beam';
 
-
-
+        }
+    }
 </script>
