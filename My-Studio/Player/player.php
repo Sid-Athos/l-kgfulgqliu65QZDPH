@@ -9,20 +9,23 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="./Controllers/Functions/JS/startTime.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="crossorigin="anonymous"></script>		
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet"> 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" ></script>
+    <script type="text/javascript" src="./Controllers/Functions/JS/play_pause.js"></script>
+    <script type="text/CSS" src="./Views/CSS/stylesheet.css"></script>
     <style>
         
         .main{
             width:300px;
             border-radius:15px;
-            height:328px;
+            border-bottom-left-radius:0px;
+            border-bottom-right-radius:0px;
+            height:335px;
             position:fixed;
             bottom:-22%;
-            left:9.5%;
+            left:9%;
             transform: translate(-50%,-50%);
             background-color: #C6426E;
         }
@@ -33,6 +36,7 @@
             border-top-right-radius:15px;
             opacity:0.96;
             top:0px;
+            z-index:1;
         }
         .player{
             padding: 15px;
@@ -56,6 +60,7 @@
             position:relative;
             left:20%;
             padding-top:60px;
+            z-index:6;
         }
         .play{
             border:0;
@@ -79,7 +84,7 @@
             background-color: gray;
             display:flex;
             position:absolute;
-            bottom:7px;
+            bottom:15px;
             left:20%;
             cursor: pointer;
         }
@@ -98,6 +103,42 @@
             transform:scale(1.9);
             bottom:0.1px;
         }
+        .overlay {
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  right: 0;
+  background-image: url('./img/kake.jpg');
+  background-repeat: no-repeat;
+  overflow: hidden;
+  width: 100%;
+  height:0;
+  transition: .5s ease;
+}
+
+        .image:hover .overlay {
+  height: 100%;
+}
+.image:hover .cover{
+    height:360px;
+  z-index:5;
+  background:transparent;
+    opacity:0.8;
+}
+.image:hover.main{
+  background-color:transparent;
+}
+.text {
+  color: white;
+  font-size: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
     </style>
 </head>
 
