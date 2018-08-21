@@ -104,41 +104,44 @@
             bottom:0.1px;
         }
         .overlay {
-  position: absolute;
-  bottom: 100%;
-  left: 0;
-  right: 0;
-  background-image: url('./img/kake.jpg');
-  background-repeat: no-repeat;
-  overflow: hidden;
-  width: 100%;
-  height:0;
-  transition: .5s ease;
-}
+            position: absolute;
+            bottom: 100%;
+            left: 0;
+            right: 0;
+            background-image: url('./img/kake.jpg');
+            background-repeat: no-repeat;
+            overflow: hidden;
+            width: 100%;
+            height:0;
+            transition: .5s ease;
+        }
 
         .image:hover .overlay {
-  height: 100%;
-}
-.image:hover .cover{
-    height:360px;
-  z-index:5;
-  background:transparent;
-    opacity:0.8;
-}
-.image:hover.main{
-  background-color:transparent;
-}
-.text {
-  color: white;
-  font-size: 20px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-  text-align: center;
-}
+            height: 100%;
+        }
+        .image:hover .cover{
+            height:360px;
+            z-index:5;
+            background:transparent;
+            opacity:0.8;
+        }
+        .image:hover.main{
+            background-color:transparent;
+        }
+        .text {
+            color: white;
+            font-size: 20px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+        ul {
+            list-style: none;
+        }
     </style>
 </head>
 
@@ -152,17 +155,19 @@
                     <img src='./img/kake.jpg' id="cover" class="cover"/>
                 </div>
                 <div class ="player" id="player">
-                <div id="song_title" class="song_title">
-                    <div class="title" id="title">
-                    </div>
-                        <div class="current_artist" id="current_artist" style="opacity:0.5;color:#FFFFFF">Sid Bee</div>
-                        <div class="current_album" id="current_album" style="color:transparent">Waters</div>
+                    <div id="song_title" class="song_title">
+                        <div class="title" id="title">
                         </div>
+                        <div class="current_artist" id="artist" style="opacity:0.5;color:#FFFFFF">Sid Bee
+                        </div>
+                        <div class="current_album" id="current_album" style="color:transparent">Waters
+                        </div>
+                    </div>
                     <div class="controls" id="controls">
                         <button id="pre" class="pre">
                             <img src="./img/pre.png" height="30px" width ="30px"/>
                         </button>
-                        <button id="play" class="play" onclick="play_or_pause()">
+                        <button id="play" class="play" onclick="play_or_pause(this.value)" value="0">
                             <img src="./img/play.png"  id="play_pause" height="50px" width="50px"/>
                         </button>
                         <button id="next" class="next">
@@ -178,16 +183,23 @@
                 </div>
             </div>
             <form method="POST">
-            <input type="text" name="song[]" value="oui1">
-            <input type="text" name="song[]" value="oui1">
-            <input type="text" name="song[]" value="oui1">
-            <input type="text" name="song[]" value="oui1">
-            <input type="text" name="song[]" value="oui1">
-            <input type="text" name="song[]" value="oui1">
-            <input type="text" name="song[]" value="oui1">
-            <input type="text" name="song[]" value="oui1">
-            <input type="submit">
+                <input type="text" name="song[]" value="oui1">
+                <input type="text" name="song[]" value="oui1">
+                <input type="text" name="song[]" value="oui1">
+                <input type="text" name="song[]" value="oui1">
+                <input type="text" name="song[]" value="oui1">
+                <input type="text" name="song[]" value="oui1">
+                <input type="text" name="song[]" value="oui1">
+                <input type="text" name="song[]" value="oui1">
+                <input type="submit">
             </form>
+            <ul id="playlist">
+
+            <li><button onclick="play_or_pause(this.value)" value="0" style="background:transparent;border:none"><img src="./img/play.png" height="20px" width="20px" id="play_pause0" style="margin-bottom:3px;margin-right:4px"><span id="title0">Summer Knights</span> - <span id="artist0">Joey Bad4$$</span></button><audio src='./musics/Summer_Knights.mp3' preload ="none" id="audio0" preload="none"></audio></li>
+            </ul>
+        
+
+
             <?php
             if(isset($_POST['song'])){
                 echo '<br><br><br><br>b<br>';
@@ -198,15 +210,31 @@
 <script>
    
         var count = 0;
-    function play_or_pause(){
+    function play_or_pause(str){
         if(document.getElementById('play_pause').getAttribute('src') == './img/play.png'){
             document.getElementById('play_pause').src = './img/pause.png';
-            document.getElementById('title').textContent = 'Yamete kudasai';
+            document.getElementById('play_pause' + str).src = './img/pause.png';
+            document.getElementById('title').textContent = document.getElementById('title'+ str).textContent;
+            document.getElementById('artist').textContent = document.getElementById('artist'+ str).textContent;
+            var current_music = "audio" + str;
+            audio = $('#'+ current_music);
+            playlist = $('#playlist');
+            tracks = playlist.find('li a');
+            len = tracks.length - 1;
+            audio[0].volume = 0.5;
+            audio[0].play();
             count++;
         } else {
             document.getElementById('play_pause').src = './img/play.png';
-            document.getElementById('title').textContent = 'Yamete kudasai';
-
+            document.getElementById('title').textContent = document.getElementById('title'+ str).textContent;
+            document.getElementById('artist').textContent = document.getElementById('artist'+ str).textContent;
+            var current_music = "audio" + str;
+            audio = $('#'+ current_music);
+            playlist = $('#playlist');
+            tracks = playlist.find('li a');
+            len = tracks.length - 1;
+            audio[0].volume = 0.5;
+            audio[0].pause();
             count++;
         }
         if(count > 15){
@@ -215,4 +243,46 @@
 
         }
     }
+</script>
+<script>
+    $(document).ready(function () {
+var audio;
+var playlist;
+var tracks;
+var current;
+
+init();
+function init() {
+    current = 0;
+    audio = $('#audio1');
+    playlist = $('#playlist');
+    tracks = playlist.find('li a');
+    len = tracks.length - 1;
+    audio[0].volume = 0.5;
+    playlist.find('a').click(function (e) {
+        e.preventDefault();
+        link = $(this);
+        current = link.parent().index();
+        run(link, audio[0]);
+    });
+    audio[0].addEventListener('ended', function (e) {
+        current++;
+        if (current == len+1) { 
+            current = 0;
+            link = playlist.find('a')[0];
+        } else {
+            link = playlist.find('a')[current];
+        }
+        run($(link), audio[0]);
+    });
+}
+function run(link, player) {
+    player.src = link.attr('href');
+    par = link.parent();
+    par.addClass('active').siblings().removeClass('active');
+    audio[0].load();
+    audio[0].play();
+    }
+})
+
 </script>
