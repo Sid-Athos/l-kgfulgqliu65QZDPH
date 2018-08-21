@@ -19,12 +19,12 @@
         .main{
             width:300px;
             border-radius:15px;
-            height:320px;
+            height:328px;
             position:fixed;
             bottom:-22%;
             left:9.5%;
             transform: translate(-50%,-50%);
-            background-color: #decba4;
+            background-color: #C6426E;
         }
         .cover{
             height:180px;
@@ -48,7 +48,7 @@
             padding-top:8px;
             left:50%;
             transform: translate(-50%,-50%);
-            color :#00223E;
+            color :#FFFFFF;
         }
         .controls{
             height:50px;
@@ -79,7 +79,7 @@
             background-color: gray;
             display:flex;
             position:absolute;
-            bottom:5px;
+            bottom:7px;
             left:20%;
             cursor: pointer;
         }
@@ -96,76 +96,19 @@
             margin-left:-5px;
             position:absolute;
             transform:scale(2);
-            bottom:1px;
+            bottom:0.1px;
         }
     </style>
 </head>
 
 <body>
-    <br><br>
-    
-    <br><br>
-    
-    <br><br>
-    <br><br>
-    <br><br>
-    <br><br>
-    <br><br>
-    <br><br>
-    <br><br>
-    <br><br>
-    <br><br>
-    <br><br>
-    <br><br>
-    <br><br>
-    <br><br>
-    <br><br>
-    <br><br>
-    <br><br>
-    <br><br>
-    <br><br>
-    <br><br>
-    <br><br>
-    <br><br>
-    <br><br>
-    <br><br>
-    <br><br>
-    <br><br>
-    <br><br>
-    <br><br>
-    <br><br>
-    <br><br>
-    <br><br>
-    <br><br>
-    <br><br>
-    <br><br>
-    <br><br>
-    <br><br>
-    <br><br>
-    <br><br>
-    <br><br>
-    <br><br>
-    <br><br>
-    <br><br>
-    <br><br>
-    <br><br>
-    <br><br>
-    <br><br>
-        fsdsq sqdq s
-        padding-bottom:4px;
-        padding-bottom:4px;
-        padding-bottom:4px;
-        padding-bottom:4px;
-        padding-bottom:4px;
-        padding-bottom:4px;
-        padding-bottom:4px;
             <div class="main" id="main">
                 <div class="image" id="image">
                     <img src='./img/kake.jpg' class="cover"/>
                 </div>
                 <div class ="player" id="player">
                     <div class="song_title" id="song_title">Yamete kudasai
-                        <div class="current_artist" id="current_artist" style="opacity:0.5">Sid Bee</div>
+                        <div class="current_artist" id="current_artist" style="opacity:0.5;color:#FFFFFF">Sid Bee</div>
                         <div class="current_album" id="current_album" style="color:transparent">Waters</div>
                     </div>
                     <div class="controls" id="controls">
@@ -187,11 +130,6 @@
                     </div>
                 </div>
             </div>
-            padding-bottom:4px;
-            padding-bottom:4px;
-            padding-bottom:4px;
-            padding-bottom:4px;
-            padding-bottom:4px;
 </Body>
 <script type="text/javascript">
 
