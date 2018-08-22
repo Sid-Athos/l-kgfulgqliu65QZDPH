@@ -141,6 +141,10 @@
         }
         ul {
             list-style: none;
+            position:relative;
+            overflow-y:scroll;
+            max-height:740px;
+            z-index:3;
         }
     </style>
 </head>
@@ -164,7 +168,7 @@
                         </div>
                     </div>
                     <div class="controls" id="controls">
-                        <button id="pre" class="pre">
+                        <button id="pre" class="pre" onclick="previous_song()">
                             <img src="./img/pre.png" height="30px" width ="30px"/>
                         </button>
                         <button id="play" class="play" onclick="play_or_pause(this.value)" value="0">
@@ -182,7 +186,7 @@
                     </div>
                 </div>
             </div>
-            <form method="POST">
+            <form method="POST" style="display:none">
                 <input type="text" name="song[]" value="oui1">
                 <input type="text" name="song[]" value="oui1">
                 <input type="text" name="song[]" value="oui1">
@@ -193,10 +197,211 @@
                 <input type="text" name="song[]" value="oui1">
                 <input type="submit">
             </form>
-            <ul id="playlist">
-
-            <li><button onclick="play_or_pause(this.value)" value="0" style="background:transparent;border:none"><img src="./img/play.png" height="20px" width="20px" id="play_pause0" style="margin-bottom:3px;margin-right:4px"><span id="title0">Summer Knights</span> - <span id="artist0">Joey Bad4$$</span></button><audio src='./musics/Summer_Knights.mp3' preload ="none" id="audio0" preload="none"></audio></li>
-            </ul>
+            <div style="overflow:hidden;position:absolute;right:0;bottom:0">
+            <ul id="playlist" >
+                <li><button onclick="play_or_pause(this.value)" value="0" style="background:transparent;border:none;width:290px;text-align:left">
+                <img src="./img/play.png" height="20px" width="20px" id="play_pause0" style="margin-bottom:3px;margin-right:4px">
+                <span id="title0">Summer Knights</span> - <span id="artist0">Joey Bad4$$</span></button>
+                <select style="height:25px">
+                    <option  value="Ajouter à une playlist">Ajouter à une playlist</option>
+                    <option onclick="add_to_playlist(this.value)" value="rap">Rap</option>
+                    <option onclick="add_to_playlist(this.value)" value="everyday">Everyday</option>
+                    <option onclick="add_to_playlist(this.value)" value="sport">Sport</option>
+                    <option onclick="add_to_playlist(this.value)" value="chill">Chill</option>
+                    </select>
+                <audio src='./musics/Summer_Knights.mp3' preload ="none" id="audio0" preload="none"></audio></li>
+                <li><button onclick="play_or_pause(this.value)" value="1" style="background:transparent;border:none;width:290px;text-align:left">
+                <img src="./img/play.png" height="20px" width="20px" id="play_pause1" style="margin-bottom:3px;margin-right:4px">
+                <span id="title1">Waves</span> - <span id="artist1">Joey Bad4$$</span></button>
+                <select style="height:25px">
+                <option  value="Ajouter à une playlist">Ajouter à une playlist</option>
+                <option onclick="add_to_playlist(this.value)" value="rap">Rap</option>
+                <option onclick="add_to_playlist(this.value)" value="everyday">Everyday</option>
+                <option onclick="add_to_playlist(this.value)" value="sport">Sport</option>
+                <option onclick="add_to_playlist(this.value)" value="chill">Chill</option>
+                </select>
+                <audio src='./musics/Waves.mp3' preload ="none" id="audio1" preload="none">
+                </audio>
+            </li>
+            <li><button onclick="play_or_pause(this.value)" value="2" style="background:transparent;border:none;width:290px;text-align:left">
+            <img src="./img/play.png" height="20px" width="20px" id="play_pause2" style="margin-bottom:3px;margin-right:4px">
+            <span id="title2">World Domination</span> - <span id="artist2">Joey Bad4$$</span></button>
+            <select style="height:25px">
+                <option  value="Ajouter à une playlist">Ajouter à une playlist</option>
+                <option onclick="add_to_playlist(this.value)" value="rap">Rap</option>
+                <option onclick="add_to_playlist(this.value)" value="everyday">Everyday</option>
+                <option onclick="add_to_playlist(this.value)" value="sport">Sport</option>
+                <option onclick="add_to_playlist(this.value)" value="chill">Chill</option>
+                </select>
+            <audio src='./musics/World Domination.mp3' preload ="none" id="audio2" preload="none"></audio>
+            </li>
+            <li><button onclick="play_or_pause(this.value)" value="0" style="background:transparent;border:none;width:290px;text-align:left">
+                <img src="./img/play.png" height="20px" width="20px" id="play_pause0" style="margin-bottom:3px;margin-right:4px">
+                <span id="title0">Summer Knights</span> - <span id="artist0">Joey Bad4$$</span></button>
+                <select style="height:25px">
+                    <option  value="Ajouter à une playlist">Ajouter à une playlist</option>
+                    <option onclick="add_to_playlist(this.value)" value="rap">Rap</option>
+                    <option onclick="add_to_playlist(this.value)" value="everyday">Everyday</option>
+                    <option onclick="add_to_playlist(this.value)" value="sport">Sport</option>
+                    <option onclick="add_to_playlist(this.value)" value="chill">Chill</option>
+                    </select>
+                <audio src='./musics/Summer_Knights.mp3' preload ="none" id="audio0" preload="none"></audio></li>
+                <li><button onclick="play_or_pause(this.value)" value="1" style="background:transparent;border:none;width:290px;text-align:left">
+                <img src="./img/play.png" height="20px" width="20px" id="play_pause1" style="margin-bottom:3px;margin-right:4px">
+                <span id="title1">Waves</span> - <span id="artist1">Joey Bad4$$</span></button>
+                <select style="height:25px">
+                <option  value="Ajouter à une playlist">Ajouter à une playlist</option>
+                <option onclick="add_to_playlist(this.value)" value="rap">Rap</option>
+                <option onclick="add_to_playlist(this.value)" value="everyday">Everyday</option>
+                <option onclick="add_to_playlist(this.value)" value="sport">Sport</option>
+                <option onclick="add_to_playlist(this.value)" value="chill">Chill</option>
+                </select>
+                <audio src='./musics/Waves.mp3' preload ="none" id="audio1" preload="none">
+                </audio>
+            </li>
+            <li><button onclick="play_or_pause(this.value)" value="0" style="background:transparent;border:none;width:290px;text-align:left">
+                <img src="./img/play.png" height="20px" width="20px" id="play_pause0" style="margin-bottom:3px;margin-right:4px">
+                <span id="title0">Summer Knights</span> - <span id="artist0">Joey Bad4$$</span></button>
+                <select style="height:25px">
+                    <option  value="Ajouter à une playlist">Ajouter à une playlist</option>
+                    <option onclick="add_to_playlist(this.value)" value="rap">Rap</option>
+                    <option onclick="add_to_playlist(this.value)" value="everyday">Everyday</option>
+                    <option onclick="add_to_playlist(this.value)" value="sport">Sport</option>
+                    <option onclick="add_to_playlist(this.value)" value="chill">Chill</option>
+                    </select>
+                <audio src='./musics/Summer_Knights.mp3' preload ="none" id="audio0" preload="none"></audio></li>
+                <li><button onclick="play_or_pause(this.value)" value="1" style="background:transparent;border:none;width:290px;text-align:left">
+                <img src="./img/play.png" height="20px" width="20px" id="play_pause1" style="margin-bottom:3px;margin-right:4px">
+                <span id="title1">Waves</span> - <span id="artist1">Joey Bad4$$</span></button>
+                <select style="height:25px">
+                <option  value="Ajouter à une playlist">Ajouter à une playlist</option>
+                <option onclick="add_to_playlist(this.value)" value="rap">Rap</option>
+                <option onclick="add_to_playlist(this.value)" value="everyday">Everyday</option>
+                <option onclick="add_to_playlist(this.value)" value="sport">Sport</option>
+                <option onclick="add_to_playlist(this.value)" value="chill">Chill</option>
+                </select>
+                <audio src='./musics/Waves.mp3' preload ="none" id="audio1" preload="none">
+                </audio>
+            </li>
+            <li><button onclick="play_or_pause(this.value)" value="0" style="background:transparent;border:none;width:290px;text-align:left">
+                <img src="./img/play.png" height="20px" width="20px" id="play_pause0" style="margin-bottom:3px;margin-right:4px">
+                <span id="title0">Summer Knights</span> - <span id="artist0">Joey Bad4$$</span></button>
+                <select style="height:25px">
+                    <option  value="Ajouter à une playlist">Ajouter à une playlist</option>
+                    <option onclick="add_to_playlist(this.value)" value="rap">Rap</option>
+                    <option onclick="add_to_playlist(this.value)" value="everyday">Everyday</option>
+                    <option onclick="add_to_playlist(this.value)" value="sport">Sport</option>
+                    <option onclick="add_to_playlist(this.value)" value="chill">Chill</option>
+                    </select>
+                <audio src='./musics/Summer_Knights.mp3' preload ="none" id="audio0" preload="none"></audio></li>
+                <li><button onclick="play_or_pause(this.value)" value="1" style="background:transparent;border:none;width:290px;text-align:left">
+                <img src="./img/play.png" height="20px" width="20px" id="play_pause1" style="margin-bottom:3px;margin-right:4px">
+                <span id="title1">Waves</span> - <span id="artist1">Joey Bad4$$</span></button>
+                <select style="height:25px">
+                <option  value="Ajouter à une playlist">Ajouter à une playlist</option>
+                <option onclick="add_to_playlist(this.value)" value="rap">Rap</option>
+                <option onclick="add_to_playlist(this.value)" value="everyday">Everyday</option>
+                <option onclick="add_to_playlist(this.value)" value="sport">Sport</option>
+                <option onclick="add_to_playlist(this.value)" value="chill">Chill</option>
+                </select>
+                <audio src='./musics/Waves.mp3' preload ="none" id="audio1" preload="none">
+                </audio>
+            </li>
+            <li><button onclick="play_or_pause(this.value)" value="0" style="background:transparent;border:none;width:290px;text-align:left">
+                <img src="./img/play.png" height="20px" width="20px" id="play_pause0" style="margin-bottom:3px;margin-right:4px">
+                <span id="title0">Summer Knights</span> - <span id="artist0">Joey Bad4$$</span></button>
+                <select style="height:25px">
+                    <option  value="Ajouter à une playlist">Ajouter à une playlist</option>
+                    <option onclick="add_to_playlist(this.value)" value="rap">Rap</option>
+                    <option onclick="add_to_playlist(this.value)" value="everyday">Everyday</option>
+                    <option onclick="add_to_playlist(this.value)" value="sport">Sport</option>
+                    <option onclick="add_to_playlist(this.value)" value="chill">Chill</option>
+                    </select>
+                <audio src='./musics/Summer_Knights.mp3' preload ="none" id="audio0" preload="none"></audio></li>
+                <li><button onclick="play_or_pause(this.value)" value="1" style="background:transparent;border:none;width:290px;text-align:left">
+                <img src="./img/play.png" height="20px" width="20px" id="play_pause1" style="margin-bottom:3px;margin-right:4px">
+                <span id="title1">Waves</span> - <span id="artist1">Joey Bad4$$</span></button>
+                <select style="height:25px">
+                <option  value="Ajouter à une playlist">Ajouter à une playlist</option>
+                <option onclick="add_to_playlist(this.value)" value="rap">Rap</option>
+                <option onclick="add_to_playlist(this.value)" value="everyday">Everyday</option>
+                <option onclick="add_to_playlist(this.value)" value="sport">Sport</option>
+                <option onclick="add_to_playlist(this.value)" value="chill">Chill</option>
+                </select>
+                <audio src='./musics/Waves.mp3' preload ="none" id="audio1" preload="none">
+                </audio>
+            </li><li><button onclick="play_or_pause(this.value)" value="0" style="background:transparent;border:none;width:290px;text-align:left">
+                <img src="./img/play.png" height="20px" width="20px" id="play_pause0" style="margin-bottom:3px;margin-right:4px">
+                <span id="title0">Summer Knights</span> - <span id="artist0">Joey Bad4$$</span></button>
+                <select style="height:25px">
+                    <option  value="Ajouter à une playlist">Ajouter à une playlist</option>
+                    <option onclick="add_to_playlist(this.value)" value="rap">Rap</option>
+                    <option onclick="add_to_playlist(this.value)" value="everyday">Everyday</option>
+                    <option onclick="add_to_playlist(this.value)" value="sport">Sport</option>
+                    <option onclick="add_to_playlist(this.value)" value="chill">Chill</option>
+                    </select>
+                <audio src='./musics/Summer_Knights.mp3' preload ="none" id="audio0" preload="none"></audio></li>
+                <li><button onclick="play_or_pause(this.value)" value="1" style="background:transparent;border:none;width:290px;text-align:left">
+                <img src="./img/play.png" height="20px" width="20px" id="play_pause1" style="margin-bottom:3px;margin-right:4px">
+                <span id="title1">Waves</span> - <span id="artist1">Joey Bad4$$</span></button>
+                <select style="height:25px">
+                <option  value="Ajouter à une playlist">Ajouter à une playlist</option>
+                <option onclick="add_to_playlist(this.value)" value="rap">Rap</option>
+                <option onclick="add_to_playlist(this.value)" value="everyday">Everyday</option>
+                <option onclick="add_to_playlist(this.value)" value="sport">Sport</option>
+                <option onclick="add_to_playlist(this.value)" value="chill">Chill</option>
+                </select>
+                <audio src='./musics/Waves.mp3' preload ="none" id="audio1" preload="none">
+                </audio>
+            </li><li><button onclick="play_or_pause(this.value)" value="0" style="background:transparent;border:none;width:290px;text-align:left">
+                <img src="./img/play.png" height="20px" width="20px" id="play_pause0" style="margin-bottom:3px;margin-right:4px">
+                <span id="title0">Summer Knights</span> - <span id="artist0">Joey Bad4$$</span></button>
+                <select style="height:25px">
+                    <option  value="Ajouter à une playlist">Ajouter à une playlist</option>
+                    <option onclick="add_to_playlist(this.value)" value="rap">Rap</option>
+                    <option onclick="add_to_playlist(this.value)" value="everyday">Everyday</option>
+                    <option onclick="add_to_playlist(this.value)" value="sport">Sport</option>
+                    <option onclick="add_to_playlist(this.value)" value="chill">Chill</option>
+                    </select>
+                <audio src='./musics/Summer_Knights.mp3' preload ="none" id="audio0" preload="none"></audio></li>
+                <li><button onclick="play_or_pause(this.value)" value="1" style="background:transparent;border:none;width:290px;text-align:left">
+                <img src="./img/play.png" height="20px" width="20px" id="play_pause1" style="margin-bottom:3px;margin-right:4px">
+                <span id="title1">Waves</span> - <span id="artist1">Joey Bad4$$</span></button>
+                <select style="height:25px">
+                <option  value="Ajouter à une playlist">Ajouter à une playlist</option>
+                <option onclick="add_to_playlist(this.value)" value="rap">Rap</option>
+                <option onclick="add_to_playlist(this.value)" value="everyday">Everyday</option>
+                <option onclick="add_to_playlist(this.value)" value="sport">Sport</option>
+                <option onclick="add_to_playlist(this.value)" value="chill">Chill</option>
+                </select>
+                <audio src='./musics/Waves.mp3' preload ="none" id="audio1" preload="none">
+                </audio>
+            </li><li><button onclick="play_or_pause(this.value)" value="0" style="background:transparent;border:none;width:290px;text-align:left">
+                <img src="./img/play.png" height="20px" width="20px" id="play_pause0" style="margin-bottom:3px;margin-right:4px">
+                <span id="title0">Summer Knights</span> - <span id="artist0">Joey Bad4$$</span></button>
+                <select style="height:25px">
+                    <option  value="Ajouter à une playlist">Ajouter à une playlist</option>
+                    <option onclick="add_to_playlist(this.value)" value="rap">Rap</option>
+                    <option onclick="add_to_playlist(this.value)" value="everyday">Everyday</option>
+                    <option onclick="add_to_playlist(this.value)" value="sport">Sport</option>
+                    <option onclick="add_to_playlist(this.value)" value="chill">Chill</option>
+                    </select>
+                <audio src='./musics/Summer_Knights.mp3' preload ="none" id="audio0" preload="none"></audio></li>
+                <li>
+                <audio src='./musics/Waves.mp3' preload ="none" id="audio1" preload="none">
+                </audio>               
+                <button onclick="play_or_pause(this.value)" value="1" style="background:transparent;border:none;width:290px;text-align:left">
+                <img src="./img/play.png" height="20px" width="20px" id="play_pause1" style="margin-bottom:3px;margin-right:4px">
+                <span id="title1">Waves</span> - <span id="artist1">Joey Bad4$$</span></button>
+                <select style="height:25px">
+                <option  value="Ajouter à une playlist">Ajouter à une playlist</option>
+                <option onclick="add_to_playlist(this.value)" value="rap">Rap</option>
+                <option onclick="add_to_playlist(this.value)" value="everyday">Everyday</option>
+                <option onclick="add_to_playlist(this.value)" value="sport">Sport</option>
+                <option onclick="add_to_playlist(this.value)" value="chill">Chill</option>
+                </select>
+            </li>
+            </ul></div>
         
 
 
@@ -207,41 +412,62 @@
             }
             ?>
 </Body>
+
+
 <script>
-   
-        var count = 0;
+   function add_to_playlist(str){
+       alert('Musique ajoutée à la playlist '+ str);
+   }
+   var count = 0;
     function play_or_pause(str){
+        var where = Number(str);
         if(document.getElementById('play_pause').getAttribute('src') == './img/play.png'){
             document.getElementById('play_pause').src = './img/pause.png';
             document.getElementById('play_pause' + str).src = './img/pause.png';
             document.getElementById('title').textContent = document.getElementById('title'+ str).textContent;
             document.getElementById('artist').textContent = document.getElementById('artist'+ str).textContent;
+            document.getElementById('play').value = where;
             var current_music = "audio" + str;
             audio = $('#'+ current_music);
             playlist = $('#playlist');
-            tracks = playlist.find('li a');
+            tracks = playlist.find('li button');
             len = tracks.length - 1;
-            audio[0].volume = 0.5;
+            audio[0].volume = 0.3;
             audio[0].play();
             count++;
         } else {
             document.getElementById('play_pause').src = './img/play.png';
+            document.getElementById('play_pause' + str).src = './img/play.png';
+            document.getElementById('play_pause').value = where;
             document.getElementById('title').textContent = document.getElementById('title'+ str).textContent;
             document.getElementById('artist').textContent = document.getElementById('artist'+ str).textContent;
+            document.getElementById('play').value = where;
             var current_music = "audio" + str;
             audio = $('#'+ current_music);
             playlist = $('#playlist');
-            tracks = playlist.find('li a');
+            tracks = playlist.find('li button');
             len = tracks.length - 1;
-            audio[0].volume = 0.5;
+            audio[0].volume = 0.3;
             audio[0].pause();
             count++;
         }
         if(count > 15){
             document.getElementById('TxtHint').textContent = 'Félicitations, tu as violé le bouton play';
-            document.getElementById('title').textContent = 'Solar beam';
-
+            document.getElementById('title').textContent = 'Yamete kudasai!!!';
+            document.getElementById('cover').src = './img/yamate.jpg';
         }
+    }
+    function previous_song(){
+        document.getElementById('TxtHint').textContent = 'Félicitations, tu as violé le bouton play';
+        where--;
+        var current_music = 'audio'+ where;
+        audio = $('#'+ current_music);
+        playlist = $('#playlist');
+        tracks = playlist.find('li a');
+        len = tracks.length - 1;
+        audio[0].volume = 0.3;
+        audio[0].play();
+        count++;
     }
 </script>
 <script>
@@ -256,9 +482,9 @@ function init() {
     current = 0;
     audio = $('#audio1');
     playlist = $('#playlist');
-    tracks = playlist.find('li a');
+    tracks = playlist.find('li button');
     len = tracks.length - 1;
-    audio[0].volume = 0.5;
+    audio[0].volume = 0.3;
     playlist.find('a').click(function (e) {
         e.preventDefault();
         link = $(this);
@@ -269,20 +495,14 @@ function init() {
         current++;
         if (current == len+1) { 
             current = 0;
-            link = playlist.find('a')[0];
+            link = playlist.find('button')[0];
         } else {
-            link = playlist.find('a')[current];
+            link = playlist.find('button')[current];
         }
         run($(link), audio[0]);
     });
 }
-function run(link, player) {
-    player.src = link.attr('href');
-    par = link.parent();
-    par.addClass('active').siblings().removeClass('active');
-    audio[0].load();
-    audio[0].play();
-    }
+
 })
 
 </script>
