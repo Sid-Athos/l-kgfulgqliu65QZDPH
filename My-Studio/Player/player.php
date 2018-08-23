@@ -355,7 +355,7 @@
 </body>
 <script>
 $(document).ready(function(){
-    $(window).keyup(function(e){
+    $(window).keydown(function(e){
         console.log(e.which);
         switch(e.which){
             case(32):
@@ -376,11 +376,33 @@ $(document).ready(function(){
             case(82):
                     reset();
                 break;
+            case(70):
+                    further_song();
+                break;
+            case(66):
+                    bw_song();
+                break;
     }
     });
 });
 </script>
 <script>
+function bw_song(){
+    var where = Number(document.getElementById('play_or_pause').value);
+        playlist = document.getElementsByTagName('audio');
+        playlist[where].currentTime -= 2;
+}
+</script>
+<script>
+function further_song(){
+    var where = Number(document.getElementById('play_or_pause').value);
+        playlist = document.getElementsByTagName('audio');
+        playlist[where].currentTime += 2;
+}
+</script>
+<script>
+    /* Remet la musique en cours à 0
+    Peut alternativement servir de touche Play */
    function reset(){
         var where = Number(document.getElementById('play_or_pause').value);
         playlist = document.getElementsByTagName('audio');
