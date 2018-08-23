@@ -355,7 +355,7 @@
 </body>
 <script>
 $(document).ready(function(){
-    $(window).keydown(function(e){
+    $(window).keyup(function(e){
         console.log(e.which);
         switch(e.which){
             case(32):
@@ -376,6 +376,15 @@ $(document).ready(function(){
             case(82):
                     reset();
                 break;
+    }
+    });
+});
+</script>
+<script>
+$(document).ready(function(){
+    $(window).keydown(function(e){
+        console.log(e.which);
+        switch(e.which){
             case(70):
                     further_song();
                 break;
@@ -387,6 +396,7 @@ $(document).ready(function(){
 });
 </script>
 <script>
+/* rembobine via la touche b */
 function bw_song(){
     var where = Number(document.getElementById('play_or_pause').value);
         playlist = document.getElementsByTagName('audio');
@@ -394,6 +404,7 @@ function bw_song(){
 }
 </script>
 <script>
+/* timelapse */
 function further_song(){
     var where = Number(document.getElementById('play_or_pause').value);
         playlist = document.getElementsByTagName('audio');
