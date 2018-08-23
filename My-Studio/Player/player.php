@@ -1,4 +1,4 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 
 <html>
 
@@ -7,12 +7,16 @@
 
     <meta charset="utf-8">
     
-    <style>
-    html{
-        width:1550px;
-    }
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+</head>
+    <style type="text/CSS">
         body{
            font-family: 'Raleway', sans-serif;
+           background-color:#E6DADA;
+           height:auto;
            font-size:26px;
            overflow-x:hidden;
         }
@@ -147,15 +151,8 @@
             z-index:3;
         }
     </style>
-    <script>
-</script>
-</head>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
   
-<body>
+<body onload="player()">
 <div id="TxtHint" style="top:0">
 </div>
             <div class="main" id="main">
@@ -176,10 +173,10 @@
                         <button id="pre" class="pre" onclick="previous_song()" style="bottom:15px">
                             <img src="./img/pre.png" height="30px" width ="30px" style="padding-bottom:10px"/>
                         </button>
-                        <button id="play" class="play" onclick="play_or_pause(this.value)" value="0">
+                        <button id="play_or_pause" class="play_pause" onclick="play_or_pause(this.value)" style="background-color:transparent;border:none" value="0">
                             <img src="./img/play.png"  id="play_pause" height="50px" width="50px"/>
                         </button>
-                        <button id="next" class="next">
+                        <button id="next" class="next" onclick="next_song()">
                             <img src="./img/next.png" height="30px" width ="30px" style="padding-bottom:10px"/>
                         </button>
                     </div>
@@ -191,168 +188,46 @@
                     </div>
                 </div>
             </div>
-            <form method="POST" style="display:none">
-                <input type="text" name="song[]" value="oui1">
-                <input type="text" name="song[]" value="oui1">
-                <input type="text" name="song[]" value="oui1">
-                <input type="text" name="song[]" value="oui1">
-                <input type="text" name="song[]" value="oui1">
-                <input type="text" name="song[]" value="oui1">
-                <input type="text" name="song[]" value="oui1">
-                <input type="text" name="song[]" value="oui1">
-                <input type="submit">
-            </form>
             
             
-            <div class="btn btn-primary dropdown" style="position:absolute;right:0;top:0;width:300px;background-color:#516395;border:none">
+            <div class="btn btn-primary dropdown" title="playlist en cours de lecture" style="position:absolute;right:5px;height:30px;top:0;width:300px;background-color:#516395;border:none">
     <button class="dropdown-toggle" id="dropdown01" type="button"  
     style="width:300px;color:#FFFFFF;background-color:transparent;border:none;outline:none;color:#decba4;border:0px solid #FFFFFF;" 
     aria-haspopup="true" data-toggle="dropdown" aria-expanded="false">Playlist en cours
     </button>
-                <ul class="dropdown-menu"  id="dropdown-menu" style="position:absolute;width:290px;max-height:200px;color:#333333;background-color:transparent;border:none;outline:none;overflow-x:hidden;overflow-y:hidden">
-    <div style="position:relative;width:310px;height:210px;overflow:scroll">
+                <ul class="dropdown-menu"  id="dropdown-menu" style="position:absolute;width:295px;right:-10px;max-height:200px;color:#333333;background-color:#FFFFFF;border:none;outline:none;overflow-x:hidden;overflow-y:hidden">
+    <div style="position:absotule:right:15px;width:310px;height:210px;overflow:scroll">
 
                 <li id="dd" class="dd">
                     <div style="font-size:16px;width:350px;height:25px;margin-left:0px">
-                    <button onclick="play_or_pause(this.value)" value="0" style="background:transparent;border:none;width:30px;text-align:left">
-                    <img src="./img/play.png" height="20px" width="20px" id="play_pause0" style="margin-bottom:-4px;margin-right:4px">
+                    <button onclick="play_or_pause(this.value)" id="play_pause0" value="0" style="background:transparent;border:none;width:30px;text-align:left">
+                    <img src="./img/play.png" height="20px" width="20px" id="play_or_pause0" style="margin-bottom:-4px;margin-right:4px">
                     </button></a>
                     <span id="title0">Summer Knights</span> - <span id="artist0">Joey Bad4$$</span>
                     </div>
                     <audio src='./musics/Summer_Knights.mp3' preload ="none" id="audio0" preload="none"></audio>
                 </li>
                 <div class="dropdown-divider"><p>100</p></div>
-                <li id="dd" >
-                    <div style="font-size:16px;width:400px;height:25px">
-                    <button onclick="play_or_pause(this.value)" value="1" style="background:transparent;border:none;width:30px;text-align:left">
-                    <img src="./img/play.png" height="20px" width="20px" id="play_pause1" style="margin-bottom:-4px;margin-right:4px">
-                    </button>
-                    <span id="title1">Waves</span> - <span id="artist1">Joey Bad4$$</span>
+                <li id="dd" class="dd">
+                    <div style="font-size:16px;width:350px;height:25px;margin-left:0px">
+                    <button onclick="play_or_pause(this.value)" id="play_pause1" value="1" style="background:transparent;border:none;width:30px;text-align:left">
+                    <img src="./img/play.png" height="20px" width="20px" id="play_or_pause1" style="margin-bottom:-4px;margin-right:4px">
+                    </button></a>
+                    <span id="title1">Waves</span> - <span id="artist1">Joey Bad4$$</span> dsqdjsq vdjv dvsqk vdkl dsqd dsq dd sqd dsq dsd qs
                     </div>
                     <audio src='./musics/Waves.mp3' preload ="none" id="audio1" preload="none"></audio>
-                    </audio>
                 </li>
-                <div class="dropdown-divider"></div>
+                <div class="dropdown-divider"><p>100</p></div>
                 <li id="dd" class="dd">
                     <div style="font-size:16px;width:350px;height:25px;margin-left:0px">
-                    <button onclick="play_or_pause(this.value)" value="2" style="background:transparent;border:none;width:30px;text-align:left">
-                    <img src="./img/play.png" height="20px" width="20px" id="play_pause0" style="margin-bottom:-4px;margin-right:4px">
+                    <button onclick="play_or_pause(this.value)" id="play_pause2" value="2" style="background:transparent;border:none;width:30px;text-align:left">
+                    <img src="./img/play.png" height="20px" width="20px" id="play_or_pause2" style="margin-bottom:-4px;margin-right:4px">
                     </button></a>
-                    <span id="title0">World Domination Feat Chuck Strangers</span> - <span id="artist0">Joey Bad4$$</span>
+                    <span id="title2">World Domination</span> - <span id="artist2">Joey Bad4$$</span>
                     </div>
-                    <audio src='./musics/World Domination.mp3' preload ="none" id="audio0" preload="none"></audio>
+                    <audio src='./musics/World Domination.mp3' preload ="none" id="audio2" preload="none"></audio>
                 </li>
-                <div class="dropdown-divider"></div>
-                <li id="dd" class="dd">
-                    <div style="font-size:16px;width:400px;height:25px">
-                    <button onclick="play_or_pause(this.value)" value="1" style="background:transparent;border:none;width:30px;text-align:left">
-                    <img src="./img/play.png" height="20px" width="20px" id="play_pause1" style="margin-bottom:-4px;margin-right:4px">
-                    </button>
-                    <span id="title1">Waves</span> - <span id="artist1">Joey Bad4$$</span>
-                    </div>
-                    <audio src='./musics/Waves.mp3' preload ="none" id="audio1" preload="none"></audio>
-                    </audio>
-                </li>
-                <div class="dropdown-divider"></div>
-                <li id="dd" class="dd">
-                    <div style="font-size:16px;width:400px;height:25px">
-                    <button onclick="play_or_pause(this.value)" value="1" style="background:transparent;border:none;width:30px;text-align:left">
-                    <img src="./img/play.png" height="20px" width="20px" id="play_pause1" style="margin-bottom:-4px;margin-right:4px">
-                    </button>
-                    <span id="title1">Waves</span> - <span id="artist1">Joey Bad4$$</span>
-                    </div>
-                    <audio src='./musics/Waves.mp3' preload ="none" id="audio1" preload="none"></audio>
-                    </audio>
-                </li>
-                <div class="dropdown-divider"></div>
-                <li id="dd" class="dd">
-                    <div style="font-size:16px;width:400px;height:25px">
-                    <button onclick="play_or_pause(this.value)" value="1" style="background:transparent;border:none;width:30px;text-align:left">
-                    <img src="./img/play.png" height="20px" width="20px" id="play_pause1" style="margin-bottom:-4px;margin-right:4px">
-                    </button>
-                    <span id="title1">Waves</span> - <span id="artist1">Joey Bad4$$</span>
-                    </div>
-                    <audio src='./musics/Waves.mp3' preload ="none" id="audio1" preload="none"></audio>
-                    </audio>
-                </li>
-                <div class="dropdown-divider"></div>
-
-                <li id="dd" class="dd">
-                    <div style="font-size:16px;width:400px;height:25px">
-                    <button onclick="play_or_pause(this.value)" value="1" style="background:transparent;border:none;width:30px;text-align:left">
-                    <img src="./img/play.png" height="20px" width="20px" id="play_pause1" style="margin-bottom:-4px;margin-right:4px">
-                    </button>
-                    <span id="title1">Waves</span> - <span id="artist1">Joey Bad4$$</span>
-                    </div>
-                    <audio src='./musics/Waves.mp3' preload ="none" id="audio1" preload="none"></audio>
-                    </audio>
-                </li>
-                <div class="dropdown-divider"></div>
-
-                <li id="dd" class="dd">
-                    <div style="font-size:16px;width:350px;height:25px;margin-left:0px">
-                    <button onclick="play_or_pause(this.value)" value="0" style="background:transparent;border:none;width:30px;text-align:left">
-                    <img src="./img/play.png" height="20px" width="20px" id="play_pause0" style="margin-bottom:-4px;margin-right:4px">
-                    </button></a>
-                    <span id="title0">Summer Knights</span> - <span id="artist0">Joey Bad4$$</span>
-                    </div>
-                    <audio src='./musics/Summer_Knights.mp3' preload ="none" id="audio0" preload="none"></audio>
-                </li>
-                <div class="dropdown-divider"></div>
-
-                <li id="dd" class="dd">
-                    <div style="font-size:16px;width:350px;height:25px;margin-left:0px">
-                    <button onclick="play_or_pause(this.value)" value="0" style="background:transparent;border:none;width:30px;text-align:left">
-                    <img src="./img/play.png" height="20px" width="20px" id="play_pause0" style="margin-bottom:-4px;margin-right:4px">
-                    </button></a>
-                    <span id="title0">Summer Knights</span> - <span id="artist0">Joey Bad4$$</span>
-                    </div>
-                    <audio src='./musics/Summer_Knights.mp3' preload ="none" id="audio0" preload="none"></audio>
-                </li>
-                <div class="dropdown-divider"></div>
-
-                <li id="dd" class="dd">
-                    <div style="font-size:16px;width:350px;height:25px;margin-left:0px">
-                    <button onclick="play_or_pause(this.value)" value="0" style="background:transparent;border:none;width:30px;text-align:left">
-                    <img src="./img/play.png" height="20px" width="20px" id="play_pause0" style="margin-bottom:-4px;margin-right:4px">
-                    </button></a>
-                    <span id="title0">Summer Knights</span> - <span id="artist0">Joey Bad4$$</span>
-                    </div>
-                    <audio src='./musics/Summer_Knights.mp3' preload ="none" id="audio0" preload="none"></audio>
-                </li>
-                <div class="dropdown-divider"></div>
-
-                <li id="dd" class="dd">
-                    <div style="font-size:16px;width:350px;height:25px;margin-left:0px">
-                    <button onclick="play_or_pause(this.value)" value="0" style="background:transparent;border:none;width:30px;text-align:left">
-                    <img src="./img/play.png" height="20px" width="20px" id="play_pause0" style="margin-bottom:-4px;margin-right:4px">
-                    </button></a>
-                    <span id="title0">Summer Knights</span> - <span id="artist0">Joey Bad4$$</span>
-                    </div>
-                    <audio src='./musics/Summer_Knights.mp3' preload ="none" id="audio0" preload="none"></audio>
-                </li>
-                <div class="dropdown-divider"></div>
-
-                <li id="dd" class="dd">
-                    <div style="font-size:16px;width:350px;height:25px;margin-left:0px">
-                    <button onclick="play_or_pause(this.value)" value="0" style="background:transparent;border:none;width:30px;text-align:left">
-                    <img src="./img/play.png" height="20px" width="20px" id="play_pause0" style="margin-bottom:-4px;margin-right:4px">
-                    </button></a>
-                    <span id="title0">Summer Knights</span> - <span id="artist0">Joey Bad4$$</span>
-                    </div>
-                    <audio src='./musics/Summer_Knights.mp3' preload ="none" id="audio0" preload="none"></audio>
-                </li>
-                <div class="dropdown-divider"></div>
-
-                <li id="dd" class="dd">
-                    <div style="font-size:16px;width:350px;height:25px;margin-left:0px">
-                    <button onclick="play_or_pause(this.value)" value="0" style="background:transparent;border:none;width:30px;text-align:left">
-                    <img src="./img/play.png" height="20px" width="20px" id="play_pause0" style="margin-bottom:-4px;margin-right:4px">
-                    </button></a>
-                    <span id="title0">Summer Knights</span> - <span id="artist0">Joey Bad4$$</span>
-                    </div>
-                    <audio src='./musics/Summer_Knights.mp3' preload ="none" id="audio0" preload="none"></audio>
-                </li>
+                <div class="dropdown-divider"><p>100</p></div>
             </ul>
             </div>
             </div>
@@ -370,44 +245,164 @@
                 var_dump($_POST);
             }
             ?>
-</Body>
+</body>
 <script>
 </script>
 
 <script>
-    function check(){
-        alert(document.getElementById('play').value);
-    }
+    
    function add_to_playlist(str){
        alert('Musique ajoutée à la playlist '+ str);
        alert.preventDefault();
    }
- 
-            var where_music = document.getElementById('play').value;
+   function player(){
+            var where = document.getElementById('play_or_pause').value;
+            current_music = 'audio'+ where;
+            audio = $('#'+ current_music);
+            if(audio[0].readyState > 0){
+                var current_time = Math.floor(audio[0].currentTime);
+                var duration = Math.floor(audio[0].duration);
+                var cal = (current_time/duration)*100;
+            }
+            if(!isNaN(current_time)){
+                console.log(duration - 2);
+                console.log(current_time);
+                if(current_time > duration - 2){
+                    var current_music;
+                    var playlist;
+                    var audio;
+                    var i;
+                    where = Number(where);
+                    playlist = document.getElementsByTagName('audio');
+                    /* On va à l'indice de la prochaine musique dans l'ordre de la playlist afin de 
+                    récupérer la source */
+                    where++;
+                    if(where > playlist.length -1){
+                        where = 0;
+                    }
 
-            function where(where_music){
-                var lol = document.getElementById('play').value;
-                console.log(lol);
-                return where;
+                    for(i = 0; i < playlist.length; i++){
+                            i = String(i);
+                                all_musics = 'audio' + i;
+                                audio = $('#'+ all_musics);
+                                console.log(audio[0]);
+                                audio[0].currentTime = 0;
+                                audio[0].pause();
+                                document.getElementById('play_or_pause' + i).src = './img/play.png';
+                    }
+                    where = String(where);
+                    current_music = 'audio'+ where;
+                    audio = $('#'+ current_music);
+                    audio[0].volume = 0.3;
+                    audio[0].play();
+                    document.getElementById('play_pause').src = './img/pause.png';
+                    document.getElementById('play_or_pause' + where).src = './img/pause.png';
+                    document.getElementById('title').textContent = document.getElementById('title'+ where).textContent;
+                    document.getElementById('artist').textContent = document.getElementById('artist'+ where).textContent;
+                    document.getElementById('play_or_pause').value = where;
+        }
+    }
+        setTimeout(player,500);
+}
+    function next_song(){
+            var where = document.getElementById('play_or_pause').value;
+            var current_music;
+            var playlist;
+            var audio;
+            var i;
+            where = Number(where);
+            playlist = document.getElementsByTagName('audio');
+            /* On va à l'indice de la prochaine musique dans l'ordre de la playlist afin de 
+            récupérer la source */
+            where++;
+            if(where > playlist.length -1){
+                where = 0;
             }
 
+            for(i = 0; i < playlist.length; i++){
+                    i = String(i);
+                        all_musics = 'audio' + i;
+                        audio = $('#'+ all_musics);
+                        console.log(audio[0]);
+                        audio[0].currentTime = 0;
+                        audio[0].pause();
+                        document.getElementById('play_or_pause' + i).src = './img/play.png';
+            }
+            where = String(where);
+            current_music = 'audio'+ where;
+            audio = $('#'+ current_music);
+            console.log(audio);
+            audio[0].volume = 0.3;
+            audio[0].play();
+            document.getElementById('play_pause').src = './img/pause.png';
+            document.getElementById('play_or_pause' + where).src = './img/pause.png';
+            document.getElementById('title').textContent = document.getElementById('title'+ where).textContent;
+            document.getElementById('artist').textContent = document.getElementById('artist'+ where).textContent;
+            document.getElementById('play_or_pause').value = where;
+   }
+   function previous_song(){
+            var where = document.getElementById('play_or_pause').value;
+            console.log(where);
+            where = Number(where);
+            var playlist = document.getElementsByTagName('audio');
+            where--;
+            console.log(where);
+            if(where < 0){
+                where = playlist.length -1;
+            }
+
+            console.log(where);
+            console.log(playlist);
+            var audio;
+            for(var i = 0; i < playlist.length; i++){
+                    i = String(i);
+                        all_musics = 'audio' + i;
+                        audio = $('#'+ all_musics);
+                        console.log(audio[0]);
+                        audio[0].currentTime = 0;
+                        audio[0].pause();
+                        document.getElementById('play_or_pause' + i).src = './img/play.png';
+            }
+            where = String(where);
+            var current_music = 'audio'+ where;
+            audio = $('#'+ current_music);
+            console.log(audio);
+            audio[0].volume = 0.3;
+            audio[0].currentTime = 100;
+            audio[0].play();
+            document.getElementById('play_pause').src = './img/pause.png';
+            document.getElementById('play_or_pause' + where).src = './img/pause.png';
+            document.getElementById('title').textContent = document.getElementById('title'+ where).textContent;
+            document.getElementById('artist').textContent = document.getElementById('artist'+ where).textContent;
+            document.getElementById('play_or_pause').value = where;
+   }
+ 
             var count = 0;
     function play_or_pause(str){
+        
             var where = str;
             console.log(where);
             var current_music = "audio" + where;
-        if( document.getElementById('play').getAttribute('src') === './img/play.png' || document.getElementById('play_pause'+ where).getAttribute('src') == './img/play.png'){
-            document.getElementById('play_pause').src = './img/pause.png';
-            document.getElementById('play_pause' + str).src = './img/pause.png';
-            for(var i = 0; i < document.getElementsByTagName('audio').src; i++){
-                    audio = $('#audio' + String(i));
-                    console.log(audio);
-                    audio[i].pause();
-                    document.getElementById('play_pause' + String(i)).src = './img/play.png';
+            var all_musics;
+            var playlist = document.getElementsByTagName('audio');
+            console.log(lol);
+        if( document.getElementById('play_pause').getAttribute('src') === './img/play.png' || document.getElementById('play_or_pause'+ where).getAttribute('src') == './img/play.png'){
+            for(var i = 0; i < playlist.length; i++){
+                    i = String(i);
+                    if(i !== where){
+                        all_musics = 'audio' + i;
+                        audio = $('#'+ all_musics);
+                        console.log(audio[0]);
+                        audio[0].currentTime = 0;
+                        audio[0].pause();
+                        document.getElementById('play_or_pause' + i).src = './img/play.png';
+                    }
             }
+            document.getElementById('play_pause').src = './img/pause.png';
+            document.getElementById('play_or_pause' + str).src = './img/pause.png';
             document.getElementById('title').textContent = document.getElementById('title'+ str).textContent;
             document.getElementById('artist').textContent = document.getElementById('artist'+ str).textContent;
-            document.getElementById('play').value = where;
+            document.getElementById('play_or_pause').value = where;
             audio = $('#'+ current_music);
             playlist = $('#playlist');
             tracks = playlist.find('audio');
@@ -415,22 +410,13 @@
             audio[0].volume = 0.3;
             audio[0].play();
             count++;
-        } else if (document.getElementById('play_pause'+ where).getAttribute('src') == './img/pause.png'){
+        } else if (document.getElementById('play_pause').getAttribute('src') === './img/pause.png' ||document.getElementById('play_or_pause'+ where).getAttribute('src') == './img/pause.png'){
+            console.log(audio[0]);
+            document.getElementById('play_or_pause' + where).src = './img/play.png';
+            
             document.getElementById('play_pause').src = './img/play.png';
-            for(var i = 0; i < document.getElementsById('audio'); i++){
-                console.log(0);
-                    audio = $('#audio' + String(i));
-                    console.log(audio);
-                    audio[i].pause();
-                    document.getElementById('play_pause' + String(i)).src = './img/play.png';
-            }
-            document.getElementById('play_pause').value = where;
-            document.getElementById('title').textContent = document.getElementById('title'+ str).textContent;
-            document.getElementById('artist').textContent = document.getElementById('artist'+ str).textContent;
-            document.getElementById('play').value = where;
             audio = $('#'+ current_music);
             playlist = $('#playlist');
-            tracks = playlist.find('audio');
             tracks = playlist.find('audio');
             len = tracks.length - 1;
             audio[0].volume = 0.3;
@@ -438,29 +424,17 @@
             count++;
         }
         var duration;
-            audio[0].onloadedmetadata = function(duration) {
+       var  time = audio[0].duration; 
+            duration = audio[0].onloadedmetadata = function check(duration) {
                 var duration = audio[0].duration;
-        document.getElementById('TxtHint').textContent = where + str + len + tracks[0] + duration;
-                return duration;
+                var current = audio[0].currentTime;
+                return audio[0].duration;
             }
         if(count > 15){
             document.getElementById('TxtHint').textContent = 'Félicitations, tu as violé le bouton play';
             document.getElementById('title').textContent = 'Yamete kudasai!!!';
             document.getElementById('cover').src = './img/yamate.jpg';
         }
+        
     }
-    function previous_song(){
-        document.getElementById('TxtHint').textContent = 'Félicitations, tu as violé le bouton play';
-        where--;
-        var current_music = 'audio'+ where;
-        audio = $('#'+ current_music);
-        playlist = $('#playlist');
-        tracks = playlist.find('li audio');
-        len = tracks.length - 1;
-        audio[0].volume = 0.3;
-        audio[0].play();
-        count++;
-    }
-
-
 </script>
