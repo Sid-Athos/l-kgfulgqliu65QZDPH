@@ -382,26 +382,30 @@ $(document).ready(function(){
 </script>
 <script>
    function reset(){
-    var where = document.getElementById('play_or_pause').value;
-            current_music = 'audio'+ where;
-            audio = $('#'+ current_music);
-            audio[0].currentTime = 0;
+        var where = Number(document.getElementById('play_or_pause').value);
+        playlist = document.getElementsByTagName('audio');
+        playlist[where].currentTime = 0;
+        playlist[where].play();
+        where = String(where);
+        document.getElementById('play_or_pause' + where).src = './img/pause.png';
+        document.getElementById('title').textContent = document.getElementById('title'+ where).textContent;
+        document.getElementById('artist').textContent = document.getElementById('artist'+ where).textContent;
+        document.getElementById('play_or_pause').value = where;
+        document.getElementById('play_pause').src = './img/pause.png';
    }
 </script>
 <script>
    function inc_volume(){
-    var where = document.getElementById('play_or_pause').value;
-            current_music = 'audio'+ where;
-            audio = $('#'+ current_music);
-            audio[0].volume += 0.1;
+        var where = Number(document.getElementById('play_or_pause').value);
+        playlist = document.getElementsByTagName('audio');
+        playlist[where].volume += 0.1;
    }
 </script>
 <script>
    function dec_volume(){
-    var where = document.getElementById('play_or_pause').value;
-            current_music = 'audio'+ where;
-            audio = $('#'+ current_music);
-            audio[0].volume -= 0.05;
+    var where = Number(document.getElementById('play_or_pause').value);
+            playlist = document.getElementsByTagName('audio');
+            playlist[where].volume -= 0.05;
    }
 </script>
 <script>
@@ -411,48 +415,65 @@ $(document).ready(function(){
    }
 </script>
 <script>
+    /* Controle du player sur la page. 
+    Notamment le passage automatique des musiques, les images play/pause
+    Récupère les idées de la playlist pour avoir l'ensemble des musiques, puis donne en value du lecteur
+    l'emplacement de la musique dans la playlist.
+    Les listes
+    La vie
+    Le principe est simple. Quand je récupère une playlist quelconque de la BDD 
+    je génène une liste comprenant un bouton play/pause, le chemin audio de la musique et ses informations sous la forme
+    audio[i] title[i] album[i] artist[i].
+    Selon que j'ai cliqué sur telle ou telle musique, le player recupere son ID et le ferme pour les autres en remettant 
+    la durée initiale à 0 secondes et en mettant chaque icone sur PLAY (je récupère l'ensemble des audios grace
+    à la propriété document.getElementsByTagName qui me crée une liste contenant tout)
+    Puis je mets la musique désirée en marche, en prenant soin de mettre l'image play/pause du lecteur sur pause, ainsi que celle dans
+    la playlist (hsebt rani hma3?).
+    Si la musique arrive à la fin, j'incrémente l'ID récupéré. Là je double backflip.
+    Je le compare à la longueur de la playlist. Si c'est supérieur, l'ID revient à 0, et j'attends que le mec choisisse de relancer
+    sinon je lance la musique suivante de la playlist. La propriété duration me permet d'avoir la durée totale en seconde
+    la proriété currentTIme... bon on est supposé connaitre l'anglais quand même. */
    function player(){
-            var where = document.getElementById('play_or_pause').value;
-            current_music = 'audio'+ where;
-            audio = $('#'+ current_music);
-            if(audio[0].readyState > 0){
-                var current_time = Math.floor(audio[0].currentTime);
-                var duration = Math.floor(audio[0].duration);
+        var where = Number(document.getElementById('play_or_pause').value);
+        playlist = document.getElementsByTagName('audio');
+            if(playlist[where].readyState > 0){
+                var current_time = Math.floor(playlist[where].currentTime);
+                var duration = Math.floor(playlist[where].duration);
                 var cal = (current_time/duration)*100;
 
             }
-            console.log(where);
             if(!isNaN(current_time)){
                 if(current_time === duration - 1){
                     var playlist;
                     var audio;
                     var i;
-                    where = Number(where);
-                    playlist = document.getElementsByTagName('audio');
                     /* On va à l'indice de la prochaine musique dans l'ordre de la playlist afin de 
                     récupérer la source */
                     where++;
                     if(where > playlist.length -1){
-                        console.log('pute');
+
+                        console.log(where);
                         where = playlist.length -1;
-                        audio[0].currentTime = 0;
-                        audio[0].pause();
+                        playlist[where].currentTime = 0;
+                        playlist[where].pause();
+                        where = 0;
+                        where = String(where);
+                            document.getElementById('play_or_pause' + where).src = './img/play.png';
+                            document.getElementById('title').textContent = document.getElementById('title'+ where).textContent;
+                            document.getElementById('artist').textContent = document.getElementById('artist'+ where).textContent;
+                            document.getElementById('play_or_pause').value = where;
                         document.getElementById('play_pause').src = './img/play.png';
                     } else {
 
                         for(i = 0; i < playlist.length; i++){
-                                i = String(i);
-                                    all_musics = 'audio' + i;
-                                    audio = $('#'+ all_musics);
-                                    audio[0].currentTime = 0;
-                                    audio[0].pause();
-                                    document.getElementById('play_or_pause' + i).src = './img/play.png';
+                            playlist[where].currentTime = 0;
+                            playlist[where].pause();
+                            i = String(i);
+                            document.getElementById('play_or_pause' + i).src = './img/play.png';
                         }
+                            playlist[where].volume = 0.3;
+                            playlist[where].play();
                             where = String(where);
-                            current_music = 'audio'+ where;
-                            audio = $('#'+ current_music);
-                            audio[0].volume = 0.3;
-                            audio[0].play();
                             document.getElementById('play_or_pause' + where).src = './img/pause.png';
                             document.getElementById('title').textContent = document.getElementById('title'+ where).textContent;
                             document.getElementById('artist').textContent = document.getElementById('artist'+ where).textContent;
@@ -465,65 +486,61 @@ $(document).ready(function(){
 </script>
 <script>
     function next_song(){
-            var where = document.getElementById('play_or_pause').value;
-            var current_music;
+            var where = Number(document.getElementById('play_or_pause').value);
             var playlist;
-            var audio;
-            var i;
-            where = Number(where);
             playlist = document.getElementsByTagName('audio');
             /* On va à l'indice de la prochaine musique dans l'ordre de la playlist afin de 
             récupérer la source */
             where++;
+            /* Si supérieur on revient au début de la playlist */
             if(where > playlist.length -1){
+                console.log(where);
+                where = playlist.length -1;
+                playlist[where].currentTime = 0;
+                playlist[where].pause();
                 where = 0;
-            }
-
-            for(i = 0; i < playlist.length; i++){
+                where = String(where);
+                    document.getElementById('play_or_pause' + where).src = './img/play.png';
+                    document.getElementById('title').textContent = document.getElementById('title'+ where).textContent;
+                    document.getElementById('artist').textContent = document.getElementById('artist'+ where).textContent;
+                    document.getElementById('play_or_pause').value = where;
+                document.getElementById('play_pause').src = './img/play.png';
+            } else {
+                for(i = 0; i < playlist.length; i++){
+                    playlist[i].currentTime = 0;
+                    playlist[i].pause();
                     i = String(i);
-                        all_musics = 'audio' + i;
-                        audio = $('#'+ all_musics);
-                        audio[0].currentTime = 0;
-                        audio[0].pause();
-                        document.getElementById('play_or_pause' + i).src = './img/play.png';
-            }
-            where = String(where);
-            current_music = 'audio'+ where;
-            audio = $('#'+ current_music);
-            audio[0].volume = 0.3;
-            audio[0].currentTime = 0;
-            audio[0].play();
-            document.getElementById('play_pause').src = './img/pause.png';
-            document.getElementById('play_or_pause' + where).src = './img/pause.png';
-            document.getElementById('title').textContent = document.getElementById('title'+ where).textContent;
-            document.getElementById('artist').textContent = document.getElementById('artist'+ where).textContent;
-            document.getElementById('play_or_pause').value = where;
+                    document.getElementById('play_or_pause' + i).src = './img/play.png';
+                }
+                playlist[where].currentTime = 0;
+                playlist[where].play();
+                where = String(where);
+                document.getElementById('play_pause').src = './img/pause.png';
+                document.getElementById('play_or_pause' + where).src = './img/pause.png';
+                document.getElementById('title').textContent = document.getElementById('title'+ where).textContent;
+                document.getElementById('artist').textContent = document.getElementById('artist'+ where).textContent;
+                document.getElementById('play_or_pause').value = where;
+        }
    }
 </script>
 <script>
    function previous_song(){
-            var where = document.getElementById('play_or_pause').value;
-            where = Number(where);
+            var where = Number(document.getElementById('play_or_pause').value);
             var playlist = document.getElementsByTagName('audio');
             where--;
             if(where < 0){
                 where = playlist.length -1;
             }
-            var audio;
             for(var i = 0; i < playlist.length; i++){
-                    i = String(i);
-                        all_musics = 'audio' + i;
-                        audio = $('#'+ all_musics);
-                        audio[0].currentTime = 0;
-                        audio[0].pause();
-                        document.getElementById('play_or_pause' + i).src = './img/play.png';
+                playlist[i].pause();
+                playlist[i].currentTime = 0;
+                i = String(i);
+                document.getElementById('play_or_pause' + i).src = './img/play.png';
             }
+            playlist[where].volume = 0.3;
+            playlist[where].currentTime = 0;
+            playlist[where].play();
             where = String(where);
-            var current_music = 'audio'+ where;
-            audio = $('#'+ current_music);
-            audio[0].volume = 0.3;
-            audio[0].currentTime = 0;
-            audio[0].play();
             document.getElementById('play_pause').src = './img/pause.png';
             document.getElementById('play_or_pause' + where).src = './img/pause.png';
             document.getElementById('title').textContent = document.getElementById('title'+ where).textContent;
@@ -535,21 +552,14 @@ $(document).ready(function(){
  
             var count = 0;
     function play_or_pause(str){
-        
-            var where = str;
-            console.log(where);
-            var current_music = "audio" + where;
-            var all_musics;
+            var i;
+            var where = Number(str);
             var playlist = document.getElementsByTagName('audio');
-            console.log(playlist);
         if( document.getElementById('play_pause').getAttribute('src') === './img/play.png' || document.getElementById('play_or_pause'+ where).getAttribute('src') == './img/play.png'){
-            for(var i = 0; i < playlist.length; i++){
-                    i = String(i);
+            for(i = 0; i < playlist.length; i++){
                     if(i !== where){
-                        all_musics = 'audio' + i;
-                        audio = $('#'+ all_musics);
-                        audio[0].currentTime = 0;
-                        audio[0].pause();
+                        playlist[i].currentTime = 0;
+                        playlist[i].pause();
                         document.getElementById('play_or_pause' + i).src = './img/play.png';
                     }
             }
@@ -558,32 +568,16 @@ $(document).ready(function(){
             document.getElementById('title').textContent = document.getElementById('title'+ str).textContent;
             document.getElementById('artist').textContent = document.getElementById('artist'+ str).textContent;
             document.getElementById('play_or_pause').value = where;
-            audio = $('#'+ current_music);
-            playlist = $('#playlist');
-            tracks = playlist.find('audio');
-            len = tracks.length - 1;
-            audio[0].volume = 0.3;
-            audio[0].play();
+            playlist[where].volume = 0.3;
+            playlist[where].play();
             count++;
         } else if (document.getElementById('play_pause').getAttribute('src') === './img/pause.png' ||document.getElementById('play_or_pause'+ where).getAttribute('src') == './img/pause.png'){
             document.getElementById('play_or_pause' + where).src = './img/play.png';
-            
             document.getElementById('play_pause').src = './img/play.png';
-            audio = $('#'+ current_music);
-            playlist = $('#playlist');
-            tracks = playlist.find('audio');
-            len = tracks.length - 1;
-            audio[0].volume = 0.3;
-            audio[0].pause();
+            playlist[where].volume = 0.3;
+            playlist[where].pause();
             count++;
         }
-        var duration;
-       var  time = audio[0].duration; 
-            duration = audio[0].onloadedmetadata = function check(duration) {
-                var duration = audio[0].duration;
-                var current = audio[0].currentTime;
-                return audio[0].duration;
-            }
         if(count > 15){
             document.getElementById('title').textContent = 'Yamete kudasai!!!';
             document.getElementById('cover').src = './img/yamate.jpg';
