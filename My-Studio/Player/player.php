@@ -209,8 +209,7 @@
 <body onload="player()">
 <div id="TxtHint" style="top:0">
 </div>
-var regex1 = RegExp('foo*');
-var regex3 = RegExp('^[a-z]+@{1}[a-z]{2,}\.[a-z]{2,4}$');
+
 <!-- Button trigger modal -->
 <button type="button" class="btn btn-primary" title="Perdu? Cliques ici!" data-toggle="modal" data-target="#exampleModal">
   Help!
@@ -220,20 +219,52 @@ var regex3 = RegExp('^[a-z]+@{1}[a-z]{2,}\.[a-z]{2,4}$');
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <div class="modal-header" style="text-align:center">
-        <h5 class="modal-title" id="exampleModalLabel" style="text-align:center;margin-left:280px"><center>Astuces</center></h5>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal" style="">X</button>
+      <div class="modal-header" style="text-align:center;z-index:99;background-color:#FFFFFF">
+        <h5 class="modal-title" id="exampleModalLabel" style="text-align:center;margin-left:290px"><center>Astuces</center></h5>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" style="z-index:99">X</button>
       </div>
            
-      <div class="modal-body">
-        Utilisez les touches directionnelles pour contrôler le player!
-        La flèche droite lance la prochaine musique, la flèche gauche joue la précèdente.
-        La touche espace est un accès rapide pour les fonctions play/pause.  
-        Have Fun!
+      <div class="modal-body" style="margin-top:-25px;max-height:600px;overflow-y:scroll;z-index:3">
+      <div style="position:relative" style="margin-top:-50px">
+        <div class="btn" style="border:0.2px solid gray;font-size:20px;height:30px;width:200px;margin:0 auto;right:30px">
+        <span style="position:relative;right:6px;bottom:5px">Espace</span></div><br><La touche espace sert à controler la lecture/pause</div>
+        <div class="dropdown-divider"><p>100</p></div>
+        <div style="position:relative" style="top:-90px">
+        <div class="btn" style="border:0.2px solid gray;font-weight:bold;font-size:20px;height:30px;width:30px;margin:0 auto;">
+        <span style="position:relative;right:6px;bottom:8px">→</span></div><br> La flèche directionnelle droite lance la musique suivante</div>
+        <div class="dropdown-divider"><p>100</p></div>
 
-        En cas de soucis supplémentaire, veuillez utiliser le formulaire de contact pour nous faire part de votre problème.
+        <div style="position:relative" style="margin-top:-90px">
+        <div class="btn" style="border:0.2px solid gray;font-weight:bold;font-size:20px;height:30px;width:30px;margin:0 auto;">
+        <span style="position:relative;right:9px;bottom:8px">←</span></div><br> La flèche directionnelle gauche lance la musique précèdente</div>
+        <div class="dropdown-divider"><p>100</p></div>
+        <div style="position:relative" style="top:-90px">
+        <div class="btn" style="border:0.2px solid gray;font-size:20px;height:30px;width:30px;margin:0 auto;">
+        <span style="position:relative;right:4px;bottom:5px">R</span></div><br> La touche 'R' réinitialise la durée de la musique</div>
+        <div class="dropdown-divider"><p>100</p></div>
+        <div style="position:relative" style="top:-90px">
+        <div class="btn" style="border:0.2px solid gray;font-size:20px;height:30px;width:30px;margin:0 auto;">
+        <span style="position:relative;right:4px;bottom:5px">D</span></div><br> La touche 'D' récupère la playlist en cours d'écoute
+        dans un ordre de pistes aléatoire</div>
+        <div class="dropdown-divider"><p>100</p></div>
+        <div style="position:relative" style="top:-90px">
+        <div class="btn" style="border:0.2px solid gray;font-weight:bold;font-size:20px;height:30px;width:30px;margin:0 auto;">
+        <span style="position:relative;right:2px;bottom:8px">↑</span></div><br> La flèche directionnelle vers le haut augmente le volume du lecteur</div>
+        <div class="dropdown-divider"><p>100</p></div>
+        <div style="position:relative" style="top:-90px">
+        <div class="btn" style="border:0.2px solid gray;font-weight:bold;font-size:20px;height:30px;width:30px;margin:0 auto;">
+        <span style="position:relative;right:2px;bottom:8px">↓</span></div><br> La flèche directionnelle vers le bas diminue le volume du lecteur</div>
       </div>
-      <div class="modal-footer">
+
+      <div class="modal-footer" style='margin-bottom:-60px;margin-left:-80px'>
+      En cas de panne ou pour toute assistance complémentaire, 
+      les administrateurs sont joignables via la messagerie.
+
+      Toute l'équipe de MyStudio vous souhaite une 
+      agréable expérience sur notre site.
+
+      Love
+      </div>
       </div>
     </div>
   </div>
@@ -315,13 +346,6 @@ var regex3 = RegExp('^[a-z]+@{1}[a-z]{2,}\.[a-z]{2,4}$');
             </div>
             </div>
             <div id="lol"></div>
-       <!--    <select style="height:25px;position:absolute;right:20px">
-                        <option  value="Ajouter à une playlist">Ajouter à une playlist</option>
-                        <option onclick="add_to_playlist(this.value)" value="Rap">Rap</option>
-                        <option onclick="add_to_playlist(this.value)" value="Everyday">Everyday</option>
-                        <option onclick="add_to_playlist(this.value)" value="Sport">Sport</option>
-                        <option onclick="add_to_playlist(this.value)" value="Chill">Chill</option>
-                    </select> -->
             <?php
             if(isset($_POST['song'])){
                 echo '<br><br><br><br>b<br>';
@@ -331,17 +355,54 @@ var regex3 = RegExp('^[a-z]+@{1}[a-z]{2,}\.[a-z]{2,4}$');
 </body>
 <script>
 $(document).ready(function(){
-    $(document).keyup(function(e){
-        if(e.keyCode == 39){
-            next_song();
-        } else if(e.keyCode == 37) {
-            previous_song();
-        } 
-        if(e.which == 32){
-            play_or_pause(document.getElementById('play_or_pause').value);
-        }
+    $(window).keyup(function(e){
+        console.log(e.which);
+        switch(e.which){
+            case(32):
+                    play_or_pause(document.getElementById('play_or_pause').value);
+                break;
+            case(37):
+                    previous_song();
+                break;
+            case(38):
+                    inc_volume();
+                break;
+            case(39):
+                    next_song();
+                break;
+            case(40):
+                    dec_volume();
+                break;
+            case(82):
+                    reset();
+                break;
+    }
     });
 });
+</script>
+<script>
+   function reset(){
+    var where = document.getElementById('play_or_pause').value;
+            current_music = 'audio'+ where;
+            audio = $('#'+ current_music);
+            audio[0].currentTime = 0;
+   }
+</script>
+<script>
+   function inc_volume(){
+    var where = document.getElementById('play_or_pause').value;
+            current_music = 'audio'+ where;
+            audio = $('#'+ current_music);
+            audio[0].volume += 0.1;
+   }
+</script>
+<script>
+   function dec_volume(){
+    var where = document.getElementById('play_or_pause').value;
+            current_music = 'audio'+ where;
+            audio = $('#'+ current_music);
+            audio[0].volume -= 0.05;
+   }
 </script>
 <script>
    function add_to_playlist(str){
