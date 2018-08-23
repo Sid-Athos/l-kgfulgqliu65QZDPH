@@ -7,8 +7,8 @@
 
     <meta charset="utf-8">
     
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
 </head>
@@ -150,10 +150,93 @@
             max-height:740px;
             z-index:3;
         }
+        .btn.btn-primary:focus{
+            border:none;
+            box-shadow: none;
+        }
+        .btn.btn-primary:active{
+            border:none;
+            box-shadow: none;
+        }
+        .modal-dialog{
+            width:200px;
+            height:90px;
+        }
+        .modal-content{
+            position:absolute;
+            width:680px;
+            margin-top:40px;
+            left:-190px;
+        }
+        .btn.btn-secondary{
+            background-color:#c31432;
+        }
+        .btn.btn-primary{
+            position:absolute;
+            right:0;
+            bottom:0;
+            background-color:#c31432;
+            opacity:1.2;
+            border:none;
+        }
+        .modal-body{
+            font-family: 'Raleway', sans-serif;
+            font-size:18px;
+            white-space:pre-wrap;
+            color:#2980B9;
+            text-align:center;
+        }
+        .btn.btn-primary.dropdown{
+            position:fixed;
+            right:0;
+            height:30px;
+            top:0;
+            width:290px;
+            background-color:#516395;
+            border:none;
+        }
+        .dropdown-toggle{
+            width:300px;
+            color:#FFFFFF;
+            margin-top:-10px;
+            background-color:transparent;
+            border:none;
+            outline:none;
+            color:#decba4;"
+        }
     </style>
   
 <body onload="player()">
 <div id="TxtHint" style="top:0">
+</div>
+var regex1 = RegExp('foo*');
+var regex3 = RegExp('^[a-z]+@{1}[a-z]{2,}\.[a-z]{2,4}$');
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" title="Perdu? Cliques ici!" data-toggle="modal" data-target="#exampleModal">
+  Help!
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="text-align:center">
+        <h5 class="modal-title" id="exampleModalLabel" style="text-align:center;margin-left:280px"><center>Astuces</center></h5>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" style="">X</button>
+      </div>
+           
+      <div class="modal-body">
+        Utilisez les touches directionnelles pour contrôler le player!
+        La flèche droite lance la prochaine musique, la flèche gauche joue la précèdente.
+        La touche espace est un accès rapide pour les fonctions play/pause.  
+        Have Fun!
+
+        En cas de soucis supplémentaire, veuillez utiliser le formulaire de contact pour nous faire part de votre problème.
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
 </div>
             <div class="main" id="main">
                 <div class="image" id="image">
@@ -190,14 +273,13 @@
             </div>
             
             
-            <div class="btn btn-primary dropdown" title="playlist en cours de lecture" style="position:fixed;right:0;height:30px;top:0;width:290px;background-color:#516395;border:none">
+            <div class="btn btn-primary dropdown" title="playlist en cours de lecture">
     <button class="dropdown-toggle" id="dropdown01" type="button"  
-    style="width:300px;color:#FFFFFF;background-color:transparent;border:none;outline:none;color:#decba4;border:0px solid #FFFFFF;" 
     aria-haspopup="true" data-toggle="dropdown" aria-expanded="false">Playlist en cours
     </button>
     <div style="position:absolute;top:0;right:285px">
                 <ul class="dropdown-menu"  id="dropdown-menu" style="position:absolute;margin-top:Opx;width:290px;margin-left:20px;max-height:200px;color:#333333;background-color:#FFFFFF;border:none;outline:none;overflow-x:hidden;overflow-y:hidden">
-    <div style="position:relative;width:310px;height:210px;overflow:scroll">
+    <div style="position:relative;width:307px;height:210px;overflow:scroll">
 
                 <li id="dd" class="dd">
                     <div style="font-size:16px;width:350px;height:25px;margin-left:0px">
@@ -229,7 +311,6 @@
                     <audio src='./musics/World Domination.mp3' preload ="none" id="audio2" preload="none"></audio>
                 </li>
                 <div class="dropdown-divider"><p>100</p></div>
-                </div> 
             </ul>
             </div>
             </div>
@@ -249,14 +330,26 @@
             ?>
 </body>
 <script>
+$(document).ready(function(){
+    $(document).keyup(function(e){
+        if(e.keyCode == 39){
+            next_song();
+        } else if(e.keyCode == 37) {
+            previous_song();
+        } 
+        if(e.which == 32){
+            play_or_pause(document.getElementById('play_or_pause').value);
+        }
+    });
+});
 </script>
-
 <script>
-    
    function add_to_playlist(str){
        alert('Musique ajoutée à la playlist '+ str);
        alert.preventDefault();
    }
+</script>
+<script>
    function player(){
             var where = document.getElementById('play_or_pause').value;
             current_music = 'audio'+ where;
@@ -265,6 +358,7 @@
                 var current_time = Math.floor(audio[0].currentTime);
                 var duration = Math.floor(audio[0].duration);
                 var cal = (current_time/duration)*100;
+
             }
             console.log(where);
             if(!isNaN(current_time)){
@@ -280,15 +374,15 @@
                     if(where > playlist.length -1){
                         console.log('pute');
                         where = playlist.length -1;
-                        audio[0].currentTime = duration;
+                        audio[0].currentTime = 0;
                         audio[0].pause();
+                        document.getElementById('play_pause').src = './img/play.png';
                     } else {
 
                         for(i = 0; i < playlist.length; i++){
                                 i = String(i);
                                     all_musics = 'audio' + i;
                                     audio = $('#'+ all_musics);
-                                    console.log(audio[0]);
                                     audio[0].currentTime = 0;
                                     audio[0].pause();
                                     document.getElementById('play_or_pause' + i).src = './img/play.png';
@@ -298,16 +392,17 @@
                             audio = $('#'+ current_music);
                             audio[0].volume = 0.3;
                             audio[0].play();
-                            document.getElementById('play_pause').src = './img/pause.png';
                             document.getElementById('play_or_pause' + where).src = './img/pause.png';
                             document.getElementById('title').textContent = document.getElementById('title'+ where).textContent;
                             document.getElementById('artist').textContent = document.getElementById('artist'+ where).textContent;
                             document.getElementById('play_or_pause').value = where;
+                    }
                 }
-        }
-    }
+            }
         setTimeout(player,1000);
-}
+    }
+</script>
+<script>
     function next_song(){
             var where = document.getElementById('play_or_pause').value;
             var current_music;
@@ -343,25 +438,21 @@
             document.getElementById('artist').textContent = document.getElementById('artist'+ where).textContent;
             document.getElementById('play_or_pause').value = where;
    }
+</script>
+<script>
    function previous_song(){
             var where = document.getElementById('play_or_pause').value;
-            console.log(where);
             where = Number(where);
             var playlist = document.getElementsByTagName('audio');
             where--;
-            console.log(where);
             if(where < 0){
                 where = playlist.length -1;
             }
-
-            console.log(where);
-            console.log(playlist);
             var audio;
             for(var i = 0; i < playlist.length; i++){
                     i = String(i);
                         all_musics = 'audio' + i;
                         audio = $('#'+ all_musics);
-                        console.log(audio[0]);
                         audio[0].currentTime = 0;
                         audio[0].pause();
                         document.getElementById('play_or_pause' + i).src = './img/play.png';
@@ -369,7 +460,6 @@
             where = String(where);
             var current_music = 'audio'+ where;
             audio = $('#'+ current_music);
-            console.log(audio);
             audio[0].volume = 0.3;
             audio[0].currentTime = 0;
             audio[0].play();
@@ -379,6 +469,8 @@
             document.getElementById('artist').textContent = document.getElementById('artist'+ where).textContent;
             document.getElementById('play_or_pause').value = where;
    }
+</script>
+<script>
  
             var count = 0;
     function play_or_pause(str){
@@ -388,14 +480,13 @@
             var current_music = "audio" + where;
             var all_musics;
             var playlist = document.getElementsByTagName('audio');
-            console.log(lol);
+            console.log(playlist);
         if( document.getElementById('play_pause').getAttribute('src') === './img/play.png' || document.getElementById('play_or_pause'+ where).getAttribute('src') == './img/play.png'){
             for(var i = 0; i < playlist.length; i++){
                     i = String(i);
                     if(i !== where){
                         all_musics = 'audio' + i;
                         audio = $('#'+ all_musics);
-                        console.log(audio[0]);
                         audio[0].currentTime = 0;
                         audio[0].pause();
                         document.getElementById('play_or_pause' + i).src = './img/play.png';
@@ -414,7 +505,6 @@
             audio[0].play();
             count++;
         } else if (document.getElementById('play_pause').getAttribute('src') === './img/pause.png' ||document.getElementById('play_or_pause'+ where).getAttribute('src') == './img/pause.png'){
-            console.log(audio[0]);
             document.getElementById('play_or_pause' + where).src = './img/play.png';
             
             document.getElementById('play_pause').src = './img/play.png';
