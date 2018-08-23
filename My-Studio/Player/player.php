@@ -22,11 +22,12 @@
             border-bottom-left-radius:0px;
             border-bottom-right-radius:0px;
             height:335px;
-            position:fixed;
-            bottom:-22%;
-            left:9%;
+            position:absolute;
+            bottom:-168px;
+            left:150px;
             transform: translate(-50%,-50%);
             background-color: #C6426E;
+            z-index:99;
         }
         .cover{
             height:180px;
@@ -203,9 +204,9 @@
             </form>
             
             
-            <div class="btn btn-primary dropdown" style="position:absolute;right:0;top:0;width:300px;background-color:#decba4">
+            <div class="btn btn-primary dropdown" style="position:absolute;right:0;top:0;width:300px;background-color:#516395;border:none">
     <button class="dropdown-toggle" id="dropdown01" type="button"  
-    style="width:300px;color:#FFFFFF;background-color:transparent;border:none;outline:none" 
+    style="width:300px;color:#FFFFFF;background-color:transparent;border:none;outline:none;color:#decba4;border:0px solid #FFFFFF;" 
     aria-haspopup="true" data-toggle="dropdown" aria-expanded="false">Playlist en cours
     </button>
                 <ul class="dropdown-menu"  id="dropdown-menu" style="position:absolute;width:290px;max-height:200px;color:#333333;background-color:transparent;border:none;outline:none;overflow-x:hidden;overflow-y:hidden">
@@ -220,6 +221,7 @@
                     </div>
                     <audio src='./musics/Summer_Knights.mp3' preload ="none" id="audio0" preload="none"></audio>
                 </li>
+                <div class="dropdown-divider"><p>100</p></div>
                 <li id="dd" >
                     <div style="font-size:16px;width:400px;height:25px">
                     <button onclick="play_or_pause(this.value)" value="1" style="background:transparent;border:none;width:30px;text-align:left">
@@ -230,6 +232,7 @@
                     <audio src='./musics/Waves.mp3' preload ="none" id="audio1" preload="none"></audio>
                     </audio>
                 </li>
+                <div class="dropdown-divider"></div>
                 <li id="dd" class="dd">
                     <div style="font-size:16px;width:350px;height:25px;margin-left:0px">
                     <button onclick="play_or_pause(this.value)" value="2" style="background:transparent;border:none;width:30px;text-align:left">
@@ -239,6 +242,7 @@
                     </div>
                     <audio src='./musics/World Domination.mp3' preload ="none" id="audio0" preload="none"></audio>
                 </li>
+                <div class="dropdown-divider"></div>
                 <li id="dd" class="dd">
                     <div style="font-size:16px;width:400px;height:25px">
                     <button onclick="play_or_pause(this.value)" value="1" style="background:transparent;border:none;width:30px;text-align:left">
@@ -249,6 +253,7 @@
                     <audio src='./musics/Waves.mp3' preload ="none" id="audio1" preload="none"></audio>
                     </audio>
                 </li>
+                <div class="dropdown-divider"></div>
                 <li id="dd" class="dd">
                     <div style="font-size:16px;width:400px;height:25px">
                     <button onclick="play_or_pause(this.value)" value="1" style="background:transparent;border:none;width:30px;text-align:left">
@@ -259,6 +264,7 @@
                     <audio src='./musics/Waves.mp3' preload ="none" id="audio1" preload="none"></audio>
                     </audio>
                 </li>
+                <div class="dropdown-divider"></div>
                 <li id="dd" class="dd">
                     <div style="font-size:16px;width:400px;height:25px">
                     <button onclick="play_or_pause(this.value)" value="1" style="background:transparent;border:none;width:30px;text-align:left">
@@ -269,6 +275,8 @@
                     <audio src='./musics/Waves.mp3' preload ="none" id="audio1" preload="none"></audio>
                     </audio>
                 </li>
+                <div class="dropdown-divider"></div>
+
                 <li id="dd" class="dd">
                     <div style="font-size:16px;width:400px;height:25px">
                     <button onclick="play_or_pause(this.value)" value="1" style="background:transparent;border:none;width:30px;text-align:left">
@@ -279,6 +287,8 @@
                     <audio src='./musics/Waves.mp3' preload ="none" id="audio1" preload="none"></audio>
                     </audio>
                 </li>
+                <div class="dropdown-divider"></div>
+
                 <li id="dd" class="dd">
                     <div style="font-size:16px;width:350px;height:25px;margin-left:0px">
                     <button onclick="play_or_pause(this.value)" value="0" style="background:transparent;border:none;width:30px;text-align:left">
@@ -288,6 +298,8 @@
                     </div>
                     <audio src='./musics/Summer_Knights.mp3' preload ="none" id="audio0" preload="none"></audio>
                 </li>
+                <div class="dropdown-divider"></div>
+
                 <li id="dd" class="dd">
                     <div style="font-size:16px;width:350px;height:25px;margin-left:0px">
                     <button onclick="play_or_pause(this.value)" value="0" style="background:transparent;border:none;width:30px;text-align:left">
@@ -297,6 +309,8 @@
                     </div>
                     <audio src='./musics/Summer_Knights.mp3' preload ="none" id="audio0" preload="none"></audio>
                 </li>
+                <div class="dropdown-divider"></div>
+
                 <li id="dd" class="dd">
                     <div style="font-size:16px;width:350px;height:25px;margin-left:0px">
                     <button onclick="play_or_pause(this.value)" value="0" style="background:transparent;border:none;width:30px;text-align:left">
@@ -306,6 +320,8 @@
                     </div>
                     <audio src='./musics/Summer_Knights.mp3' preload ="none" id="audio0" preload="none"></audio>
                 </li>
+                <div class="dropdown-divider"></div>
+
                 <li id="dd" class="dd">
                     <div style="font-size:16px;width:350px;height:25px;margin-left:0px">
                     <button onclick="play_or_pause(this.value)" value="0" style="background:transparent;border:none;width:30px;text-align:left">
@@ -315,6 +331,8 @@
                     </div>
                     <audio src='./musics/Summer_Knights.mp3' preload ="none" id="audio0" preload="none"></audio>
                 </li>
+                <div class="dropdown-divider"></div>
+
                 <li id="dd" class="dd">
                     <div style="font-size:16px;width:350px;height:25px;margin-left:0px">
                     <button onclick="play_or_pause(this.value)" value="0" style="background:transparent;border:none;width:30px;text-align:left">
@@ -324,6 +342,8 @@
                     </div>
                     <audio src='./musics/Summer_Knights.mp3' preload ="none" id="audio0" preload="none"></audio>
                 </li>
+                <div class="dropdown-divider"></div>
+
                 <li id="dd" class="dd">
                     <div style="font-size:16px;width:350px;height:25px;margin-left:0px">
                     <button onclick="play_or_pause(this.value)" value="0" style="background:transparent;border:none;width:30px;text-align:left">
