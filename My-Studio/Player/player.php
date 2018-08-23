@@ -375,46 +375,63 @@
 </script>
 
 <script>
+    function check(){
+        alert(document.getElementById('play').value);
+    }
    function add_to_playlist(str){
        alert('Musique ajoutée à la playlist '+ str);
        alert.preventDefault();
    }
-   var count = 0;
+ 
+            var where_music = document.getElementById('play').value;
+
+            function where(where_music){
+                var lol = document.getElementById('play').value;
+                console.log(lol);
+                return where;
+            }
+
+            var count = 0;
     function play_or_pause(str){
-        var where = Number(str);
-        
-            var current_music = "audio" + str;
-        if(document.getElementById('play_pause').getAttribute('src') == './img/play.png'){
+            var where = str;
+            console.log(where);
+            var current_music = "audio" + where;
+        if( document.getElementById('play').getAttribute('src') === './img/play.png' || document.getElementById('play_pause'+ where).getAttribute('src') == './img/play.png'){
             document.getElementById('play_pause').src = './img/pause.png';
             document.getElementById('play_pause' + str).src = './img/pause.png';
+            for(var i = 0; i < document.getElementsByTagName('audio').src; i++){
+                    audio = $('#audio' + String(i));
+                    console.log(audio);
+                    audio[i].pause();
+                    document.getElementById('play_pause' + String(i)).src = './img/play.png';
+            }
             document.getElementById('title').textContent = document.getElementById('title'+ str).textContent;
             document.getElementById('artist').textContent = document.getElementById('artist'+ str).textContent;
             document.getElementById('play').value = where;
             audio = $('#'+ current_music);
             playlist = $('#playlist');
-            tracks = playlist.find('li audio');
+            tracks = playlist.find('audio');
             len = tracks.length - 1;
             audio[0].volume = 0.3;
             audio[0].play();
             count++;
-        } else {
+        } else if (document.getElementById('play_pause'+ where).getAttribute('src') == './img/pause.png'){
             document.getElementById('play_pause').src = './img/play.png';
-            for(var i = 0; i < 12; i++){
-                if(i !== Number(where)){
-                    document.getElementById('play_pause' + i).src = './img/play.png';
-                    audio[where].pause();
-                }
+            for(var i = 0; i < document.getElementsById('audio'); i++){
+                console.log(0);
+                    audio = $('#audio' + String(i));
+                    console.log(audio);
+                    audio[i].pause();
+                    document.getElementById('play_pause' + String(i)).src = './img/play.png';
             }
             document.getElementById('play_pause').value = where;
             document.getElementById('title').textContent = document.getElementById('title'+ str).textContent;
             document.getElementById('artist').textContent = document.getElementById('artist'+ str).textContent;
             document.getElementById('play').value = where;
-            audio[0].pause();
-            previous = audio[0];
-            document.getElementById(audio[0]).src = './img/play.png';
-           audio = $('#'+ current_music).src;
-             playlist = $('#playlist');
-            tracks = playlist.find('li audio');
+            audio = $('#'+ current_music);
+            playlist = $('#playlist');
+            tracks = playlist.find('audio');
+            tracks = playlist.find('audio');
             len = tracks.length - 1;
             audio[0].volume = 0.3;
             audio[0].pause();
@@ -423,9 +440,9 @@
         var duration;
             audio[0].onloadedmetadata = function(duration) {
                 var duration = audio[0].duration;
-        document.getElementById('TxtHint').textContent = where + str + len + tracks + duration;
+        document.getElementById('TxtHint').textContent = where + str + len + tracks[0] + duration;
                 return duration;
-            };
+            }
         if(count > 15){
             document.getElementById('TxtHint').textContent = 'Félicitations, tu as violé le bouton play';
             document.getElementById('title').textContent = 'Yamete kudasai!!!';
