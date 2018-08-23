@@ -190,13 +190,14 @@
             </div>
             
             
-            <div class="btn btn-primary dropdown" title="playlist en cours de lecture" style="position:absolute;right:5px;height:30px;top:0;width:300px;background-color:#516395;border:none">
+            <div class="btn btn-primary dropdown" title="playlist en cours de lecture" style="position:fixed;right:0;height:30px;top:0;width:290px;background-color:#516395;border:none">
     <button class="dropdown-toggle" id="dropdown01" type="button"  
     style="width:300px;color:#FFFFFF;background-color:transparent;border:none;outline:none;color:#decba4;border:0px solid #FFFFFF;" 
     aria-haspopup="true" data-toggle="dropdown" aria-expanded="false">Playlist en cours
     </button>
-                <ul class="dropdown-menu"  id="dropdown-menu" style="position:absolute;width:295px;right:-10px;max-height:200px;color:#333333;background-color:#FFFFFF;border:none;outline:none;overflow-x:hidden;overflow-y:hidden">
-    <div style="position:absotule:right:15px;width:310px;height:210px;overflow:scroll">
+    <div style="position:absolute;top:0;right:285px">
+                <ul class="dropdown-menu"  id="dropdown-menu" style="position:absolute;margin-top:Opx;width:290px;margin-left:20px;max-height:200px;color:#333333;background-color:#FFFFFF;border:none;outline:none;overflow-x:hidden;overflow-y:hidden">
+    <div style="position:relative;width:310px;height:210px;overflow:scroll">
 
                 <li id="dd" class="dd">
                     <div style="font-size:16px;width:350px;height:25px;margin-left:0px">
@@ -228,6 +229,7 @@
                     <audio src='./musics/World Domination.mp3' preload ="none" id="audio2" preload="none"></audio>
                 </li>
                 <div class="dropdown-divider"><p>100</p></div>
+                </div> 
             </ul>
             </div>
             </div>
@@ -264,11 +266,9 @@
                 var duration = Math.floor(audio[0].duration);
                 var cal = (current_time/duration)*100;
             }
+            console.log(where);
             if(!isNaN(current_time)){
-                console.log(duration - 2);
-                console.log(current_time);
-                if(current_time > duration - 2){
-                    var current_music;
+                if(current_time === duration - 1){
                     var playlist;
                     var audio;
                     var i;
@@ -278,31 +278,35 @@
                     récupérer la source */
                     where++;
                     if(where > playlist.length -1){
-                        where = 0;
-                    }
+                        console.log('pute');
+                        where = playlist.length -1;
+                        audio[0].currentTime = duration;
+                        audio[0].pause();
+                    } else {
 
-                    for(i = 0; i < playlist.length; i++){
-                            i = String(i);
-                                all_musics = 'audio' + i;
-                                audio = $('#'+ all_musics);
-                                console.log(audio[0]);
-                                audio[0].currentTime = 0;
-                                audio[0].pause();
-                                document.getElementById('play_or_pause' + i).src = './img/play.png';
-                    }
-                    where = String(where);
-                    current_music = 'audio'+ where;
-                    audio = $('#'+ current_music);
-                    audio[0].volume = 0.3;
-                    audio[0].play();
-                    document.getElementById('play_pause').src = './img/pause.png';
-                    document.getElementById('play_or_pause' + where).src = './img/pause.png';
-                    document.getElementById('title').textContent = document.getElementById('title'+ where).textContent;
-                    document.getElementById('artist').textContent = document.getElementById('artist'+ where).textContent;
-                    document.getElementById('play_or_pause').value = where;
+                        for(i = 0; i < playlist.length; i++){
+                                i = String(i);
+                                    all_musics = 'audio' + i;
+                                    audio = $('#'+ all_musics);
+                                    console.log(audio[0]);
+                                    audio[0].currentTime = 0;
+                                    audio[0].pause();
+                                    document.getElementById('play_or_pause' + i).src = './img/play.png';
+                        }
+                            where = String(where);
+                            current_music = 'audio'+ where;
+                            audio = $('#'+ current_music);
+                            audio[0].volume = 0.3;
+                            audio[0].play();
+                            document.getElementById('play_pause').src = './img/pause.png';
+                            document.getElementById('play_or_pause' + where).src = './img/pause.png';
+                            document.getElementById('title').textContent = document.getElementById('title'+ where).textContent;
+                            document.getElementById('artist').textContent = document.getElementById('artist'+ where).textContent;
+                            document.getElementById('play_or_pause').value = where;
+                }
         }
     }
-        setTimeout(player,500);
+        setTimeout(player,1000);
 }
     function next_song(){
             var where = document.getElementById('play_or_pause').value;
@@ -323,7 +327,6 @@
                     i = String(i);
                         all_musics = 'audio' + i;
                         audio = $('#'+ all_musics);
-                        console.log(audio[0]);
                         audio[0].currentTime = 0;
                         audio[0].pause();
                         document.getElementById('play_or_pause' + i).src = './img/play.png';
@@ -331,8 +334,8 @@
             where = String(where);
             current_music = 'audio'+ where;
             audio = $('#'+ current_music);
-            console.log(audio);
             audio[0].volume = 0.3;
+            audio[0].currentTime = 0;
             audio[0].play();
             document.getElementById('play_pause').src = './img/pause.png';
             document.getElementById('play_or_pause' + where).src = './img/pause.png';
@@ -368,7 +371,7 @@
             audio = $('#'+ current_music);
             console.log(audio);
             audio[0].volume = 0.3;
-            audio[0].currentTime = 100;
+            audio[0].currentTime = 0;
             audio[0].play();
             document.getElementById('play_pause').src = './img/pause.png';
             document.getElementById('play_or_pause' + where).src = './img/pause.png';
@@ -431,7 +434,6 @@
                 return audio[0].duration;
             }
         if(count > 15){
-            document.getElementById('TxtHint').textContent = 'Félicitations, tu as violé le bouton play';
             document.getElementById('title').textContent = 'Yamete kudasai!!!';
             document.getElementById('cover').src = './img/yamate.jpg';
         }
