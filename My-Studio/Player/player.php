@@ -59,7 +59,7 @@
         .controls{
             height:50px;
             width:100%;
-            position:relative;
+            position:absolute;
             left:20%;
             padding-top:60px;
             z-index:99;
@@ -261,27 +261,28 @@
                         <div class="current_artist" id="artist" style="opacity:0.5;color:#FFFFFF">Sid Bee
                         </div>
                     </div>
-                    <div class="controls" id="controls">
-                        <button id="pre" class="pre" onclick="previous_song()" style="bottom:15px">
-                            <img src="./img/pre.png" height="30px" width ="30px" style="position:absolute;left:-30px;top:69px"/>
+                    <div class="controls">
+                        <button id="pre" class="pre"  onclick="previous_song()" style="background-image: url('./img/pre.png');
+                        background-size: 30px 30px;background-repeat:no-repeat;
+                        height:30px;width:30px;position:absolute;right:200px;top:62px;outline:none;border:none"> </button>
+            
+                        <button id="play_or_pause" class="play_pause" onclick="play_or_pause(this.value)" style="cursor:pointer;height:50px;width:50px;outline:none;background-color:#C6426E;border:none" value="0">
+                            <img src="./img/play.png"  id="play_pause" height="50px" width="50px" style="position:absolute;top:60px;left:25px;z-index:99;"/>
                         </button>
-                        <button id="play_or_pause" class="play_pause" onclick="play_or_pause(this.value)" style="z-index:98;background-color:transparent;border:none" value="0">
-                            <img src="./img/play.png"  id="play_pause" height="50px" width="50px" style="position:absolute;top:60px;left:25px;z-index:99"/>
-                        </button>
-                        <button id="next" class="next" onclick="next_song()">
+                        <button id="next" class="next" onclick="next_song()" style="height:30px;width:30px;outline:none;background-color:#C6426E;border:none">
                             <img src="./img/next.png" height="30px" width ="30px" style="position:absolute;right:45px;top:71px"/>
                         </button>
-                    </div>
+                        </div>
                     <div id="seek_bar" class="seek_bar">
                         <div id="fill" class="fill">
                         </div>
                         <div class ="handle" id="handle">
-                        </div>
+                    </div>
                     </div>
                 </div>
             </div>
-            
-            
+            <textarea required name="lol"></textarea>
+            <input type="submit">
             <div class="btn btn-primary dropdown" title="playlist en cours de lecture">
     <button class="dropdown-toggle" id="dropdown01" type="button"  
     aria-haspopup="true" data-toggle="dropdown" aria-expanded="false">Playlist en cours
@@ -385,7 +386,6 @@ function bw_song(){
 /* timelapse */
 function further_song(){
     var where = Number(document.getElementById('play_or_pause').value);
-    console.log(where);
         playlist = document.getElementsByTagName('audio');
         if(playlist[where].readyState > -1){
             var duration = Math.floor(playlist[where].duration);
@@ -394,9 +394,9 @@ function further_song(){
         }
         if(playlist[where].currentTime > 1.05){
         playlist[where].currentTime += 0.5;
+        console.log(playlist[where].id);
         if(playlist[where].currentTime !== 0 && playlist[where].currentTime >= duration - 3.5){
             where;
-            console.log(where);
             playlist[where].pause();
             playlist[where].currentTime = 0;
             document.getElementById('play_or_pause' + where).src = './img/play.png';
