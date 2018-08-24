@@ -15,6 +15,7 @@
     JOIN patients
     JOIN clients
     WHERE clients.users_ID = patients.owner_ID
+    AND appointment.app_day = date(CURRENT_TIMESTAMP())
     AND patients.ID = appointment.patients_ID
     AND appointment.vets_ID = (SELECT ID FROM vets WHERE users_ID = :ID)
     AND appointment.canceled = 'n'";

@@ -1,5 +1,6 @@
 <?php
     /* Jointure sama RDV des vets */
+    var_dump($date);
     $query =
     "SELECT
     appointment.start,
@@ -18,7 +19,8 @@
     AND patients.ID = appointment.patients_ID
     AND appointment.vets_ID = (SELECT ID FROM vets WHERE users_ID = :ID)
     AND appointment.canceled = 'n'
-    AND WEEK(appointment.app_day) = WEEK(:date)";
+    AND WEEK(appointment.app_day) = WEEK(:date)
+    ORDER BY appointment.app_day,appointment.start";
     $query_params = array(':ID' => $_SESSION['ID'],
                             ':date' => $date);
     try {

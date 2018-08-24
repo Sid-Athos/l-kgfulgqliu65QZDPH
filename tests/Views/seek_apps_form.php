@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-xs-6" style="max-height:400px;margin:auto;display:block;margin-top:70px;background:background:#333333;font-size:15px" id="txtHint">
+    <div class="col-xs-6" style="max-height:400px;margin:auto;display:block;margin-top:70px;background:background:#333333;font-size:15px">
         <form method="POST" style="width:290px;max-width:290px">
                 <label style="text-align:center"> Ici vous pouvez rechercher des rendez-vous </label> 
                 <label>Choisissez une date</label>
@@ -28,8 +28,7 @@
         <input type="submit" name="search" value="Rechercher un ou des rendez-vous" style="height:40px;background:#FFFFFF;border-radius:3px;border:0.5px solid #333333width:290px;display:block;margin:auto">
     </form>
     </div>
-    <div id="txtHint">
-    </div>
+    <br><br><br>
     <div class="col-xs-6 msg" style="position:fixed;max-height:500px;right:25px;width:130px;top:70px">
         <div class="btn-group-vertical">
             <form role="form" action="" method="POST" name="edit">
@@ -46,6 +45,8 @@
         </div>
     </div>
 </div>
+            <div id="txtHint">
+            </div>
 </body>
 <script>
 search();
@@ -55,11 +56,10 @@ body_load();
 function show_hours(str){
     if(str == "hour"){
         document.getElementById('choose_time').style.display = "inline";
-        document.getElementById('txtHint').innerHtml = "Coucou";
     } else if (str == "all_day"){
         document.getElementById('choose_time').style.display = "none";
-        document.getElementById('txtHint').innerHtml = "Coucou";
     }
+    document.getElementById('txtHint').textContent = "Nique le s2";
 }
 </script>
 <script>

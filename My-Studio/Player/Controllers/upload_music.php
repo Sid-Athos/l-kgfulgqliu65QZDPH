@@ -51,7 +51,7 @@
         
             $album = $_POST['album_name'];
             $i = 0;
-            while($i < count($_POST['title'])) {
+            while($i < count($_POST['csvFile'])) {
                 $title = htmlspecialchars(trim($_POST['title'][$i]), ENT_QUOTES, 'UTF-8');
                 $feat = htmlspecialchars(trim($_POST['feat'][$i]), ENT_QUOTES, 'UTF-8');
                 $dir='../../../data/mystudio/musics/'.$artist.'/'.$album.'/';
