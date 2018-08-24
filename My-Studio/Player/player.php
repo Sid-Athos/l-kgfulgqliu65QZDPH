@@ -281,8 +281,6 @@
                     </div>
                 </div>
             </div>
-            <textarea required name="lol"></textarea>
-            <input type="submit">
             <div class="btn btn-primary dropdown" title="playlist en cours de lecture">
     <button class="dropdown-toggle" id="dropdown01" type="button"  
     aria-haspopup="true" data-toggle="dropdown" aria-expanded="false">Playlist en cours
@@ -480,7 +478,7 @@ function further_song(){
                     var audio;
                     var i;
                     /* On va à l'indice de la prochaine musique dans l'ordre de la playlist afin de 
-                    récupérer la source */
+                    récupérer la source, si la playlist est finie et pas en mode repeat on stoppe */
                     where++;
                     if(where > playlist.length -1){
 
