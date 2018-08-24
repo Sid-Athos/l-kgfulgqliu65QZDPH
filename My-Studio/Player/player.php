@@ -21,17 +21,16 @@
            overflow-x:hidden;
         }
         .main{
-            width:300px;
+            width:200px;
             border-radius:15px;
             border-bottom-left-radius:0px;
             border-bottom-right-radius:0px;
             height:335px;
             position:absolute;
             bottom:-168px;
-            left:150px;
+            left:100px;
             transform: translate(-50%,-50%);
             background-color: #C6426E;
-            z-index:99;
         }
         .cover{
             height:180px;
@@ -52,8 +51,7 @@
            position:absolute;
            width:100%;
            text-align:center;
-            top:69%;
-            padding-top:8px;
+            top:63%;
             left:50%;
             transform: translate(-50%,-50%);
             color :#FFFFFF;
@@ -64,26 +62,32 @@
             position:relative;
             left:20%;
             padding-top:60px;
-            z-index:6;
+            z-index:99;
         }
         .play{
             border:0;
             background-color: transparent;
             cursor: pointer;
             outline:none;
+            z-index:99;
+
         }
         .pre{
             border:0;
             cursor: pointer;
             background-color: transparent;
+            z-index:99;
+
         }
         .next{
             border:0;
             cursor: pointer;
             background-color: transparent;
+            z-index:99;
+
         }
         .seek_bar {
-            width:190px;
+            width:120px;
             height:6px;
             background-color: gray;
             display:flex;
@@ -107,31 +111,7 @@
             transform:scale(1.9);
             bottom:0.1px;
         }
-        .overlay {
-            position: absolute;
-            bottom: 100%;
-            left: 0;
-            right: 0;
-            background-image: url('./img/kake.jpg');
-            background-repeat: no-repeat;
-            overflow: hidden;
-            width: 100%;
-            height:0;
-            transition: .5s ease;
-        }
-
-        .image:hover .overlay {
-            height: 100%;
-        }
-        .image:hover .cover{
-            height:360px;
-            z-index:5;
-            background:transparent;
-            opacity:0.8;
-        }
-        .image:hover.main{
-            background-color:transparent;
-        }
+        
         .text {
             color: white;
             font-size: 20px;
@@ -280,18 +260,16 @@
                         </div>
                         <div class="current_artist" id="artist" style="opacity:0.5;color:#FFFFFF">Sid Bee
                         </div>
-                        <div class="current_album" id="current_album" style="color:transparent">Waters
-                        </div>
                     </div>
                     <div class="controls" id="controls">
                         <button id="pre" class="pre" onclick="previous_song()" style="bottom:15px">
-                            <img src="./img/pre.png" height="30px" width ="30px" style="padding-bottom:10px"/>
+                            <img src="./img/pre.png" height="30px" width ="30px" style="position:absolute;left:-30px;top:69px"/>
                         </button>
-                        <button id="play_or_pause" class="play_pause" onclick="play_or_pause(this.value)" style="background-color:transparent;border:none" value="0">
-                            <img src="./img/play.png"  id="play_pause" height="50px" width="50px"/>
+                        <button id="play_or_pause" class="play_pause" onclick="play_or_pause(this.value)" style="z-index:98;background-color:transparent;border:none" value="0">
+                            <img src="./img/play.png"  id="play_pause" height="50px" width="50px" style="position:absolute;top:60px;left:25px;z-index:99"/>
                         </button>
                         <button id="next" class="next" onclick="next_song()">
-                            <img src="./img/next.png" height="30px" width ="30px" style="padding-bottom:10px"/>
+                            <img src="./img/next.png" height="30px" width ="30px" style="position:absolute;right:45px;top:71px"/>
                         </button>
                     </div>
                     <div id="seek_bar" class="seek_bar">
@@ -356,7 +334,6 @@
 <script>
 $(document).ready(function(){
     $(window).keyup(function(e){
-        console.log(e.which);
         switch(e.which){
             case(32):
                     play_or_pause(document.getElementById('play_or_pause').value);
@@ -383,7 +360,6 @@ $(document).ready(function(){
 <script>
 $(document).ready(function(){
     $(window).keydown(function(e){
-        console.log(e.which);
         switch(e.which){
             case(70):
                     further_song();
@@ -400,18 +376,42 @@ $(document).ready(function(){
 function bw_song(){
     var where = Number(document.getElementById('play_or_pause').value);
         playlist = document.getElementsByTagName('audio');
-        playlist[where].currentTime -= 2;
+        if(playlist[where].currentTime > 10){
+            playlist[where].currentTime -= 2;
+        }
 }
 </script>
 <script>
 /* timelapse */
 function further_song(){
     var where = Number(document.getElementById('play_or_pause').value);
+    console.log(where);
         playlist = document.getElementsByTagName('audio');
-        playlist[where].currentTime += 2;
-}
+        if(playlist[where].readyState > -1){
+            var duration = Math.floor(playlist[where].duration);
+            var cur_time = Math.floor(playlist[where].currentTime);
+            console.log(cur_time);
+        }
+        if(playlist[where].currentTime > 1.05){
+        playlist[where].currentTime += 0.5;
+        if(playlist[where].currentTime !== 0 && playlist[where].currentTime >= duration - 3.5){
+            where;
+            console.log(where);
+            playlist[where].pause();
+            playlist[where].currentTime = 0;
+            document.getElementById('play_or_pause' + where).src = './img/play.png';
+            document.getElementById('title').textContent = document.getElementById('title'+ where).textContent;
+            document.getElementById('artist').textContent = document.getElementById('artist'+ where).textContent;
+            document.getElementById('play_or_pause').value = where;
+            document.getElementById('play_pause').src = './img/play.png';
+        }
+    }
+    }
+    
+
 </script>
 <script>
+
     /* Remet la musique en cours à 0
     Peut alternativement servir de touche Play */
    function reset(){
@@ -419,7 +419,6 @@ function further_song(){
         playlist = document.getElementsByTagName('audio');
         playlist[where].currentTime = 0;
         playlist[where].play();
-        where = String(where);
         document.getElementById('play_or_pause' + where).src = './img/pause.png';
         document.getElementById('title').textContent = document.getElementById('title'+ where).textContent;
         document.getElementById('artist').textContent = document.getElementById('artist'+ where).textContent;
@@ -436,9 +435,9 @@ function further_song(){
 </script>
 <script>
    function dec_volume(){
-    var where = Number(document.getElementById('play_or_pause').value);
-            playlist = document.getElementsByTagName('audio');
-            playlist[where].volume -= 0.05;
+        var where = Number(document.getElementById('play_or_pause').value);
+        playlist = document.getElementsByTagName('audio');
+        playlist[where].volume -= 0.05;
    }
 </script>
 <script>
@@ -470,10 +469,10 @@ function further_song(){
         var where = Number(document.getElementById('play_or_pause').value);
         playlist = document.getElementsByTagName('audio');
             if(playlist[where].readyState > 0){
-                var current_time = Math.floor(playlist[where].currentTime);
+             var current_time = Math.floor(playlist[where].currentTime);
                 var duration = Math.floor(playlist[where].duration);
                 var cal = (current_time/duration)*100;
-
+   
             }
             if(!isNaN(current_time)){
                 if(current_time === duration - 1){
@@ -485,12 +484,10 @@ function further_song(){
                     where++;
                     if(where > playlist.length -1){
 
-                        console.log(where);
                         where = playlist.length -1;
                         playlist[where].currentTime = 0;
                         playlist[where].pause();
                         where = 0;
-                        where = String(where);
                             document.getElementById('play_or_pause' + where).src = './img/play.png';
                             document.getElementById('title').textContent = document.getElementById('title'+ where).textContent;
                             document.getElementById('artist').textContent = document.getElementById('artist'+ where).textContent;
@@ -499,14 +496,12 @@ function further_song(){
                     } else {
 
                         for(i = 0; i < playlist.length; i++){
-                            playlist[where].currentTime = 0;
-                            playlist[where].pause();
-                            i = String(i);
+                            playlist[i].currentTime = 0;
+                            playlist[i].pause();
                             document.getElementById('play_or_pause' + i).src = './img/play.png';
                         }
                             playlist[where].volume = 0.3;
                             playlist[where].play();
-                            where = String(where);
                             document.getElementById('play_or_pause' + where).src = './img/pause.png';
                             document.getElementById('title').textContent = document.getElementById('title'+ where).textContent;
                             document.getElementById('artist').textContent = document.getElementById('artist'+ where).textContent;
@@ -518,8 +513,11 @@ function further_song(){
     }
 </script>
 <script>
-    function next_song(){
-            var where = Number(document.getElementById('play_or_pause').value);
+    function next_song(string){
+        console.log(string);
+        var where = Number(document.getElementById('play_or_pause').value);
+        console.log(where);
+            console.log(where);
             var playlist;
             playlist = document.getElementsByTagName('audio');
             /* On va à l'indice de la prochaine musique dans l'ordre de la playlist afin de 
@@ -532,7 +530,6 @@ function further_song(){
                 playlist[where].currentTime = 0;
                 playlist[where].pause();
                 where = 0;
-                where = String(where);
                     document.getElementById('play_or_pause' + where).src = './img/play.png';
                     document.getElementById('title').textContent = document.getElementById('title'+ where).textContent;
                     document.getElementById('artist').textContent = document.getElementById('artist'+ where).textContent;
@@ -542,12 +539,10 @@ function further_song(){
                 for(i = 0; i < playlist.length; i++){
                     playlist[i].currentTime = 0;
                     playlist[i].pause();
-                    i = String(i);
                     document.getElementById('play_or_pause' + i).src = './img/play.png';
                 }
                 playlist[where].currentTime = 0;
                 playlist[where].play();
-                where = String(where);
                 document.getElementById('play_pause').src = './img/pause.png';
                 document.getElementById('play_or_pause' + where).src = './img/pause.png';
                 document.getElementById('title').textContent = document.getElementById('title'+ where).textContent;
@@ -567,13 +562,11 @@ function further_song(){
             for(var i = 0; i < playlist.length; i++){
                 playlist[i].pause();
                 playlist[i].currentTime = 0;
-                i = String(i);
                 document.getElementById('play_or_pause' + i).src = './img/play.png';
             }
             playlist[where].volume = 0.3;
             playlist[where].currentTime = 0;
             playlist[where].play();
-            where = String(where);
             document.getElementById('play_pause').src = './img/pause.png';
             document.getElementById('play_or_pause' + where).src = './img/pause.png';
             document.getElementById('title').textContent = document.getElementById('title'+ where).textContent;
