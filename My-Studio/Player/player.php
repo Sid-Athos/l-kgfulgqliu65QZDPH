@@ -262,16 +262,18 @@
                         </div>
                     </div>
                     <div class="controls">
-                        <button id="pre" class="pre"  onclick="previous_song()" style="background-image: url('./img/pre.png');
+                        <button id="pre" class="pre"  onclick="previous_song()" style="background-image:url('./img/pre.png');
                         background-size: 30px 30px;background-repeat:no-repeat;
                         height:30px;width:30px;position:absolute;right:200px;top:62px;outline:none;border:none"> </button>
             
-                        <button id="play_or_pause" class="play_pause" onclick="play_or_pause(this.value)" style="cursor:pointer;height:50px;width:50px;outline:none;background-color:#C6426E;border:none" value="0">
-                            <img src="./img/play.png"  id="play_pause" height="50px" width="50px" style="position:absolute;top:60px;left:25px;z-index:99;"/>
+                        <button id="play_or_pause" class="play_pause" onclick="play_or_pause(this.value)" 
+                        style="background-image:url('./img/play.png');overflow:visible;background-size:100%;margin-left:30px;cursor:pointer;
+                        width:80px;outline:none;background-color:#C6426E;background-repeat:no-repeat;outline:none;border:none;
+                        height:50px;width:50px;mar" width="90px" value="0">
                         </button>
-                        <button id="next" class="next" onclick="next_song()" style="height:30px;width:30px;outline:none;background-color:#C6426E;border:none">
-                            <img src="./img/next.png" height="30px" width ="30px" style="position:absolute;right:45px;top:71px"/>
-                        </button>
+                        <button id="next" class="next"  onclick="next_song()" style="background-image:url('./img/next.png');
+                        background-size: 30px 30px;background-repeat:no-repeat;
+                        height:30px;width:30px;position:absolute;right:60px;top:72px;outline:none;border:none"> </button>
                         </div>
                     <div id="seek_bar" class="seek_bar">
                         <div id="fill" class="fill">
@@ -397,11 +399,11 @@ function further_song(){
             where;
             playlist[where].pause();
             playlist[where].currentTime = 0;
-            document.getElementById('play_or_pause' + where).src = './img/play.png';
+            document.getElementById('play_or_pause' + where).style.backgroundImage = 'url("./img/play.png")';
             document.getElementById('title').textContent = document.getElementById('title'+ where).textContent;
             document.getElementById('artist').textContent = document.getElementById('artist'+ where).textContent;
             document.getElementById('play_or_pause').value = where;
-            document.getElementById('play_pause').src = './img/play.png';
+            document.getElementById('play_or_pause').style.backgroundImage = 'url("./img/play.png")';
         }
     }
     }
@@ -417,11 +419,11 @@ function further_song(){
         playlist = document.getElementsByTagName('audio');
         playlist[where].currentTime = 0;
         playlist[where].play();
-        document.getElementById('play_or_pause' + where).src = './img/pause.png';
-        document.getElementById('title').textContent = document.getElementById('title'+ where).textContent;
-        document.getElementById('artist').textContent = document.getElementById('artist'+ where).textContent;
-        document.getElementById('play_or_pause').value = where;
-        document.getElementById('play_pause').src = './img/pause.png';
+        document.getElementById('play_or_pause' + where).style.backgroundImage = "url('./img/pause.png')";
+            document.getElementById('title').textContent = document.getElementById('title'+ where).textContent;
+            document.getElementById('artist').textContent = document.getElementById('artist'+ where).textContent;
+            document.getElementById('play_or_pause').value = where;
+            document.getElementById('play_or_pause').style.backgroundImage = "url('./img/pause.png')";
    }
 </script>
 <script>
@@ -465,6 +467,7 @@ function further_song(){
     la proriété currentTIme... bon on est supposé connaitre l'anglais quand même. */
    function player(){
         var where = Number(document.getElementById('play_or_pause').value);
+        console.log('dsqd');
         playlist = document.getElementsByTagName('audio');
             if(playlist[where].readyState > 0){
              var current_time = Math.floor(playlist[where].currentTime);
@@ -486,21 +489,21 @@ function further_song(){
                         playlist[where].currentTime = 0;
                         playlist[where].pause();
                         where = 0;
-                            document.getElementById('play_or_pause' + where).src = './img/play.png';
-                            document.getElementById('title').textContent = document.getElementById('title'+ where).textContent;
-                            document.getElementById('artist').textContent = document.getElementById('artist'+ where).textContent;
-                            document.getElementById('play_or_pause').value = where;
-                        document.getElementById('play_pause').src = './img/play.png';
+                        document.getElementById('play_or_pause' + where).style.backgroundImage = 'url("./img/play.png")';
+                        document.getElementById('title').textContent = document.getElementById('title'+ where).textContent;
+                        document.getElementById('artist').textContent = document.getElementById('artist'+ where).textContent;
+                        document.getElementById('play_or_pause').value = where;
+                        document.getElementById('play_or_pause').style.backgroundImage = 'url("./img/play.png")';
                     } else {
 
                         for(i = 0; i < playlist.length; i++){
                             playlist[i].currentTime = 0;
                             playlist[i].pause();
-                            document.getElementById('play_or_pause' + i).src = './img/play.png';
+                            document.getElementById('play_or_pause' + i).style.backgorundImage = "url=(./img/play.png')";
                         }
                             playlist[where].volume = 0.3;
                             playlist[where].play();
-                            document.getElementById('play_or_pause' + where).src = './img/pause.png';
+                            document.getElementById('play_or_pause' + where).style.backgroundImage = "url('./img/pause.png')";
                             document.getElementById('title').textContent = document.getElementById('title'+ where).textContent;
                             document.getElementById('artist').textContent = document.getElementById('artist'+ where).textContent;
                             document.getElementById('play_or_pause').value = where;
@@ -528,24 +531,24 @@ function further_song(){
                 playlist[where].currentTime = 0;
                 playlist[where].pause();
                 where = 0;
-                    document.getElementById('play_or_pause' + where).src = './img/play.png';
-                    document.getElementById('title').textContent = document.getElementById('title'+ where).textContent;
-                    document.getElementById('artist').textContent = document.getElementById('artist'+ where).textContent;
-                    document.getElementById('play_or_pause').value = where;
-                document.getElementById('play_pause').src = './img/play.png';
+                document.getElementById('play_or_pause' + where).style.backgroundImage = 'url("./img/play.png")';
+                document.getElementById('title').textContent = document.getElementById('title'+ where).textContent;
+                document.getElementById('artist').textContent = document.getElementById('artist'+ where).textContent;
+                document.getElementById('play_or_pause').value = where;
+                document.getElementById('play_or_pause').style.backgroundImage = 'url("./img/play.png")';
             } else {
                 for(i = 0; i < playlist.length; i++){
                     playlist[i].currentTime = 0;
                     playlist[i].pause();
-                    document.getElementById('play_or_pause' + i).src = './img/play.png';
+                    document.getElementById('play_or_pause' + i).style.backgroundImage = "url='./img/play.png')";
                 }
                 playlist[where].currentTime = 0;
                 playlist[where].play();
-                document.getElementById('play_pause').src = './img/pause.png';
-                document.getElementById('play_or_pause' + where).src = './img/pause.png';
+                document.getElementById('play_or_pause' + where).style.backgroundImage = "url('./img/pause.png')";
                 document.getElementById('title').textContent = document.getElementById('title'+ where).textContent;
                 document.getElementById('artist').textContent = document.getElementById('artist'+ where).textContent;
                 document.getElementById('play_or_pause').value = where;
+                document.getElementById('play_or_pause').style.backgroundImage = "url('./img/pause.png')";
         }
    }
 </script>
@@ -560,16 +563,16 @@ function further_song(){
             for(var i = 0; i < playlist.length; i++){
                 playlist[i].pause();
                 playlist[i].currentTime = 0;
-                document.getElementById('play_or_pause' + i).src = './img/play.png';
+                document.getElementById('play_or_pause' + i).src = 'url("./img/play.png")';
             }
             playlist[where].volume = 0.3;
             playlist[where].currentTime = 0;
             playlist[where].play();
-            document.getElementById('play_pause').src = './img/pause.png';
-            document.getElementById('play_or_pause' + where).src = './img/pause.png';
+            document.getElementById('play_or_pause' + where).style.backgroundImage = "url('./img/pause.png')";
             document.getElementById('title').textContent = document.getElementById('title'+ where).textContent;
             document.getElementById('artist').textContent = document.getElementById('artist'+ where).textContent;
             document.getElementById('play_or_pause').value = where;
+            document.getElementById('play_or_pause').style.backgroundImage = 'url("./img/pause.png")';
    }
 </script>
 <script>
@@ -578,26 +581,30 @@ function further_song(){
     function play_or_pause(str){
             var i;
             var where = Number(str);
+            console.log(where);
             var playlist = document.getElementsByTagName('audio');
-        if( document.getElementById('play_pause').getAttribute('src') === './img/play.png' || document.getElementById('play_or_pause'+ where).getAttribute('src') == './img/play.png'){
+            var img = document.getElementById('play_or_pause').style.backgroundImage;
+            console.log(img);
+        if(document.getElementById('play_or_pause').style.backgroundImage === 'url("./img/play.png")' || document.getElementById('play_or_pause'+ where).style.backgroundImage === 'url("./img/play.png")'){
+            console.log(where);
             for(i = 0; i < playlist.length; i++){
                     if(i !== where){
                         playlist[i].currentTime = 0;
                         playlist[i].pause();
-                        document.getElementById('play_or_pause' + i).src = './img/play.png';
+                        document.getElementById('play_or_pause' + i).style.backgroundImage = './img/play.png';
                     }
             }
-            document.getElementById('play_pause').src = './img/pause.png';
-            document.getElementById('play_or_pause' + str).src = './img/pause.png';
-            document.getElementById('title').textContent = document.getElementById('title'+ str).textContent;
-            document.getElementById('artist').textContent = document.getElementById('artist'+ str).textContent;
+            document.getElementById('play_or_pause' + where).style.backgroundImage = "url('./img/pause.png')";
+            document.getElementById('title').textContent = document.getElementById('title'+ where).textContent;
+            document.getElementById('artist').textContent = document.getElementById('artist'+ where).textContent;
             document.getElementById('play_or_pause').value = where;
+            document.getElementById('play_or_pause').style.backgroundImage = "url('./img/pause.png')";
             playlist[where].volume = 0.3;
             playlist[where].play();
             count++;
-        } else if (document.getElementById('play_pause').getAttribute('src') === './img/pause.png' ||document.getElementById('play_or_pause'+ where).getAttribute('src') == './img/pause.png'){
-            document.getElementById('play_or_pause' + where).src = './img/play.png';
-            document.getElementById('play_pause').src = './img/play.png';
+        } else if (document.getElementById('play_or_pause').style.backgroundImage === "url('./img/pause.png')" || document.getElementById('play_or_pause'+ where).style.backgroundImage === "url('./img/pause.png')"){
+            document.getElementById('play_or_pause' + where).style.backgroundImage = './img/play.png';
+            document.getElementById('play_pause').style.backgroundImage = './img/play.png';
             playlist[where].volume = 0.3;
             playlist[where].pause();
             count++;
