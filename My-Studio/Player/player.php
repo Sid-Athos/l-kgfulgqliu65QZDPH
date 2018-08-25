@@ -284,7 +284,7 @@
                 </div>
             </div>
             <div class="btn btn-primary dropdown" title="playlist en cours de lecture">
-    <button class="dropdown-toggle" id="dropdown01" type="button"  
+    <button class="dropdown-toggle" id="dropdown01" type="button"  style="outline:none;border:none"
     aria-haspopup="true" data-toggle="dropdown" aria-expanded="false">Playlist en cours
     </button>
     <div style="position:absolute;top:0;right:285px">
@@ -399,7 +399,7 @@ function further_song(){
             where;
             playlist[where].pause();
             playlist[where].currentTime = 0;
-            document.getElementById('play_or_pause' + where).style.backgroundImage = 'url("./img/play.png")';
+            document.getElementById('play_or_pause' + where).src = './img/play.png';
             document.getElementById('title').textContent = document.getElementById('title'+ where).textContent;
             document.getElementById('artist').textContent = document.getElementById('artist'+ where).textContent;
             document.getElementById('play_or_pause').value = where;
@@ -419,7 +419,7 @@ function further_song(){
         playlist = document.getElementsByTagName('audio');
         playlist[where].currentTime = 0;
         playlist[where].play();
-        document.getElementById('play_or_pause' + where).style.backgroundImage = "url('./img/pause.png')";
+        document.getElementById('play_or_pause' + where).src = './img/pause.png';
             document.getElementById('title').textContent = document.getElementById('title'+ where).textContent;
             document.getElementById('artist').textContent = document.getElementById('artist'+ where).textContent;
             document.getElementById('play_or_pause').value = where;
@@ -489,7 +489,7 @@ function further_song(){
                         playlist[where].currentTime = 0;
                         playlist[where].pause();
                         where = 0;
-                        document.getElementById('play_or_pause' + where).style.backgroundImage = 'url("./img/play.png")';
+                        document.getElementById('play_or_pause' + where).src = './img/play.png';
                         document.getElementById('title').textContent = document.getElementById('title'+ where).textContent;
                         document.getElementById('artist').textContent = document.getElementById('artist'+ where).textContent;
                         document.getElementById('play_or_pause').value = where;
@@ -503,7 +503,7 @@ function further_song(){
                         }
                             playlist[where].volume = 0.3;
                             playlist[where].play();
-                            document.getElementById('play_or_pause' + where).style.backgroundImage = "url('./img/pause.png')";
+                            document.getElementById('play_or_pause' + where).src = './img/pause.png';
                             document.getElementById('title').textContent = document.getElementById('title'+ where).textContent;
                             document.getElementById('artist').textContent = document.getElementById('artist'+ where).textContent;
                             document.getElementById('play_or_pause').value = where;
@@ -531,7 +531,7 @@ function further_song(){
                 playlist[where].currentTime = 0;
                 playlist[where].pause();
                 where = 0;
-                document.getElementById('play_or_pause' + where).style.backgroundImage = 'url("./img/play.png")';
+                document.getElementById('play_or_pause' + where).src = './img/play.png';
                 document.getElementById('title').textContent = document.getElementById('title'+ where).textContent;
                 document.getElementById('artist').textContent = document.getElementById('artist'+ where).textContent;
                 document.getElementById('play_or_pause').value = where;
@@ -544,7 +544,7 @@ function further_song(){
                 }
                 playlist[where].currentTime = 0;
                 playlist[where].play();
-                document.getElementById('play_or_pause' + where).style.backgroundImage = "url('./img/pause.png')";
+                document.getElementById('play_or_pause' + where).src = './img/pause.png';
                 document.getElementById('title').textContent = document.getElementById('title'+ where).textContent;
                 document.getElementById('artist').textContent = document.getElementById('artist'+ where).textContent;
                 document.getElementById('play_or_pause').value = where;
@@ -568,7 +568,7 @@ function further_song(){
             playlist[where].volume = 0.3;
             playlist[where].currentTime = 0;
             playlist[where].play();
-            document.getElementById('play_or_pause' + where).style.backgroundImage = "url('./img/pause.png')";
+            document.getElementById('play_or_pause' + where).src = './img/pause.png';
             document.getElementById('title').textContent = document.getElementById('title'+ where).textContent;
             document.getElementById('artist').textContent = document.getElementById('artist'+ where).textContent;
             document.getElementById('play_or_pause').value = where;
@@ -585,7 +585,7 @@ function further_song(){
             var playlist = document.getElementsByTagName('audio');
             var img = document.getElementById('play_or_pause').style.backgroundImage;
             console.log(img);
-        if(document.getElementById('play_or_pause').style.backgroundImage === 'url("./img/play.png")' || document.getElementById('play_or_pause'+ where).style.backgroundImage === 'url("./img/play.png")'){
+        if(document.getElementById('play_or_pause').style.backgroundImage === 'url("./img/play.png")' || document.getElementById('play_or_pause'+ where).src === "./img/play.png"){
             console.log(where);
             for(i = 0; i < playlist.length; i++){
                     if(i !== where){
@@ -594,7 +594,7 @@ function further_song(){
                         document.getElementById('play_or_pause' + i).style.backgroundImage = './img/play.png';
                     }
             }
-            document.getElementById('play_or_pause' + where).style.backgroundImage = "url('./img/pause.png')";
+            document.getElementById('play_or_pause' + where).src = './img/pause.png';
             document.getElementById('title').textContent = document.getElementById('title'+ where).textContent;
             document.getElementById('artist').textContent = document.getElementById('artist'+ where).textContent;
             document.getElementById('play_or_pause').value = where;
@@ -602,8 +602,8 @@ function further_song(){
             playlist[where].volume = 0.3;
             playlist[where].play();
             count++;
-        } else if (document.getElementById('play_or_pause').style.backgroundImage === "url('./img/pause.png')" || document.getElementById('play_or_pause'+ where).style.backgroundImage === "url('./img/pause.png')"){
-            document.getElementById('play_or_pause' + where).style.backgroundImage = './img/play.png';
+        } else if (document.getElementById('play_or_pause').style.backgroundImage === "url('./img/pause.png')" || document.getElementById('play_or_pause'+ where).src === './img/pause.png'){
+            document.getElementById('play_or_pause' + where).src = '.play.png';
             document.getElementById('play_pause').style.backgroundImage = './img/play.png';
             playlist[where].volume = 0.3;
             playlist[where].pause();
