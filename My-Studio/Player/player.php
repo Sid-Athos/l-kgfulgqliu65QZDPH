@@ -87,8 +87,8 @@
 
         }
         .seek_bar {
-            width:120px;
-            height:6px;
+            width:10px;
+            height:60px;
             background-color: gray;
             display:flex;
             position:absolute;
@@ -153,11 +153,23 @@
         }
         .btn.btn-primary{
             position:absolute;
-            right:0;
+            left:0;
             bottom:0;
             background-color:#c31432;
             opacity:1.2;
             border:none;
+            z-index:99;
+            width:25px;
+        }
+        .btn.btn-primary{
+            position:absolute;
+            right:150px;
+            bottom:0;
+            background-color:#c31432;
+            opacity:1.2;
+            border:none;
+            z-index:99;
+            width:25px;
         }
         .modal-body{
             font-family: 'Raleway', sans-serif;
@@ -175,6 +187,18 @@
             background-color:#516395;
             border:none;
         }
+        .dropdown{
+            position: fixed;
+            right: -0px;
+            height: 30px;
+            top: 0;
+            width: 290px;
+            font-size:16px;
+            background-color: #516395;
+            border: none;
+            border-radius:3px;
+            margin-bottom:10px;
+        }
         .dropdown-toggle{
             width:300px;
             color:#FFFFFF;
@@ -182,7 +206,7 @@
             background-color:transparent;
             border:none;
             outline:none;
-            color:#decba4;"
+            color:#decba4;
         }
     </style>
   
@@ -192,7 +216,8 @@
 
 <!-- Button trigger modal -->
 <button type="button" class="btn btn-primary" title="Perdu? Cliques ici!" data-toggle="modal" data-target="#exampleModal">
-  Help!
+<span style="margin-left:-5px">
+?</span>
 </button>
 
 <!-- Modal -->
@@ -262,9 +287,15 @@
                         </div>
                     </div>
                     <div class="controls">
+                    <button id="pre" class="pre"  onclick="dec_volume()" style="background-image:url('./img/low.png');
+                        background-size: 30px 30px;background-repeat:no-repeat;
+                        height:30px;width:30px;position:absolute;right:85px;top:40px;outline:none;border:none"> </button>
+                        <button id="pre" class="pre"  onclick="volume()" style="background-image:url('./img/mid.png');
+                        background-size: 30px 30px;background-repeat:no-repeat;
+                        height:30px;width:30px;position:absolute;right:50px;top:40px;outline:none;border:none"> </button>
                         <button id="pre" class="pre"  onclick="previous_song()" style="background-image:url('./img/pre.png');
                         background-size: 30px 30px;background-repeat:no-repeat;
-                        height:30px;width:30px;position:absolute;right:200px;top:62px;outline:none;border:none"> </button>
+                        height:30px;width:30px;position:absolute;right:180px;top:72px;outline:none;border:none"> </button>
             
                         <button id="play_or_pause" class="play_pause" onclick="play_or_pause(this.value)" 
                         style="background-image:url('./img/play.png');overflow:visible;background-size:100%;margin-left:30px;cursor:pointer;
@@ -273,7 +304,7 @@
                         </button>
                         <button id="next" class="next"  onclick="next_song()" style="background-image:url('./img/next.png');
                         background-size: 30px 30px;background-repeat:no-repeat;
-                        height:30px;width:30px;position:absolute;right:60px;top:72px;outline:none;border:none"> </button>
+                        height:30px;width:30px;position:absolute;right:80px;top:72px;outline:none;border:none"> </button>
                         </div>
                     <div id="seek_bar" class="seek_bar">
                         <div id="fill" class="fill">
@@ -283,16 +314,19 @@
                     </div>
                 </div>
             </div>
-            <div class="btn btn-primary dropdown" title="playlist en cours de lecture">
+            <div class="dropdown" title="playlist en cours de lecture">
     <button class="dropdown-toggle" id="dropdown01" type="button"  style="outline:none;border:none"
     aria-haspopup="true" data-toggle="dropdown" aria-expanded="false">Playlist en cours
     </button>
-    <div style="position:absolute;top:0;right:285px">
-                <ul class="dropdown-menu"  id="dropdown-menu" style="position:absolute;margin-top:Opx;width:290px;margin-left:20px;max-height:200px;color:#333333;background-color:#FFFFFF;border:none;outline:none;overflow-x:hidden;overflow-y:hidden">
-    <div style="position:relative;width:307px;height:210px;overflow:scroll">
+    <div style="position:absolute;top:5px;right:285px;height:auto">
+                <ul class="dropdown-menu"  id="dropdown-menu" style="position:absolute;margin-top:0px;width:290px;margin-left:20px;max-height:200px;color:#333333;background-color:#FFFFFF;border:none;outline:none;overflow-x:hidden;overflow-y:hidden">
+    <div style="position: relative;
+    width: 307px;
+    height: 204px;
+    overflow: scroll;">
 
                 <li id="dd" class="dd">
-                    <div style="font-size:16px;width:350px;height:25px;margin-left:0px">
+                    <div style="font-size:16px;width:350px;height:25px;margin-left:0pxdisplay:inline;">
                     <button onclick="play_or_pause(this.value)" id="play_pause0" value="0" style="background:transparent;border:none;width:30px;text-align:left">
                     <img src="./img/play.png" height="20px" width="20px" id="play_or_pause0" style="margin-bottom:-4px;margin-right:4px">
                     </button></a>
@@ -302,8 +336,8 @@
                 </li>
                 <div class="dropdown-divider"><p>100</p></div>
                 <li id="dd" class="dd">
-                    <div style="font-size:16px;width:350px;height:25px;margin-left:0px">
-                    <button onclick="play_or_pause(this.value)" id="play_pause1" value="1" style="background:transparent;border:none;width:30px;text-align:left">
+                    <div style="font-size:16px;width:350px;height:25px;margin-left:0px;display:inline;">
+                    <button onclick="play_or_pause(this.value)" id="play_pause1" value="1" style="background:transparent;border:none;width:30px;">
                     <img src="./img/play.png" height="20px" width="20px" id="play_or_pause1" style="margin-bottom:-4px;margin-right:4px">
                     </button></a>
                     <span id="title1">Waves</span> - <span id="artist1">Joey Bad4$$</span> dsqdjsq vdjv dvsqk vdkl dsqd dsq dd sqd dsq dsd qs
@@ -320,6 +354,7 @@
                     </div>
                     <audio src='./musics/World Domination.mp3' preload ="none" id="audio2" preload="none"></audio>
                 </li>
+                
                 <div class="dropdown-divider"><p>100</p></div>
             </ul>
             </div>
@@ -499,7 +534,7 @@ function further_song(){
                         for(i = 0; i < playlist.length; i++){
                             playlist[i].currentTime = 0;
                             playlist[i].pause();
-                            document.getElementById('play_or_pause' + i).style.backgorundImage = "url=(./img/play.png')";
+                            document.getElementById('play_or_pause' + i).src = "./image/play.png";
                         }
                             playlist[where].volume = 0.3;
                             playlist[where].play();
@@ -540,7 +575,7 @@ function further_song(){
                 for(i = 0; i < playlist.length; i++){
                     playlist[i].currentTime = 0;
                     playlist[i].pause();
-                    document.getElementById('play_or_pause' + i).style.backgroundImage = "url='./img/play.png')";
+                    document.getElementById('play_or_pause' + i).src = './img/play.png';
                 }
                 playlist[where].currentTime = 0;
                 playlist[where].play();
@@ -591,7 +626,7 @@ function further_song(){
                     if(i !== where){
                         playlist[i].currentTime = 0;
                         playlist[i].pause();
-                        document.getElementById('play_or_pause' + i).style.backgroundImage = './img/play.png';
+                        document.getElementById('play_or_pause' + i).src = './img/play.png';
                     }
             }
             document.getElementById('play_or_pause' + where).src = './img/pause.png';
