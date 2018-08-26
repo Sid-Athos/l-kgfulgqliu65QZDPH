@@ -34,10 +34,9 @@
         }
         .cover{
             height:180px;
-            width:100%;
+            width:200px;
             border-top-left-radius:15px;
             border-top-right-radius:15px;
-            opacity:0.96;
             top:0px;
             z-index:1;
         }
@@ -51,7 +50,7 @@
            position:absolute;
            width:100%;
            text-align:center;
-            top:63%;
+            top:65%;
             left:50%;
             transform: translate(-50%,-50%);
             color :#FFFFFF;
@@ -86,30 +85,83 @@
             z-index:99;
 
         }
-        .seek_bar {
-            width:10px;
-            height:60px;
-            background-color: gray;
-            display:flex;
+        .seek_bar_vol {
+            width:100px;
+            height:2px;
+            background-color: #780206;
+            display:none;
             position:absolute;
             bottom:15px;
-            left:20%;
+            right:40px;
             cursor: pointer;
+            border-radius:4px;
+            z-index:99;
+            display:none;
         }
-        .fill{
-            height:6px;
+        .seek_bar_vol:hover {
+            width:100px;
+            height:2px;
+            background-color: #780206;
+            display:none;
+            position:absolute;
+            bottom:15px;
+            right:40px;
+            cursor: pointer;
+            border-radius:4px;
+            z-index:99;
+            display:inline;
+        }
+        .fill_vol{
+            height:2.2px;
+            width:100px;
+            position:absolute;
+            bottom:0px;
             background-color:#FFFFFF;
             border-radius:20px;
         }
-        .handle{
-            width:8px;
-            height:8px;
+        .handle_vol{
+            width:4px;
+            height:4px;
+            right:0.5px;
             background-color:#FFFFFF;
+            position:relative;
             border-radius:50%;
-            margin-left:-5px;
+            transform:scale(1.9);
+        }
+        
+        .seek_bar {
+            width:200px;
+            height:5px;
+            background-color: gray;
+            display:flex;
             position:absolute;
+            top:180px;
+            left:0;
+            cursor: pointer;
+            border-top-right-radius:2px;
+            border-bottom-right-radius:2px;
+            z-index:99;
+        }
+        .fill{
+            height:5px;
+            width:33px;
+            position:absolute;
+            top:0px;
+            background-color:#FFFFFF;
+            border-radius:20px;
+            z-index:99;
+        }
+        .handle{
+            width:5px;
+            height:5px;
+            left:33px;
+            top:-1px;
+            background-color:#FFFFFF;
+            position:absolute;
+            border-radius:50%;
             transform:scale(1.9);
             bottom:0.1px;
+            z-index:99;
         }
         
         .text {
@@ -166,7 +218,7 @@
             right:150px;
             bottom:0;
             background-color:#c31432;
-            opacity:1.2;
+            opacity:0.6;
             border:none;
             z-index:99;
             width:25px;
@@ -210,15 +262,16 @@
         }
     </style>
   
-<body onload="player()">
+<body onload="player();auto_close_control_volume();" style="cursor:default">
 <div id="TxtHint" style="top:0">
 </div>
 
 <!-- Button trigger modal -->
 <button type="button" class="btn btn-primary" title="Perdu? Cliques ici!" data-toggle="modal" data-target="#exampleModal">
-<span style="margin-left:-5px">
+<span style="margin-left:-5px;opacity:1.3">
 ?</span>
 </button>
+
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -275,8 +328,11 @@
   </div>
 </div>
             <div class="main" id="main">
-                <div class="image" id="image">
-                    <img src='./img/kake.jpg' id="cover" class="cover"/>
+                    <img src='./img/kake.jpg' id="cover" class="cover" />
+        <div class="btn" id="mus_op"
+        style="position:fixed;left:-160px;opacity:0.2;background-color:#FFFFFF;top:0px;
+        height:180px;border:0.2px solid gray;font-size:20px;width:0px;max-width:360px;margin:0 auto;right:30px;
+        border-top-left-radius:30px;border-top-right-radius:12px">
                 </div>
                 <div class ="player" id="player">
                     <div id="song_title" class="song_title">
@@ -287,32 +343,36 @@
                         </div>
                     </div>
                     <div class="controls">
-                    <button id="pre" class="pre"  onclick="dec_volume()" style="background-image:url('./img/low.png');
-                        background-size: 30px 30px;background-repeat:no-repeat;
-                        height:30px;width:30px;position:absolute;right:85px;top:40px;outline:none;border:none"> </button>
-                        <button id="pre" class="pre"  onclick="volume()" style="background-image:url('./img/mid.png');
-                        background-size: 30px 30px;background-repeat:no-repeat;
-                        height:30px;width:30px;position:absolute;right:50px;top:40px;outline:none;border:none"> </button>
-                        <button id="pre" class="pre"  onclick="previous_song()" style="background-image:url('./img/pre.png');
+                    
+                        <button id="pre" class="pre" title="Musique précèdente" onclick="previous_song()" style="background-image:url('./img/pre.png');
                         background-size: 30px 30px;background-repeat:no-repeat;
                         height:30px;width:30px;position:absolute;right:180px;top:72px;outline:none;border:none"> </button>
             
-                        <button id="play_or_pause" class="play_pause" onclick="play_or_pause(this.value)" 
+                        <button id="play_or_pause" title="Play/pause" class="play_pause" onclick="play_or_pause(this.value)" 
                         style="background-image:url('./img/play.png');overflow:visible;background-size:100%;margin-left:30px;cursor:pointer;
                         width:80px;outline:none;background-color:#C6426E;background-repeat:no-repeat;outline:none;border:none;
                         height:50px;width:50px;mar" width="90px" value="0">
                         </button>
-                        <button id="next" class="next"  onclick="next_song()" style="background-image:url('./img/next.png');
+                        <button id="next" class="next" title="Musique suivante" onclick="next_song()" style="background-image:url('./img/next.png');
                         background-size: 30px 30px;background-repeat:no-repeat;
                         height:30px;width:30px;position:absolute;right:80px;top:72px;outline:none;border:none"> </button>
                         </div>
-                    <div id="seek_bar" class="seek_bar">
+                    <div id="seek_bar" class="seek_bar" title="Contrôle du volume">
                         <div id="fill" class="fill">
                         </div>
                         <div class ="handle" id="handle">
                     </div>
                     </div>
                 </div>
+                    <button id="vol" class="vol" title="Controle volume" onclick="show_volume_control()" style="background-image:url('./img/high.png');
+                        background-size: 30px 30px;background-repeat:no-repeat;
+                        height:30px;width:30px;position:absolute;right:5px;top:80%;outline:none;border:none;z-index:99;background-color:transparent"> </button>
+                        <div id="seek_bar_vol" class="seek_bar_vol" title="Contrôle du volume">
+                        <div id="fill_vol" class="fill_vol">
+                        </div>
+                        <div class ="handle_vol" id="handle_vol">
+                    </div>
+                    </div>
             </div>
             <div class="dropdown" title="playlist en cours de lecture">
     <button class="dropdown-toggle" id="dropdown01" type="button"  style="outline:none;border:none"
@@ -322,40 +382,47 @@
                 <ul class="dropdown-menu"  id="dropdown-menu" style="position:absolute;margin-top:0px;width:290px;margin-left:20px;max-height:200px;color:#333333;background-color:#FFFFFF;border:none;outline:none;overflow-x:hidden;overflow-y:hidden">
     <div style="position: relative;
     width: 307px;
-    height: 204px;
+    height: 209px;
     overflow: scroll;">
-
-                <li id="dd" class="dd">
-                    <div style="font-size:16px;width:350px;height:25px;margin-left:0pxdisplay:inline;">
-                    <button onclick="play_or_pause(this.value)" id="play_pause0" value="0" style="background:transparent;border:none;width:30px;text-align:left">
-                    <img src="./img/play.png" height="20px" width="20px" id="play_or_pause0" style="margin-bottom:-4px;margin-right:4px">
+    <li id="dd" class="dd" style="font-size:16px;width:350px;height:25px;margin-left:0px;">
+                    <div style="font-size:16px;width:350px;height:25px;display:inline;white-space:nowrap">
+                    <button onclick="play_or_pause(this.value)" id="play_pause0" value="0" style="background:transparent;border:none;width:30px;display:inline;">
+                    <img src="./img/play.png" height="20px" width="20px" id="play_or_pause0" style="margin-bottom:3px;margin-right:4px">
                     </button></a>
-                    <span id="title0">Summer Knights</span> - <span id="artist0">Joey Bad4$$</span>
+                    <span id="title0" style="white-space:nowrap;display:inline;left:30px;">Summer Knights</span>
+                    <span style="white-space:nowrap"> - </span>
+                    <span id="artist0" style="white-space:nowrap">Joey Bad4$$ </span>
+                    <span style="white-space:nowrap"><a href="" target="_blank">Accèder à la page artiste</a></span>
                     </div>
                     <audio src='./musics/Summer_Knights.mp3' preload ="none" id="audio0" preload="none"></audio>
                 </li>
-                <div class="dropdown-divider"><p>100</p></div>
-                <li id="dd" class="dd">
-                    <div style="font-size:16px;width:350px;height:25px;margin-left:0px;display:inline;">
-                    <button onclick="play_or_pause(this.value)" id="play_pause1" value="1" style="background:transparent;border:none;width:30px;">
-                    <img src="./img/play.png" height="20px" width="20px" id="play_or_pause1" style="margin-bottom:-4px;margin-right:4px">
+                <div class="dropdown-divider"><p>100</p></div>  
+                <li id="dd" class="dd" style="font-size:16px;width:350px;height:25px;margin-left:0px;">
+                    <div style="font-size:16px;width:350px;height:25px;display:inline;white-space:nowrap">
+                    <button onclick="play_or_pause(this.value)" id="play_pause1" value="1" style="background:transparent;border:none;width:30px;display:inline;">
+                    <img src="./img/play.png" height="20px" width="20px" id="play_or_pause1" style="margin-bottom:3px;margin-right:4px">
                     </button></a>
-                    <span id="title1">Waves</span> - <span id="artist1">Joey Bad4$$</span> dsqdjsq vdjv dvsqk vdkl dsqd dsq dd sqd dsq dsd qs
+                    <span id="title1" style="white-space:nowrap;display:inline;left:30px;">Waves</span>
+                    <span style="white-space:nowrap"> - </span>
+                    <span id="artist1" style="white-space:nowrap">Joey Bad4$$ </span>
+                    <span style="white-space:nowrap"><a href="">dsqdjsq vdjv dvsqk vdkl dsqd dsq dd sqd dsq dsd qs</a></span>
                     </div>
                     <audio src='./musics/Waves.mp3' preload ="none" id="audio1" preload="none"></audio>
                 </li>
-                <div class="dropdown-divider"><p>100</p></div>
-                <li id="dd" class="dd">
-                    <div style="font-size:16px;width:350px;height:25px;margin-left:0px">
-                    <button onclick="play_or_pause(this.value)" id="play_pause2" value="2" style="background:transparent;border:none;width:30px;text-align:left">
-                    <img src="./img/play.png" height="20px" width="20px" id="play_or_pause2" style="margin-bottom:-4px;margin-right:4px">
+                <div class="dropdown-divider"><p>100</p></div>  
+                <li id="dd" class="dd" style="font-size:16px;width:350px;height:25px;margin-left:0px;">
+                    <div style="font-size:16px;width:350px;height:25px;display:inline;white-space:nowrap">
+                    <button onclick="play_or_pause(this.value)" id="play_pause2" value="2" style="background:transparent;border:none;width:30px;display:inline;">
+                    <img src="./img/play.png" height="20px" width="20px" id="play_or_pause2" style="margin-bottom:3px;margin-right:4px">
                     </button></a>
-                    <span id="title2">World Domination</span> - <span id="artist2">Joey Bad4$$</span>
+                    <span id="title2" style="white-space:nowrap;display:inline;left:30px;">World Domination</span>
+                    <span style="white-space:nowrap"> - </span>
+                    <span id="artist2" style="white-space:nowrap">Joey Bad4$$ </span>
+                    <span style="white-space:nowrap"><a href="">Page artiste</a></span>
                     </div>
                     <audio src='./musics/World Domination.mp3' preload ="none" id="audio2" preload="none"></audio>
                 </li>
-                
-                <div class="dropdown-divider"><p>100</p></div>
+                <div class="dropdown-divider"><p>100</p></div>  
             </ul>
             </div>
             </div>
@@ -367,6 +434,147 @@
             }
             ?>
 </body>
+<script>
+ function show_volume_control(){
+     var vol = document.getElementById('seek_bar_vol');
+         if(vol.style.display === 'none'){
+             vol.style.display = 'block';
+         } else {
+            vol.style.display = 'none';
+
+         }
+     
+ }
+ </script>
+<script>
+//Make the DIV element draggagle:
+dragElement(document.getElementById("seek_bar"));
+
+function dragElement(elmnt) {
+    var pos = 0, ref_pos = 0,  cal_pos = 0,pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+    elmnt.onmouseup = dragMouseDown;
+    function dragMouseDown(e) {
+        e = e || window.event;
+        e.preventDefault();
+        // get the mouse cursor position at startup:
+        
+        console.log('seek');
+        pos4 = e.clientX;
+        ref_pos = e.clientX;
+        if(ref_pos >= 0 && ref_pos <= 200){
+            var where = Number(document.getElementById('play_or_pause').value);
+            playlist = document.getElementsByTagName('audio');
+                var duration = Math.floor(playlist[where].duration);
+                var cal = ref_pos/200;
+                cal = Math.round(cal *360);
+                if(cal >= 9){
+                document.getElementById('mus_op').style.width = cal +"px";
+                } else {
+                    cal = 0;
+                document.getElementById('mus_op').style.width = cal +"px";
+
+                document.getElementById('mus_op').style.display = "none";
+
+                }
+                console.log(cal);
+    // set the element's new position:
+    document.getElementById('handle').style.left = (ref_pos-1) + "px";
+    document.getElementById('fill').style.width = ref_pos + "px";
+    } 
+    // call a function whenever the cursor moves:
+  }
+
+  
+
+  function closeDragElement() {
+    /* stop moving when mouse button is released:*/
+    document.onmouseup = null;
+    document.onmousemove = null;
+  }
+}
+</script>
+<script>
+//Make the DIV element draggagle:
+dragElement(document.getElementById("handle"));
+
+function dragElement(elmnt) {
+    var pos = 0, ref_pos = 0,  cal_pos = 0,pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+    
+    elmnt.onmousedown = dragMouseDown;
+    function dragMouseDown(e) {
+        e = e || window.event;
+        e.preventDefault();
+        // get the mouse cursor position at startup:
+    console.log(elmnt.offsetTop);
+        
+        pos4 = e.clientX;
+
+    document.onmouseup = closeDragElement;
+    // call a function whenever the cursor moves:
+    document.onmousemove = elementDrag;
+  }
+
+  function elementDrag(e) {
+    e = e || window.event;
+    e.preventDefault();
+    // calculate the new cursor position:
+    var where = Number(document.getElementById('play_or_pause').value);
+    playlist = document.getElementsByTagName('audio');
+    pos = Number(e.clientX);
+    console.log('handle');
+    ref_pos = e.clientX+11;
+    if(pos >= 0 && pos <= 200){
+             var current_time = Math.floor(playlist[where].currentTime);
+                var duration = Math.floor(playlist[where].duration);
+    // set the element's new position:
+    document.getElementById('fill').style.width = pos + "px";
+    var cal = ref_pos/200;
+    cal = Math.round(cal *360);
+    var cal_diff = pos/360;
+    console.log('cal3 '+ cal);
+    console.log('pos' + pos);
+                if(cal >= 9){
+                document.getElementById('mus_op').style.width = cal +"px";
+                document.getElementById('mus_op').style.display = "inline";
+
+                } else {
+                    cal = 0;
+                document.getElementById('mus_op').style.width = cal +"px";
+                document.getElementById('mus_op').style.display = "none";
+                    
+                }
+    elmnt.style.left = (pos-1) + "px";
+    } else {
+        document.getElementById('fill').style.width = 200 + "px";
+    document.getElementById('mus_op').style.width = 360 + "px";
+
+        elmnt.style.left = 197 + "px";
+        return false;
+    }
+  }
+
+  function closeDragElement() {
+    /* stop moving when mouse button is released:*/
+    document.onmouseup = null;
+    document.onmousemove = null;
+  }
+}
+</script>
+<script>
+var count = 0;
+function auto_close_control_volume(){
+    var vol = document.getElementById('seek_bar_vol');
+         if(vol.style.display === 'block' && count > 3){
+             vol.style.display = 'none';
+             count = 0;
+         } else if(count <=3 && vol.style.display==="block"){
+            vol.style.display = 'block';
+            count++;
+         }
+    setTimeout(auto_close_control_volume,2000);
+}
+</script>
+
 <script>
 $(document).ready(function(){
     $(window).keyup(function(e){
@@ -402,6 +610,12 @@ $(document).ready(function(){
                 break;
             case(66):
                     bw_song();
+                break;
+                case(40):
+                    dec_volume();
+                break;
+                case(38):
+                    inc_volume();
                 break;
     }
     });
@@ -465,14 +679,27 @@ function further_song(){
    function inc_volume(){
         var where = Number(document.getElementById('play_or_pause').value);
         playlist = document.getElementsByTagName('audio');
-        playlist[where].volume += 0.1;
+        playlist[where].volume += 0.05;
+        act_vol = playlist[where].volume * 100;
+        document.getElementById('fill').style.width = (act_vol+2) + "px";
+        document.getElementById('handle').style.left = (act_vol+3) + "px";
+
    }
 </script>
 <script>
    function dec_volume(){
         var where = Number(document.getElementById('play_or_pause').value);
         playlist = document.getElementsByTagName('audio');
-        playlist[where].volume -= 0.05;
+        
+        if(playlist[where].volume >= 0.1){
+            playlist[where].volume -= 0.05;
+        act_vol = playlist[where].volume * 100;
+    } else {
+        playlist[where].volume = 0;
+    act_vol = 0;
+    }
+    document.getElementById('fill').style.width = (act_vol) + "px";
+        document.getElementById('handle').style.left = (act_vol - 2) + "px";
    }
 </script>
 <script>
@@ -482,32 +709,14 @@ function further_song(){
    }
 </script>
 <script>
-    /* Controle du player sur la page. 
-    Notamment le passage automatique des musiques, les images play/pause
-    Récupère les idées de la playlist pour avoir l'ensemble des musiques, puis donne en value du lecteur
-    l'emplacement de la musique dans la playlist.
-    Les listes
-    La vie
-    Le principe est simple. Quand je récupère une playlist quelconque de la BDD 
-    je génène une liste comprenant un bouton play/pause, le chemin audio de la musique et ses informations sous la forme
-    audio[i] title[i] album[i] artist[i].
-    Selon que j'ai cliqué sur telle ou telle musique, le player recupere son ID et le ferme pour les autres en remettant 
-    la durée initiale à 0 secondes et en mettant chaque icone sur PLAY (je récupère l'ensemble des audios grace
-    à la propriété document.getElementsByTagName qui me crée une liste contenant tout)
-    Puis je mets la musique désirée en marche, en prenant soin de mettre l'image play/pause du lecteur sur pause, ainsi que celle dans
-    la playlist (hsebt rani hma3?).
-    Si la musique arrive à la fin, j'incrémente l'ID récupéré. Là je double backflip.
-    Je le compare à la longueur de la playlist. Si c'est supérieur, l'ID revient à 0, et j'attends que le mec choisisse de relancer
-    sinon je lance la musique suivante de la playlist. La propriété duration me permet d'avoir la durée totale en seconde
-    la proriété currentTIme... bon on est supposé connaitre l'anglais quand même. */
+   
    function player(){
         var where = Number(document.getElementById('play_or_pause').value);
-        console.log('dsqd');
         playlist = document.getElementsByTagName('audio');
-            if(playlist[where].readyState > 0){
+            if(playlist[where].readyState === 4){
              var current_time = Math.floor(playlist[where].currentTime);
                 var duration = Math.floor(playlist[where].duration);
-                var cal = (current_time/duration)*100;
+                var cal = current_time/duration;
    
             }
             if(!isNaN(current_time)){
@@ -536,16 +745,39 @@ function further_song(){
                             playlist[i].pause();
                             document.getElementById('play_or_pause' + i).src = "./image/play.png";
                         }
-                            playlist[where].volume = 0.3;
+                            previous = where -1;
+                            playlist[where].volume = playlist[previous].volume;
+                            
                             playlist[where].play();
                             document.getElementById('play_or_pause' + where).src = './img/pause.png';
                             document.getElementById('title').textContent = document.getElementById('title'+ where).textContent;
                             document.getElementById('artist').textContent = document.getElementById('artist'+ where).textContent;
                             document.getElementById('play_or_pause').value = where;
+                            document.getElementById('play_or_pause').style.backgroundImage = 'url("./img/play.png")';
+
                     }
                 }
-            }
-        setTimeout(player,1000);
+            } 
+                console.log(where);
+                console.log(cal);
+                console.log('handle');
+                var pos_op = Math.round(cal*360);
+                var pos_fill = Math.round(cal*200);
+                // set the element's new position:
+                document.getElementById('fill').style.width = pos_fill + "px";
+                            if(cal >= 0.03){
+                            document.getElementById('mus_op').style.width = pos_op +"px";
+                            document.getElementById('mus_op').style.display = "inline";
+
+                            } else {
+                                cal = 0;
+                            document.getElementById('mus_op').style.width = pos_op +"px";
+                            document.getElementById('mus_op').style.display = "none";
+                                
+                            }
+                document.getElementById('handle').style.left = (pos_fill-1) + "px";
+            
+            setTimeout(player,300);
     }
 </script>
 <script>
@@ -566,7 +798,9 @@ function further_song(){
                 playlist[where].currentTime = 0;
                 playlist[where].pause();
                 where = 0;
+                previous = playlist.length -1;
                 document.getElementById('play_or_pause' + where).src = './img/play.png';
+                document.getElementById('play_or_pause' + previous).src = './img/play.png';
                 document.getElementById('title').textContent = document.getElementById('title'+ where).textContent;
                 document.getElementById('artist').textContent = document.getElementById('artist'+ where).textContent;
                 document.getElementById('play_or_pause').value = where;
@@ -578,6 +812,8 @@ function further_song(){
                     document.getElementById('play_or_pause' + i).src = './img/play.png';
                 }
                 playlist[where].currentTime = 0;
+                previous = where -1;
+                playlist[where].volume = playlist[previous].volume;
                 playlist[where].play();
                 document.getElementById('play_or_pause' + where).src = './img/pause.png';
                 document.getElementById('title').textContent = document.getElementById('title'+ where).textContent;
@@ -600,7 +836,12 @@ function further_song(){
                 playlist[i].currentTime = 0;
                 document.getElementById('play_or_pause' + i).src = 'url("./img/play.png")';
             }
-            playlist[where].volume = 0.3;
+            var previous = where+1;
+            if(where === playlist.length -1){
+                previous = 0;
+            }
+
+            playlist[where].volume = playlist[previous].volume;
             playlist[where].currentTime = 0;
             playlist[where].play();
             document.getElementById('play_or_pause' + where).src = './img/pause.png';
@@ -634,15 +875,19 @@ function further_song(){
             document.getElementById('artist').textContent = document.getElementById('artist'+ where).textContent;
             document.getElementById('play_or_pause').value = where;
             document.getElementById('play_or_pause').style.backgroundImage = "url('./img/pause.png')";
-            playlist[where].volume = 0.3;
             playlist[where].play();
             count++;
-        } else if (document.getElementById('play_or_pause').style.backgroundImage === "url('./img/pause.png')" || document.getElementById('play_or_pause'+ where).src === './img/pause.png'){
-            document.getElementById('play_or_pause' + where).src = '.play.png';
-            document.getElementById('play_pause').style.backgroundImage = './img/play.png';
-            playlist[where].volume = 0.3;
+        } else if (document.getElementById('play_or_pause').style.backgroundImage === 'url("./img/pause.png")' || document.getElementById('play_or_pause'+ where).src === './img/pause.png'){
+            document.getElementById('play_or_pause' + where).src = './play.png';
+            document.getElementById('play_or_pause').style.backgroundImage = 'url("./img/play.png")';
             playlist[where].pause();
             count++;
+        }
+        if(count <= 1){
+            var elmnt = document.getElementById('handle');
+            pos = Number(elmnt.offsetLeft);
+            pos = pos/100;
+            playlist[where].volume = pos;
         }
         if(count > 15){
             document.getElementById('title').textContent = 'Yamete kudasai!!!';

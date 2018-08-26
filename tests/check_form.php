@@ -74,9 +74,10 @@ function dragElement(elmnt) {
       // get the mouse cursor position at startup:
       
     pos4 = e.clientY;
+    console.log(elmnt.offsetTop);
     document.onmouseup = closeDragElement;
     // call a function whenever the cursor moves:
-    if(pos4 > 0 && pos4 < 150){
+    if(elmnt.offsetTop >= 0 && elmnt.offsetTop <= 170){
     document.onmousemove = elementDrag;
     }
   }
@@ -95,7 +96,7 @@ function dragElement(elmnt) {
     check = Math.abs(check);
     console.log(check);
     // set the element's new position:
-    if((lol-pos2) >= 0 && (lol-pos2) <= 170){
+    if((lol-pos2) >= 0 && (lol-pos2) < 170){
     elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
     }
     elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
