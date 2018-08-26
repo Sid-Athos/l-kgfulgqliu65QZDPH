@@ -435,6 +435,7 @@
             ?>
 </body>
 <script>
+    /* Affichage manuelle de la barre de volume */
  function show_volume_control(){
      var vol = document.getElementById('seek_bar_vol');
          if(vol.style.display === 'none'){
@@ -447,51 +448,53 @@
  }
  </script>
 <script>
-//Make the DIV element draggagle:
+// Choisit l'élèment à drag
 dragElement(document.getElementById("seek_bar"));
 
-function dragElement(elmnt) {
-    var pos = 0, ref_pos = 0,  cal_pos = 0,pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-    elmnt.onmouseup = dragMouseDown;
-    function dragMouseDown(e) {
-        e = e || window.event;
-        e.preventDefault();
-        // get the mouse cursor position at startup:
-        
-        console.log('seek');
-        pos4 = e.clientX;
-        ref_pos = e.clientX;
-        if(ref_pos >= 0 && ref_pos <= 200){
-            var where = Number(document.getElementById('play_or_pause').value);
-            playlist = document.getElementsByTagName('audio');
-                var duration = Math.floor(playlist[where].duration);
-                var cal = ref_pos/200;
-                cal = Math.round(cal *360);
-                if(cal >= 9){
-                document.getElementById('mus_op').style.width = cal +"px";
-                } else {
-                    cal = 0;
-                document.getElementById('mus_op').style.width = cal +"px";
+    function dragElement(elmnt) {
+        var pos = 0, ref_pos = 0,  cal_pos = 0,pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+        /* Quand la souris est relachée j'appelle la fonciton de déplacement */
+        elmnt.onmouseup = dragMouseDown;
 
-                document.getElementById('mus_op').style.display = "none";
+        function dragMouseDown(e) {
+            e = e || window.event;
+            /* J'évite toute action non désirée entre deux */
+            e.preventDefault();
+            // pos4 récupère la position de départ et je vais effectuer
+            /* Des calculs en rapport à la taille maximale de la mbarre d'avancée de la musique */
+            pos4 = e.clientX;
+            ref_pos = e.clientX;
+                if(ref_pos >= 0 && ref_pos <= 200){
+                    var where = Number(document.getElementById('play_or_pause').value);
+                    playlist = document.getElementsByTagName('audio');
+                    var duration = Math.floor(playlist[where].duration);
+                    var cal = ref_pos/200;
+                    cal = Math.round(cal *360);
+                    if(cal >= 9){
+                        document.getElementById('mus_op').style.width = cal +"px";
+                    } else {
+                        cal = 0;
+                        document.getElementById('mus_op').style.width = cal +"px";
 
-                }
-                console.log(cal);
-    // set the element's new position:
-    document.getElementById('handle').style.left = (ref_pos-1) + "px";
-    document.getElementById('fill').style.width = ref_pos + "px";
-    } 
-    // call a function whenever the cursor moves:
-  }
+                        document.getElementById('mus_op').style.display = "none";
+
+                    }
+                    console.log(cal);
+                    // set the element's new position:
+                    document.getElementById('handle').style.left = (ref_pos-1) + "px";
+                    document.getElementById('fill').style.width = ref_pos + "px";
+                } 
+        // call a function whenever the cursor moves:
+        }
 
   
 
-  function closeDragElement() {
-    /* stop moving when mouse button is released:*/
-    document.onmouseup = null;
-    document.onmousemove = null;
-  }
-}
+        function closeDragElement() {
+            /* stop moving when mouse button is released:*/
+            document.onmouseup = null;
+            document.onmousemove = null;
+        }
+    }
 </script>
 <script>
 //Make the DIV element draggagle:
@@ -505,13 +508,13 @@ function dragElement(elmnt) {
         e = e || window.event;
         e.preventDefault();
         // get the mouse cursor position at startup:
-    console.log(elmnt.offsetTop);
+        console.log(elmnt.offsetTop);
         
         pos4 = e.clientX;
 
-    document.onmouseup = closeDragElement;
-    // call a function whenever the cursor moves:
-    document.onmousemove = elementDrag;
+        document.onmouseup = closeDragElement;
+        // call a function whenever the cursor moves:
+        document.onmousemove = elementDrag;
   }
 
   function elementDrag(e) {
@@ -521,37 +524,34 @@ function dragElement(elmnt) {
     var where = Number(document.getElementById('play_or_pause').value);
     playlist = document.getElementsByTagName('audio');
     pos = Number(e.clientX);
-    console.log('handle');
     ref_pos = e.clientX+11;
-    if(pos >= 0 && pos <= 200){
-             var current_time = Math.floor(playlist[where].currentTime);
+        if(pos >= 0 && pos <= 200){
+                var current_time = Math.floor(playlist[where].currentTime);
                 var duration = Math.floor(playlist[where].duration);
-    // set the element's new position:
-    document.getElementById('fill').style.width = pos + "px";
-    var cal = ref_pos/200;
-    cal = Math.round(cal *360);
-    var cal_diff = pos/360;
-    console.log('cal3 '+ cal);
-    console.log('pos' + pos);
+            // set the element's new position:
+            document.getElementById('fill').style.width = pos + "px";
+            var cal = ref_pos/200;
+            cal = Math.round(cal *360);
+            var cal_diff = pos/360;
                 if(cal >= 9){
-                document.getElementById('mus_op').style.width = cal +"px";
-                document.getElementById('mus_op').style.display = "inline";
+                    document.getElementById('mus_op').style.width = cal +"px";
+                    document.getElementById('mus_op').style.display = "inline";
 
                 } else {
                     cal = 0;
-                document.getElementById('mus_op').style.width = cal +"px";
-                document.getElementById('mus_op').style.display = "none";
-                    
+                    document.getElementById('mus_op').style.width = cal +"px";
+                    document.getElementById('mus_op').style.display = "none";
+                        
                 }
-    elmnt.style.left = (pos-1) + "px";
-    } else {
-        document.getElementById('fill').style.width = 200 + "px";
-    document.getElementById('mus_op').style.width = 360 + "px";
+            elmnt.style.left = (pos-1) + "px";
+        } else {
+            document.getElementById('fill').style.width = 200 + "px";
+            document.getElementById('mus_op').style.width = 360 + "px";
 
-        elmnt.style.left = 197 + "px";
-        return false;
+            elmnt.style.left = 197 + "px";
+            return false;
+        }
     }
-  }
 
   function closeDragElement() {
     /* stop moving when mouse button is released:*/
@@ -564,13 +564,13 @@ function dragElement(elmnt) {
 var count = 0;
 function auto_close_control_volume(){
     var vol = document.getElementById('seek_bar_vol');
-         if(vol.style.display === 'block' && count > 3){
-             vol.style.display = 'none';
-             count = 0;
-         } else if(count <=3 && vol.style.display==="block"){
+        if(vol.style.display === 'block' && count > 3){
+            vol.style.display = 'none';
+            count = 0;
+        } else if(count <=3 && vol.style.display==="block"){
             vol.style.display = 'block';
             count++;
-         }
+        }
     setTimeout(auto_close_control_volume,2000);
 }
 </script>
@@ -626,9 +626,9 @@ $(document).ready(function(){
 function bw_song(){
     var where = Number(document.getElementById('play_or_pause').value);
         playlist = document.getElementsByTagName('audio');
-        if(playlist[where].currentTime > 10){
-            playlist[where].currentTime -= 2;
-        }
+            if(playlist[where].currentTime > 10){
+                playlist[where].currentTime -= 2;
+            }
 }
 </script>
 <script>
@@ -636,25 +636,23 @@ function bw_song(){
 function further_song(){
     var where = Number(document.getElementById('play_or_pause').value);
         playlist = document.getElementsByTagName('audio');
-        if(playlist[where].readyState > -1){
-            var duration = Math.floor(playlist[where].duration);
-            var cur_time = Math.floor(playlist[where].currentTime);
-            console.log(cur_time);
-        }
-        if(playlist[where].currentTime > 1.05){
-        playlist[where].currentTime += 0.5;
-        console.log(playlist[where].id);
-        if(playlist[where].currentTime !== 0 && playlist[where].currentTime >= duration - 3.5){
-            where;
-            playlist[where].pause();
-            playlist[where].currentTime = 0;
-            document.getElementById('play_or_pause' + where).src = './img/play.png';
-            document.getElementById('title').textContent = document.getElementById('title'+ where).textContent;
-            document.getElementById('artist').textContent = document.getElementById('artist'+ where).textContent;
-            document.getElementById('play_or_pause').value = where;
-            document.getElementById('play_or_pause').style.backgroundImage = 'url("./img/play.png")';
-        }
-    }
+            if(playlist[where].readyState > -1){
+                var duration = Math.floor(playlist[where].duration);
+                var cur_time = Math.floor(playlist[where].currentTime);
+            }
+            if(playlist[where].currentTime > 1.05){
+                playlist[where].currentTime += 0.5;
+                    if(playlist[where].currentTime !== 0 && playlist[where].currentTime >= duration - 3.5){
+                        where;
+                        playlist[where].pause();
+                        playlist[where].currentTime = 0;
+                        document.getElementById('play_or_pause' + where).src = './img/play.png';
+                        document.getElementById('title').textContent = document.getElementById('title'+ where).textContent;
+                        document.getElementById('artist').textContent = document.getElementById('artist'+ where).textContent;
+                        document.getElementById('play_or_pause').value = where;
+                        document.getElementById('play_or_pause').style.backgroundImage = 'url("./img/play.png")';
+                }
+            }   
     }
     
 
@@ -669,10 +667,10 @@ function further_song(){
         playlist[where].currentTime = 0;
         playlist[where].play();
         document.getElementById('play_or_pause' + where).src = './img/pause.png';
-            document.getElementById('title').textContent = document.getElementById('title'+ where).textContent;
-            document.getElementById('artist').textContent = document.getElementById('artist'+ where).textContent;
-            document.getElementById('play_or_pause').value = where;
-            document.getElementById('play_or_pause').style.backgroundImage = "url('./img/pause.png')";
+        document.getElementById('title').textContent = document.getElementById('title'+ where).textContent;
+        document.getElementById('artist').textContent = document.getElementById('artist'+ where).textContent;
+        document.getElementById('play_or_pause').value = where;
+        document.getElementById('play_or_pause').style.backgroundImage = "url('./img/pause.png')";
    }
 </script>
 <script>
@@ -693,14 +691,14 @@ function further_song(){
         
         if(playlist[where].volume >= 0.1){
             playlist[where].volume -= 0.05;
-        act_vol = playlist[where].volume * 100;
-    } else {
-        playlist[where].volume = 0;
-    act_vol = 0;
+            act_vol = playlist[where].volume * 100;
+        } else {
+            playlist[where].volume = 0;
+            act_vol = 0;
+        }
+            document.getElementById('fill').style.width = (act_vol) + "px";
+            document.getElementById('handle').style.left = (act_vol - 2) + "px";
     }
-    document.getElementById('fill').style.width = (act_vol) + "px";
-        document.getElementById('handle').style.left = (act_vol - 2) + "px";
-   }
 </script>
 <script>
    function add_to_playlist(str){
@@ -713,87 +711,79 @@ function further_song(){
    function player(){
         var where = Number(document.getElementById('play_or_pause').value);
         playlist = document.getElementsByTagName('audio');
-            if(playlist[where].readyState === 4){
-             var current_time = Math.floor(playlist[where].currentTime);
-                var duration = Math.floor(playlist[where].duration);
-                var cal = current_time/duration;
-   
-            }
-            if(!isNaN(current_time)){
-                if(current_time === duration - 1){
-                    var playlist;
-                    var audio;
-                    var i;
-                    /* On va à l'indice de la prochaine musique dans l'ordre de la playlist afin de 
-                    récupérer la source, si la playlist est finie et pas en mode repeat on stoppe */
-                    where++;
-                    if(where > playlist.length -1){
+        if(playlist[where].readyState === 4){
+            var current_time = Math.floor(playlist[where].currentTime);
+            var duration = Math.floor(playlist[where].duration);
+            var cal = current_time/duration;
 
-                        where = playlist.length -1;
-                        playlist[where].currentTime = 0;
-                        playlist[where].pause();
-                        where = 0;
-                        document.getElementById('play_or_pause' + where).src = './img/play.png';
+        }
+        if(!isNaN(current_time)){
+            if(current_time === duration - 1){
+                var audio;
+                var i;
+                /* On va à l'indice de la prochaine musique dans l'ordre de la playlist afin de 
+                récupérer la source, si la playlist est finie et pas en mode repeat on stoppe */
+                where++;
+                if(where > playlist.length -1){
+
+                    where = playlist.length -1;
+                    playlist[where].currentTime = 0;
+                    playlist[where].pause();
+                    where = 0;
+                    document.getElementById('play_or_pause' + where).src = './img/play.png';
+                    document.getElementById('title').textContent = document.getElementById('title'+ where).textContent;
+                    document.getElementById('artist').textContent = document.getElementById('artist'+ where).textContent;
+                    document.getElementById('play_or_pause').value = where;
+                    document.getElementById('play_or_pause').style.backgroundImage = 'url("./img/play.png")';
+                } else {
+
+                    for(i = 0; i < playlist.length; i++){
+                        playlist[i].currentTime = 0;
+                        playlist[i].pause();
+                        document.getElementById('play_or_pause' + i).src = "./image/play.png";
+                    }
+                        previous = where -1;
+                        playlist[where].volume = playlist[previous].volume;
+                        
+                        playlist[where].play();
+                        document.getElementById('play_or_pause' + where).src = './img/pause.png';
                         document.getElementById('title').textContent = document.getElementById('title'+ where).textContent;
                         document.getElementById('artist').textContent = document.getElementById('artist'+ where).textContent;
                         document.getElementById('play_or_pause').value = where;
                         document.getElementById('play_or_pause').style.backgroundImage = 'url("./img/play.png")';
-                    } else {
 
-                        for(i = 0; i < playlist.length; i++){
-                            playlist[i].currentTime = 0;
-                            playlist[i].pause();
-                            document.getElementById('play_or_pause' + i).src = "./image/play.png";
-                        }
-                            previous = where -1;
-                            playlist[where].volume = playlist[previous].volume;
-                            
-                            playlist[where].play();
-                            document.getElementById('play_or_pause' + where).src = './img/pause.png';
-                            document.getElementById('title').textContent = document.getElementById('title'+ where).textContent;
-                            document.getElementById('artist').textContent = document.getElementById('artist'+ where).textContent;
-                            document.getElementById('play_or_pause').value = where;
-                            document.getElementById('play_or_pause').style.backgroundImage = 'url("./img/play.png")';
-
-                    }
                 }
-            } 
-                console.log(where);
-                console.log(cal);
-                console.log('handle');
-                var pos_op = Math.round(cal*360);
-                var pos_fill = Math.round(cal*200);
-                // set the element's new position:
-                document.getElementById('fill').style.width = pos_fill + "px";
-                            if(cal >= 0.03){
-                            document.getElementById('mus_op').style.width = pos_op +"px";
-                            document.getElementById('mus_op').style.display = "inline";
+            }
+        } 
+        var pos_op = Math.round(cal*360);
+        var pos_fill = Math.round(cal*200);
+        // set the element's new position:
+        document.getElementById('fill').style.width = pos_fill + "px";
+            if(cal >= 0.03){
+                document.getElementById('mus_op').style.width = pos_op +"px";
+                document.getElementById('mus_op').style.display = "inline";
 
-                            } else {
-                                cal = 0;
-                            document.getElementById('mus_op').style.width = pos_op +"px";
-                            document.getElementById('mus_op').style.display = "none";
-                                
-                            }
-                document.getElementById('handle').style.left = (pos_fill-1) + "px";
-            
-            setTimeout(player,300);
+            } else {
+                cal = 0;
+                document.getElementById('mus_op').style.width = pos_op +"px";
+                document.getElementById('mus_op').style.display = "none";
+                
+            }
+        document.getElementById('handle').style.left = (pos_fill-1) + "px";
+    
+        setTimeout(player,300);
     }
 </script>
 <script>
     function next_song(string){
-        console.log(string);
         var where = Number(document.getElementById('play_or_pause').value);
-        console.log(where);
-            console.log(where);
-            var playlist;
-            playlist = document.getElementsByTagName('audio');
-            /* On va à l'indice de la prochaine musique dans l'ordre de la playlist afin de 
-            récupérer la source */
-            where++;
-            /* Si supérieur on revient au début de la playlist */
+        var playlist;
+        playlist = document.getElementsByTagName('audio');
+        /* On va à l'indice de la prochaine musique dans l'ordre de la playlist afin de 
+        récupérer la source */
+        where++;
+        /* Si supérieur on revient au début de la playlist */
             if(where > playlist.length -1){
-                console.log(where);
                 where = playlist.length -1;
                 playlist[where].currentTime = 0;
                 playlist[where].pause();
@@ -806,13 +796,14 @@ function further_song(){
                 document.getElementById('play_or_pause').value = where;
                 document.getElementById('play_or_pause').style.backgroundImage = 'url("./img/play.png")';
             } else {
+                /* On met tous sur pause */
                 for(i = 0; i < playlist.length; i++){
                     playlist[i].currentTime = 0;
                     playlist[i].pause();
-                    document.getElementById('play_or_pause' + i).src = './img/play.png';
                 }
                 playlist[where].currentTime = 0;
                 previous = where -1;
+                document.getElementById('play_or_pause' + previous).src = './img/play.png';
                 playlist[where].volume = playlist[previous].volume;
                 playlist[where].play();
                 document.getElementById('play_or_pause' + where).src = './img/pause.png';
@@ -821,25 +812,25 @@ function further_song(){
                 document.getElementById('play_or_pause').value = where;
                 document.getElementById('play_or_pause').style.backgroundImage = "url('./img/pause.png')";
         }
-   }
+    }
 </script>
 <script>
    function previous_song(){
             var where = Number(document.getElementById('play_or_pause').value);
             var playlist = document.getElementsByTagName('audio');
             where--;
-            if(where < 0){
-                where = playlist.length -1;
-            }
-            for(var i = 0; i < playlist.length; i++){
-                playlist[i].pause();
-                playlist[i].currentTime = 0;
-                document.getElementById('play_or_pause' + i).src = 'url("./img/play.png")';
-            }
+                if(where < 0){
+                    where = playlist.length -1;
+                }
+                for(var i = 0; i < playlist.length; i++){
+                    playlist[i].pause();
+                    playlist[i].currentTime = 0;
+                    document.getElementById('play_or_pause' + i).src = 'url("./img/play.png")';
+                }
             var previous = where+1;
-            if(where === playlist.length -1){
-                previous = 0;
-            }
+                if(where === playlist.length -1){
+                    previous = 0;
+                }
 
             playlist[where].volume = playlist[previous].volume;
             playlist[where].currentTime = 0;
@@ -855,44 +846,42 @@ function further_song(){
  
             var count = 0;
     function play_or_pause(str){
-            var i;
-            var where = Number(str);
-            console.log(where);
-            var playlist = document.getElementsByTagName('audio');
-            var img = document.getElementById('play_or_pause').style.backgroundImage;
-            console.log(img);
-        if(document.getElementById('play_or_pause').style.backgroundImage === 'url("./img/play.png")' || document.getElementById('play_or_pause'+ where).src === "./img/play.png"){
-            console.log(where);
-            for(i = 0; i < playlist.length; i++){
-                    if(i !== where){
-                        playlist[i].currentTime = 0;
-                        playlist[i].pause();
-                        document.getElementById('play_or_pause' + i).src = './img/play.png';
-                    }
+        var i;
+        var where = Number(str);
+        var playlist = document.getElementsByTagName('audio');
+        var img = document.getElementById('play_or_pause').style.backgroundImage;
+            if(document.getElementById('play_or_pause').style.backgroundImage === 'url("./img/play.png")' || document.getElementById('play_or_pause'+ where).src === "./img/play.png"){
+                console.log(where);
+                for(i = 0; i < playlist.length; i++){
+                        if(i !== where){
+                            playlist[i].currentTime = 0;
+                            playlist[i].pause();
+                            document.getElementById('play_or_pause' + i).src = './img/play.png';
+                        }
+                }
+                document.getElementById('play_or_pause' + where).src = './img/pause.png';
+                document.getElementById('title').textContent = document.getElementById('title'+ where).textContent;
+                document.getElementById('artist').textContent = document.getElementById('artist'+ where).textContent;
+                document.getElementById('play_or_pause').value = where;
+                document.getElementById('play_or_pause').style.backgroundImage = "url('./img/pause.png')";
+                playlist[where].play();
+                count++;
+            } else if (document.getElementById('play_or_pause').style.backgroundImage === 'url("./img/pause.png")' || document.getElementById('play_or_pause'+ where).src === './img/pause.png'){
+                document.getElementById('play_or_pause' + where).src = './play.png';
+                document.getElementById('play_or_pause').style.backgroundImage = 'url("./img/play.png")';
+                playlist[where].pause();
+                count++;
             }
-            document.getElementById('play_or_pause' + where).src = './img/pause.png';
-            document.getElementById('title').textContent = document.getElementById('title'+ where).textContent;
-            document.getElementById('artist').textContent = document.getElementById('artist'+ where).textContent;
-            document.getElementById('play_or_pause').value = where;
-            document.getElementById('play_or_pause').style.backgroundImage = "url('./img/pause.png')";
-            playlist[where].play();
-            count++;
-        } else if (document.getElementById('play_or_pause').style.backgroundImage === 'url("./img/pause.png")' || document.getElementById('play_or_pause'+ where).src === './img/pause.png'){
-            document.getElementById('play_or_pause' + where).src = './play.png';
-            document.getElementById('play_or_pause').style.backgroundImage = 'url("./img/play.png")';
-            playlist[where].pause();
-            count++;
-        }
-        if(count <= 1){
-            var elmnt = document.getElementById('handle');
-            pos = Number(elmnt.offsetLeft);
-            pos = pos/100;
-            playlist[where].volume = pos;
-        }
-        if(count > 15){
-            document.getElementById('title').textContent = 'Yamete kudasai!!!';
-            document.getElementById('cover').src = './img/yamate.jpg';
-        }
+            if(count <= 1){
+                var elmnt = document.getElementById('handle');
+                pos = Number(elmnt.offsetLeft);
+                pos = pos/100;
+                playlist[where].volume = pos;
+            }
+            if(count > 15){
+                document.getElementById('title').textContent = 'Yamete kudasai!!!';
+                document.getElementById('cover').src = './img/yamate.jpg';
+            }
         
     }
 </script>

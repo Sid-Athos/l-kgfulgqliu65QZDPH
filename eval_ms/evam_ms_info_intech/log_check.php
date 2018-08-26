@@ -12,10 +12,11 @@
                 $p=1;
                 $check=false;
                 $tab = array();
-                $tableau = array(array($_POST['nick'],$_POST['pwd']));
+                $tableau = array(array('mimi',$_POST['pwd']));
                     while(!feof($file)){
-                        $tab[$i] = fgetcsv($file);
-                        if($tab[$i][$j]===$tableau[$n][$n]&&$tab[$i][$k]===$tableau[$n][$p]){
+                        $tab[] = fgetcsv($file);
+                        var_dump($tab);
+                        if($tab[0][0] === $tab[0][1]){
                             $check=true;
                             $i2=$i;
                         }

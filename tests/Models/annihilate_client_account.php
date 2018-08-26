@@ -12,7 +12,7 @@
     $query[3] = 
     "DELETE FROM clients WHERE users_ID = :ID";
 
-    $query[4] = 
+    $query[19] = 
     "DELETE FROM users WHERE ID = :ID";
     
     for($i = 0; $i < count($query); $i++){

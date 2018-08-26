@@ -31,10 +31,59 @@ foreach(range(0,12,1)as $key){
 
 echo $check;
 ?>
+<form method="post">
+<input type="text" name="firstname"/>
+<input type="text" name="lastname"/>
+<input type="submit">
+</form>
+</form>
 <div id="cunt"></div>
+<?php
+        
+       if(isset($_POST['firstname']) && isset($_POST['lastname']))
+        {
+            $firstname = $_POST['firstname'];
+            $lastname = $_POST['lastname'];
+            $input = array(array($lastname,$firstname));
+         /** Opens the text with write at end mode */                 
+            $tmp =fopen('person.csv','a+');
+            foreach($input as $line){
+                fputcsv($tmp,$line);
+            }
+        fclose($tmp);
+            $file = fopen('person.csv', 'a+'); 
+            $file = fgetcsv($file);
+            for($i = 0; $i <count($file);$i++){
+                var_dump($file[$i]);
+
+            }
+            var_dump(implode(',',$file));
+            $i=0;
+            $n=0;
+            $check=false;
+            $tab = array();
+            $tableau = array(array('noclue','nocturne'));
+                while(!feof($file)){
+                    $tab[] = fgetcsv($file);
+                    $how = similar_text($tab[$i][0],$tab[$n][1]);
+                    echo $tableau[$i][0];
+                    if($how === 100) {
+                        $check=true;
+                        var_dump($tab[$i][$n]);
+                        echo 'lol';
+                        $i2=$i;
+                    }
+                }
+            fclose($file);
+                }
+                
+    
+       
+    ?>
 <?php
     $i = 2.7899;
     $i1 = 3.896986;
+    
     $i2 = 5.7899;
     $i3 = 3.896986;
     $cal = abs($i - $i1);
@@ -44,10 +93,7 @@ echo $check;
     } else {
         echo 'cal1 est p';
     }
-    if(isset($_POST)){
-        var_dump($_POST);
-        echo'lol';
-    }
+    
 ?>
 </body>
 <script>
