@@ -365,7 +365,7 @@
                     </div>
                     <button id="vol" class="vol" title="Controle volume" onclick="show_volume_control()" style="background-image:url('./img/high.png');
                         background-size: 30px 30px;background-repeat:no-repeat;
-                        height:30px;min-width:0px;position:absolute;left:3px;top:75%;outline:none;border:none;z-index:99;background-color:transparent"> </button>
+                        height:30px;width:45px;position:absolute;left:3px;top:75%;outline:none;border:none;z-index:99;background-color:transparent;cursor:pointer"> </button>
                         <div id="seek_bar_vol" class="seek_bar_vol" title="Contrôle du volume">
                         <div id="fill_vol" class="fill_vol">
                         </div>
@@ -435,20 +435,20 @@
             ?>
 </body>
 <script>
-    /* Affichage manuelle de la barre de volume */
- function show_volume_control(){
-     var vol = document.getElementById('seek_bar_vol');
-         if(vol.style.display === 'none'){
-             vol.style.display = 'block';
-         } else {
-            vol.style.display = 'none';
+    /* Affichage manuel de la barre de volume lors d'un click */
+    function show_volume_control(){
+        var vol = document.getElementById('seek_bar_vol');
+            if(vol.style.display === 'none'){
+                vol.style.display = 'block';
+            } else {
+                vol.style.display = 'none';
 
-         }
-     
- }
+            }
+        
+    }
  </script>
 <script>
-// Choisit l'élèment à drag
+/* Modifie l'avancement de la lecture selon les clicks sur la seek_bar (musique en cours) */
 dragElement(document.getElementById("seek_bar"));
 
     function dragElement(elmnt) {
@@ -461,7 +461,7 @@ dragElement(document.getElementById("seek_bar"));
             /* J'évite toute action non désirée entre deux */
             e.preventDefault();
             // pos4 récupère la position de départ et je vais effectuer
-            /* Des calculs en rapport à la taille maximale de la mbarre d'avancée de la musique */
+            /* Des calculs en rapport à la taille maximale de la barre d'avancée de la musique */
             pos4 = e.clientX;
             ref_pos = e.clientX;
                 if(ref_pos >= 0 && ref_pos <= 200){
@@ -495,7 +495,8 @@ dragElement(document.getElementById("seek_bar"));
     }
 </script>
 <script>
-//Make the DIV element draggagle:
+/* état d'avancée de la piste, fonction qui permet de drag et de remplir la barre d'avancée, selon le déplacement le 
+curseur */
 dragElement(document.getElementById("handle"));
 
 function dragElement(elmnt) {
@@ -550,49 +551,56 @@ function dragElement(elmnt) {
         }
     }
 
-  function closeDragElement() {
-    /* stop moving when mouse button is released:*/
-    document.onmouseup = null;
-    document.onmousemove = null;
-  }
+    function closeDragElement() {
+        /* stop moving when mouse button is released:*/
+        document.onmouseup = null;
+        document.onmousemove = null;
+    }
 }
 </script>
 <script>
-var count = 0;
-function auto_close_control_volume(){
-    var vol = document.getElementById('seek_bar_vol');
-        if(vol.style.display === 'block' && count > 3){
-            vol.style.display = 'none';
-            count = 0;
-        } else if(count <=3 && vol.style.display==="block"){
-            vol.style.display = 'block';
-            count++;
-        }
-    setTimeout(auto_close_control_volume,2000);
-}
+    /* Affiche/cache(automatiquement toutes les 10 secondes) la barre de volume */
+    var count_vol = 0;
+    function auto_close_control_volume(){
+        var vol = document.getElementById('seek_bar_vol');
+            if(vol.style.display === 'block' && count_vol > 3){
+                vol.style.display = 'none';
+                count_vol = 0;
+            } else if(count <=3 && vol.style.display==="block"){
+                vol.style.display = 'block';
+                count_vol++;
+            }
+        setTimeout(auto_close_control_volume,2000);
+    }
 </script>
 
 <script>
+/* Controle en keyup (touche relachée) */
 $(document).ready(function(){
     $(window).keyup(function(e){
         switch(e.which){
             case(32):
-                console.log(document.getElementById('play_or_pause').value);
+            /* Espace : play/pause */
                     play_or_pause(document.getElementById('play_or_pause').value);
                 break;
             case(37):
+            /* flèche gauche : musique précèdente */
                     previous_song();
                 break;
             case(38):
+            /* Flèche du haut controle volume/Uparrow increase volume */
                     inc_volume();
                 break;
             case(39):
+            /* Flèche droite, musique suivante / RightArrow next music */
                     next_song();
                 break;
             case(40):
+            /* Flèche du bas controle volume/Downarrow decrease volume */
                     dec_volume();
                 break;
             case(82):
+            /* touche 'r', réinitialise/'r' key, resets music */
                     reset();
                 break;
     }
@@ -600,6 +608,7 @@ $(document).ready(function(){
 });
 </script>
 <script>
+/* Controles en keydown (maintient appuyé) */
 $(document).ready(function(){
     $(window).keydown(function(e){
         switch(e.which){
@@ -620,19 +629,19 @@ $(document).ready(function(){
 });
 </script>
 <script>
-/* rembobine via la touche b */
-function bw_song(){
-    var where = Number(document.getElementById('play_or_pause').value);
-        playlist = document.getElementsByTagName('audio');
-            if(playlist[where].currentTime > 10){
-                playlist[where].currentTime -= 2;
-            }
-}
+    /* rembobine via la touche b */
+    function bw_song(){
+        var where = Number(document.getElementById('play_or_pause').value);
+            playlist = document.getElementsByTagName('audio');
+                if(playlist[where].currentTime > 10){
+                    playlist[where].currentTime -= 2;
+                }
+    }
 </script>
 <script>
-/* timelapse */
-function further_song(){
-    var where = Number(document.getElementById('play_or_pause').value);
+    /* timelapse, touche f */
+    function further_song(){
+        var where = Number(document.getElementById('play_or_pause').value);
         playlist = document.getElementsByTagName('audio');
             if(playlist[where].readyState > -1){
                 var duration = Math.floor(playlist[where].duration);
@@ -649,7 +658,7 @@ function further_song(){
                         document.getElementById('artist').textContent = document.getElementById('artist'+ where).textContent;
                         document.getElementById('play_or_pause').value = where;
                         document.getElementById('play_or_pause').style.backgroundImage = 'url("./img/play.png")';
-                }
+                    }
             }   
     }
     
@@ -672,6 +681,7 @@ function further_song(){
    }
 </script>
 <script>
+    /* Hausse volume, flèche haut/bouton */
    function inc_volume(){
         var where = Number(document.getElementById('play_or_pause').value);
         playlist = document.getElementsByTagName('audio');
@@ -683,6 +693,7 @@ function further_song(){
    }
 </script>
 <script>
+    /* Baisse du volume. flèche bas/bouton */
    function dec_volume(){
         var where = Number(document.getElementById('play_or_pause').value);
         playlist = document.getElementsByTagName('audio');
@@ -699,12 +710,15 @@ function further_song(){
     }
 </script>
 <script>
+    /* Ajout à une playlist, AJAX */
    function add_to_playlist(str){
        alert('Musique ajoutée à la playlist '+ str);
        alert.preventDefault();
    }
 </script>
 <script>
+    /* Fonction avec timer qui actualise les informations du player et passe automatiquement
+    à la prochaine musique */
    var fill = 0;
    function player(){
         var where = Number(document.getElementById('play_or_pause').value);
@@ -784,6 +798,7 @@ function further_song(){
     }
 </script>
 <script>
+    /*  */
     function next_song(string){
         var where = Number(document.getElementById('play_or_pause').value);
         var playlist;
@@ -824,75 +839,93 @@ function further_song(){
     }
 </script>
 <script>
+    /* Fonction qui permet de passer à la musique précèdente
+    dans la PL */
    function previous_song(){
-            var where = Number(document.getElementById('play_or_pause').value);
-            var playlist = document.getElementsByTagName('audio');
-            where--;
-                if(where < 0){
-                    where = playlist.length -1;
-                }
-                for(var i = 0; i < playlist.length; i++){
-                    playlist[i].pause();
-                    playlist[i].currentTime = 0;
-                    document.getElementById('play_or_pause' + i).src = './img/play.png';
-                }
-            var previous = where+1;
-                if(where === playlist.length -1){
-                    previous = 0;
-                }
-
-            playlist[where].volume = playlist[previous].volume;
-            playlist[where].currentTime = 0;
-            playlist[where].play();
-            document.getElementById('play_or_pause' + where).src = './img/pause.png';
-            document.getElementById('title').textContent = document.getElementById('title'+ where).textContent;
-            document.getElementById('artist').textContent = document.getElementById('artist'+ where).textContent;
-            document.getElementById('play_or_pause').value = where;
-            document.getElementById('play_or_pause').style.backgroundImage = 'url("./img/pause.png")';
+        var where = Number(document.getElementById('play_or_pause').value);
+        var playlist = document.getElementsByTagName('audio');
+        playlist[where].pause();
+        playlist[where].currentTime = 0;
+        previous = playlist[where].volume;
+        document.getElementById('play_or_pause' + where).src = './img/play.png';
+        where--;
+            if(where < 0){
+                where = playlist.length -1;
+            }
+        playlist[where].volume = previous;
+        playlist[where].currentTime = 0;
+        playlist[where].play();
+        document.getElementById('play_or_pause' + where).src = './img/pause.png';
+        document.getElementById('title').textContent = document.getElementById('title'+ where).textContent;
+        document.getElementById('artist').textContent = document.getElementById('artist'+ where).textContent;
+        document.getElementById('play_or_pause').value = where;
+        document.getElementById('play_or_pause').style.backgroundImage = 'url("./img/pause.png")';
    }
 </script>
 <script>
+        /*  Afin d'être certain de l'action j'ai besoin de 3 variables
+        i est la valeur du lecteur, where représente l'emplacement de la musique dans la
+        Playlist. Count me sert à savoir, en plus de l'image, quel type d'action executer.
+        D'abord on traite i == where, soit la première lecture, ou un click sur les controles de la même musique consécutivement
+        dans la playlist. */
  
             var count = 0;
     function play_or_pause(str){
         var i = document.getElementById('play_or_pause').value;
         i = Number(i);
         var where = Number(str);
-        console.log(str);
-        console.log(where);
         var playlist = document.getElementsByTagName('audio');
         var img = document.getElementById('play_or_pause').style.backgroundImage;
-        if(playlist[i].currentTime < 0){
-            console.log('toi');
-            if(document.getElementById('play_or_pause').style.backgroundImage === 'url("./img/play.png")'){
-                for(j=0;j<playlist.length;j++){
-                    if(j !== where){
-                    playlist[j].pause();
-                    playlist[j].currentTime = 0;
-                    document.getElementById('play_or_pause' + j).src = './img/play.png';
-                    }
-                }
-                document.getElementById('play_or_pause' + i).src = './img/pause.png';
-                console.log(playlist[where]);
-                playlist[where].play();
-                
-                document.getElementById('title').textContent = document.getElementById('title'+ where).textContent;
-                document.getElementById('artist').textContent = document.getElementById('artist'+ where).textContent;
-                document.getElementById('play_or_pause').value = where;
-                document.getElementById('play_or_pause').style.backgroundImage = "url('./img/pause.png')";
+        if(where === i){
+            /* Compteur à 0. Je lance la musique  */
+            if(count === 0){
+                    document.getElementById('play_or_pause' + i).src = './img/pause.png';
+                    console.log(playlist[where]);
+                    playlist[where].play();
+                    playlist[where].volume = 0.4;
+                    
+                    document.getElementById('title').textContent = document.getElementById('title'+ where).textContent;
+                    document.getElementById('artist').textContent = document.getElementById('artist'+ where).textContent;
+                    document.getElementById('play_or_pause').value = where;
+                    document.getElementById('play_or_pause').style.backgroundImage = "url('./img/pause.png')";
 
-                count++;
-            }else {
-                document.getElementById('play_or_pause' + i).src = './img/play.png';
-                document.getElementById('play_or_pause').value = where;
-                document.getElementById('play_or_pause' + where).src = './img/play.png';
-                
-                document.getElementById('play_or_pause').style.backgroundImage = 'url("./img/play.png")';
-                playlist[i].pause();
-                count++;
+                    count++;
+             /* Compteur supérieur à 0 */       
+            } else if(count>0){
+                /* Musique en pause, je relance */
+                if(document.getElementById('play_or_pause').style.backgroundImage === 'url("./img/play.png")'){
+                    for(j=0;j<playlist.length;j++){
+                        if(j !== where){
+                        playlist[j].pause();
+                        document.getElementById('play_or_pause' + j).src = './img/play.png';
+                        }
+                    }
+                    document.getElementById('play_or_pause' + i).src = './img/pause.png';
+
+                    playlist[where].play();
+                    
+                    document.getElementById('title').textContent = document.getElementById('title'+ where).textContent;
+                    document.getElementById('artist').textContent = document.getElementById('artist'+ where).textContent;
+                    document.getElementById('play_or_pause').value = where;
+                    document.getElementById('play_or_pause').style.backgroundImage = "url('./img/pause.png')";
+
+                    count++;
+                /* Musique en cours de lecture, je pause */
+                }else {
+                    document.getElementById('play_or_pause' + i).src = './img/play.png';
+                    document.getElementById('play_or_pause').value = where;
+                    document.getElementById('play_or_pause' + where).src = './img/play.png';
+                    
+                    document.getElementById('play_or_pause').style.backgroundImage = 'url("./img/play.png")';
+                    playlist[i].pause();
+                    count++;
+
+                }
             }
-        } else {
-            console.log('salut');
+        }
+        /* L'indice de la nouvelle musique est différent du précédent */
+        if(where !== i) {
+            /* Je mets tout en pause et à 0 */
             for(j=0;j<playlist.length;j++){
                     if(j !== where){
                     playlist[j].pause();
@@ -902,6 +935,8 @@ function further_song(){
                 }
                 document.getElementById('play_or_pause' + where).src = './img/pause.png';
                 console.log(playlist[where]);
+                playlist[where].volume = playlist[i].volume;
+                /* Je lance la nouvelle musique */
                 playlist[where].play();
                 
                 document.getElementById('title').textContent = document.getElementById('title'+ where).textContent;
@@ -910,13 +945,9 @@ function further_song(){
                 document.getElementById('play_or_pause').style.backgroundImage = "url('./img/pause.png')";
 
                 count++;
-        }
-            if(count <= 1){
-                var elmnt = document.getElementById('handle');
-                pos = Number(elmnt.offsetLeft);
-                pos = pos/100;
-                playlist[where].volume = 0.2;
-            }
+        } 
+        
+            /* Easter egg */
             if(count > 15){
                 document.getElementById('title').textContent = 'Yamete kudasai!!!';
                 document.getElementById('cover').src = './img/yamate.jpg';
