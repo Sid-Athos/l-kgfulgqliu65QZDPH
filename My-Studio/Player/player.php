@@ -285,7 +285,7 @@
       <div class="modal-body" style="margin-top:-25px;max-height:600px;overflow-y:scroll;z-index:3">
       <div style="position:relative" style="margin-top:-50px">
         <div class="btn" style="border:0.2px solid gray;font-size:20px;height:30px;width:200px;margin:0 auto;right:30px">
-        <span style="position:relative;right:6px;bottom:5px">Espace</span></div><br><La touche espace sert à controler la lecture/pause</div>
+        <span style="position:relative;right:6px;bottom:5px">Espace</span></div><br>La touche espace sert à controler la lecture/pause</div>
         <div class="dropdown-divider"><p>100</p></div>
         <div style="position:relative" style="top:-90px">
         <div class="btn" style="border:0.2px solid gray;font-weight:bold;font-size:20px;height:30px;width:30px;margin:0 auto;">
@@ -312,17 +312,17 @@
         <div style="position:relative" style="top:-90px">
         <div class="btn" style="border:0.2px solid gray;font-weight:bold;font-size:20px;height:30px;width:30px;margin:0 auto;">
         <span style="position:relative;right:2px;bottom:8px">↓</span></div><br> La flèche directionnelle vers le bas diminue le volume du lecteur</div>
+        <div class="modal-footer" style='position:absolute;left:40px;color:#780206'>
+        En cas de panne ou pour toute assistance complémentaire, 
+        les administrateurs sont joignables via la messagerie.
+
+        Toute l'équipe de MyStudio vous souhaite une 
+        agréable expérience sur notre site.
+
+        <3
+        </div>
       </div>
 
-      <div class="modal-footer" style='margin-bottom:-60px;margin-left:-80px'>
-      En cas de panne ou pour toute assistance complémentaire, 
-      les administrateurs sont joignables via la messagerie.
-
-      Toute l'équipe de MyStudio vous souhaite une 
-      agréable expérience sur notre site.
-
-      Love
-      </div>
       </div>
     </div>
   </div>
@@ -774,7 +774,7 @@ $(document).ready(function(){
                         document.getElementById('play_or_pause').style.backgroundImage = 'url("./img/play.png")';
 
                 }
-            }
+            } 
         } 
         
             if(playlist[where].currentTime === 0) {
@@ -794,6 +794,10 @@ $(document).ready(function(){
                 document.getElementById('mus_op').style.width = pos_op+ "px";;
 
             }
+
+            /* Listener pour les events (musique chargée tout ça tout ça) */
+                var v = document.getElementsByTagName("audio")[where];
+                v.addEventListener("progress", function() { v.readyState === 4 }, true);
         setTimeout(player,1000);
     }
 </script>
