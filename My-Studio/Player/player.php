@@ -329,10 +329,10 @@
 </div>
             <div class="main" id="main">
                     <img src='./img/kake.jpg' id="cover" class="cover" />
-        <div class="btn" id="mus_op"
-        style="position:fixed;left:-160px;opacity:0.2;background-color:#FFFFFF;top:0px;
-        height:180px;border:0.2px solid gray;font-size:20px;width:0px;max-width:360px;margin:0 auto;right:30px;
-        border-top-left-radius:30px;border-top-right-radius:12px">
+        <div class="container" id="mus_op"
+        style="position:absolute;left:-30px;opacity:0.2;background-color:#FFFFFF;top:0px;width:0px;
+        height:180px;border:0.2px solid gray;font-size:20px;max-width:360px;margin:0 auto;min-width:10px;
+        border-top-left-radius:12px;border-top-right-radius:12px">
                 </div>
                 <div class ="player" id="player">
                     <div id="song_title" class="song_title">
@@ -366,7 +366,7 @@
                 </div>
                     <button id="vol" class="vol" title="Controle volume" onclick="show_volume_control()" style="background-image:url('./img/high.png');
                         background-size: 30px 30px;background-repeat:no-repeat;
-                        height:30px;width:30px;position:absolute;right:5px;top:80%;outline:none;border:none;z-index:99;background-color:transparent"> </button>
+                        height:30px;min-width:0px;position:absolute;right:5px;top:90%;outline:none;border:none;z-index:99;background-color:transparent"> </button>
                         <div id="seek_bar_vol" class="seek_bar_vol" title="Contrôle du volume">
                         <div id="fill_vol" class="fill_vol">
                         </div>
@@ -470,18 +470,17 @@ dragElement(document.getElementById("seek_bar"));
                     var duration = Math.floor(playlist[where].duration);
                     var cal = ref_pos/200;
                     cal = Math.round(cal *360);
-                    if(cal >= 9){
+                    if(cal >= 1){
                         document.getElementById('mus_op').style.width = cal +"px";
                     } else {
                         cal = 0;
+                        
                         document.getElementById('mus_op').style.width = cal +"px";
-
-                        document.getElementById('mus_op').style.display = "none";
 
                     }
                     console.log(cal);
                     // set the element's new position:
-                    document.getElementById('handle').style.left = (ref_pos-1) + "px";
+                    document.getElementById('handle').style.left = (ref_pos-2) + "px";
                     document.getElementById('fill').style.width = ref_pos + "px";
                 } 
         // call a function whenever the cursor moves:
@@ -533,7 +532,7 @@ function dragElement(elmnt) {
             var cal = ref_pos/200;
             cal = Math.round(cal *360);
             var cal_diff = pos/360;
-                if(cal >= 9){
+                if(cal >= 1){
                     document.getElementById('mus_op').style.width = cal +"px";
                     document.getElementById('mus_op').style.display = "inline";
 
@@ -707,23 +706,31 @@ function further_song(){
    }
 </script>
 <script>
-   
+   var fill = 0;
    function player(){
         var where = Number(document.getElementById('play_or_pause').value);
         playlist = document.getElementsByTagName('audio');
-        if(playlist[where].readyState === 4){
+        if(playlist[where].readyState > 0){
             var current_time = Math.floor(playlist[where].currentTime);
+            if(current_time <= 1){
+                document.getElementById('mus_op').style.width = "-30px";
+
+            }
             var duration = Math.floor(playlist[where].duration);
             var cal = current_time/duration;
+            console.log(cal + ' cal player');
+            console.log('Dur' + duration);
+            console.log('fill'+fill);
 
         }
         if(!isNaN(current_time)){
             if(current_time === duration - 1){
                 var audio;
                 var i;
+                where++;
+                fill++;
                 /* On va à l'indice de la prochaine musique dans l'ordre de la playlist afin de 
                 récupérer la source, si la playlist est finie et pas en mode repeat on stoppe */
-                where++;
                 if(where > playlist.length -1){
 
                     where = playlist.length -1;
@@ -743,8 +750,13 @@ function further_song(){
                         document.getElementById('play_or_pause' + i).src = "./image/play.png";
                     }
                         previous = where -1;
+                        if(fill === 0){
+                            console.log('volume');
+                        playlist[where].volume = 0.2;
+
+                        } else {
                         playlist[where].volume = playlist[previous].volume;
-                        
+                        }
                         playlist[where].play();
                         document.getElementById('play_or_pause' + where).src = './img/pause.png';
                         document.getElementById('title').textContent = document.getElementById('title'+ where).textContent;
@@ -755,22 +767,23 @@ function further_song(){
                 }
             }
         } 
-        var pos_op = Math.round(cal*360);
-        var pos_fill = Math.round(cal*200);
-        // set the element's new position:
-        document.getElementById('fill').style.width = pos_fill + "px";
-            if(cal >= 0.03){
-                document.getElementById('mus_op').style.width = pos_op +"px";
-                document.getElementById('mus_op').style.display = "inline";
+        
+            if(playlist[where].currentTime === 0) {
+                        document.getElementById('mus_op').style.left = "-30px";
+                        document.getElementById('mus_op').style.width = "0px";
+        document.getElementById('handle').style.left = "0px";
+        document.getElementById('fill').style.width = "0px";
 
             } else {
-                cal = 0;
-                document.getElementById('mus_op').style.width = pos_op +"px";
-                document.getElementById('mus_op').style.display = "none";
-                
-            }
         document.getElementById('handle').style.left = (pos_fill-1) + "px";
-    
+        var pos_op = Math.round(cal*360);
+        var pos_fill = Math.round(cal*200);
+        console.log('pos_op player' + pos_op);
+        // set the element's new position:
+        document.getElementById('fill').style.width = pos_fill + "px";
+                document.getElementById('mus_op').style.width = pos_fill +"px";
+                document.getElementById('mus_op').style.display = "inline";
+            }
         setTimeout(player,300);
     }
 </script>
@@ -825,7 +838,7 @@ function further_song(){
                 for(var i = 0; i < playlist.length; i++){
                     playlist[i].pause();
                     playlist[i].currentTime = 0;
-                    document.getElementById('play_or_pause' + i).src = 'url("./img/play.png")';
+                    document.getElementById('play_or_pause' + i).src = './img/play.png';
                 }
             var previous = where+1;
                 if(where === playlist.length -1){
@@ -846,25 +859,23 @@ function further_song(){
  
             var count = 0;
     function play_or_pause(str){
-        var i;
+        var i = document.getElementById('play_or_pause').value;
         var where = Number(str);
         var playlist = document.getElementsByTagName('audio');
         var img = document.getElementById('play_or_pause').style.backgroundImage;
             if(document.getElementById('play_or_pause').style.backgroundImage === 'url("./img/play.png")' || document.getElementById('play_or_pause'+ where).src === "./img/play.png"){
-                console.log(where);
-                for(i = 0; i < playlist.length; i++){
-                        if(i !== where){
                             playlist[i].currentTime = 0;
                             playlist[i].pause();
                             document.getElementById('play_or_pause' + i).src = './img/play.png';
-                        }
-                }
+                
                 document.getElementById('play_or_pause' + where).src = './img/pause.png';
                 document.getElementById('title').textContent = document.getElementById('title'+ where).textContent;
                 document.getElementById('artist').textContent = document.getElementById('artist'+ where).textContent;
                 document.getElementById('play_or_pause').value = where;
                 document.getElementById('play_or_pause').style.backgroundImage = "url('./img/pause.png')";
                 playlist[where].play();
+                playlist[where].volume = 1;
+
                 count++;
             } else if (document.getElementById('play_or_pause').style.backgroundImage === 'url("./img/pause.png")' || document.getElementById('play_or_pause'+ where).src === './img/pause.png'){
                 document.getElementById('play_or_pause' + where).src = './play.png';
