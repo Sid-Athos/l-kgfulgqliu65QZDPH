@@ -281,10 +281,16 @@ gérer l'ajout en lecture suivante (push à l'indice 1)<br>
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header" style="text-align:center;z-index:99;background-color:#FFFFFF">
-        <h5 class="modal-title" id="exampleModalLabel" style="text-align:center;margin-left:290px"><center>Astuces</center></h5>
+        <h5 class="modal-title" id="exampleModalLabel" style="text-align:center;margin-left:290px">
+        <center>Astuces</center></h5>
         <button type="button" class="btn btn-secondary" data-dismiss="modal" style="z-index:99">X</button>
+        djsqgduslqgdukqslgduk
       </div>
-           
+           qomd
+           dqsdqs
+           dsqdq
+           dsqdq
+           dqsdq
       <div class="modal-body" style="margin-top:-25px;max-height:600px;overflow-y:scroll;z-index:3">
       <div style="position:relative" style="margin-top:-50px">
         <div class="btn" style="border:0.2px solid gray;font-size:20px;height:30px;width:200px;margin:0 auto;right:30px">
@@ -340,9 +346,9 @@ gérer l'ajout en lecture suivante (push à l'indice 1)<br>
                 </div>
                     <div id="song_title" class="song_title">
                         <div class="title" id="title">
-                        Créé par
+                        MyStudio
                         </div>
-                        <div class="current_artist" id="artist" style="opacity:0.5;color:#FFFFFF">Sid Bee
+                        <div class="current_artist" id="artist" style="opacity:0.5;color:#FFFFFF">by Sid B
                         </div>
                     </div>
                     <div class="controls">
