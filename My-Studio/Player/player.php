@@ -136,7 +136,7 @@
             display:flex;
             position:absolute;
             top:180px;
-            left:0;
+            left:0px;
             cursor: pointer;
             border-top-right-radius:2px;
             border-bottom-right-radius:2px;
@@ -145,7 +145,7 @@
         .fill{
             height:5px;
             width:33px;
-            position:absolute;
+            position:relative;
             top:0px;
             background-color:#FFFFFF;
             border-radius:20px;
@@ -154,7 +154,7 @@
         .handle{
             width:5px;
             height:5px;
-            left:33px;
+            left:0px;
             top:-1px;
             background-color:#FFFFFF;
             position:absolute;
@@ -262,11 +262,13 @@
         }
     </style>
   
-<body onload="player();auto_close_control_volume()" style="cursor:default">
+<body onload="player();auto_close_control_volume();mute_unmute()" style="cursor:default">
 <div id="TxtHint" style="top:0"> 
 Mettre la playlist en global pour gérer la lecture random<br>
 gérer l'ajout à la file d'attente (push dans la playlist)<br>
-gérer l'ajout en lecture suivante (push à l'indice 1)<br>
+gérer l'ajout en lecture suivante (push à l'indice where + 1)
+
+gogogo<br>
 </div>
 
 <!-- Button trigger modal -->
@@ -284,13 +286,8 @@ gérer l'ajout en lecture suivante (push à l'indice 1)<br>
         <h5 class="modal-title" id="exampleModalLabel" style="text-align:center;margin-left:290px">
         <center>Astuces</center></h5>
         <button type="button" class="btn btn-secondary" data-dismiss="modal" style="z-index:99">X</button>
-        djsqgduslqgdukqslgduk
       </div>
-           qomd
-           dqsdqs
-           dsqdq
-           dsqdq
-           dqsdq
+           
       <div class="modal-body" style="margin-top:-25px;max-height:600px;overflow-y:scroll;z-index:3">
       <div style="position:relative" style="margin-top:-50px">
         <div class="btn" style="border:0.2px solid gray;font-size:20px;height:30px;width:200px;margin:0 auto;right:30px">
@@ -370,17 +367,20 @@ gérer l'ajout en lecture suivante (push à l'indice 1)<br>
                         <div id="fill" class="fill">
                         </div>
                         <div class ="handle" id="handle">
-                    </div>
+                        </div>
                     </div>
                     <button id="vol" class="vol" title="Controle volume" onclick="show_volume_control()" style="background-image:url('./img/high.png');
                         background-size: 30px 30px;background-repeat:no-repeat;
                         height:30px;width:45px;position:absolute;left:3px;top:75%;outline:none;border:none;z-index:99;background-color:transparent;cursor:pointer"> </button>
                         <button id="rep" class="rep" title="Controle volume" onclick="repeat_musics()" 
                         style="background-image:url('./img/rep.png');background-size: 32px 24px;background-repeat:no-repeat;
-                        height:30px;width:45px;position:absolute;right:-12px;top:90%;outline:none;border:none;z-index:99;background-color:transparent;cursor:pointer"></button>
+                        height:30px;width:45px;position:absolute;right:-12px;top:80%;outline:none;border:none;z-index:99;background-color:transparent;cursor:pointer"></button>
                         <button id="shuffle" class="shuffle" title="Controle volume" onclick="shuffle()" 
                         style="background-image:url('./img/sh_off.png');background-size: 32px 24px;background-repeat:no-repeat;
-                        height:30px;width:45px;position:absolute;right:-12px;top:83%;outline:none;border:none;z-index:99;background-color:transparent;cursor:pointer"></button>
+                        height:30px;width:45px;position:absolute;right:-12px;top:87%;outline:none;border:none;z-index:99;background-color:transparent;cursor:pointer"></button>
+                        <button id="mute" class="mute" title="Controle volume" onclick="mute()" 
+                        style="background-image:url('./img/mute.png');background-size: 20px 20px;background-repeat:no-repeat;
+                        height:30px;width:45px;position:absolute;right:-18px;top:93%;outline:none;border:none;z-index:99;background-color:transparent;cursor:pointer"></button>
                         <div id="seek_bar_vol" class="seek_bar_vol" title="Contrôle du volume">
                         <div id="fill_vol" class="fill_vol">
                         </div>
@@ -478,51 +478,35 @@ gérer l'ajout en lecture suivante (push à l'indice 1)<br>
             }
         
     }
-/* Modifie l'avancement de la lecture selon les clicks sur la seek_bar (musique en cours) */
-dragElement(document.getElementById("seek_bar"));
-
-    function dragElement(elmnt) {
-        var pos = 0, ref_pos = 0,  cal_pos = 0,pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-        /* Quand la souris est relachée j'appelle la fonciton de déplacement */
-        elmnt.onmouseup = dragMouseDown;
-
-        function dragMouseDown(e) {
-            e = e || window.event;
-            /* J'évite toute action non désirée entre deux */
-            e.preventDefault();
-            // pos4 récupère la position de départ et je vais effectuer
-            /* Des calculs en rapport à la taille maximale de la barre d'avancée de la musique */
-            pos4 = e.clientX;
-            ref_pos = e.clientX;
-                if(ref_pos >= 0 && ref_pos <= 200){
-                    var where = Number(document.getElementById('play_or_pause').value);
-                    playlist = document.getElementsByTagName('audio');
-                    var duration = Math.floor(playlist[where].duration);
-                    var cal = ref_pos/200;
-                    cal = Math.round(cal *360);
-                    if(cal >= 1){
-                        document.getElementById('mus_op').style.width = cal +"px";
-                    } else {
-                        cal = 0;
-                        
-                        document.getElementById('mus_op').style.width = cal +"px";
-
-                    }
-                    // set the element's new position:
-                    document.getElementById('handle').style.left = (ref_pos-2) + "px";
-                    document.getElementById('fill').style.width = ref_pos + "px";
-                } 
-        // call a function whenever the cursor moves:
-        }
-
-  
-
-        function closeDragElement() {
-            /* stop moving when mouse button is released:*/
-            document.onmouseup = null;
-            document.onmousemove = null;
-        }
+    /* Garde (ou pas) la musique en mute state, applique le mute à la playlist */
+    function mute_unmute(){
+        var vol = document.getElementById('mute');
+        var where = document.getElementById('play_or_pause').value;
+            if(vol.style.backgroundImage === 'url("./img/mute.png")'){
+                playlist[where].muted = false;
+            } else {
+                playlist[where].muted = true;
+                
+            }
+        setTimeout(mute_unmute,200);
     }
+    /* Change l'image mute/unmute et applique le choix sur la musique en cours */
+    function mute(){
+        var vol = document.getElementById('mute');
+        var where = document.getElementById('play_or_pause').value;
+        console.log(playlist);
+        console.log(where);
+            if(vol.style.backgroundImage === 'url("./img/mute.png")'){
+                vol.style.backgroundImage = 'url("./img/unmute.png")';
+                playlist[where].muted = true;
+            } else {
+                vol.style.backgroundImage = 'url("./img/mute.png")';
+                playlist[where].muted = false;
+                
+            }
+        
+    }
+
 /* état d'avancée de la piste, fonction qui permet de drag et de remplir la barre d'avancée, selon le déplacement le 
 curseur */
 dragElement(document.getElementById("handle"));
@@ -532,12 +516,16 @@ function dragElement(elmnt) {
     
     elmnt.onmousedown = dragMouseDown;
     function dragMouseDown(e) {
+        var where = Number(document.getElementById('play_or_pause').value);
+    playlist = document.getElementsByTagName('audio');
+    playlist[where].muted = true;
+    console.log(playlist[where].muted);
         e = e || window.event;
         e.preventDefault();
         // get the mouse cursor position at startup:
         
         pos4 = e.clientX;
-
+        
         document.onmouseup = closeDragElement;
         // call a function whenever the cursor moves:
         document.onmousemove = elementDrag;
@@ -549,26 +537,24 @@ function dragElement(elmnt) {
     // calculate the new cursor position:
     var where = Number(document.getElementById('play_or_pause').value);
     playlist = document.getElementsByTagName('audio');
+    playlist[where].muted = true;
+
     pos = Number(e.clientX);
+    cal = pos/200;
+    time = Math.round(cal * playlist[where].duration);
     ref_pos = e.clientX+11;
         if(pos >= 0 && pos <= 200){
-                var current_time = Math.floor(playlist[where].currentTime);
-                var duration = Math.floor(playlist[where].duration);
             // set the element's new position:
+            document.getElementById('handle').style.left = pos + "px";
             document.getElementById('fill').style.width = pos + "px";
-            var cal = ref_pos/200;
-            cal = Math.round(cal *360);
-            var cal_diff = pos/360;
-                if(cal >= 1){
-                    document.getElementById('mus_op').style.width = cal +"px";
-                    document.getElementById('mus_op').style.display = "inline";
+            playlist[where].currentTime = time;
+            lol = document.getElementById('play_or_pause'+ where).src;
+            if(document.getElementById('play_or_pause'+ where).src === 'http://localhost/code_s2/l-kgfulgqliu65QZDPH/My-Studio/Player/img/pause.png'){
+                playlist[where].play();
 
-                } else {
-                    cal = 0;
-                    document.getElementById('mus_op').style.width = cal +"px";
-                    document.getElementById('mus_op').style.display = "none";
-                        
-                }
+            } else {
+                playlist[where].pause();
+            }
             elmnt.style.left = (pos-1) + "px";
         } else {
             document.getElementById('fill').style.width = 200 + "px";
@@ -577,14 +563,20 @@ function dragElement(elmnt) {
             elmnt.style.left = 197 + "px";
             return false;
         }
+        document.getElementById('seek_bar').style.left = 0 + "px";
+
     }
 
     function closeDragElement() {
         /* stop moving when mouse button is released:*/
         document.onmouseup = null;
         document.onmousemove = null;
+        var where = Number(document.getElementById('play_or_pause').value);
+        playlist = document.getElementsByTagName('audio');
+        playlist[where].muted = false;
     }
 }
+
     /* Affiche/cache(automatiquement toutes les 10 secondes) la barre de volume */
     var count_vol = 0;
     function auto_close_control_volume(){
@@ -749,7 +741,8 @@ $(document).ready(function(){
 
         }
         if(!isNaN(current_time)){
-            if(current_time === duration - 1){
+            if(current_time === duration){
+                where ++;
                 var audio;
                 var i;
                 var img = document.getElementById('rep').style.backgroundImage;
@@ -769,6 +762,7 @@ $(document).ready(function(){
                     document.getElementById('play_or_pause').value = where;
                     document.getElementById('play_or_pause').style.backgroundImage = 'url("./img/play.png")';
                     if(img === 'url("./img/rep_on.png")'){
+                        console.log('all_rep');
                         playlist[where].currentTime = 0;
                         playlist[where].play();
                         document.getElementById('play_or_pause' + where).src = './img/pause.png';
@@ -782,21 +776,20 @@ $(document).ready(function(){
                         }
                 } else {
                     console.log(where);
-                    where++;
                     for(i = 0; i < playlist.length; i++){
                         playlist[i].currentTime = 0;
                         playlist[i].pause();
                         document.getElementById('play_or_pause' + i).src = "./image/play.png";
                     }
                         previous = where -1;
+                        if(img === 'url("./img/rep_one.png")'){
+                            where--;
+                        } else if(img === 'url("./img/rep_on')
                         if(fill === 0){
                         playlist[where].volume = 0.2;
 
                         } else {
                         playlist[where].volume = playlist[previous].volume;
-                        }
-                        if(img === 'url("./img/rep_one.png")'){
-                            where--;
                         }
                         playlist[where].play();
                         document.getElementById('play_or_pause' + where).src = './img/pause.png';
@@ -809,7 +802,7 @@ $(document).ready(function(){
             } 
         } 
         
-            if(playlist[where].currentTime === 0) {
+            if(playlist[where].currentTime < 2) {
                 document.getElementById('mus_op').style.left = "-30px";
                 document.getElementById('mus_op').style.width = "0px";
                 document.getElementById('handle').style.left = "0px";
@@ -834,7 +827,6 @@ $(document).ready(function(){
     /* Affichage manuel de la barre de volume lors d'un click */
     function repeat_musics(){
         var img = document.getElementById('rep').style.backgroundImage;
-        console.log(img);
             if(img === 'url("./img/rep.png")'){
                 document.getElementById('rep').style.backgroundImage = 'url("./img/rep_on.png")';
             } else if(document.getElementById('rep').style.backgroundImage === 'url("./img/rep_on.png")'){
@@ -849,7 +841,6 @@ $(document).ready(function(){
   /* Affichage manuel de la barre de volume lors d'un click */
   function shuffle(){
         var img = document.getElementById('shuffle').style.backgroundImage;
-        console.log(img);
             if(img === 'url("./img/sh_off.png")'){
                 document.getElementById('shuffle').style.backgroundImage = 'url("./img/sh_on.png")';
                 
@@ -857,7 +848,6 @@ $(document).ready(function(){
                 document.getElementById('shuffle').style.backgroundImage = 'url("./img/sh_off.png")';
                 playlist = save;
                 playlist.reverse();
-                console.log(playlist);
             } 
         
     }
