@@ -1,2 +1,0 @@
-# My-Studio
-Branche principale
