@@ -716,7 +716,8 @@ $(document).ready(function(){
     /* Fonction avec timer qui actualise les informations du player et passe automatiquement
     à la prochaine musique */
     var fill = 0;
-    var playlist = document.getElementsByTagName('audio');
+    var playlist = document.getElementsByTagName('audio'); /* playlist en cours qui sera modifiée (shuffle/push) */
+    var save = playlist;                /* Savegarde de la playlist qui recevra aussi les push */
    function player(){
         var where = Number(document.getElementById('play_or_pause').value);
         document.getElementById('t_a').textContent = playlist.length + " pistes";
@@ -839,7 +840,21 @@ $(document).ready(function(){
             }
         
     }
- 
+  /* Affichage manuel de la barre de volume lors d'un click */
+  function shuffle(){
+        var img = document.getElementById('shuffle').style.backgroundImage;
+        console.log(img);
+            if(img === 'url("./img/sh_off.png")'){
+                document.getElementById('shuffle').style.backgroundImage = 'url("./img/sh_on.png")';
+                
+            } else if(document.getElementById('shuffle').style.backgroundImage === 'url("./img/sh_on.png")'){
+                document.getElementById('shuffle').style.backgroundImage = 'url("./img/sh_off.png")';
+                playlist = save;
+                playlist.reverse();
+                console.log(playlist);
+            } 
+        
+    }
     /*  */
     function next_song(string){
         var where = Number(document.getElementById('play_or_pause').value);
