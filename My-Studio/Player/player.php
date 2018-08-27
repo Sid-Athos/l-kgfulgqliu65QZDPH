@@ -263,7 +263,10 @@
     </style>
   
 <body onload="player();auto_close_control_volume()" style="cursor:default">
-<div id="TxtHint" style="top:0">
+<div id="TxtHint" style="top:0"> 
+Mettre la playlist en global pour gérer la lecture random<br>
+gérer l'ajout à la file d'attente (push dans la playlist)<br>
+gérer l'ajout en lecture suivante (push à l'indice 1)<br>
 </div>
 
 <!-- Button trigger modal -->
@@ -712,11 +715,10 @@ $(document).ready(function(){
    }
     /* Fonction avec timer qui actualise les informations du player et passe automatiquement
     à la prochaine musique */
-   var fill = 0;
+    var fill = 0;
+    var playlist = document.getElementsByTagName('audio');
    function player(){
-       console.log(count);
         var where = Number(document.getElementById('play_or_pause').value);
-        playlist = document.getElementsByTagName('audio');
         document.getElementById('t_a').textContent = playlist.length + " pistes";
         var count_total_d = 0;
         for(i = 0; i< playlist.length;i++){
@@ -726,7 +728,7 @@ $(document).ready(function(){
                 var seconds = Math.round(count_total_d%60);
             }
         }
-        var t_content = 'Durée totale : '+ duration +' mins'+ seconds +'s. Playlist écoutée 4 fois';
+        var t_content = 'Durée totale : '+ duration +' mins '+ seconds +'s 4 écoutes.';
         document.getElementById('t_a').textContent = t_content;
 
         if(playlist[where].readyState > 0){
